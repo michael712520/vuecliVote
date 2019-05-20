@@ -1,0 +1,251 @@
+body {
+    min-width: 100%;
+    font-size: 14px;
+    background:#fff;
+}
+.mr40 {
+    margin-right: 40px !important;
+}
+.mr20 {
+    margin-right: 20px !important;
+}
+.mr4 {
+    margin-right: 4px !important;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.w50 {
+    width: 50px;
+}
+.hide {
+    display: none;
+}
+.que_random_container {
+    padding: 6px 20px 10px;
+}
+.randomSet_head {
+    line-height: 30px;
+}
+.randomSet_head .textMes {
+    font-weight: bold;
+    font-size: 16px;
+    vertical-align: middle;
+    float: left;
+}
+.randomSet_head .cancel_set {
+    float: right;
+    width: 88px;
+    height: 30px;
+    line-height: 28px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.radio_box {
+    margin-top: 10px;
+}
+.setList {
+    margin-top: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #e4edf7;
+    border-radius: 6px;
+}
+.setList .item {
+    overflow: hidden;
+    line-height: 28px;
+    margin-bottom: 6px;
+}
+.setList .item > * {
+    float: left;
+    margin-right: 8px;
+    *margin-right: 6px;
+}
+.setList .item:last-child {
+    margin-bottom: 0;
+}
+.setList .item .icon-del {
+    width: 16px;
+    height: 16px;
+    background-position: -90px 0px;
+    margin-right: 0;
+    margin-top: 4px;
+    *margin-top: 6px;
+}
+.setList .item .icon-del:hover {
+    background-position: -108px 0px;
+}
+.setList .add_set {
+    margin-top: 6px;
+    cursor: pointer;
+    width: 534px;
+    height: 28px;
+    *height: 26px;
+    line-height: 26px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    border: dashed 1px #d4d7d9;
+    text-align: center;
+    color: #a9a8a8;
+}
+.setList .add_set:hover {
+    border-color: #1ea0fa;
+    color: #1ea0fa;
+}
+.setList .add_set:hover .icon_addSet {
+    background-position: -142px 0;
+}
+.setList .icon_addSet {
+    width: 15px;
+    height: 14px;
+    background-position: -126px 0;
+}
+.random_cont .pdbox {
+    width: 571px;
+    *width: 554px;
+    padding: 10px;
+}
+.prompt_box {
+    margin-top: 10px;
+}
+.prompt_box dt {
+    font-weight: bold;
+}
+.prompt_box dt,
+.prompt_box dd {
+    line-height: 1;
+    margin-top: 10px;
+}
+.ensureBox {
+    text-align: center;
+    margin-top: 20px;
+}
+.ensureBox .btn {
+    height: 32px;
+    line-height: 30px;
+    padding: 0 20px;
+    font-size: 16px;
+}
+.text-must {
+    margin-top: 20px;
+}
+.icon_help {
+    float: left;
+    margin-top: 8px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 0;
+    background: url(/images/newimg/doubt_14_Sprite.png) no-repeat center;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+.icon_help:hover {
+    background-position: -16px 0;
+}
+input[type="text"] {
+    font-size: 14px;
+    height: 30px;
+    *height: 26px;
+    *line-height: 24px;
+    background-color: #ffffff;
+    border: solid 1px #a9a8a8;
+    padding-left: 8px;
+    *padding-left: 0;
+}
+select {
+    padding-left: 4px;
+    height: 30px;
+    background-color: #ffffff;
+    border: solid 1px #abafb2;
+}
+.icon {
+    background: url(/images/newimg/single-icon.png) no-repeat;
+}
+.wjx__templet__beautifyInput input[type="radio"],
+.wjx__templet__beautifyInput input[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+    position:relative \9;
+    left:0 \9;
+}
+
+.wjx__templet__beautifyInput label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.wjx__templet__beautifyInput label:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    /* top: 0.16em; */
+    top: 3px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    background-image: url("/images/newimg/dim-set/radio-check.png");
+    width: 0  \9;
+    height: 0  \9;
+}
+.wjx__templet__beautifyInput input[type="checkbox"] + label:before {
+    background-position: 0 -17px;
+}
+.wjx__templet__beautifyInput input[type="checkbox"]:checked + label:before {
+    background-position: 0 0;
+}
+.wjx__templet__beautifyInput input[type="checkbox"]:disabled + label:before {
+    background-position: 0 -34px;
+}
+.wjx__templet__beautifyInput input[type="checkbox"]:disabled + label:before {
+    background-position: 0 -34px;
+}
+.wjx__templet__beautifyInput input[type="checkbox"]:checked:disabled + label:before {
+    background-position: 0 -51px;
+}
+.wjx__templet__beautifyInput input[type="radio"] + label:before {
+    background-position: -19px -17px;
+}
+.wjx__templet__beautifyInput input[type="radio"]:checked + label:before {
+    background-position: -19px 0;
+}
+.wjx__templet__beautifyInput input[type="radio"]:disabled + label:before {
+    background-position: -19px -34px;
+}
+.wjx__templet__beautifyInput input[type="radio"]:checked:disabled + label:before {
+    background-position: -19px -51px;
+}
+/* Remove the custom styling for IE 7-8 */
+.ie8 .wjx__templet__beautifyInput label:before {
+    display: none;
+    content: none;
+}
+.ie8 .wjx__templet__beautifyInput input[type="checkbox"],
+.ie8 .wjx__templet__beautifyInput input[type="radio"],
+.ie7 .wjx__templet__beautifyInput input[type="checkbox"],
+.ie7 .wjx__templet__beautifyInput input[type="radio"] {
+    position: static;
+}
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #1ea0fa !important;
+}
+a.vipclasslogo {
+    width: 82px;
+    height: 22px;
+    border: 1px solid #ff6666;
+    border-radius: 11px;
+    color: #ff6666;
+    padding: 0 14px 0 14px;
+    margin-left:10px;
+}
+a:hover.vipclasslogo {
+    background: #ff6666;
+    color: #fff;
+}
+.setList .itemnew > *
+{
+    margin-right:4px;
+}

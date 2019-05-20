@@ -1,0 +1,274 @@
+body {
+    font-size: 14px;
+    color: #333;
+}
+
+.rb_option_title {
+    margin: 20px 0 10px;
+    color: #666;
+    text-align: left
+}
+
+.rb_option {
+    padding-left: 30px;
+    width: 570px;
+}
+
+.rb_option_cont {
+    height: 434px;
+    overflow-y: auto;
+    padding-right:30px;
+}
+
+table {
+    width: 540px;
+    border-radius: 4px;
+    border: 1px solid #EDEDED;
+}
+
+th, td {
+    border-right: 1px solid #EDEDED;
+    border-bottom: 1px solid #EDEDED;
+    padding: 10px 15px;
+}
+
+th {
+    background: #F8F8F8;
+    color: #666
+}
+
+tr:last-child td {
+    border-bottom: 0
+}
+
+tr td:last-child, tr th:last-child {
+    border-right: 0
+}
+
+.rbo_ensure_btn, .rbo_del_btn, .rbo_save_btn {
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    background: #fff;
+    border-radius: 2px;
+    border: 1px solid #CCCCCC;
+    color: #808080;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.rbo_ensure_btn {
+    width: 60px;
+    border: 1px solid #1EA0FA;
+    background: #1EA0FA;
+    color: #fff;
+}
+
+    .rbo_ensure_btn:hover {
+        background: #0987db
+    }
+
+.rbo_del_btn {
+    width: 60px;
+    margin-left:4px;
+}
+
+.rbo_save_btn {
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+}
+    
+
+.rbo_queItem {
+    text-align: left;
+    margin-top:12px;
+}
+.rbo_queItem:first-child{
+    margin-top:0;
+}
+
+.change_rbo {
+    float: right;
+    color: #1EA0FA;
+    cursor: pointer
+}
+
+.rbo_queBox select {
+    margin-top: 4px;
+    width: 284px;
+    height: 28px;
+    background: #fff;
+    border-radius: 2px;
+    border: 1px solid #CCCCCC;
+}
+
+.rbo_add {
+    color: #999999 !important;
+}
+
+    .rbo_add:hover {
+        color: #666 !important;
+    }
+
+.option_item {
+    margin-top: 4px;
+    font-size: 12px;
+}
+.relation_type{
+    margin-top:12px;
+}
+.rbo_order{
+    font-weight:bold;
+    margin-top:12px;
+}
+    .rbo_order:first-child{
+        margin-top:0
+    }
+.control_btn_box{
+    margin-top:14px;
+}
+.bottom_btn_box{
+    margin-top:10px;
+    padding-right:30px;
+}
+.relation_res {
+    float: left;
+    width: 218px;
+}
+.rbo_res{
+    width:325px;
+}
+#question_title {
+    width: 460px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    float: left;
+}
+.rbo_optionBox b {
+    line-height: 24px;
+    margin-top: 6px;
+    display: inline-block;
+}
+.toolTipLayerMenu {
+    display: none;
+    position: absolute;
+    z-index: 10000;
+    right: -55px;
+    width: 116px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #888888;
+    background-color: #fff;
+    border: 1px solid #1ea0fa \9;
+    text-align: left;
+    margin-top: 10px;
+    padding: 6px 10px;
+    box-shadow: 0px 0px 6px 0px #999;
+    -webkit-box-shadow: 0px 0px 6px 0px #999;
+    -moz-box-shadow: 0px 0px 6px 0px #999;
+}
+.toolTipLayerMenu::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 20px;
+    display: inline-block;
+    width: 0;
+    height: 0;
+    color: #fff;
+    margin-left: -2px;
+    vertical-align: middle;
+    border-bottom: 6px dashed;
+    border-bottom: 5px solid \9;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+.clearfix:after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    height: 0;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+
+.wjx__templet__beautifyInput input[type="radio"],
+.wjx__templet__beautifyInput input[type="checkbox"] {
+    position: absolute;
+    left: -999em;
+}
+
+.wjx__templet__beautifyInput label:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 0.16em;
+    left: -2px;
+    width: 16px;
+    height: 16px;
+    background-image: url("/images/newimg/dim-set/radio-check.png");
+    margin-right: 8px;
+}
+
+.wjx__templet__beautifyInput input[type="checkbox"] + label:before {
+    background-position: 0 -17px;
+}
+
+.wjx__templet__beautifyInput input[type="checkbox"]:checked + label:before {
+    background-position: 0 0;
+}
+
+.wjx__templet__beautifyInput input[type="checkbox"]:disabled + label:before {
+    background-position: 0 -34px;
+}
+
+.wjx__templet__beautifyInput input[type="checkbox"]:disabled:checked + label:before {
+    background-position: 0 -51px;
+}
+
+.wjx__templet__beautifyInput input[type="radio"] + label:before {
+    background-position: -19px -17px;
+}
+
+.wjx__templet__beautifyInput input[type="radio"]:checked + label:before {
+    background-position: -19px 0;
+}
+
+.wjx__templet__beautifyInput input[type="radio"]:disabled + label:before {
+    background-position: -19px -34px;
+}
+
+.wjx__templet__beautifyInput input[type="radio"]:disabled:checked + label:before {
+    background-position: -19px -51px;
+}
+/* Remove the custom styling for IE 7-8 */
+
+.ie8 .wjx__templet__beautifyInput label:before {
+    display: none;
+    content: none;
+}
+
+.ie8 .wjx__templet__beautifyInput input[type="checkbox"],
+.ie8 .wjx__templet__beautifyInput input[type="radio"],
+.ie7 .wjx__templet__beautifyInput input[type="checkbox"],
+.ie7 .wjx__templet__beautifyInput input[type="radio"] {
+    position: static;
+    left: 0;
+}
+
+.ie8 .wjx__templet__beautifyInput input[type="checkbox"],
+.ie8 .wjx__templet__beautifyInput input[type="radio"] {
+    position: relative;
+    top: 5px;
+    margin-right: 0.5em;
+}
