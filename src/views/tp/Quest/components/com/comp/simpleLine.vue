@@ -7,45 +7,43 @@
         tabindex="1"
         title="回车添加新选项，上下键编辑前后选项"
         style="width: 265px;"
-        v-model="this.item.inputVal"
+        v-model="item.inputVal"
       >
       <span
         title="在此选项下面插入一个新的选项"
         class="choiceimg design-icon design-add"
         style="cursor: pointer; margin-left: 3px;"
+        @click="addLine"
       ></span>
-      <span title="删除当前选项（最少保留2个选项）" class="choiceimg design-icon design-minus"></span>
+      <span title="删除当前选项（最少保留2个选项）" class="choiceimg design-icon design-minus" @click="deleteLine"></span>
     </td>
     <td align="center">
       <input type="hidden" value>
-      <span title="添加图片" class="choiceimg design-icon design-img"></span>
+      <span title="添加图片" @click="addimg" class="choiceimg design-icon design-img"></span>
       <span style="display: none;">
         <input type="checkbox" tabindex="-1" title="是否显示选项文字" class="checkbox">
       </span>
     </td>
     <td align="center">
-      <span title="选项说明，支持HTML，图片，视频等" class="choiceimg design-icon design-desc"></span>
-      <input type="hidden" value>
+      <span
+        @click="addExplain"
+        title="选项说明，支持HTML，图片，视频等"
+        class="choiceimg design-icon design-desc"
+      ></span>
     </td>
     <td align="center">
       <span style="vertical-align: bottom; font-size: 12px;">
-        <input
-          type="checkbox"
-          tabindex="-1"
-          title="允许填空"
-          class="checkbox"
-          style="vertical-align: bottom;"
-        >
+        <input type="checkbox" title="允许填空" class="checkbox" style="vertical-align: bottom;">
         <span style="display: none;">
           <span style="font-size:16px;">|</span>
           <span>
-            <input type="checkbox" tabindex="-1" title="文本框必填" id="cbr2_2" class="checkbox">
+            <input type="checkbox" title="文本框必填" class="checkbox">
             <label for="cbr2_2">必填</label>
           </span>
         </span>
       </span>
     </td>
-    <td align="left" style="display: none;">
+    <td align="left">
       <span>
         <input
           type="text"
@@ -71,7 +69,6 @@
 <script>
 // @ is an alias to /src
 export default {
-  name: 'title',
   components: {},
   props: {
     dataInfo: Object,
@@ -83,7 +80,7 @@ export default {
       title: '',
       note: '',
       item: {
-        inputVal,
+        inputVal: '',
         imgs: [],
         explain: ''
       }
@@ -91,7 +88,16 @@ export default {
   },
   computed: {},
   mounted() {},
-  methods: {},
+  methods: {
+    addLine() {},
+    deleteLine() {}
+  },
   watch: {}
 }
 </script>
+<style scoped>
+tr {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+</style>

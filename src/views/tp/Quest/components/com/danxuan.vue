@@ -162,8 +162,6 @@ export default {
       },
       visible: false,
       editorText: '',
-      title: '',
-      note: '',
       value: 1,
       radioStyle: {
         display: 'block',
