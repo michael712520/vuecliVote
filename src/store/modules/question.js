@@ -8,7 +8,7 @@ export default {
       },
       {
         comp: 'danxuan',
-        dataInfo: {}
+        dataInfo: []
       }
     ]
   },
@@ -18,13 +18,13 @@ export default {
       if (Array.isArray(state.listData)) {
         var listData = state.listData.map(element => {
           if (element.comp === payload.comp) {
-            element.dataInfo = JSON.stringify(payload.dataInfo)
+            element.dataInfo = payload.dataInfo
           }
           return element
         })
       }
+      console.log('vuexlistData', listData)
       state.listData = listData
-      console.log('state.listData', state.listData)
     }
   }
 }

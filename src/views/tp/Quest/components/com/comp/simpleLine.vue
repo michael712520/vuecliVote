@@ -7,7 +7,7 @@
         tabindex="1"
         title="回车添加新选项，上下键编辑前后选项"
         style="width: 265px;"
-        v-model="item.inputVal"
+        v-model="dataInfo.inputVal"
       >
       <span
         title="在此选项下面插入一个新的选项"
@@ -33,7 +33,13 @@
     </td>
     <td align="center">
       <span style="vertical-align: bottom; font-size: 12px;">
-        <input type="checkbox" title="允许填空" class="checkbox" style="vertical-align: bottom;">
+        <input
+          type="checkbox"
+          title="允许填空"
+          class="checkbox"
+          v-model="dataInfo.checked"
+          style="vertical-align: bottom;"
+        >
         <span style="display: none;">
           <span style="font-size:16px;">|</span>
           <span>
@@ -49,21 +55,16 @@
           type="text"
           class="choicetxt"
           maxlength="5"
+          v-model="dataInfo.score"
           title="在此可以设置每个选项的分数（请输入整数）"
-          style="width: 30px;"
         >
-      </span>
-    </td>
-    <td>
-      <span>
-        &nbsp;
-        <input type="checkbox" tabindex="-1" class="checkbox" title="若选中，用户在填问卷时此选项会默认被选中">
       </span>
     </td>
     <td align="left" style="padding-left: 15px;">
       <span title="将当前选项上移一个位置" class="choiceimg design-icon design-cup" style="cursor: pointer;"></span>
       <span title="将当前选项下移一个位置" class="choiceimg design-icon design-cdown" style="cursor: pointer;"></span>
     </td>
+    <a-modal :visible="visible" @ok="handleOk" @cancel="handleCancel"></a-modal>
   </tr>
 </template>
 <script>
@@ -82,17 +83,64 @@ export default {
       item: {
         inputVal: '',
         imgs: [],
-        explain: ''
-      }
+        explain: '',
+        score: null,
+        checked: null
+      },
+      flage: 1
     }
   },
   computed: {},
   mounted() {},
   methods: {
     addLine() {},
-    deleteLine() {}
+    deleteLine() {},
+    addimg() {
+      this.visible = true
+    },
+    addExplain() {},
+    update() {
+      this.dataInfo = this.item
+    },
+    handleOk(e) {},
+    handleCancel(e) {
+      this.visible = false
+    }
   },
-  watch: {}
+  watch: {
+    dataInfo: {
+      handler(nVal, oVal) {
+        if (nVal && Object.keys(nVal).length != 0) {
+          if (
+            !(
+              this.item.inputVal == nVal.inputVal &&
+              this.item.imgs == nVal.imgs &&
+              this.item.explain == nVal.explain &&
+              this.item.score == nVal.score &&
+              this.item.checked == nVal.checked
+            )
+          ) {
+            this.$emit('dataInfo_handler', { ...nVal })
+            this.item = { ...nVal }
+            this.flage = 2
+          }
+        }
+      },
+      // immediate: true,
+      deep: true
+    },
+    item: {
+      handler(nVal, oVal) {
+        if (nVal && Object.keys(nVal).length != 0) {
+          if (this.flage != 1) {
+            this.$emit('updateitem', { ...nVal })
+          }
+        }
+      },
+      // immediate: true,
+      deep: true
+    }
+  }
 }
 </script>
 <style scoped>

@@ -82,9 +82,8 @@
                 <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
                   <span>允许填空</span>
                 </td>
-                <td style="width: 110px; display: none; padding: 3px 5px;">
+                <td style="width: 50px; padding: 3px 5px;">
                   <span>
-                    <input type="checkbox" tabindex="-1" title="给选项设置分数，可用于Likert量表或者测试类型的问卷">
                     <span style="cursor: pointer;">
                       &nbsp;分数
                       <span
@@ -94,16 +93,22 @@
                     </span>
                   </span>
                 </td>
-                <td style="width: 30px; padding: 3px 5px;">
+                <!-- <td style="width: 30px; padding: 3px 5px;">
                   <span>
                     <span>默认</span>
                   </span>
-                </td>
+                </td>-->
                 <td align="left" style="padding: 3px 5px 3px 15px;">
                   <span>上移下移</span>
                 </td>
               </tr>
-              <simpleLine></simpleLine>
+              <simpleLine
+                v-for="(item ,index) in dataSet"
+                :key="index"
+                :index="index"
+                :dataInfo="item"
+                @updateitem="updateitem(item ,index,$event)"
+              ></simpleLine>
             </tbody>
           </table>
         </div>
@@ -142,7 +147,7 @@ export default {
   name: 'Danxuan',
   components: { simpleLine, VueUeditorWrap },
   props: {
-    dataInfo: Object,
+    dataInfo: Array,
     index: Number
   },
   data() {
@@ -168,34 +173,40 @@ export default {
         height: '300px',
         lineHeight: '300px'
       },
-      dataSet: this.dataInfo.data
-        ? this.dataInfo.data
-        : [
-            {
-              value: '1',
-              name: 'AAAAAAAA',
-              img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-              checked: null
-            },
-            {
-              value: '2',
-              name: 'BBBBBBBB',
-              img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-              checked: null
-            },
-            {
-              value: '3',
-              name: 'CCCCCCCC',
-              img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-              checked: null
-            },
-            {
-              value: '4',
-              name: 'CCCCCCC',
-              img: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-              checked: 'checked'
-            }
-          ]
+      dataSet: [
+        {
+          value: '1',
+          inputVal: 'AAAAAAAA',
+          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+          checked: null,
+          explain: 'asdasd',
+          score: 0
+        },
+        {
+          value: '2',
+          inputVal: 'BBBBBBBB',
+          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+          checked: null,
+          explain: 'asdasd',
+          score: 0
+        },
+        {
+          value: '3',
+          inputVal: 'CCCCCCCC',
+          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+          checked: null,
+          explain: 'asdasd',
+          score: 0
+        },
+        {
+          value: '4',
+          inputVal: 'ddddddddd',
+          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+          checked: 'checked',
+          explain: 'asdasd',
+          score: 0
+        }
+      ]
     }
   },
   computed: {
@@ -208,9 +219,33 @@ export default {
     onContentChange(val) {
       this.editorText = val
     },
-    afterChange() {}
+    afterChange() {},
+    updateitem(item, index, $event) {
+      let data = this.dataSet.map((d, i) => {
+        if (index === i) {
+          //  有同事指出应该声明一个新变量来存储map的结果，这个建议我认为是对的。
+          return {
+            ...d,
+            ...$event
+          }
+        } else {
+          return { ...d }
+        }
+      })
+      this.$emit('complete', data)
+    }
   },
-  watch: {}
+  watch: {
+    dataInfo: {
+      handler(nVal, oVal) {
+        if (nVal && Object.keys(nVal).length != 0) {
+          this.dataSet = nVal
+        }
+      },
+      // immediate: true,
+      deep: true
+    }
+  }
 }
 </script>
 <style scoped>

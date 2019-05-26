@@ -37,8 +37,14 @@ export const asyncRouterMap = [
             meta: { title: '工作台', keepAlive: true, permission: ['dashboard'] }
           },
           {
-            path: '/dashboard/question',
+            path: '/dashboard/basic-list',
             name: 'question',
+            component: () => import('@/views/tp/Clist/StandardList'),
+            meta: { title: '问卷列表', keepAlive: false, permission: ['dashboard'] }
+          },
+          {
+            path: '/dashboard/Question',
+            name: 'Question',
             component: () => import('@/views/tp/Quest/Question'),
             meta: { title: '设置', keepAlive: false, permission: ['dashboard'] }
           }

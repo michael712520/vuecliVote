@@ -9,7 +9,7 @@
     <h1 id="pater_title" style="cursor: pointer;">{{title}}</h1>
     <div id="pater_desc" class="surveydescription" style="cursor: pointer;">{{content}}</div>
     <a-modal
-      title="Title"
+      title="文件主体信息编写"
       :visible="visible"
       @ok="handleOk"
       :confirmLoading="confirmLoading"
@@ -44,19 +44,26 @@ export default {
       this.visible = true
     },
     handleOk(e) {
-      this.ModalText = 'The modal will be closed after two seconds'
-      this.confirmLoading = true
-      setTimeout(() => {
-        this.visible = false
-        this.confirmLoading = false
-      }, 2000)
+      this.$emit('complete', { title: this.title, content: this.content })
+      this.visible = false
     },
     handleCancel(e) {
-      console.log('Clicked cancel button')
       this.visible = false
     }
   },
-  watch: {}
+  watch: {
+    dataInfo: {
+      handler(nVal, oVal) {
+        if (nVal.hasOwnProperty('title')) {
+          debugger
+          this.title = nVal.title
+          thia.content = nVal.content
+        }
+      },
+      immediate: true,
+      deep: true
+    }
+  }
 }
 </script>
  <style lang="less" scoped>
