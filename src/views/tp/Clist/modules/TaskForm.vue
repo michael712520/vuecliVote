@@ -7,29 +7,19 @@
     @cancel="visible = false"
   >
     <a-form @submit="handleSubmit" :form="form">
-      <a-form-item label="任务名称" :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-input v-decorator="['taskName', {rules:[{required: true, message: '请输入任务名称'}]}]"/>
+      <a-form-item label="标题" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        <a-input v-decorator="['title', {rules:[{required: true, message: '请输入任务标题'}]}]"/>
       </a-form-item>
-      <a-form-item label="开始时间" :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-date-picker
-          style="width: 100%"
-          v-decorator="['startTime', {rules:[{required: true, message: '请选择开始时间'}]}]"
-        />
-      </a-form-item>
-      <a-form-item label="任务负责人" :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-select v-decorator="['owner', {rules:[{required: true, message: '请选择开始时间'}]}]">
-          <a-select-option :value="0">付晓晓</a-select-option>
-          <a-select-option :value="1">周毛毛</a-select-option>
-        </a-select>
-      </a-form-item>
-      <a-form-item label="产品描述" :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-textarea v-decorator="['desc']"></a-textarea>
+
+      <a-form-item label="内容描述" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        <a-textarea v-decorator="['content']"></a-textarea>
       </a-form-item>
     </a-form>
   </a-modal>
 </template>
 
 <script>
+import api from '@/api'
 export default {
   name: 'TaskForm',
   data() {
@@ -65,9 +55,12 @@ export default {
         form: { validateFields }
       } = this
       this.visible = true
+      let _api = api
       validateFields((errors, values) => {
         if (!errors) {
-          console.log('values', values)
+          let model = { title: values.title, content: values.content }
+          debugger
+          api.tp.Save(model).then()
         }
       })
     }

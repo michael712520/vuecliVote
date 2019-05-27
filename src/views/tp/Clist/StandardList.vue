@@ -19,20 +19,17 @@
       </div>
 
       <div class="operate">
-        <a-button type="dashed" style="width: 100%" icon="plus" @click="add()">添加</a-button>
+        <a-button type="dashed" style="width: 100%" icon="plus" @click="$refs.taskForm.add()">添加</a-button>
       </div>
 
-      <a-list
-        size="large"
-        :pagination="{showSizeChanger: true, showQuickJumper: true, pageSize: 5, total: 50}"
-      >
+      <a-list size="large">
         <a-list-item :key="index" v-for="(item, index) in data">
-          <a-list-item-meta :description="item.description">
+          <a-list-item-meta :description="item.content">
             <a-avatar slot="avatar" size="large" shape="square" :src="item.avatar"/>
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
-            <a>编辑</a>
+            <a @click="bj(item)">编辑</a>
           </div>
           <div slot="actions">
             <a-dropdown>
@@ -50,24 +47,20 @@
               </a>
             </a-dropdown>
           </div>
-          <div class="list-content">
-            <div class="list-content-item">
-              <span>Owner</span>
-              <p>{{ item.owner }}</p>
-            </div>
-            <div class="list-content-item">
-              <span>开始时间</span>
-              <p>{{ item.startAt }}</p>
-            </div>
-            <div class="list-content-item">
-              <a-progress
-                :percent="item.progress.value"
-                :status="!item.progress.status ? null : item.progress.status"
-                style="width: 180px"
-              />
-            </div>
-          </div>
         </a-list-item>
+        <a-pagination
+          :pageSizeOptions="pageSizeOptions"
+          :total="total"
+          showSizeChanger
+          :pageSize="pageSize"
+          v-model="current"
+          @showSizeChange="onShowSizeChange"
+        >
+          <template slot="buildOptionText" slot-scope="props">
+            <span v-if="props.value!=='50'">{{props.value}}条/页</span>
+            <span v-if="props.value==='50'">全部</span>
+          </template>
+        </a-pagination>
       </a-list>
 
       <task-form ref="taskForm"/>
@@ -78,59 +71,7 @@
 <script>
 import HeadInfo from '@/components/tools/HeadInfo'
 import TaskForm from './modules/TaskForm'
-
-const data = []
-data.push({
-  title: 'Alipay',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '那是一种内在的东西， 他们到达不了，也无法触及的',
-  owner: '付晓晓',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    value: 90
-  }
-})
-data.push({
-  title: 'Angular',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
-  description: '希望是一个好东西，也许是最好的，好东西是不会消亡的',
-  owner: '曲丽丽',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    value: 54
-  }
-})
-data.push({
-  title: 'Ant Design',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/dURIMkkrRFpPgTuzkwnB.png',
-  description: '生命就像一盒巧克力，结果往往出人意料',
-  owner: '林东东',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    value: 66
-  }
-})
-data.push({
-  title: 'Ant Design Pro',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/sfjbOqnsXXJgNCjCzDBL.png',
-  description: '城镇中有那么多的酒馆，她却偏偏走进了我的酒馆',
-  owner: '周星星',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    value: 30
-  }
-})
-data.push({
-  title: 'Bootstrap',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/siCrBXXhmvTQGWPNLBow.png',
-  description: '那时候我只会想自己想要什么，从不想自己拥有什么',
-  owner: '吴加好',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    status: 'exception',
-    value: 100
-  }
-})
+import api from '@/api'
 
 export default {
   name: 'StandardList',
@@ -140,15 +81,39 @@ export default {
   },
   data() {
     return {
-      data
+      data: [],
+      pageSizeOptions: ['10', '20', '30', '40', '50'],
+      current: 1,
+      pageSize: 10,
+      total: 10
     }
+  },
+  async mounted() {
+    await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
     add() {
       this.$router.push({
         path: `/dashboard/Question`
       })
-    }
+    },
+    async init(Start, Length) {
+      let form = {
+        userId: 1,
+        Start: Start,
+        Length: Length
+      }
+      debugger
+      let { data } = await api.tp.GetList(form)
+      debugger
+      this.data = data.list
+      this.total = data.total
+    },
+    async onShowSizeChange(current, pageSize) {
+      this.pageSize = pageSize
+      await init((current - 1) * pageSize, pageSize)
+    },
+    bj(item) {}
   }
 }
 </script>
