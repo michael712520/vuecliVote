@@ -19,14 +19,18 @@
     </td>
     <td align="center">
       <input type="hidden" value>
-      <span title="添加图片" @click="addimg" class="choiceimg design-icon design-img"></span>
+      <span
+        title="添加图片"
+        @click="$refs.zdyUpload.showModal()"
+        class="choiceimg design-icon design-img"
+      ></span>
       <span style="display: none;">
         <input type="checkbox" tabindex="-1" title="是否显示选项文字" class="checkbox">
       </span>
     </td>
     <td align="center">
       <span
-        @click="addExplain"
+        @click="$refs.zdyText.showModal()"
         title="选项说明，支持HTML，图片，视频等"
         class="choiceimg design-icon design-desc"
       ></span>
@@ -64,13 +68,16 @@
       <span title="将当前选项上移一个位置" class="choiceimg design-icon design-cup" style="cursor: pointer;"></span>
       <span title="将当前选项下移一个位置" class="choiceimg design-icon design-cdown" style="cursor: pointer;"></span>
     </td>
-    <a-modal :visible="visible" @ok="handleOk" @cancel="handleCancel"></a-modal>
+    <zdyUpload ref="zdyUpload" v-model="item.imgs"></zdyUpload>
+    <zdyText ref="zdyText" v-model="item.explain"></zdyText>
   </tr>
 </template>
 <script>
 // @ is an alias to /src
+import zdyUpload from './zdyUpload'
+import zdyText from './zdyText'
 export default {
-  components: {},
+  components: { zdyUpload, zdyText },
   props: {
     dataInfo: Object,
     index: Number
@@ -126,14 +133,14 @@ export default {
           }
         }
       },
-      // immediate: true,
+      immediate: true,
       deep: true
     },
     item: {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
+          this.$emit('updateitem', { ...nVal })
           if (this.flage != 1) {
-            this.$emit('updateitem', { ...nVal })
           }
         }
       },

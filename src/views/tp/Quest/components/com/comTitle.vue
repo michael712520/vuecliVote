@@ -16,7 +16,7 @@
       @cancel="handleCancel"
     >
       <div>
-        标题1
+        标题
         <a-input placeholder="标题1" v-model="title"/>
       </div>
       <div>
@@ -27,6 +27,7 @@
   </div>
 </template>
  <script>
+import api from '@/api'
 export default {
   name: 'Danxuan',
   components: {},
@@ -37,14 +38,24 @@ export default {
   data() {
     return { visible: false, confirmLoading: false, title: '', content: '' }
   },
-  computed: {},
-  mounted() {},
+  computed: {
+    item: function() {
+      return this.$store.state.question.item
+    }
+  },
+  async mounted() {
+    let id = this.$route.query.id
+    let { data } = await api.tp.Get(id)
+    this.$store.commit('question/item', data)
+  },
   methods: {
     showModal() {
       this.visible = true
     },
-    handleOk(e) {
-      this.$emit('complete', { title: this.title, content: this.content })
+    async handleOk(e) {
+      let form = { ...this.item, ...{ title: this.title, content: this.content } }
+      let { data } = await api.tp.update(form)
+      this.$store.commit('question/item', data)
       this.visible = false
     },
     handleCancel(e) {
@@ -52,15 +63,14 @@ export default {
     }
   },
   watch: {
-    dataInfo: {
+    item: {
       handler(nVal, oVal) {
-        if (nVal.hasOwnProperty('title')) {
-          debugger
+        if (nVal && nVal.hasOwnProperty('title')) {
           this.title = nVal.title
-          thia.content = nVal.content
+          this.content = nVal.content
         }
       },
-      immediate: true,
+      // immediate: true,
       deep: true
     }
   }

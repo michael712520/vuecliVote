@@ -1,19 +1,22 @@
+/* eslint-disable */
 export default {
   namespaced: true,
   state: {
-    listData: [
-      {
-        comp: 'comTitle',
-        dataInfo: {}
-      },
-      {
-        comp: 'danxuan',
-        dataInfo: []
-      }
-    ]
+    item: {},
+    listData: []
   },
   action: {},
   mutations: {
+    updateListData: (state, payload) => {
+      let list = []
+      payload.forEach(element => {
+        let arr = []
+        arr.comp = element.type
+        arr.dataInfo = element
+        list.push(arr)
+      })
+      this.listData = list
+    },
     listData: (state, payload) => {
       if (Array.isArray(state.listData)) {
         var listData = state.listData.map(element => {
@@ -25,6 +28,12 @@ export default {
       }
       console.log('vuexlistData', listData)
       state.listData = listData
+    },
+    item: (state, payload) => {
+      state.item = payload
+    },
+    addListData(state, payload) {
+      state.listData.push({ comp: payload, dataInfo: [] })
     }
   }
 }

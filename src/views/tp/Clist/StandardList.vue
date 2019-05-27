@@ -113,7 +113,10 @@ export default {
       this.pageSize = pageSize
       await init((current - 1) * pageSize, pageSize)
     },
-    bj(item) {}
+    bj(item) {
+      this.$store.commit('question/item', item)
+      this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
+    }
   }
 }
 </script>

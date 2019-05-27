@@ -5,7 +5,7 @@
       <div class="div_editor">
         <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
       </div>
-      <div class="container" style="margin-top: 10px;">
+      <div class="container" style="margin-top: 10px; display:none">
         <span>
           <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
             <option value="0">单选</option>
@@ -136,18 +136,25 @@
     </div>
     <div style="margin: 14px 36px 20px;">
       <div style="color: red; font-size: 14px; display: inline-block; margin: 0px 0px 6px 10px;"></div>
-      <input type="button" value="完成编辑" class="submitbutton" style="width: 100%;">
+      <input
+        @click="completed"
+        type="button"
+        value="完成编辑"
+        class="submitbutton"
+        style="width: 100%;"
+      >
     </div>
   </div>
 </template>
 <script>
 import simpleLine from './comp/simpleLine'
+import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
   components: { simpleLine, VueUeditorWrap },
   props: {
-    dataInfo: Array,
+    dataInfo: Object,
     index: Number
   },
   data() {
@@ -176,34 +183,18 @@ export default {
       dataSet: [
         {
           value: '1',
-          inputVal: 'AAAAAAAA',
-          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+          inputVal: '单选1',
+          imgs: [],
           checked: null,
-          explain: 'asdasd',
+          explain: '说明1',
           score: 0
         },
         {
           value: '2',
-          inputVal: 'BBBBBBBB',
-          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+          inputVal: '单选2',
+          imgs: [],
           checked: null,
-          explain: 'asdasd',
-          score: 0
-        },
-        {
-          value: '3',
-          inputVal: 'CCCCCCCC',
-          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-          checked: null,
-          explain: 'asdasd',
-          score: 0
-        },
-        {
-          value: '4',
-          inputVal: 'ddddddddd',
-          imgs: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-          checked: 'checked',
-          explain: 'asdasd',
+          explain: '说明2',
           score: 0
         }
       ]
@@ -232,14 +223,20 @@ export default {
           return { ...d }
         }
       })
-      this.$emit('complete', data)
+      // this.$emit('complete', data)
+    },
+    anysc completed() {
+      api.
     }
   },
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
-          this.dataSet = nVal
+          if (nVal.Bcontemt && Array.isArray(JSON.parse(nVal.Bcontemt))) {
+            this.dataSet = JSON.parse(nVal.Bcontemt)
+          }
+          this.msg = nVal.title
         }
       },
       // immediate: true,

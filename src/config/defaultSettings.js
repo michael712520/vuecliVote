@@ -12,8 +12,8 @@
  * storageOptions: {} - Vue-ls 插件配置项 (localStorage/sessionStorage)
  *
  */
-
 export default {
+  baseUrl: 'http://192.168.70.47:9003',
   primaryColor: '#1890FF', // primary color of ant design
   navTheme: 'dark', // theme for nav menu
   layout: 'sidemenu', // nav menu position: sidemenu or topmenu
@@ -29,6 +29,5 @@ export default {
     namespace: 'pro__', // key prefix
     name: 'ls', // name variable Vue.[ls] or this.[$ls],
     storage: 'local' // storage name session, local, memory
-  },
-  baseUrl: 'http://192.168.70.47:9003'
+  }
 }
