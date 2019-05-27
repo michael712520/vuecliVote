@@ -8,7 +8,9 @@ export const config = {
   Get: `${baseUrl}/api/MbDetail/Get`,
   Update: `${baseUrl}/api/MbDetail/Update`,
   GetList: `${baseUrl}/api/MbDetail/GetList`,
-  Save: `${baseUrl}/api/MbDetail/Save`
+  Save: `${baseUrl}/api/MbDetail/Save`,
+  GetListItem: `${baseUrl}/api/MbDetail/GetListItem`,
+  SaveItem: `${baseUrl}/api/MbDetail/SaveItem`
 }
 export function Get(id) {
   return axios({
@@ -24,18 +26,23 @@ export function update(data) {
     data: data
   })
 }
-export function GetList(data) {
+export function GetList(params) {
   return axios({
     url: config.GetList,
     method: 'get',
-    params: data
+    params: params
   })
 }
-
-export function Save(model) {
-  model.userId = 1
+export function GetListItem(params) {
   return axios({
-    url: config.Save,
+    url: config.GetListItem,
+    method: 'get',
+    params: params
+  })
+}
+export function SaveItem(model) {
+  return axios({
+    url: config.SaveItem,
     method: 'post',
     data: model
   })

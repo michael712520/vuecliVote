@@ -225,8 +225,20 @@ export default {
       })
       // this.$emit('complete', data)
     },
-    anysc completed() {
-      api.
+    async completed() {
+      let params = {
+        ...this.dataInfo,
+        ...{
+          title: this.msg,
+          bcontemt: JSON.stringify(this.dataSet),
+          detailId: this.$store.state.question.item.id,
+          order: this.index,
+          type: ''
+        }
+      }
+      debugger
+      let { data } = await api.tp.SaveItem(params)
+      console.log('danxuan', data)
     }
   },
   watch: {

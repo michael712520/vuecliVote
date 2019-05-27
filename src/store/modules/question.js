@@ -3,11 +3,13 @@ export default {
   namespaced: true,
   state: {
     item: {},
-    listData: []
+    listData: [],
+    refresh: false
   },
   action: {},
   mutations: {
     updateListData: (state, payload) => {
+      debugger
       let list = []
       payload.forEach(element => {
         let arr = []
@@ -15,7 +17,7 @@ export default {
         arr.dataInfo = element
         list.push(arr)
       })
-      this.listData = list
+      state.listData = list
     },
     listData: (state, payload) => {
       if (Array.isArray(state.listData)) {
@@ -33,7 +35,10 @@ export default {
       state.item = payload
     },
     addListData(state, payload) {
-      state.listData.push({ comp: payload, dataInfo: [] })
+      state.listData.push({ comp: payload, dataInfo: {} })
+    },
+    refresh: (state, payload) => {
+      state.refresh = !state.refresh
     }
   }
 }

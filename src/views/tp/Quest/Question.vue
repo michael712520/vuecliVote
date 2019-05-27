@@ -54,10 +54,15 @@ export default {
       selectVal: 'danxuan'
     }
   },
-  mounted() {},
+  mounted() {
+    this.init()
+  },
   computed: {
     ListComponent: function() {
       return this.$store.state.question.listData
+    },
+    refresh: function() {
+      return this.$store.state.question.refresh
     }
   },
   methods: {
@@ -66,6 +71,21 @@ export default {
     },
     selecthandleChange() {
       this.$store.commit('question/addListData', this.selectVal)
+    },
+    async init() {
+      let params = {
+        detailId: this.$route.query.id
+      }
+      let { data } = await api.tp.GetListItem(params)
+
+      if (data && data.length > 0) {
+        this.$store.commit('question/updateListData', data)
+      }
+    }
+  },
+  watch: {
+    refresh(nVal, oVal) {
+      this.init()
     }
   }
 }
