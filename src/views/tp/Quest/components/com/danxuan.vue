@@ -108,6 +108,7 @@
                 :index="index"
                 :dataInfo="item"
                 @updateitem="updateitem(item ,index,$event)"
+                @operate="operate"
               ></simpleLine>
             </tbody>
           </table>
@@ -239,6 +240,52 @@ export default {
       debugger
       let { data } = await api.tp.SaveItem(params)
       console.log('danxuan', data)
+    },
+    operate(event) {
+      if (event.type == 1) {
+        let item = {
+          value: '2',
+          inputVal: '单选2',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        }
+        let arr = []
+        this.dataSet.forEach((d, index) => {
+          arr.push(d)
+          if (event.index == index) {
+            arr.push(item)
+          }
+        })
+        this.dataSet = arr
+      } else if (event.type == 2) {
+        let arr = []
+        this.dataSet.forEach((d, index) => {
+          if (event.index != index) {
+            arr.push(d)
+          }
+        })
+        this.dataSet = arr
+      } else if (event.type == 3) {
+        if (event.index != 0) {
+          let item = this.dataSet[event.index - 1]
+          this.dataSet[event.index - 1] = this.dataSet[event.index]
+          this.dataSet[event.index] = item
+          this.dataSet = this.dataSet.map(d => {
+            return d
+          })
+        }
+      } else if (event.type == 4) {
+        if (event.index != this.dataSet.length - 1) {
+          let item = this.dataSet[event.index]
+          this.dataSet[event.index] = this.dataSet[event.index + 1]
+          this.dataSet[event.index + 1] = item
+          this.dataSet = this.dataSet.map(d => {
+            return d
+          })
+        }
+      }
     }
   },
   watch: {

@@ -9,7 +9,6 @@ export default {
   action: {},
   mutations: {
     updateListData: (state, payload) => {
-      debugger
       let list = []
       payload.forEach(element => {
         let arr = []

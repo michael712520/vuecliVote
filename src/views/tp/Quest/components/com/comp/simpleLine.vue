@@ -13,9 +13,9 @@
         title="在此选项下面插入一个新的选项"
         class="choiceimg design-icon design-add"
         style="cursor: pointer; margin-left: 3px;"
-        @click="addLine"
+        @click="operate(1)"
       ></span>
-      <span title="删除当前选项（最少保留2个选项）" class="choiceimg design-icon design-minus" @click="deleteLine"></span>
+      <span title="删除当前选项（最少保留2个选项）" class="choiceimg design-icon design-minus" @click="operate(2)"></span>
     </td>
     <td align="center">
       <input type="hidden" value>
@@ -65,8 +65,18 @@
       </span>
     </td>
     <td align="left" style="padding-left: 15px;">
-      <span title="将当前选项上移一个位置" class="choiceimg design-icon design-cup" style="cursor: pointer;"></span>
-      <span title="将当前选项下移一个位置" class="choiceimg design-icon design-cdown" style="cursor: pointer;"></span>
+      <span
+        @click="operate(3)"
+        title="将当前选项上移一个位置"
+        class="choiceimg design-icon design-cup"
+        style="cursor: pointer;"
+      ></span>
+      <span
+        @click="operate(4)"
+        title="将当前选项下移一个位置"
+        class="choiceimg design-icon design-cdown"
+        style="cursor: pointer;"
+      ></span>
     </td>
     <zdyUpload ref="zdyUpload" v-model="item.imgs"></zdyUpload>
     <zdyText ref="zdyText" v-model="item.explain"></zdyText>
@@ -112,6 +122,9 @@ export default {
     handleOk(e) {},
     handleCancel(e) {
       this.visible = false
+    },
+    operate(type) {
+      this.$emit('operate', { type: type, index: this.index })
     }
   },
   watch: {
