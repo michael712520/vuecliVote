@@ -5,6 +5,7 @@ import { ACCESS_TOKEN } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
 import { userInfo } from '../data/userInfo'
 import { asyncRouterMap, constantRouterMap } from '@/config/router.config'
+import Cookies from 'js-cookie'
 const user = {
   state: {
     token: '',
@@ -47,7 +48,11 @@ const user = {
             commit('SET_ROLES', {})
             commit('SET_INFO', response)
             commit('SET_ROUTERS', asyncRouterMap)
-            router.addRoutes(asyncRouterMap)
+            Cookies.set('SET_TOKEN', response.id)
+            Cookies.set('SET_NAME', { name: response.username, welcome: welcome() })
+            Cookies.set('SET_ROLES', {})
+            Cookies.set('SET_TOKEN', response)
+            Cookies.set('SET_TOKEN', asyncRouterMap)
             resolve(response)
           })
           .catch(error => {
@@ -58,34 +63,7 @@ const user = {
 
     // 获取用户信息
     GetInfo({ commit, state }) {
-      return new Promise((resolve ,reject)=> {
-        let response = { result: { ...state.yData, ...state.info } }
-        const result = response.result
-        console.log(result)
-        debugger
-        if (result.role && result.role.permissions.length > 0) {
-          const role = result.role
-          role.permissions = result.role.permissions
-          role.permissions.map(per => {
-            if (per.actionEntitySet != null && per.actionEntitySet.length > 0) {
-              const action = per.actionEntitySet.map(action => {
-                return action.action
-              })
-              per.actionList = action
-            }
-          })
-          role.permissionList = role.permissions.map(permission => {
-            return permission.permissionId
-          })
-          commit('SET_ROLES', result.role)
-          commit('SET_INFO', { ...result, ...state.info })
-        } else {
-          reject(new Error('getInfo: roles must be a non-null array !'))
-        }
-
-        commit('SET_NAME', { name: result.name, welcome: welcome() })
-        commit('SET_AVATAR', result.avatar)
-
+      return new Promise((resolve, reject) => {
         resolve(response)
       })
     },

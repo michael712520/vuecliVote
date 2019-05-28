@@ -15,13 +15,16 @@ const whiteList = ['login', 'register', 'registerResult'] // no redirect whiteli
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
+  debugger
   to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title} - ${domTitle}`))
+  debugger
   if (store.getters.userInfo && store.getters.userInfo.username && Vue.ls.get(ACCESS_TOKEN)) {
     debugger
     if (to.path === '/user/login') {
-      next({ path: '/dashboard/workplace' })
+      next({ path: '/dashboard' })
       NProgress.done()
     } else {
+      debugger
       console.log('router', router)
       // router.addRoutes(store.getters.addRouters)
       debugger
