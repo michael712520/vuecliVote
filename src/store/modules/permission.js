@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { asyncRouterMap, constantRouterMap } from '@/config/router.config'
 
 /**
@@ -7,7 +9,7 @@ import { asyncRouterMap, constantRouterMap } from '@/config/router.config'
  * @param route
  * @returns {boolean}
  */
-function hasPermission (permission, route) {
+function hasPermission(permission, route) {
   if (route.meta && route.meta.permission) {
     let flag = false
     for (let i = 0, len = permission.length; i < len; i++) {
@@ -37,7 +39,7 @@ function hasRole(roles, route) {
   }
 }
 
-function filterAsyncRouter (routerMap, roles) {
+function filterAsyncRouter(routerMap, roles) {
   const accessedRouters = routerMap.filter(route => {
     if (hasPermission(roles.permissionList, route)) {
       if (route.children && route.children.length) {
@@ -47,7 +49,7 @@ function filterAsyncRouter (routerMap, roles) {
     }
     return false
   })
-  return accessedRouters
+  return routerMap
 }
 
 const permission = {
@@ -62,11 +64,11 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes ({ commit }, data) {
+    GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
         const { roles } = data
         const accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
-        commit('SET_ROUTERS', accessedRouters)
+        commit('SET_ROUTERS', asyncRouterMap)
         resolve()
       })
     }

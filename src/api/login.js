@@ -1,6 +1,11 @@
+/* eslint-disable */
 import api from './index'
 import { axios } from '@/utils/request'
-
+import defaultSettings from '@/config/defaultSettings'
+let baseUrl = defaultSettings.baseUrl
+export const config = {
+  Login: `${baseUrl}/api/SysUser/Login`
+}
 /**
  * login func
  * parameter: {
@@ -12,15 +17,16 @@ import { axios } from '@/utils/request'
  * @param parameter
  * @returns {*}
  */
-export function login (parameter) {
-  return axios({
-    url: '/auth/login',
+export async function login(parameter) {
+  let response = await axios({
+    url: config.Login,
     method: 'post',
-    data: parameter
+    data: { username: parameter.username, password: parameter.password }
   })
+  return response.data
 }
 
-export function getSmsCaptcha (parameter) {
+export function getSmsCaptcha(parameter) {
   return axios({
     url: api.SendSms,
     method: 'post',
@@ -28,17 +34,16 @@ export function getSmsCaptcha (parameter) {
   })
 }
 
-export function getInfo () {
-  return axios({
-    url: '/user/info',
-    method: 'get',
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8'
-    }
+export async function getInfo() {
+  let response = await axios({
+    url: config.Login,
+    method: 'post',
+    data: { username: 'admin', password: '123' }
   })
+  return response.data
 }
 
-export function logout () {
+export function logout() {
   return axios({
     url: '/auth/logout',
     method: 'post',
@@ -52,7 +57,7 @@ export function logout () {
  * get user 2step code open?
  * @param parameter {*}
  */
-export function get2step (parameter) {
+export function get2step(parameter) {
   return axios({
     url: api.twoStepCode,
     method: 'post',

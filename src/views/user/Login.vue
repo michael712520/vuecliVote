@@ -82,11 +82,11 @@
 
       <a-form-item>
         <a-checkbox v-decorator="['rememberMe']">自动登录</a-checkbox>
-        <router-link
+        <!-- <router-link
           :to="{ name: 'recover', params: { user: 'aaa'} }"
           class="forge-password"
           style="float: right;"
-        >忘记密码</router-link>
+        >忘记密码</router-link>-->
       </a-form-item>
 
       <a-form-item style="margin-top:24px">
@@ -130,7 +130,6 @@ import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
-
 export default {
   components: {
     TwoStepCaptcha
@@ -201,8 +200,12 @@ export default {
           loginParams[!state.loginType ? 'email' : 'username'] = values.username
           loginParams.password = md5(values.password)
           Login(loginParams)
-            .then(res => this.loginSuccess(res))
-            .catch(err => this.requestFailed(err))
+            .then(res => {
+              this.loginSuccess(res)
+            })
+            .catch(err => {
+              this.requestFailed(err)
+            })
             .finally(() => {
               state.loginBtn = false
             })
@@ -263,7 +266,9 @@ export default {
     },
     loginSuccess(res) {
       console.log(res)
-      this.$router.push({ name: 'dashboard' })
+      debugger
+      // this.$router.push({ name: '/dashboard' })
+      this.$router.push({ path: '/dashboard' })
       // 延迟 1 秒显示欢迎信息
       setTimeout(() => {
         this.$notification.success({

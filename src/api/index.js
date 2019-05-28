@@ -1,4 +1,5 @@
 const api = {
-  tp: require('./tp')
+  tp: require('./tp'),
+  user: require('./user')
 }
 export default api
