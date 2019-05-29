@@ -1,7 +1,9 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="div_title_attr_question_triangle"></div>
-    <div>
+    <div class="row">
+      <danxuanYL :dataSet="dataSet"></danxuanYL>
+    </div>
+    <div class="row">
       <div class="div_editor">
         <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
       </div>
@@ -149,17 +151,19 @@
 </template>
 <script>
 import simpleLine from './comp/simpleLine'
+import danxuanYL from './mk/danxuanYL'
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap },
+  components: { simpleLine, VueUeditorWrap, danxuanYL },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
+      aRadioOnValue: null,
       msg: '标题',
       myConfig: {
         // 编辑器不自动被内容撑高
@@ -234,11 +238,13 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: ''
+          type: 'danxuan'
         }
       }
       debugger
       let { data } = await api.tp.SaveItem(params)
+      this.$store.commit('question/refresh')
+      this.$message.success('提交成功', 2)
       console.log('danxuan', data)
     },
     operate(event) {
@@ -286,7 +292,8 @@ export default {
           })
         }
       }
-    }
+    },
+    aRadioOnChange(e) {}
   },
   watch: {
     dataInfo: {
@@ -320,5 +327,8 @@ export default {
   padding-top: 5px;
   padding-left: 30px;
   padding-right: 30px;
+}
+.wbd {
+  margin: 10px;
 }
 </style>

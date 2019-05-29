@@ -15,31 +15,28 @@ const whiteList = ['login', 'register', 'registerResult'] // no redirect whiteli
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
-  debugger
+
   to.meta && (typeof to.meta.title !== 'undefined' && setDocumentTitle(`${to.meta.title} - ${domTitle}`))
-  debugger
-  if (store.getters.userInfo && store.getters.userInfo.username && Vue.ls.get(ACCESS_TOKEN)) {
-    debugger
-    if (to.path === '/user/login') {
-      next({ path: '/dashboard' })
-      NProgress.done()
+
+  store.dispatch('GetInfo').then(res => {
+    if (store.getters.userInfo && store.getters.userInfo.username && Vue.ls.get(ACCESS_TOKEN)) {
+      if (to.path === '/user/login') {
+        next({ path: '/dashboard' })
+        NProgress.done()
+      } else {
+        next()
+        // NProgress.done()
+      }
     } else {
-      debugger
-      console.log('router', router)
-      // router.addRoutes(store.getters.addRouters)
-      debugger
-      next()
-      NProgress.done()
+      if (whiteList.includes(to.name)) {
+        // 在免登录白名单，直接进入
+        next()
+      } else {
+        next({ path: '/user/login', query: { redirect: to.fullPath } })
+        NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
+      }
     }
-  } else {
-    if (whiteList.includes(to.name)) {
-      // 在免登录白名单，直接进入
-      next()
-    } else {
-      next({ path: '/user/login', query: { redirect: to.fullPath } })
-      NProgress.done() // if current page is login will not trigger afterEach hook, so manually handle it
-    }
-  }
+  })
 })
 
 router.afterEach(() => {

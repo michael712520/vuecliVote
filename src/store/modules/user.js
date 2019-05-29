@@ -38,21 +38,21 @@ const user = {
 
   actions: {
     // 登录
-    Login({ commit, router }, userInfo) {
+    Login({ commit, state }, userInfo) {
       return new Promise((resolve, reject) => {
         login(userInfo)
           .then(response => {
             Vue.ls.set(ACCESS_TOKEN, response.id, 7 * 24 * 60 * 60 * 1000)
+            console.log('state.yData.role', state.yData.role)
+            debugger
             commit('SET_TOKEN', response.id)
             commit('SET_NAME', { name: response.username, welcome: welcome() })
-            commit('SET_ROLES', {})
+            commit('SET_ROLES', state.yData.role)
             commit('SET_INFO', response)
-            commit('SET_ROUTERS', asyncRouterMap)
             Cookies.set('SET_TOKEN', response.id)
             Cookies.set('SET_NAME', { name: response.username, welcome: welcome() })
-            Cookies.set('SET_ROLES', {})
-            Cookies.set('SET_TOKEN', response)
-            Cookies.set('SET_TOKEN', asyncRouterMap)
+            Cookies.set('SET_ROLES', state.yData.role)
+            Cookies.set('SET_INFO', response)
             resolve(response)
           })
           .catch(error => {
@@ -63,9 +63,17 @@ const user = {
 
     // 获取用户信息
     GetInfo({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        resolve(response)
-      })
+      console.log('state.yData.role11', state.yData.role)
+      let SET_TOKEN = Cookies.get('SET_TOKEN')
+      let SET_NAME = Cookies.get('SET_NAME')
+      let SET_ROLES = Cookies.get('SET_ROLES')
+      let SET_INFO = Cookies.get('SET_INFO')
+      if (SET_TOKEN) {
+        commit('SET_TOKEN', JSON.parse(SET_TOKEN))
+        commit('SET_NAME', JSON.parse(SET_NAME))
+        commit('SET_ROLES', JSON.parse(SET_ROLES))
+        commit('SET_INFO', JSON.parse(SET_INFO))
+      }
     },
 
     // 登出
