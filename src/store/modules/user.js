@@ -51,7 +51,7 @@ const user = {
             commit('SET_INFO', response)
             Cookies.set('SET_TOKEN', response.id)
             Cookies.set('SET_NAME', { name: response.username, welcome: welcome() })
-            Cookies.set('SET_ROLES', state.yData.role)
+            Cookies.set('SET_ROLES', asyncRouterMap)
             Cookies.set('SET_INFO', response)
             resolve(response)
           })
@@ -71,7 +71,7 @@ const user = {
       if (SET_TOKEN) {
         commit('SET_TOKEN', JSON.parse(SET_TOKEN))
         commit('SET_NAME', JSON.parse(SET_NAME))
-        commit('SET_ROLES', JSON.parse(SET_ROLES))
+        commit('SET_ROLES', asyncRouterMap)
         commit('SET_INFO', JSON.parse(SET_INFO))
       }
     },

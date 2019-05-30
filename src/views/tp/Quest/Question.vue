@@ -79,6 +79,9 @@ export default {
       let { data } = await api.tp.GetListItem(params)
 
       if (data && data.length > 0) {
+        data = data.map(d => {
+          return d
+        })
         this.$store.commit('question/updateListData', data)
       }
     }

@@ -11,10 +11,13 @@ export default {
     updateListData: (state, payload) => {
       let list = []
       payload.forEach(element => {
-        let arr = []
-        arr.comp = element.type
-        arr.dataInfo = element
-        list.push(arr)
+        if (element) {
+          console.log(element)
+          let arr = []
+          arr.comp = element.type
+          arr.dataInfo = element
+          list.push(arr)
+        }
       })
       state.listData = list
     },

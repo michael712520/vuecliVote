@@ -3,149 +3,151 @@
     <div class="row">
       <danxuanYL :dataSet="dataSet"></danxuanYL>
     </div>
-    <div class="row">
-      <div class="div_editor">
-        <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
-      </div>
-      <div class="container" style="margin-top: 10px; display:none">
-        <span>
-          <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
-            <option value="0">单选</option>
-            <option value="radio_down">下拉框单选</option>
-            <option value="check">多选</option>
-            <option value="likert">量表题</option>
-            <option value="order">排序</option>
-            <option value="toupiaoradio">投票单选</option>
-            <option value="ceshiradio">考试单选</option>
-            <option value="cepingradio">评分单选</option>
-            <option value="question">填空</option>
-          </select>
-        </span>
-        <span>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <input
-            type="checkbox"
-            tabindex="-1"
-            title="用户在填写问卷时必须回答这道题"
-            class="checkbox"
-            id="req_2_3944705790"
-          >
-          <label for="req_2_3944705790">必答</label>
-          <span style="display: none;">
-            &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
-            <a
-              href="javascript:setAllRequired(true);"
-              class="link-U00a6e6"
-            >必答</a>&nbsp;
-            <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
-          </span>
-        </span>
-        <span>
+    <div class="row" v-show="dataInfo.display==1">
+      <div class="row">
+        <div class="div_editor">
+          <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
+        </div>
+        <div class="container" style="margin-top: 10px; display:none">
           <span>
-            &nbsp;
-            <input
-              type="text"
-              class="choicetxt"
-              style="width: 140px; height: 15px; display: none;"
-            >
-            <span style="margin-left: 30px;"></span>
-            <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
+            <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
+              <option value="0">单选</option>
+              <option value="radio_down">下拉框单选</option>
+              <option value="check">多选</option>
+              <option value="likert">量表题</option>
+              <option value="order">排序</option>
+              <option value="toupiaoradio">投票单选</option>
+              <option value="ceshiradio">考试单选</option>
+              <option value="cepingradio">评分单选</option>
+              <option value="question">填空</option>
+            </select>
           </span>
-        </span>
+          <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input
+              type="checkbox"
+              tabindex="-1"
+              title="用户在填写问卷时必须回答这道题"
+              class="checkbox"
+              id="req_2_3944705790"
+            >
+            <label for="req_2_3944705790">必答</label>
+            <span style="display: none;">
+              &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
+              <a
+                href="javascript:setAllRequired(true);"
+                class="link-U00a6e6"
+              >必答</a>&nbsp;
+              <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
+            </span>
+          </span>
+          <span>
+            <span>
+              &nbsp;
+              <input
+                type="text"
+                class="choicetxt"
+                style="width: 140px; height: 15px; display: none;"
+              >
+              <span style="margin-left: 30px;"></span>
+              <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
+            </span>
+          </span>
+        </div>
       </div>
-    </div>
-    <div style="clear: both;"></div>
-    <div class="container" style="position: relative;">
-      <div style="padding-top: 10px;"></div>
-      <div style="clear: both;">
-        <div class="selScrrol" style="text-align: center;">
-          <div class="choise_bg"></div>
-          <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
-            <tbody>
-              <tr>
-                <td style="width: 340px; padding: 3px 5px;">
-                  <span>
-                    <a
-                      title="交换选项文字"
-                      href="javascript:;"
-                      style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
-                    >
-                      选项文字
-                      <i class="design-icon design-ctext"></i>
-                    </a>
-                  </span>
-                </td>
-                <td align="center" style="width: 30px; padding: 3px 5px;">
-                  <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
-                </td>
-                <td style="width: 50px; padding: 3px 5px;">
-                  <div style="overflow: hidden; text-align: center;">说明</div>
-                </td>
-                <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
-                  <span>允许填空</span>
-                </td>
-                <td style="width: 50px; padding: 3px 5px;">
-                  <span>
-                    <span style="cursor: pointer;">
-                      &nbsp;分数
-                      <span
-                        class="bordCss bordBottomCss"
-                        style="border-color:#333 transparent transparent;"
-                      ></span>
+      <div style="clear: both;"></div>
+      <div class="container" style="position: relative;">
+        <div style="padding-top: 10px;"></div>
+        <div style="clear: both;">
+          <div class="selScrrol" style="text-align: center;">
+            <div class="choise_bg"></div>
+            <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
+              <tbody>
+                <tr>
+                  <td style="width: 340px; padding: 3px 5px;">
+                    <span>
+                      <a
+                        title="交换选项文字"
+                        href="javascript:;"
+                        style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
+                      >
+                        选项文字
+                        <i class="design-icon design-ctext"></i>
+                      </a>
                     </span>
-                  </span>
-                </td>
-                <!-- <td style="width: 30px; padding: 3px 5px;">
+                  </td>
+                  <td align="center" style="width: 30px; padding: 3px 5px;">
+                    <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
+                  </td>
+                  <td style="width: 50px; padding: 3px 5px;">
+                    <div style="overflow: hidden; text-align: center;">说明</div>
+                  </td>
+                  <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
+                    <span>允许填空</span>
+                  </td>
+                  <td style="width: 50px; padding: 3px 5px;">
+                    <span>
+                      <span style="cursor: pointer;">
+                        &nbsp;分数
+                        <span
+                          class="bordCss bordBottomCss"
+                          style="border-color:#333 transparent transparent;"
+                        ></span>
+                      </span>
+                    </span>
+                  </td>
+                  <!-- <td style="width: 30px; padding: 3px 5px;">
                   <span>
                     <span>默认</span>
                   </span>
-                </td>-->
-                <td align="left" style="padding: 3px 5px 3px 15px;">
-                  <span>上移下移</span>
-                </td>
-              </tr>
-              <simpleLine
-                v-for="(item ,index) in dataSet"
-                :key="index"
-                :index="index"
-                :dataInfo="item"
-                @updateitem="updateitem(item ,index,$event)"
-                @operate="operate"
-              ></simpleLine>
-            </tbody>
-          </table>
+                  </td>-->
+                  <td align="left" style="padding: 3px 5px 3px 15px;">
+                    <span>上移下移</span>
+                  </td>
+                </tr>
+                <simpleLine
+                  v-for="(item ,index) in dataSet"
+                  :key="index"
+                  :index="index"
+                  :dataInfo="item"
+                  @updateitem="updateitem(item ,index,$event)"
+                  @operate="operate"
+                ></simpleLine>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-      <div class="divclear"></div>
-      <div style="margin: 12px 0px 5px;">
-        <div style="width: 100%;">
-          <span
-            class="spanLeft"
-            style="line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
-          >
-            <a
-              href="javascript:"
-              onclick="cur.addNewItem();return false;"
-              class="link-U00a6e6"
-              style="text-decoration:none;"
+        <div class="divclear"></div>
+        <div style="margin: 12px 0px 5px;">
+          <div style="width: 100%;">
+            <span
+              class="spanLeft"
+              style="line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
             >
-              <span class="choiceimg design-icon design-singleadd"></span>
-              <span style="color: #1ea0fa;">添加选项</span>
-            </a>&nbsp;&nbsp;
-          </span>
-          <div class="divclear"></div>
+              <a
+                href="javascript:"
+                onclick="cur.addNewItem();return false;"
+                class="link-U00a6e6"
+                style="text-decoration:none;"
+              >
+                <span class="choiceimg design-icon design-singleadd"></span>
+                <span style="color: #1ea0fa;">添加选项</span>
+              </a>&nbsp;&nbsp;
+            </span>
+            <div class="divclear"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div style="margin: 14px 36px 20px;">
-      <div style="color: red; font-size: 14px; display: inline-block; margin: 0px 0px 6px 10px;"></div>
-      <input
-        @click="completed"
-        type="button"
-        value="完成编辑"
-        class="submitbutton"
-        style="width: 100%;"
-      >
+      <div style="margin: 14px 36px 20px;">
+        <div style="color: red; font-size: 14px; display: inline-block; margin: 0px 0px 6px 10px;"></div>
+        <input
+          @click="completed"
+          type="button"
+          value="完成编辑"
+          class="submitbutton"
+          style="width: 100%;"
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -299,13 +301,14 @@ export default {
     dataInfo: {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
-          if (nVal.Bcontemt && Array.isArray(JSON.parse(nVal.Bcontemt))) {
-            this.dataSet = JSON.parse(nVal.Bcontemt)
+          if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
+            debugger
+            this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title
         }
       },
-      // immediate: true,
+      immediate: true,
       deep: true
     }
   }
