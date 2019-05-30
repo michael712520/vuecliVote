@@ -44,7 +44,7 @@ const user = {
           .then(response => {
             Vue.ls.set(ACCESS_TOKEN, response.id, 7 * 24 * 60 * 60 * 1000)
             console.log('state.yData.role', state.yData.role)
-            debugger
+
             commit('SET_TOKEN', response.id)
             commit('SET_NAME', { name: response.username, welcome: welcome() })
             commit('SET_ROLES', state.yData.role)

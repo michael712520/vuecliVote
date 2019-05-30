@@ -3,8 +3,10 @@
     <div v-for="(item ,index) in datas">
       <a-card class="acard">
         <img
+          v-show="item.imgs"
+          v-for="(img,i) in item.imgs"
           alt="example"
-          src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+          :src="actionUrl+'/img'"
           slot="cover"
         >
         <input @click="Onclickdx(item ,index)" name="danxuan" type="radio" :value="item.value">
@@ -14,6 +16,8 @@
   </div>
 </template>
 <script>
+import defaultSettings from '@/config/defaultSettings'
+
 export default {
   props: {
     dataSet: Array
@@ -22,7 +26,8 @@ export default {
     return {
       datas: [],
       acardheadStyle: 'acardheadStyle',
-      acardbodyStyle: 'acardbodyStyle'
+      acardbodyStyle: 'acardbodyStyle',
+      actionUrl: defaultSettings.baseUrl + '/api/streaming'
     }
   },
   methods: {
@@ -35,7 +40,6 @@ export default {
     dataSet: {
       handler(nVal, oVal) {
         if (Array.isArray(nVal)) {
-          debugger
           this.datas = nVal
         }
       },

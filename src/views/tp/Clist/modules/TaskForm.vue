@@ -59,7 +59,7 @@ export default {
       validateFields((errors, values) => {
         if (!errors) {
           let model = { title: values.title, content: values.content }
-          debugger
+          
           api.tp.Save(model).then()
         }
       })

@@ -266,7 +266,7 @@ export default {
     },
     loginSuccess(res) {
       console.log(res)
-      debugger
+      
       // this.$router.push({ name: '/dashboard' })
       this.$router.push({ path: '/dashboard' })
       // 延迟 1 秒显示欢迎信息

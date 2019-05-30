@@ -99,7 +99,7 @@ export default {
     ...mapState({
       // 动态主路由
       mainMenu: state => {
-        debugger
+        
         return asyncRouterMap
       }
     }),

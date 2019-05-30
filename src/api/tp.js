@@ -1,5 +1,6 @@
 import { axios } from '@/utils/request'
 import defaultSettings from '@/config/defaultSettings'
+import request from './comm/request'
 /* eslint-disable */
 // const baseUrl = 'http://192.168.70.47:9003'
 
@@ -7,6 +8,7 @@ let baseUrl = defaultSettings.baseUrl
 export const config = {
   Get: `${baseUrl}/api/MbDetail/Get`,
   Update: `${baseUrl}/api/MbDetail/Update`,
+  delete: `POST ${baseUrl}/api/MbDetail/Delete/:id`,
   GetList: `${baseUrl}/api/MbDetail/GetList`,
   Save: `${baseUrl}/api/MbDetail/Save`,
   GetListItem: `${baseUrl}/api/MbDetail/GetListItem`,
@@ -46,4 +48,10 @@ export function SaveItem(model) {
     method: 'post',
     data: model
   })
+}
+export async function Delete(id) {
+  const { success, data } = await request(config.delete, {
+    id: id
+  })
+  return data
 }

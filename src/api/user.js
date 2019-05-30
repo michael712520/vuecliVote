@@ -9,12 +9,12 @@ export const config = {
 }
 export async function Login(userName, password) {
   console.log('Login', { username: userInfo.username, password: userInfo.password })
-  debugger
+
   let { data } = axios({
     url: config.Login,
     method: 'post',
     params: { username: userInfo.username, password: userInfo.password }
   })
-  debugger
+
   return data
 }

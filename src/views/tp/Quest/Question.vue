@@ -10,6 +10,7 @@
             :dataInfo="item.dataInfo"
             :index="index"
             @complete="complete(item,index,$event)"
+            @rowOperate="rowOperate(item,index,$event)"
           ></component>
         </div>
 
@@ -72,6 +73,7 @@ export default {
     selecthandleChange() {
       this.$store.commit('question/addListData', this.selectVal)
     },
+    rowOperate(item, index, event) {},
     async init() {
       let params = {
         detailId: this.$route.query.id
@@ -82,6 +84,7 @@ export default {
         data = data.map(d => {
           return d
         })
+        console.log('question/updateListData', data)
         this.$store.commit('question/updateListData', data)
       }
     }

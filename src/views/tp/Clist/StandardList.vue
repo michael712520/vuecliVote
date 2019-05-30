@@ -103,9 +103,9 @@ export default {
         Start: Start,
         Length: Length
       }
-      debugger
+      
       let { data } = await api.tp.GetList(form)
-      debugger
+      
       this.data = data.list
       this.total = data.total
     },

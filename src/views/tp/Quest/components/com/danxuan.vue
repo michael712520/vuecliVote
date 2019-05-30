@@ -3,6 +3,14 @@
     <div class="row">
       <danxuanYL :dataSet="dataSet"></danxuanYL>
     </div>
+    <div class="row bjt">
+      <div>
+        <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
+        <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
+        <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
+        <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+      </div>
+    </div>
     <div class="row" v-show="dataInfo.display==1">
       <div class="row">
         <div class="div_editor">
@@ -243,7 +251,6 @@ export default {
           type: 'danxuan'
         }
       }
-      debugger
       let { data } = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
@@ -295,14 +302,25 @@ export default {
         }
       }
     },
+    async rowOperate(event) {
+      if (event === 1) {
+        this.dataInfo.display == 1
+      } else if (event === 2) {
+        
+        await api.tp.Delete(dataInfo.id)
+        this.$store.commit('question/refresh')
+      } else if (event === 3) {
+      } else if (event === 4) {
+      }
+    },
     aRadioOnChange(e) {}
   },
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
+        console.log('danxuan_watch_handler_nVal', nVal)
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            debugger
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title
@@ -333,5 +351,12 @@ export default {
 }
 .wbd {
   margin: 10px;
+}
+.bjt {
+  padding: 20px;
+  height: 80px;
+  width: auto;
+  background-color: #f3f3f3;
+  box-shadow: 1 #888888;
 }
 </style>
