@@ -50,8 +50,10 @@ export function SaveItem(model) {
   })
 }
 export async function Delete(id) {
+  debugger
   const { success, data } = await request(config.delete, {
     id: id
   })
+  debugger
   return data
 }

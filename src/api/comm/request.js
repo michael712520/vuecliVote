@@ -56,10 +56,7 @@ const fetch = async options => {
         }
       )
     })
-  } else if (
-    options.headers &&
-    options.headers['Content-Type'] === 'application/x-www-form-urlencoded'
-  ) {
+  } else if (options.headers && options.headers['Content-Type'] === 'application/x-www-form-urlencoded') {
     cloneData = `${qs.stringify(cloneData)}`
   }
 
@@ -108,18 +105,7 @@ const fetch = async options => {
   }
 }
 
-const supportMethods = [
-  'POST',
-  'GET',
-  'DELETE',
-  'PATCH',
-  'PUT',
-  'post',
-  'get',
-  'delete',
-  'patch',
-  'put'
-]
+const supportMethods = ['POST', 'GET', 'DELETE', 'PATCH', 'PUT', 'post', 'get', 'delete', 'patch', 'put']
 const supportMethodPrefixs = supportMethods.map(x => `${x} `)
 
 function getRequestOptions(urlAndMethod, data) {
@@ -152,9 +138,7 @@ export default function request(options, payload, headerOptions) {
   }
 
   if (options.url && options.url.indexOf('//') > -1) {
-    const origin = `${options.url.split('//')[0]}//${
-      options.url.split('//')[1].split('/')[0]
-    }`
+    const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
     if (window.location.origin !== origin) {
       options.fetchType = 'CORS'
       // if (CORS && CORS.indexOf(origin) > -1) {
@@ -170,6 +154,7 @@ export default function request(options, payload, headerOptions) {
       ...headerOptions
     }
   }
+  console.log('options', options)
   return fetch(options)
     .then(response => {
       const { statusText, status } = response

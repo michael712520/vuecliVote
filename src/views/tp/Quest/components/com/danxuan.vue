@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanYL :dataSet="dataSet"></danxuanYL>
+      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
     </div>
     <div class="row bjt">
       <div>
@@ -11,7 +11,7 @@
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
       </div>
     </div>
-    <div class="row" v-show="dataInfo.display==1">
+    <div class="row" v-show="bjdisplay">
       <div class="row">
         <div class="div_editor">
           <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
@@ -162,11 +162,13 @@
 <script>
 import simpleLine from './comp/simpleLine'
 import danxuanYL from './mk/danxuanYL'
+import danxuanSimple from './mk/danxuanSimple'
+
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
     index: Number
@@ -197,7 +199,7 @@ export default {
       },
       dataSet: [
         {
-          value: '1',
+          value: Guid.NewGuid().ToString('N'),
           inputVal: '单选1',
           imgs: [],
           checked: null,
@@ -205,14 +207,15 @@ export default {
           score: 0
         },
         {
-          value: '2',
+          value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
           imgs: [],
           checked: null,
           explain: '说明2',
           score: 0
         }
-      ]
+      ],
+      bjdisplay: false
     }
   },
   computed: {
@@ -241,6 +244,7 @@ export default {
       // this.$emit('complete', data)
     },
     async completed() {
+      this.display = false
       let params = {
         ...this.dataInfo,
         ...{
@@ -259,7 +263,7 @@ export default {
     operate(event) {
       if (event.type == 1) {
         let item = {
-          value: '2',
+          value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
           imgs: [],
           checked: null,
@@ -304,10 +308,10 @@ export default {
     },
     async rowOperate(event) {
       if (event === 1) {
-        this.dataInfo.display == 1
+        this.bjdisplay = !this.bjdisplay
       } else if (event === 2) {
-        
-        await api.tp.Delete(dataInfo.id)
+        debugger
+        await api.tp.Delete(this.dataInfo.id)
         this.$store.commit('question/refresh')
       } else if (event === 3) {
       } else if (event === 4) {
@@ -324,6 +328,7 @@ export default {
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title
+          this.bjdisplay = nVal.display
         }
       },
       immediate: true,
