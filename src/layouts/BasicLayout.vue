@@ -19,15 +19,29 @@
       ></side-menu>
     </a-drawer>
 
-    <side-menu
-      v-else-if="isSideMenu()"
-      mode="inline"
-      :menus="menus"
-      :theme="navTheme"
-      :collapsed="collapsed"
-      :collapsible="true"
-    ></side-menu>
-
+    <a-layout-sider>
+      <a-menu
+        :defaultSelectedKeys="['1']"
+        :defaultOpenKeys="['sub1']"
+        mode="inline"
+        :theme="navTheme"
+        :inlineCollapsed="collapsed"
+        @click="aMenuHandleClick"
+      >
+        <a-menu-item key="1">
+          <a-icon type="pie-chart"/>
+          <span>问卷列表</span>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <a-icon type="desktop"/>
+          <span>纬度设置</span>
+        </a-menu-item>
+        <a-menu-item key="3">
+          <a-icon type="inbox"/>
+          <span>发布列表</span>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
     <a-layout
       :class="[layoutMode, `content-width-${contentWidth}`]"
       :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }"
@@ -99,7 +113,6 @@ export default {
     ...mapState({
       // 动态主路由
       mainMenu: state => {
-        
         return asyncRouterMap
       }
     }),
@@ -159,6 +172,13 @@ export default {
     },
     drawerClose() {
       this.collapsed = false
+    },
+    aMenuHandleClick(d) {
+      if (d.key == '1') {
+        this.$router.push({ path: '/dashboard/basic-list' })
+      } else if (d.key == '2') {
+        this.$router.push({ path: '/dashboard/LatitudeDetail' })
+      }
     }
   }
 }

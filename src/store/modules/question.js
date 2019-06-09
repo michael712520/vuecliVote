@@ -12,7 +12,6 @@ export default {
       let list = []
       payload.forEach(element => {
         if (element) {
-          console.log(element)
           let arr = []
           arr.comp = element.type
           arr.dataInfo = element
@@ -30,7 +29,6 @@ export default {
           return element
         })
       }
-      console.log('vuexlistData', listData)
       state.listData = listData
     },
     item: (state, payload) => {

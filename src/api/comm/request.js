@@ -1,5 +1,4 @@
 /* global window */
-/* eslint-disable */
 import axios from 'axios'
 import qs from 'qs'
 import jsonp from 'jsonp'
@@ -15,7 +14,6 @@ const fetch = async options => {
   let { method = 'get', data, fetchType, url } = options
 
   let cloneData = lodash.cloneDeep(data)
-
   try {
     let domin = ''
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
@@ -32,7 +30,7 @@ const fetch = async options => {
     }
     url = domin + url
   } catch (e) {
-    console.log(e.message)
+    message.error(e.message)
   }
 
   if (fetchType === 'JSONP') {
@@ -67,7 +65,6 @@ const fetch = async options => {
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
   }
-
   switch (method.toLowerCase()) {
     case 'get':
       if (cloneData) {
@@ -81,11 +78,23 @@ const fetch = async options => {
           }
         })
       }
+      console.log('axios.get', {
+        url,
+        params: cloneData,
+        headers: config.headers
+      })
+
       return axios.get(url, {
         params: cloneData,
         headers: config.headers
       })
     case 'delete':
+      console.log('axios.delete', {
+        url,
+        params: cloneData,
+        headers: config.headers
+      })
+
       return axios.delete(
         url,
         {
@@ -95,10 +104,26 @@ const fetch = async options => {
         config
       )
     case 'post':
+      console.log('axios.post', {
+        url,
+        params: cloneData,
+        headers: config.headers
+      })
+
       return axios.post(url, cloneData, config)
     case 'put':
+      console.log('axios.put', {
+        url,
+        params: cloneData,
+        headers: config.headers
+      })
       return axios.put(url, cloneData, config)
     case 'patch':
+      console.log('axios.patch', {
+        url,
+        params: cloneData,
+        headers: config.headers
+      })
       return axios.patch(url, cloneData, config)
     default:
       return axios(options)
@@ -139,14 +164,15 @@ export default function request(options, payload, headerOptions) {
 
   if (options.url && options.url.indexOf('//') > -1) {
     const origin = `${options.url.split('//')[0]}//${options.url.split('//')[1].split('/')[0]}`
-    if (window.location.origin !== origin) {
-      options.fetchType = 'CORS'
-      // if (CORS && CORS.indexOf(origin) > -1) {
-      //     options.fetchType = 'CORS'
-      // } else {
-      //     options.fetchType = 'JSONP'
-      // }
-    }
+    options.fetchType = 'CORS'
+    // if (window.location.origin !== origin) {
+    //   options.fetchType = 'CORS'
+    //   // if (CORS && CORS.indexOf(origin) > -1) {
+    //   //     options.fetchType = 'CORS'
+    //   // } else {
+    //   //     options.fetchType = 'JSONP'
+    //   // }
+    // }
   }
   options = {
     ...options,
@@ -154,7 +180,6 @@ export default function request(options, payload, headerOptions) {
       ...headerOptions
     }
   }
-  console.log('options', options)
   return fetch(options)
     .then(response => {
       const { statusText, status } = response

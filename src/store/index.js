@@ -5,6 +5,7 @@ import app from './modules/app'
 import user from './modules/user'
 import question from './modules/question'
 import permission from './modules/permission'
+import LatitudeDetail from './modules/LatitudeDetail'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -14,7 +15,8 @@ export default new Vuex.Store({
     app,
     user,
     permission,
-    question
+    question,
+    LatitudeDetail
   },
   state: {},
   mutations: {},

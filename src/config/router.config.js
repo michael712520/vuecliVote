@@ -23,6 +23,12 @@ export const asyncRouterMap = [
             name: 'question',
             component: () => import('@/views/tp/Clist/StandardList'),
             meta: { title: '问卷列表', keepAlive: false, permission: ['dashboard'] }
+          },
+          {
+            path: '/dashboard/LatitudeDetail',
+            name: 'question',
+            component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
+            meta: { title: '纬度设置', keepAlive: false, permission: ['LatitudeDetail'] }
           }
         ]
       }
@@ -97,12 +103,6 @@ export const constantRouterMap = [
         meta: { title: '仪表盘', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
         children: [
           {
-            path: '/dashboard/workplace',
-            name: 'Workplace',
-            component: () => import('@/views/dashboard/Workplace'),
-            meta: { title: '工作台', keepAlive: true, permission: ['dashboard'] }
-          },
-          {
             path: '/dashboard/basic-list',
             name: 'question',
             component: () => import('@/views/tp/Clist/StandardList'),
@@ -113,6 +113,12 @@ export const constantRouterMap = [
             name: 'Question',
             component: () => import('@/views/tp/Quest/Question'),
             meta: { title: '设置', keepAlive: false, permission: ['dashboard'] }
+          },
+          {
+            path: '/dashboard/LatitudeDetail',
+            name: 'question',
+            component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
+            meta: { title: '纬度设置', keepAlive: false, permission: ['LatitudeDetail'] }
           }
         ]
       }

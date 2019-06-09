@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+      <danxuanhxSimple :dataSet="dataSet" :titile="msg"></danxuanhxSimple>
     </div>
     <div class="row bjt">
       <div>
@@ -162,13 +162,12 @@
 <script>
 import simpleLine from './comp/simpleLine'
 import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
-
+import danxuanhxSimple from './mk/danxuanhxSimple'
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
-  name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  name: 'danxuanhx',
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanhxSimple },
   props: {
     dataInfo: Object,
     index: Number
@@ -200,7 +199,7 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '单选横向',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -208,7 +207,7 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '单选横向',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -252,7 +251,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan'
+          type: 'danxuanhx'
         }
       }
       let { data } = await api.tp.SaveItem(params)

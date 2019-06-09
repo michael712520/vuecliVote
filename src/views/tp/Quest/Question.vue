@@ -16,10 +16,16 @@
 
         <div class="container" style="margin-top: 10px;">
           <a-card>
-            <a-select defaultValue="danxuan" style="width: 120px" v-model="selectVal">
+            <a-select
+              defaultValue="danxuan"
+              style="width: 120px"
+              v-model="selectVal"
+              @change="handleChangeselect"
+            >
               <a-select-option value="danxuan">单选</a-select-option>
               <!-- <a-select-option value="radio_down">下拉框单选</a-select-option> -->
               <a-select-option value="duoxuan">多选</a-select-option>
+              <a-select-option value="danxuanhx">评分单选</a-select-option>
               <!-- <a-select-option value="likert">量表题</a-select-option>
               <a-select-option value="order">排序</a-select-option>
               <a-select-option value="toupiaoradio">量表题</a-select-option>
@@ -41,13 +47,17 @@
 import LeftMenu from './LeftMenu.vue'
 import comTitle from './components/com/comTitle.vue'
 import danxuan from './components/com/danxuan.vue'
+import duoxuan from './components/com/duoxuan.vue'
+import danxuanhx from './components/com/danxuanhx.vue'
 import api from '@/api'
 export default {
   name: 'question',
   components: {
     LeftMenu,
     comTitle,
-    danxuan
+    danxuan,
+    duoxuan,
+    danxuanhx
   },
   data() {
     return {
@@ -71,9 +81,30 @@ export default {
       this.$store.commit('question/listData', { comp: item.comp, dataInfo: $event })
     },
     selecthandleChange() {
+      debugger
       this.$store.commit('question/addListData', this.selectVal)
     },
-    rowOperate(item, index, event) {},
+    async rowOperate(item, index, event) {
+      if (event == 3) {
+        if (index >= 1) {
+          let params = { detailId: this.$route.query.id, sort: index, type: 0 }
+          await api.tp.UpdateMbDetail(params)
+          await this.init()
+        } else {
+        }
+      } else if (event == 4) {
+        if (this.ListComponent.length - 1 > index) {
+          let params = { detailId: this.$route.query.id, sort: index, type: 1 }
+          console.log('UpdateMbDetail', params)
+
+          await api.tp.UpdateMbDetail(params)
+          await this.init()
+        }
+      }
+    },
+    handleChangeselect(value) {
+      this.selectVal = value
+    },
     async init() {
       let params = {
         detailId: this.$route.query.id

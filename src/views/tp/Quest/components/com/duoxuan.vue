@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+      <duoxuanSimple :dataSet="dataSet" :titile="msg"></duoxuanSimple>
     </div>
     <div class="row bjt">
       <div>
@@ -163,12 +163,12 @@
 import simpleLine from './comp/simpleLine'
 import danxuanYL from './mk/danxuanYL'
 import danxuanSimple from './mk/danxuanSimple'
+import duoxuanSimple from './mk/duoxuanSimple'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
-  name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, duoxuanSimple },
   props: {
     dataInfo: Object,
     index: Number
@@ -200,7 +200,7 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '多选1',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -208,7 +208,7 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '多选2',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -252,7 +252,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan'
+          type: 'duoxuan'
         }
       }
       let { data } = await api.tp.SaveItem(params)
@@ -263,7 +263,7 @@ export default {
       if (event.type == 1) {
         let item = {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '多选',
           imgs: [],
           checked: null,
           explain: '说明2',

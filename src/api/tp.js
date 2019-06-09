@@ -12,7 +12,8 @@ export const config = {
   GetList: `${baseUrl}/api/MbDetail/GetList`,
   Save: `${baseUrl}/api/MbDetail/Save`,
   GetListItem: `${baseUrl}/api/MbDetail/GetListItem`,
-  SaveItem: `${baseUrl}/api/MbDetail/SaveItem`
+  SaveItem: `${baseUrl}/api/MbDetail/SaveItem`,
+  UpdateMbDetail: `POST ${baseUrl}/api/MbDetail/UpdateMbDetail`
 }
 export function Get(id) {
   return axios({
@@ -50,10 +51,14 @@ export function SaveItem(model) {
   })
 }
 export async function Delete(id) {
-  debugger
   const { success, data } = await request(config.delete, {
     id: id
   })
-  debugger
+
+  return data
+}
+export async function UpdateMbDetail(params) {
+  console.log('config.UpdateMbDetail', config.UpdateMbDetail)
+  const { success, data } = await request(config.UpdateMbDetail, params)
   return data
 }
