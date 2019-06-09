@@ -9,7 +9,8 @@ export const config = {
   Add: `POST ${baseUrl}/api/LatitudeDetail/Add`,
   Update: `POST ${baseUrl}/api/LatitudeDetail/Update`,
   List: `${baseUrl}/api/LatitudeDetail/List`,
-  Delete: `POST ${baseUrl}/api/LatitudeDetail/Delete/:id`
+  Delete: `POST ${baseUrl}/api/LatitudeDetail/Delete/:id`,
+  GetPicker: `${baseUrl}/api/LatitudeDetail/GetPicker`
 }
 export async function Add(params) {
   const { success, data } = await request(config.Add, params)
@@ -26,5 +27,9 @@ export async function List(params) {
 }
 export async function Delete(params) {
   const { success, data } = await request(config.Delete, params)
+  return data
+}
+export async function GetPicker() {
+  const { success, data } = await request(config.GetPicker)
   return data
 }
