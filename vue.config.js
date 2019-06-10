@@ -95,6 +95,6 @@ module.exports = {
   lintOnSave: undefined,
   // babel-loader no-ignore node_modules/*
   transpileDependencies: [],
-  publicPath: process.env.NODE_ENV === 'production' ? '/admin' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   outputDir: 'build'
 }

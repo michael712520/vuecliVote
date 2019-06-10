@@ -104,8 +104,8 @@ export default {
 
           
           this.visible = false
-          api.LatitudeDetail.Add(model).then(d => {
-            this.$store.commit('LatitudeDetail/refresh')
+          api.latitudeDetail.Add(model).then(d => {
+            this.$store.commit('latitudeDetail/refresh')
           })
         }
       })

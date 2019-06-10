@@ -177,7 +177,7 @@ export default {
       if (d.key == '1') {
         this.$router.push({ path: '/dashboard/basic-list' })
       } else if (d.key == '2') {
-        this.$router.push({ path: '/dashboard/LatitudeDetail' })
+        this.$router.push({ path: '/dashboard/latitudeDetail' })
       }
     }
   }

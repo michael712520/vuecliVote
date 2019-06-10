@@ -25,10 +25,10 @@ export const asyncRouterMap = [
             meta: { title: '问卷列表', keepAlive: false, permission: ['dashboard'] }
           },
           {
-            path: '/dashboard/LatitudeDetail',
+            path: '/dashboard/latitudeDetail',
             name: 'question',
             component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
-            meta: { title: '纬度设置', keepAlive: false, permission: ['LatitudeDetail'] }
+            meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
           }
         ]
       }
@@ -115,10 +115,10 @@ export const constantRouterMap = [
             meta: { title: '设置', keepAlive: false, permission: ['dashboard'] }
           },
           {
-            path: '/dashboard/LatitudeDetail',
+            path: '/dashboard/latitudeDetail',
             name: 'question',
             component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
-            meta: { title: '纬度设置', keepAlive: false, permission: ['LatitudeDetail'] }
+            meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
           }
         ]
       }

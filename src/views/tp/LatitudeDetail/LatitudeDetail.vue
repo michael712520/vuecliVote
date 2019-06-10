@@ -96,7 +96,7 @@ export default {
   },
   computed: {
     refresh: function() {
-      return this.$store.state.LatitudeDetail.refresh
+      return this.$store.state.latitudeDetail.refresh
     },
     computed_id: function() {
       let id = null
@@ -114,18 +114,18 @@ export default {
   },
   methods: {
     async Delete(record) {
-      let data = await api.LatitudeDetail.Delete({ id: record.id })
-      this.$store.commit('LatitudeDetail/refresh')
+      let data = await api.latitudeDetail.Delete({ id: record.id })
+      this.$store.commit('latitudeDetail/refresh')
     },
     returnOne() {
-      this.$router.push({ path: '/dashboard/LatitudeDetail' })
+      this.$router.push({ path: '/dashboard/latitudeDetail' })
       this.id = null
-      this.$store.commit('LatitudeDetail/refresh')
+      this.$store.commit('latitudeDetail/refresh')
     },
     addItem(record) {
-      this.$router.push({ path: '/dashboard/LatitudeDetail', query: { id: record.id } })
+      this.$router.push({ path: '/dashboard/latitudeDetail', query: { id: record.id } })
       this.id = record.id
-      this.$store.commit('LatitudeDetail/refresh')
+      this.$store.commit('latitudeDetail/refresh')
     },
     add() {
       this.$router.push({
@@ -145,9 +145,8 @@ export default {
         Start: Start,
         Length: Length
       }
-      console.log('api.LatitudeDetail.List(form)', form)
-      let data = await api.LatitudeDetail.List(form)
-      console.log('api.LatitudeDetail.List(form)_data', data)
+      let data = await api.latitudeDetail.List(form)
+      console.log('api.latitudeDetail.List(form)_data', data)
       this.data = data.list
       this.total = data.total
     },
@@ -157,7 +156,7 @@ export default {
     },
     bj(item) {
       this.$store.commit('question/item', item)
-      this.$router.push({ path: '/dashboard/LatitudeDetail', query: { id: item.id } })
+      this.$router.push({ path: '/dashboard/latitudeDetail', query: { id: item.id } })
     }
   },
   watch: {
