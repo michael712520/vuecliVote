@@ -4,7 +4,7 @@ import qs from 'qs'
 import jsonp from 'jsonp'
 import lodash from 'lodash'
 import pathToRegexp from 'path-to-regexp'
-import Cookies from '@/store/modules/js-cookie'
+import Cookies from 'js-cookie'
 export const getAccessToken = () => {
   const access_token = Cookies.get('access_token')
   return access_token

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import api from '@/store/modules/@/api'
+import api from '@/api'
 export default {
   namespaced: true,
   state: {

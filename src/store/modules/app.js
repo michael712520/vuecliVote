@@ -1,4 +1,4 @@
-import Vue from '@/store/modules/vue'
+import Vue from 'vue'
 import {
   SIDEBAR_TYPE,
   DEFAULT_THEME,
@@ -10,7 +10,7 @@ import {
   DEFAULT_FIXED_HEADER_HIDDEN,
   DEFAULT_CONTENT_WIDTH_TYPE,
   DEFAULT_MULTI_TAB
-} from '@/store/modules/@/store/mutation-types'
+} from '@/store/mutation-types'
 
 const app = {
   state: {
