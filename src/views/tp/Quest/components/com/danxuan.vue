@@ -255,6 +255,10 @@ export default {
     },
     async completed() {
       this.display = false
+      let latitudeDetailIds = []
+      this.CascaderData.forEach(d => {
+        latitudeDetailIds.push(d)
+      })
       let params = {
         ...this.dataInfo,
         ...{
@@ -263,14 +267,15 @@ export default {
           detailId: this.$store.state.question.item.id,
           order: this.index,
           type: 'danxuan',
-          latitudeDetail: this.CascaderData
+          latitudeDetailIds: latitudeDetailIds
         }
       }
       console.log('api.tp.SaveItem(params)', params)
-      debugger
+      
       let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
+      this.bjdisplay = false
     },
     operate(event) {
       if (event.type == 1) {
@@ -323,7 +328,7 @@ export default {
         this.bjdisplay = !this.bjdisplay
       } else if (event === 2) {
         await api.tp.Delete(this.dataInfo.id)
-        debugger
+        
         this.$store.commit('question/refresh')
       } else if (event === 3) {
         this.$emit('rowOperate', 3)
@@ -334,6 +339,7 @@ export default {
     aRadioOnChange(e) {},
     onChangeCascader(e) {
       this.CascaderData = e
+      this.bjdisplay = true
     }
   },
   watch: {
@@ -345,10 +351,9 @@ export default {
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display
-          debugger
-          if (nVal.latitudeDetail && nVal.latitudeDetail.length > 0) {
-            debugger
-            this.CascaderData = nVal.CascaderData
+          if (nVal.latitudeDetailIds && nVal.latitudeDetailIds.length > 0) {
+             
+            this.CascaderData = JSON.parse(nVal.latitudeDetailIds)
           }
         }
       },

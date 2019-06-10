@@ -102,7 +102,7 @@ export default {
           }
           console.log('model', model)
 
-          debugger
+          
           this.visible = false
           api.LatitudeDetail.Add(model).then(d => {
             this.$store.commit('LatitudeDetail/refresh')

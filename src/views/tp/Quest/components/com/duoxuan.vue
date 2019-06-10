@@ -9,7 +9,12 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
-        <a-cascader :options="options" @change="onChangeCascader" placeholder="选择纬度"/>
+        <a-cascader
+          :options="options"
+          @change="onChangeCascader"
+          :defaultValue="CascaderData"
+          placeholder="选择维度"
+        />
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -216,7 +221,8 @@ export default {
           score: 0
         }
       ],
-      bjdisplay: false
+      bjdisplay: false,
+      CascaderData: []
     }
   },
   computed: {
@@ -224,11 +230,10 @@ export default {
       return 'radioName_' + this.index
     },
     options: function() {
-        return this.$store.state.latitudeDetail.ListPicker
+      return this.$store.state.latitudeDetail.ListPicker
     }
   },
-  async mounted() {
-   },
+  async mounted() {},
   methods: {
     onContentChange(val) {
       this.editorText = val
@@ -250,6 +255,11 @@ export default {
     },
     async completed() {
       this.display = false
+      let latitudeDetailIds = []
+      this.CascaderData.forEach(d => {
+        latitudeDetailIds.push(d)
+      })
+      this.CascaderData
       let params = {
         ...this.dataInfo,
         ...{
@@ -257,12 +267,14 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'duoxuan'
+          type: 'duoxuan',
+          latitudeDetailIds: latitudeDetailIds
         }
       }
       let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
+      this.bjdisplay = false
     },
     operate(event) {
       if (event.type == 1) {
@@ -315,7 +327,7 @@ export default {
         this.bjdisplay = !this.bjdisplay
       } else if (event === 2) {
         await api.tp.Delete(this.dataInfo.id)
-        debugger
+
         this.$store.commit('question/refresh')
       } else if (event === 3) {
         this.$emit('rowOperate', 3)
@@ -324,7 +336,10 @@ export default {
       }
     },
     aRadioOnChange(e) {},
-    onChangeCascader(e) {}
+    onChangeCascader(e) {
+      this.CascaderData = e
+      this.bjdisplay = true
+    }
   },
   watch: {
     dataInfo: {
@@ -335,6 +350,9 @@ export default {
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display
+          if (nVal.latitudeDetailIds && nVal.latitudeDetailIds.length > 0) {
+            this.CascaderData = JSON.parse(nVal.latitudeDetailIds)
+          }
         }
       },
       immediate: true,
