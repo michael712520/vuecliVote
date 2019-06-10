@@ -9,6 +9,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+        <a-cascader :options="options" @change="onChangeCascader" placeholder="选择纬度"/>
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -221,9 +222,13 @@ export default {
   computed: {
     radioName: function() {
       return 'radioName_' + this.index
+    },
+    options: function() {
+        return this.$store.state.latitudeDetail.ListPicker
     }
   },
-  mounted() {},
+  async mounted() {
+   },
   methods: {
     onContentChange(val) {
       this.editorText = val
@@ -318,7 +323,8 @@ export default {
         this.$emit('rowOperate', 4)
       }
     },
-    aRadioOnChange(e) {}
+    aRadioOnChange(e) {},
+    onChangeCascader(e) {}
   },
   watch: {
     dataInfo: {

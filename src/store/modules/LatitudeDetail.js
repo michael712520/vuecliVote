@@ -1,13 +1,25 @@
 /* eslint-disable */
+import api from '@/store/modules/@/api'
 export default {
   namespaced: true,
   state: {
-    refresh: false
+    refresh: false,
+    ListPicker: []
   },
-  action: {},
+  action: {
+    getPicker: ({ commit, state }, payload) => {
+      debugger
+      let ListPicker = api.LatitudeDetail.GetPicker().then(d => {
+        commit('getPicker', ListPicker)
+      })
+    }
+  },
   mutations: {
     refresh: (state, payload) => {
       state.refresh = !state.refresh
+    },
+    getPicker: (state, payload) => {
+      state.ListPicker = payload
     }
   }
 }

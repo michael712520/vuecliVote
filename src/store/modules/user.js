@@ -1,11 +1,11 @@
 /* eslint-disable */
-import Vue from 'vue'
-import { login, getInfo, logout } from '@/api/login'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
-import { welcome } from '@/utils/util'
+import Vue from '@/store/modules/vue'
+import { login, getInfo, logout } from '@/store/modules/@/api/login'
+import { ACCESS_TOKEN } from '@/store/modules/@/store/mutation-types'
+import { welcome } from '@/store/modules/@/utils/util'
 import { userInfo } from '../data/userInfo'
-import { asyncRouterMap, constantRouterMap } from '@/config/router.config'
-import Cookies from 'js-cookie'
+import { asyncRouterMap, constantRouterMap } from '@/store/modules/@/config/router.config'
+import Cookies from '@/store/modules/js-cookie'
 const user = {
   state: {
     token: '',

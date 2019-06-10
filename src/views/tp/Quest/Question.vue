@@ -67,7 +67,9 @@ export default {
   },
   mounted() {
     this.init()
-  },
+    debugger
+    this.$store.dispatch('latitudeDetail/getPicker',{})
+   },
   computed: {
     ListComponent: function() {
       return this.$store.state.question.listData
@@ -115,7 +117,6 @@ export default {
         data = data.map(d => {
           return d
         })
-        console.log('question/updateListData', data)
         this.$store.commit('question/updateListData', data)
       }
     }
