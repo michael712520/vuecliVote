@@ -5,7 +5,7 @@ import app from './modules/app'
 import user from './modules/user'
 import question from './modules/question'
 import permission from './modules/permission'
-import latitudeDetail from './modules/LatitudeDetail'
+import latitudeDetail from './modules/latitudeDetail'
 import getters from './getters'
 
 Vue.use(Vuex)
