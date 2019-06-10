@@ -1,7 +1,8 @@
+/* eslint-disable */
 import { axios } from '@/utils/request'
 import defaultSettings from '@/config/defaultSettings'
 import request from './comm/request'
-/* eslint-disable */
+
 // const baseUrl = 'http://192.168.70.47:9003'
 
 let baseUrl = defaultSettings.baseUrl

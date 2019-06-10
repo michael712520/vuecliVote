@@ -1,6 +1,6 @@
 const api = {
   tp: require('./tp'),
   user: require('./user'),
-  LatitudeDetail: require('./LatitudeDetail')
+  latitudeDetail: require('./latitudeDetail')
 }
 export default api
