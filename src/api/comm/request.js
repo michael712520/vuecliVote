@@ -1,4 +1,5 @@
 /* global window */
+/* eslint-disable */
 import axios from 'axios'
 import qs from 'qs'
 import jsonp from 'jsonp'
