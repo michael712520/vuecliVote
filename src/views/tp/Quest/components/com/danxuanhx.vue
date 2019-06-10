@@ -254,7 +254,7 @@ export default {
           type: 'danxuanhx'
         }
       }
-      let { data } = await api.tp.SaveItem(params)
+      let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
     },

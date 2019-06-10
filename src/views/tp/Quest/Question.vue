@@ -67,9 +67,8 @@ export default {
   },
   mounted() {
     this.init()
-    debugger
-    this.$store.dispatch('latitudeDetail/getPicker',{})
-   },
+    this.$store.dispatch('latitudeDetail/getPicker')
+  },
   computed: {
     ListComponent: function() {
       return this.$store.state.question.listData
@@ -83,7 +82,6 @@ export default {
       this.$store.commit('question/listData', { comp: item.comp, dataInfo: $event })
     },
     selecthandleChange() {
-      debugger
       this.$store.commit('question/addListData', this.selectVal)
     },
     async rowOperate(item, index, event) {
@@ -111,7 +109,7 @@ export default {
       let params = {
         detailId: this.$route.query.id
       }
-      let { data } = await api.tp.GetListItem(params)
+      let data = await api.tp.GetListItem(params)
 
       if (data && data.length > 0) {
         data = data.map(d => {

@@ -1,4 +1,4 @@
-import { axios } from '@/utils/request'
+/* eslint-disable */
 import defaultSettings from '@/config/defaultSettings'
 import request from './comm/request'
 /* eslint-disable */
@@ -7,48 +7,34 @@ import request from './comm/request'
 let baseUrl = defaultSettings.baseUrl
 export const config = {
   Get: `${baseUrl}/api/MbDetail/Get`,
-  Update: `${baseUrl}/api/MbDetail/Update`,
+  Update: `POST ${baseUrl}/api/MbDetail/Update`,
   delete: `POST ${baseUrl}/api/MbDetail/Delete/:id`,
   GetList: `${baseUrl}/api/MbDetail/GetList`,
   Save: `${baseUrl}/api/MbDetail/Save`,
   GetListItem: `${baseUrl}/api/MbDetail/GetListItem`,
-  SaveItem: `${baseUrl}/api/MbDetail/SaveItem`,
+  SaveItem: `POST ${baseUrl}/api/MbDetail/SaveItem`,
   UpdateMbDetail: `POST ${baseUrl}/api/MbDetail/UpdateMbDetail`
 }
-export function Get(id) {
-  return axios({
-    url: config.Get,
-    method: 'get',
-    params: { id: id }
-  })
+export async function Get(id) {
+  const { success, data } = await request(config.Get, { id: id })
+  return data
 }
-export function update(data) {
-  return axios({
-    url: config.Update,
-    method: 'post',
-    data: data
-  })
+export async function update(params) {
+  const { success, data } = await request(config.Update, params)
+  return data
 }
-export function GetList(params) {
-  return axios({
-    url: config.GetList,
-    method: 'get',
-    params: params
-  })
+export async function GetList(params) {
+  const { success, data } = await request(config.GetList, params)
+  return data
 }
-export function GetListItem(params) {
-  return axios({
-    url: config.GetListItem,
-    method: 'get',
-    params: params
-  })
+export async function GetListItem(params) {
+  const { success, data } = await request(config.GetListItem, params)
+
+  return data
 }
-export function SaveItem(model) {
-  return axios({
-    url: config.SaveItem,
-    method: 'post',
-    data: model
-  })
+export async function SaveItem(params) {
+  const { success, data } = await request(config.SaveItem, params)
+  return data
 }
 export async function Delete(id) {
   const { success, data } = await request(config.delete, {

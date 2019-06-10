@@ -45,7 +45,7 @@ export default {
   },
   async mounted() {
     let id = this.$route.query.id
-    let { data } = await api.tp.Get(id)
+    let data = await api.tp.Get(id)
     this.$store.commit('question/item', data)
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
     },
     async handleOk(e) {
       let form = { ...this.item, ...{ title: this.title, content: this.content } }
-      let { data } = await api.tp.update(form)
+      let data = await api.tp.update(form)
       this.$store.commit('question/item', data)
       this.visible = false
     },

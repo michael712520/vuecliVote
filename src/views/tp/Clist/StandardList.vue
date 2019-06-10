@@ -104,7 +104,7 @@ export default {
         Length: Length
       }
       
-      let { data } = await api.tp.GetList(form)
+      let data = await api.tp.GetList(form)
       
       this.data = data.list
       this.total = data.total

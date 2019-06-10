@@ -7,14 +7,7 @@ export default {
     listData: [],
     refresh: false
   },
-  action: {
-    getPicker: ({ commit, state }, payload) => {
-      debugger
-      let ListPicker = api.LatitudeDetail.GetPicker().then(d => {
-        commit('getPicker', ListPicker)
-      })
-    }
-  },
+  actions: {},
   mutations: {
     updateListData: (state, payload) => {
       let list = []

@@ -263,10 +263,12 @@ export default {
           detailId: this.$store.state.question.item.id,
           order: this.index,
           type: 'danxuan',
-          LatitudeDetail: CascaderData
+          latitudeDetail: this.CascaderData
         }
       }
-      let { data } = await api.tp.SaveItem(params)
+      console.log('api.tp.SaveItem(params)', params)
+      debugger
+      let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
     },
@@ -343,7 +345,9 @@ export default {
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display
-          if (nVal.CascaderData && nVal.CascaderData.length > 0) {
+          debugger
+          if (nVal.latitudeDetail && nVal.latitudeDetail.length > 0) {
+            debugger
             this.CascaderData = nVal.CascaderData
           }
         }
