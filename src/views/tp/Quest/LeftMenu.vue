@@ -2,26 +2,26 @@
   <div id="topnav" class="overflowBarStyle">
     <ul class="tabQTypet" id="divNormal">
       <li>
-        <div class="classifyTitle" id="hrefInfo">
+        <div class="classifyTitle" id="hrefInfo" @click="selectChange('hrefInfo')">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
           <span>个人信息</span>
         </div>
         <ul class="navlist">
-          <li id="liName">
+          <li id="liName" @click="selectChange('liName')">
             <a href="javascript:void(0);">
               <i class="iconfont">&#xe626;</i>
               <span>姓名</span>
             </a>
           </li>
-          <li id="liBaseInfo">
+          <li id="liBaseInfo" @click="selectChange('liBaseInfo')">
             <a href="javascript:void(0);">
               <i class="iconfont">&#xe624;</i>
               <span>基本信息</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('liBaseInfo')">
               <i class="iconfont">&#xe62e;</i>
               <span>性别</span>
             </a>
@@ -88,7 +88,7 @@
               <i class="iconfont">&#xe630;</i>
               <span>邮寄地址</span>
             </a>
-          </li> -->
+          </li>-->
         </ul>
       </li>
       <li class="open">
@@ -115,7 +115,7 @@
               <i class="iconfont">&#xe615;</i>
               <span>下拉框</span>
             </a>
-          </li> -->
+          </li>-->
         </ul>
       </li>
 
@@ -151,7 +151,7 @@
             </a>
           </li>
         </ul>
-      </li> -->
+      </li>-->
 
       <!-- <li class="open">
         <div class="classifyTitle">
@@ -173,8 +173,8 @@
             </a>
           </li>
         </ul>
-      </li> -->
-<!-- 
+      </li>-->
+      <!-- 
       <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
@@ -237,7 +237,7 @@
             </a>
           </li>
         </ul>
-      </li> -->
+      </li>-->
 
       <!-- <li class="open">
         <div class="classifyTitle">
@@ -270,9 +270,9 @@
               <i class="iconfont">&#xe612;</i>
               <span>矩阵量表</span>
             </a>
-          </li> -->
+          </li>
         </ul>
-      </li>
+      </li>-->
     </ul>
   </div>
 </template>
@@ -284,6 +284,11 @@ export default {
   components: {},
   data() {
     return {}
+  },
+  methods: {
+    selectChange(selectVal) {
+      this.$store.commit('question/addListData', selectVal)
+    }
   }
 }
 </script>
