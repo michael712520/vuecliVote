@@ -26,7 +26,7 @@ export const asyncRouterMap = [
           },
           {
             path: '/dashboard/latitudeDetail',
-            name: 'question',
+            name: 'latitudeDetail',
             component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
             meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
           }
@@ -110,13 +110,13 @@ export const constantRouterMap = [
           },
           {
             path: '/dashboard/Question',
-            name: 'Question',
+            name: 'question',
             component: () => import('@/views/tp/Quest/Question'),
             meta: { title: '设置', keepAlive: false, permission: ['dashboard'] }
           },
           {
             path: '/dashboard/latitudeDetail',
-            name: 'question',
+            name: 'latitudeDetail',
             component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
             meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
           }

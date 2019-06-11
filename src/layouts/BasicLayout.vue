@@ -19,7 +19,7 @@
       ></side-menu>
     </a-drawer>
 
-    <a-layout-sider>
+    <!-- <a-layout-sider>
       <a-menu
         :defaultSelectedKeys="['1']"
         :defaultOpenKeys="['sub1']"
@@ -41,7 +41,7 @@
           <span>发布列表</span>
         </a-menu-item>
       </a-menu>
-    </a-layout-sider>
+    </a-layout-sider>-->
     <a-layout
       :class="[layoutMode, `content-width-${contentWidth}`]"
       :style="{ paddingLeft: contentPaddingLeft, minHeight: '100vh' }"
@@ -68,7 +68,7 @@
 
       <!-- layout footer -->
       <a-layout-footer>
-        <global-footer/>
+        <!-- <global-footer/> -->
       </a-layout-footer>
 
       <!-- Setting Drawer (show in development mode) -->

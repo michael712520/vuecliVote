@@ -4,22 +4,41 @@
       <a-layout-header
         v-if="visible"
         :class="[fixedHeader && 'ant-header-fixedHeader', sidebarOpened ? 'ant-header-side-opened' : 'ant-header-side-closed', ]"
-        :style="{ padding: '0' }">
+        :style="{ padding: '0' }"
+      >
         <div v-if="mode === 'sidemenu'" class="header">
-          <a-icon v-if="device==='mobile'" class="trigger" :type="collapsed ? 'menu-fold' : 'menu-unfold'" @click="toggle"/>
-          <a-icon v-else class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="toggle"/>
-          <user-menu></user-menu>
+          <div style="padding-left:40px">
+            <router-link :to="{ name: 'question' }">
+              <a-tag color="purple">问卷列表</a-tag>
+            </router-link>
+            <router-link :to="{ name: 'latitudeDetail' }">
+              <a-tag color="blue">纬度设置</a-tag>
+            </router-link>
+            <!-- <a-tag color="orange">orange</a-tag>
+            <a-tag color="green">green</a-tag>
+            <a-tag color="cyan">cyan</a-tag>
+            <a-tag color="blue">blue</a-tag>
+            <a-tag color="purple">purple</a-tag>-->
+            <user-menu></user-menu>
+          </div>
+          <!-- <a-icon v-if="device==='mobile'" class="trigger" :type="collapsed ? 'menu-fold' : 'menu-unfold'" @click="toggle"/>
+          <a-icon v-else class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="toggle"/>-->
         </div>
-        <div v-else :class="['top-nav-header-index', theme]">
+        <!-- <div v-else :class="['top-nav-header-index', theme]">
           <div class="header-index-wide">
             <div class="header-index-left">
               <logo class="top-nav-header" :show-title="device !== 'mobile'"/>
-              <s-menu v-if="device !== 'mobile'" mode="horizontal" :menu="menus" :theme="theme" />
-              <a-icon v-else class="trigger" :type="collapsed ? 'menu-fold' : 'menu-unfold'" @click="toggle" />
+              <s-menu v-if="device !== 'mobile'" mode="horizontal" :menu="menus" :theme="theme"/>
+              <a-icon
+                v-else
+                class="trigger"
+                :type="collapsed ? 'menu-fold' : 'menu-unfold'"
+                @click="toggle"
+              />
             </div>
             <user-menu class="header-index-right"></user-menu>
           </div>
-        </div>
+        </div>-->
       </a-layout-header>
     </div>
   </transition>
@@ -65,17 +84,17 @@ export default {
       default: 'desktop'
     }
   },
-  data () {
+  data() {
     return {
       visible: true,
       oldScrollTop: 0
     }
   },
-  mounted () {
+  mounted() {
     document.body.addEventListener('scroll', this.handleScroll, { passive: true })
   },
   methods: {
-    handleScroll () {
+    handleScroll() {
       if (!this.autoHideHeader) {
         return
       }
@@ -96,18 +115,18 @@ export default {
         })
       }
     },
-    toggle () {
+    toggle() {
       this.$emit('toggle')
     }
   },
-  beforeDestroy () {
+  beforeDestroy() {
     document.body.removeEventListener('scroll', this.handleScroll, true)
   }
 }
 </script>
 
 <style lang="less">
-.header-animat{
+.header-animat {
   position: relative;
   z-index: 2;
 }
@@ -117,7 +136,8 @@ export default {
 .showHeader-leave-active {
   transition: all 0.5s ease;
 }
-.showHeader-enter, .showHeader-leave-to {
+.showHeader-enter,
+.showHeader-leave-to {
   opacity: 0;
 }
 </style>

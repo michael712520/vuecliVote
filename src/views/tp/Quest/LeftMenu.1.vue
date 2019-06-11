@@ -71,7 +71,7 @@
               <span>行业</span>
             </a>
           </li>
-          <!-- <li>
+          <li>
             <a href="javascript:void(0);">
               <i class="iconfont">&#xe62c;</i>
               <span>高校</span>
@@ -88,7 +88,7 @@
               <i class="iconfont">&#xe630;</i>
               <span>邮寄地址</span>
             </a>
-          </li> -->
+          </li>
         </ul>
       </li>
       <li class="open">
@@ -110,16 +110,16 @@
               <span>多选</span>
             </a>
           </li>
-          <!-- <li>
+          <li>
             <a href="javascript:void(0);" title="下拉单选题">
               <i class="iconfont">&#xe615;</i>
               <span>下拉框</span>
             </a>
-          </li> -->
+          </li>
         </ul>
       </li>
 
-      <!-- <li class="open">
+      <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
@@ -151,9 +151,9 @@
             </a>
           </li>
         </ul>
-      </li> -->
+      </li>
 
-      <!-- <li class="open">
+      <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
@@ -173,8 +173,8 @@
             </a>
           </li>
         </ul>
-      </li> -->
-<!-- 
+      </li>
+
       <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
@@ -237,9 +237,9 @@
             </a>
           </li>
         </ul>
-      </li> -->
+      </li>
 
-      <!-- <li class="open">
+      <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
@@ -270,7 +270,7 @@
               <i class="iconfont">&#xe612;</i>
               <span>矩阵量表</span>
             </a>
-          </li> -->
+          </li>
         </ul>
       </li>
     </ul>

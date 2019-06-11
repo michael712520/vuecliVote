@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="ss-cont clearfix" id="ss-cont">
-      <!-- <left-menu></left-menu> -->
+      <left-menu></left-menu>
       <div class="survey editContainBox">
         <com-title></com-title>
         <div v-for="(item,index) in ListComponent" :key="index">
@@ -129,6 +129,6 @@ export default {
 </script>
 <style scoped>
 .editContainBox {
-  /* float: right; */
+  float: right;
 }
 </style>
