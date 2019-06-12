@@ -1,20 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <a-col :span="4"></a-col>
-      <a-col :span="16">
-        <div class="title" v-html="msg"></div>
-      </a-col>
-
-      <a-col :span="4"></a-col>
-
-      <a-form :form="form">
-        <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input
-            v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
-          />
-        </a-form-item>
-      </a-form>
+      <danxuanSimpleStyleA :dataSet="dataSet" :titile="msg"></danxuanSimpleStyleA>
     </div>
     <div class="row bjt">
       <div>
@@ -34,6 +21,52 @@
       <div class="row">
         <div class="div_editor">
           <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
+        </div>
+        <div class="container" style="margin-top: 10px; display:none">
+          <span>
+            <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
+              <option value="0">单选</option>
+              <option value="radio_down">下拉框单选</option>
+              <option value="check">多选</option>
+              <option value="likert">量表题</option>
+              <option value="order">排序</option>
+              <option value="toupiaoradio">投票单选</option>
+              <option value="ceshiradio">考试单选</option>
+              <option value="cepingradio">评分单选</option>
+              <option value="question">填空</option>
+            </select>
+          </span>
+          <span>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input
+              type="checkbox"
+              tabindex="-1"
+              title="用户在填写问卷时必须回答这道题"
+              class="checkbox"
+              id="req_2_3944705790"
+            >
+            <label for="req_2_3944705790">必答</label>
+            <span style="display: none;">
+              &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
+              <a
+                href="javascript:setAllRequired(true);"
+                class="link-U00a6e6"
+              >必答</a>&nbsp;
+              <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
+            </span>
+          </span>
+          <span>
+            <span>
+              &nbsp;
+              <input
+                type="text"
+                class="choicetxt"
+                style="width: 140px; height: 15px; display: none;"
+              >
+              <span style="margin-left: 30px;"></span>
+              <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
+            </span>
+          </span>
         </div>
       </div>
       <div style="clear: both;"></div>
@@ -135,27 +168,19 @@
 <script>
 import simpleLine from '../comp/simpleLine'
 import danxuanYL from '../mk/danxuanYL'
-import danxuanSimple from '../mk/danxuanSimple'
+import danxuanSimpleStyleA from '../mk/danxuanSimpleStyleA'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 }
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 13 }
-      },
       aRadioOnValue: null,
       msg: '标题',
       myConfig: {
@@ -181,16 +206,63 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '姓名',
+          inputVal: '18岁以下',
           imgs: [],
           checked: null,
           explain: '说明1',
           score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '18~25',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '26~30',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '31~40',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '41~50',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '51~60',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '61以上',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
         }
       ],
       bjdisplay: false,
-      CascaderData: [],
-      form: this.$form.createForm(this)
+      CascaderData: []
     }
   },
   computed: {
@@ -234,7 +306,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'liName',
+          type: 'linianlingduan',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -247,8 +319,6 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
-        this.$message.error('不可操作')
-        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
@@ -266,8 +336,6 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
-        this.$message.error('不可操作')
-        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -276,8 +344,6 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
-        this.$message.error('不可操作')
-        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -287,8 +353,6 @@ export default {
           })
         }
       } else if (event.type == 4) {
-        this.$message.error('不可操作')
-        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]
@@ -339,10 +403,6 @@ export default {
 }
 </script>
 <style scoped>
-.title {
-  margin-top: 20px;
-  font-size: 20px;
-}
 .c_div {
   padding: 20px;
 }

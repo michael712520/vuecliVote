@@ -11,7 +11,17 @@
       <a-form :form="form">
         <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
-            v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            v-decorator="['xingming', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+          />
+        </a-form-item>
+        <a-form-item :label="dataSet[1].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input
+            v-decorator="['bumeng', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+          />
+        </a-form-item>
+        <a-form-item :label="dataSet[2].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input
+            v-decorator="['yuangong', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
           />
         </a-form-item>
       </a-form>
@@ -180,11 +190,27 @@ export default {
       },
       dataSet: [
         {
-          value: Guid.NewGuid().ToString('N'),
+          value: 'xingming',
           inputVal: '姓名',
           imgs: [],
           checked: null,
           explain: '说明1',
+          score: 0
+        },
+        {
+          value: 'bumeng',
+          inputVal: '部门',
+          imgs: [],
+          checked: null,
+          explain: '说明1',
+          score: 0
+        },
+        {
+          value: 'yuangong',
+          inputVal: '员工',
+          imgs: [],
+          checked: null,
+          explain: '员工',
           score: 0
         }
       ],
@@ -234,7 +260,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'liName',
+          type: 'liBaseInfo',
           latitudeDetailIds: latitudeDetailIds
         }
       }

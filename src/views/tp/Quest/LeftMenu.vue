@@ -21,13 +21,13 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);" @click="selectChange('liBaseInfo')">
+            <a href="javascript:void(0);" @click="selectChange('lixingbie')">
               <i class="iconfont">&#xe62e;</i>
               <span>性别</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('linianlingduan')">
               <i class="iconfont">&#xe625;</i>
               <span>年龄段</span>
             </a>

@@ -49,6 +49,11 @@ import comTitle from './components/com/comTitle.vue'
 import danxuan from './components/com/danxuan.vue'
 import duoxuan from './components/com/duoxuan.vue'
 import danxuanhx from './components/com/danxuanhx.vue'
+import liName from './components/com/liName/liName.vue'
+import liBaseInfo from './components/com/liBaseInfo/liBaseInfo'
+import lixingbie from './components/com/lixingbie/lixingbie'
+import linianlingduan from './components/com/linianlingduan/linianlingduan'
+
 import api from '@/api'
 export default {
   name: 'question',
@@ -57,7 +62,11 @@ export default {
     comTitle,
     danxuan,
     duoxuan,
-    danxuanhx
+    danxuanhx,
+    liName,
+    liBaseInfo,
+    lixingbie,
+    linianlingduan
   },
   data() {
     return {
