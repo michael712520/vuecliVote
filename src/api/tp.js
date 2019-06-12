@@ -21,6 +21,7 @@ export async function Get(id) {
   return data
 }
 export async function SaveUpdate(params) {
+  debugger
   const { success, data } = await request(config.SaveUpdate, params)
   return data
 }

@@ -91,31 +91,41 @@ export default {
   async mounted() {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
+  computed: {
+    refreshStandardList: function() {
+      return this.$store.state.question.refreshStandardList
+    }
+  },
   methods: {
     add() {
       this.$router.push({
         path: `/dashboard/Question`
       })
     },
-    async init(Start, Length) {
+    async init() {
       let form = {
-        userId: 1,
-        Start: Start,
-        Length: Length
+        userId: this.$store.state.user.info.id,
+        Start: (this.current - 1) * this.pageSize,
+        Length: this.pageSize
       }
-      
+
       let data = await api.tp.GetList(form)
-      
+
       this.data = data.list
       this.total = data.total
     },
     async onShowSizeChange(current, pageSize) {
       this.pageSize = pageSize
-      await init((current - 1) * pageSize, pageSize)
+      await init()
     },
     bj(item) {
       this.$store.commit('question/item', item)
       this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
+    }
+  },
+  watch: {
+    refreshStandardList(nVal, oVal) {
+      this.init().then()
     }
   }
 }

@@ -5,7 +5,8 @@ export default {
   state: {
     item: {},
     listData: [],
-    refresh: false
+    refresh: false,
+    refreshStandardList: false
   },
   actions: {},
   mutations: {
@@ -40,6 +41,9 @@ export default {
     },
     refresh: (state, payload) => {
       state.refresh = !state.refresh
+    },
+    refreshStandardList: (state, payload) => {
+      state.refreshStandardList = !state.refreshStandardList
     }
   }
 }
