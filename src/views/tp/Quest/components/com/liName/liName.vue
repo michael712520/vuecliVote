@@ -303,7 +303,7 @@ export default {
       if (event === 1) {
         this.bjdisplay = !this.bjdisplay
       } else if (event === 2) {
-        await api.tp.Delete(this.dataInfo.id)
+        await api.tp.DeleteItem(this.dataInfo.id)
 
         this.$store.commit('question/refresh')
       } else if (event === 3) {

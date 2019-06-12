@@ -271,7 +271,7 @@ export default {
         }
       }
       console.log('api.tp.SaveItem(params)', params)
-      
+
       let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
@@ -327,8 +327,8 @@ export default {
       if (event === 1) {
         this.bjdisplay = !this.bjdisplay
       } else if (event === 2) {
-        await api.tp.Delete(this.dataInfo.id)
-        
+        await api.tp.DeleteItem(this.dataInfo.id)
+
         this.$store.commit('question/refresh')
       } else if (event === 3) {
         this.$emit('rowOperate', 3)
@@ -352,7 +352,6 @@ export default {
           this.msg = nVal.title
           this.bjdisplay = nVal.display
           if (nVal.latitudeDetailIds && nVal.latitudeDetailIds.length > 0) {
-             
             this.CascaderData = JSON.parse(nVal.latitudeDetailIds)
           }
         }

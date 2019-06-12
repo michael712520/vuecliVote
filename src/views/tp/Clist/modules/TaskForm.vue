@@ -59,8 +59,8 @@ export default {
       validateFields((errors, values) => {
         if (!errors) {
           let model = { title: values.title, content: values.content }
-          
-          api.tp.Save(model).then()
+
+          api.tp.SaveUpdate(model).then()
         }
       })
     }
