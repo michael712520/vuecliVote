@@ -62,6 +62,11 @@ export default {
           let model = { title: values.title, content: values.content, userId: this.$store.state.user.info.id }
           api.tp.SaveUpdate(model).then(d => {
             this.$store.commit('question/refreshStandardList')
+            this.form.setFieldsValue({
+              title: '',
+              content: ''
+            })
+            this.visible = false
           })
         }
       })

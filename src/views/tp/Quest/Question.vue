@@ -53,7 +53,11 @@ import liName from './components/com/liName/liName.vue'
 import liBaseInfo from './components/com/liBaseInfo/liBaseInfo'
 import lixingbie from './components/com/lixingbie/lixingbie'
 import linianlingduan from './components/com/linianlingduan/linianlingduan'
-
+import lishouji from './components/com/lishouji/lishouji.vue'
+import liriqi from './components/com/liriqi/liriqi.vue'
+import lishijian from './components/com/lishijian/lishijian.vue'
+import lizhiye from './components/com/lizhiye/lizhiye'
+import lihangye from './components/com/lihangye/lihangye.vue'
 import api from '@/api'
 export default {
   name: 'question',
@@ -66,7 +70,12 @@ export default {
     liName,
     liBaseInfo,
     lixingbie,
-    linianlingduan
+    linianlingduan,
+    lishouji,
+    liriqi,
+    lishijian,
+    lizhiye,
+    lihangye
   },
   data() {
     return {
@@ -124,7 +133,6 @@ export default {
         data = data.map(d => {
           return d
         })
-        console.log('question/updateListData', data)
         this.$store.commit('question/updateListData', data)
       }
     }

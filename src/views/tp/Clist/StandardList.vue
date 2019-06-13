@@ -1,22 +1,22 @@
 <template>
   <div>
-    <a-card :bordered="false">
+    <!-- <a-card :bordered="false">
       <a-row>
         <a-col :sm="8" :xs="24">
           <head-info title="我的待办" content="8个任务" :bordered="true"/>
         </a-col>
       </a-row>
-    </a-card>
+    </a-card>-->
 
     <a-card style="margin-top: 24px" :bordered="false" title="标准列表">
-      <div slot="extra">
+      <!-- <div slot="extra">
         <a-radio-group>
           <a-radio-button>全部</a-radio-button>
           <a-radio-button>进行中</a-radio-button>
           <a-radio-button>等待中</a-radio-button>
         </a-radio-group>
         <a-input-search style="margin-left: 16px; width: 272px;"/>
-      </div>
+      </div>-->
 
       <div class="operate">
         <a-button type="dashed" style="width: 100%" icon="plus" @click="$refs.taskForm.add()">添加</a-button>
@@ -38,7 +38,7 @@
                   <a>编辑</a>
                 </a-menu-item>
                 <a-menu-item>
-                  <a>删除</a>
+                  <a @click="del(item)">删除</a>
                 </a-menu-item>
               </a-menu>
               <a>
@@ -121,6 +121,10 @@ export default {
     bj(item) {
       this.$store.commit('question/item', item)
       this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
+    },
+    async del(item) {
+      let data = await api.tp.Delete(item.id)
+      this.$store.commit('question/refreshStandardList')
     }
   },
   watch: {
