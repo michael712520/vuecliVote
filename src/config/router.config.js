@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView } from '@/layouts'
+import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView, PreviewLayout } from '@/layouts'
 import { bxAnaalyse } from '@/core/icons'
 
 export const asyncRouterMap = [
@@ -29,8 +29,30 @@ export const asyncRouterMap = [
             name: 'latitudeDetail',
             component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
             meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
+          },
+          {
+            path: '/dashboard/previewPage',
+            name: 'latitudeDetail',
+            component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
+            meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
           }
         ]
+      }
+    ]
+  },
+  {
+    path: '/Preview',
+    name: 'PreviewLayout',
+    component: PreviewLayout,
+    meta: { title: '预览' },
+    redirect: '/Preview',
+    children: [
+      // dashboard
+      {
+        path: '/Preview',
+        name: 'Preview',
+        redirect: '/Preview',
+        component: () => import('@/views/tp/Clist/StandardList')
       }
     ]
   },

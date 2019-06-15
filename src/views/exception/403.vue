@@ -1,17 +1,10 @@
-<template>
-  <exception-page type="403" />
-</template>
+<template></template>
 
 <script>
-import { ExceptionPage } from '@/components'
-
 export default {
-  components: {
-    ExceptionPage
-  }
+  components: {}
 }
 </script>
 
 <style scoped>
-
 </style>
