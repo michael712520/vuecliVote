@@ -3,7 +3,12 @@
     <layHeader></layHeader>
     <div class="preview">
       <div class="blockquote">
-        <div class="ztc">asdasdasd</div>
+        <div class="ztc">
+          <div>
+            <h1 class="h1cclass">asdasdasdasd</h1>
+            <div v-for="(item,index) in ListComponent" :key="index">{{JSON.stringify(item.title)}}</div>
+          </div>
+        </div>
         <div class="dfoot">技术提供</div>
       </div>
     </div>
@@ -12,15 +17,38 @@
 
 <script>
 import layHeader from './components/layHeader'
+import api from '@/api'
 export default {
   props: {},
   components: { layHeader },
   data() {
     return {}
   },
-  computed: {},
-  mounted() {},
-  methods: {},
+  computed: {
+    ListComponent: function() {
+      return this.$store.state.question.listData
+    }
+  },
+  async mounted() {
+    var id = this.$route.query.id
+    await this.init()
+  },
+  methods: {
+    async init() {
+      let params = {
+        detailId: this.$route.query.id
+      }
+      let data = await api.tp.GetListItem(params)
+      debugger
+      if (data && data.length > 0) {
+        data = data.map(d => {
+          return d
+        })
+        debugger
+        this.$store.commit('question/updateListData', data)
+      }
+    }
+  },
   watch: {}
 }
 </script>
@@ -50,6 +78,8 @@ export default {
   background-repeat: no-repeat;
 }
 .ztc {
+  font-size: 15px;
+  color: #333333;
   background-color: #fff;
   width: 100%;
   min-height: 500px;
@@ -63,5 +93,8 @@ export default {
   background-color: #fff;
   width: 100%;
   min-height: 100px;
+}
+.h1cclass {
+  padding: 20px;
 }
 </style>

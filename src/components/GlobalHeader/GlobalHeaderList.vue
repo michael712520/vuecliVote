@@ -10,7 +10,7 @@
           <div style="padding-left:220px">
             <div>
               <router-link :to="{ name: 'question' }">
-                <a-button type="primary" class="bh" :size="size" icon="align-center">问卷列表</a-button>
+                <a-button type="primary" class="bh" icon="align-center">问卷列表</a-button>
               </router-link>
 
               <user-menu></user-menu>

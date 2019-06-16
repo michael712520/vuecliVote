@@ -29,7 +29,7 @@
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
-            <a>预览</a>
+            <a @click="preview(item)">预览</a>
           </div>
           <div slot="actions">
             <a>纬度设置</a>

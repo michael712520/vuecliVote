@@ -135,7 +135,6 @@ export default {
     }
   },
   created() {
-    this.menus = asyncRouterMap.find(item => item.path === '/').children
     this.collapsed = !this.sidebarOpened
   },
   mounted() {

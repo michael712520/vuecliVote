@@ -134,8 +134,7 @@ export default {
       this.$message.info('保存成功！')
     },
     preview() {
-      debugger
-      this.$router.push({ path: '/preview/index'})
+      this.$router.push({ path: '/preview/index', query: { id: this.$route.query.id} })
     }
   },
   beforeDestroy() {
