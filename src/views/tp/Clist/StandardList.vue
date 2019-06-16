@@ -29,6 +29,18 @@
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
+            <a>纬度设置</a>
+          </div>
+          <div slot="actions">
+            <a>发布问卷</a>
+          </div>
+          <div slot="actions">
+            <a @click="preview(item)">预览</a>
+          </div>
+          <div slot="actions">
+            <a>发送问卷</a>
+          </div>
+          <div slot="actions">
             <a @click="bj(item)">编辑</a>
           </div>
           <div slot="actions">
@@ -103,9 +115,9 @@ export default {
         Start: Start,
         Length: Length
       }
-      
+
       let data = await api.tp.GetList(form)
-      
+
       this.data = data.list
       this.total = data.total
     },
@@ -116,6 +128,12 @@ export default {
     bj(item) {
       this.$store.commit('question/item', item)
       this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
+    },
+    preview(item) {
+      debugger
+      this.$store.commit('preview/item', item)
+      debugger
+      this.$router.push({ path: '/preview/index', query: { id: item.id } })
     }
   }
 }

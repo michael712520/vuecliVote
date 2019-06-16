@@ -10,7 +10,6 @@ export const asyncRouterMap = [
     meta: { title: '首页' },
     redirect: '/dashboard/basic-list',
     children: [
-      // dashboard
       {
         path: '/dashboard',
         name: 'dashboard',
@@ -40,26 +39,23 @@ export const asyncRouterMap = [
       }
     ]
   },
-  {
-    path: '/Preview',
-    name: 'PreviewLayout',
-    component: PreviewLayout,
-    meta: { title: '预览' },
-    redirect: '/Preview',
-    children: [
-      // dashboard
-      {
-        path: '/Preview',
-        name: 'Preview',
-        redirect: '/Preview',
-        component: () => import('@/views/tp/Clist/StandardList')
-      }
-    ]
-  },
+
   {
     path: '*',
     redirect: '/404',
     hidden: true
+  },
+  {
+    path: '/preview',
+    component: PreviewLayout,
+    redirect: '/preview/index',
+    children: [
+      {
+        path: '/index',
+        name: 'index',
+        component: () => import('@/views/preview/index.vue')
+      }
+    ]
   }
 ]
 
@@ -143,6 +139,18 @@ export const constantRouterMap = [
             meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
           }
         ]
+      }
+    ]
+  },
+  {
+    path: '/preview',
+    component: PreviewLayout,
+    redirect: '/preview/index',
+    children: [
+      {
+        path: '/preview/index',
+        name: 'index',
+        component: () => import('@/views/preview/index.vue')
       }
     ]
   }

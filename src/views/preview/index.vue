@@ -1,4 +1,9 @@
-<template></template>
+<template>
+  <div>
+    asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+    asdasdasd
+  </div>
+</template>
 
 <script>
 export default {
@@ -8,7 +13,9 @@ export default {
     return {}
   },
   computed: {},
-  mounted: {},
+  mounted() {
+    debugger
+  },
   methods() {},
   watch: {}
 }

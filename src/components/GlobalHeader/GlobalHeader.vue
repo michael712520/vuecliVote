@@ -11,9 +11,9 @@
             <router-link :to="{ name: 'question' }">
               <a-tag color="purple">问卷列表</a-tag>
             </router-link>
-            <router-link :to="{ name: 'latitudeDetail' }">
+            <!-- <router-link :to="{ name: 'latitudeDetail' }">
               <a-tag color="blue">纬度设置</a-tag>
-            </router-link>
+            </router-link>-->
             <!-- <a-tag color="orange">orange</a-tag>
             <a-tag color="green">green</a-tag>
             <a-tag color="cyan">cyan</a-tag>
