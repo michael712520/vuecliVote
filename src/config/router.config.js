@@ -1,63 +1,8 @@
 // eslint-disable-next-line
-import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView, PreviewLayout } from '@/layouts'
+import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView, PreviewLayout, BasicLayoutList } from '@/layouts'
 import { bxAnaalyse } from '@/core/icons'
 
-export const asyncRouterMap = [
-  {
-    path: '/',
-    name: 'index',
-    component: BasicLayout,
-    meta: { title: '首页' },
-    redirect: '/dashboard/basic-list',
-    children: [
-      {
-        path: '/dashboard',
-        name: 'dashboard',
-        redirect: '/dashboard/basic-list',
-        component: RouteView,
-        meta: { title: '仪表盘', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
-        children: [
-          {
-            path: '/dashboard/basic-list',
-            name: 'question',
-            component: () => import('@/views/tp/Clist/StandardList'),
-            meta: { title: '问卷列表', keepAlive: false, permission: ['dashboard'] }
-          },
-          {
-            path: '/dashboard/latitudeDetail',
-            name: 'latitudeDetail',
-            component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
-            meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
-          },
-          {
-            path: '/dashboard/previewPage',
-            name: 'latitudeDetail',
-            component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
-            meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
-          }
-        ]
-      }
-    ]
-  },
-
-  {
-    path: '*',
-    redirect: '/404',
-    hidden: true
-  },
-  {
-    path: '/preview',
-    component: PreviewLayout,
-    redirect: '/preview/index',
-    children: [
-      {
-        path: '/index',
-        name: 'index',
-        component: () => import('@/views/preview/index.vue')
-      }
-    ]
-  }
-]
+export const asyncRouterMap = []
 
 /**
  * 基础路由
@@ -108,37 +53,32 @@ export const constantRouterMap = [
   {
     path: '/',
     name: 'index',
-    component: BasicLayout,
+    component: BasicLayoutList,
     meta: { title: '首页' },
     redirect: '/dashboard/basic-list',
     children: [
-      // dashboard
       {
-        path: '/dashboard',
-        name: 'dashboard',
-        redirect: '/dashboard/basic-list',
-        component: RouteView,
-        meta: { title: '仪表盘', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
-        children: [
-          {
-            path: '/dashboard/basic-list',
-            name: 'question',
-            component: () => import('@/views/tp/Clist/StandardList'),
-            meta: { title: '问卷列表', keepAlive: false, permission: ['dashboard'] }
-          },
-          {
-            path: '/dashboard/Question',
-            name: 'question',
-            component: () => import('@/views/tp/Quest/Question'),
-            meta: { title: '设置', keepAlive: false, permission: ['dashboard'] }
-          },
-          {
-            path: '/dashboard/latitudeDetail',
-            name: 'latitudeDetail',
-            component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail'),
-            meta: { title: '纬度设置', keepAlive: false, permission: ['latitudeDetail'] }
-          }
-        ]
+        path: '/dashboard/basic-list',
+        name: 'question',
+        component: () => import('@/views/tp/Clist/StandardList')
+      },
+      {
+        path: '/dashboard/latitudeDetail',
+        name: 'latitudeDetail',
+        component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail')
+      }
+    ]
+  },
+  {
+    path: '/dashboard/Question',
+    name: 'question',
+    component: BasicLayout,
+
+    children: [
+      {
+        path: '/dashboard/Question',
+        name: 'question',
+        component: () => import('@/views/tp/Quest/Question')
       }
     ]
   },

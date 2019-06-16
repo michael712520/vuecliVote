@@ -8,26 +8,10 @@
       >
         <div v-if="mode === 'sidemenu'" class="header">
           <div style="padding-left:220px">
-            <!-- <router-link :to="{ name: 'latitudeDetail' }">
-              <a-tag color="blue">纬度设置</a-tag>
-            </router-link>-->
-            <!-- <a-tag color="orange">orange</a-tag>
-            <a-tag color="green">green</a-tag>
-            <a-tag color="cyan">cyan</a-tag>
-            <a-tag color="blue">blue</a-tag>
-            <a-tag color="purple">purple</a-tag>-->
             <div>
               <router-link :to="{ name: 'question' }">
                 <a-button type="primary" class="bh" :size="size" icon="align-center">问卷列表</a-button>
               </router-link>
-              <a-button
-                type="primary"
-                class="bh"
-                :size="size"
-                icon="check"
-                @click="bjcomplete()"
-              >完成编辑</a-button>
-              <a-button type="primary" class="bh" :size="size">预览</a-button>
 
               <user-menu></user-menu>
             </div>
@@ -131,9 +115,6 @@ export default {
     },
     bjcomplete() {
       this.$message.info('保存成功！')
-    },
-    preview() {
-      this.$router.push({ path: '/preview/index', query: { id: item.id } })
     }
   },
   beforeDestroy() {

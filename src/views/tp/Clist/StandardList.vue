@@ -29,7 +29,16 @@
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
-            <a @click="bj(item)">编辑</a>
+            <a>预览</a>
+          </div>
+          <div slot="actions">
+            <a>纬度设置</a>
+          </div>
+          <div slot="actions">
+            <a>发布问卷</a>
+          </div>
+          <div slot="actions">
+            <a @click="bj(item)">编辑问卷</a>
           </div>
           <div slot="actions">
             <a-dropdown>
@@ -125,6 +134,10 @@ export default {
     async del(item) {
       let data = await api.tp.Delete(item.id)
       this.$store.commit('question/refreshStandardList')
+    },
+    preview(item) {
+      this.$store.commit('preview/item', item)
+      this.$router.push({ path: '/preview/index', query: { id: item.id } })
     }
   },
   watch: {
