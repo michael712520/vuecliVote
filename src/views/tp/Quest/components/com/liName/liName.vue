@@ -1,10 +1,20 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <div>
-        姓名:
-        <a-input placeholder="姓名" v-model="title"/>
-      </div>
+      <a-col :span="4"></a-col>
+      <a-col :span="16">
+        <div class="title" v-html="msg"></div>
+      </a-col>
+
+      <a-col :span="4"></a-col>
+
+      <a-form :form="form">
+        <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input
+            v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+          />
+        </a-form-item>
+      </a-form>
     </div>
     <div class="row bjt">
       <div>
@@ -123,9 +133,9 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '../comp/simpleLine'
+import danxuanYL from '../mk/danxuanYL'
+import danxuanSimple from '../mk/danxuanSimple'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
@@ -138,6 +148,14 @@ export default {
   },
   data() {
     return {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 7 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 13 }
+      },
       aRadioOnValue: null,
       msg: '标题',
       myConfig: {
@@ -163,23 +181,16 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '姓名',
           imgs: [],
           checked: null,
           explain: '说明1',
           score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
         }
       ],
       bjdisplay: false,
-      CascaderData: []
+      CascaderData: [],
+      form: this.$form.createForm(this)
     }
   },
   computed: {
@@ -223,7 +234,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'liName',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -236,6 +247,8 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
+        this.$message.error('不可操作')
+        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
@@ -253,6 +266,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
+        this.$message.error('不可操作')
+        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -261,6 +276,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
+        this.$message.error('不可操作')
+        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -270,6 +287,8 @@ export default {
           })
         }
       } else if (event.type == 4) {
+        this.$message.error('不可操作')
+        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]
@@ -284,7 +303,7 @@ export default {
       if (event === 1) {
         this.bjdisplay = !this.bjdisplay
       } else if (event === 2) {
-        await api.tp.Delete(this.dataInfo.id)
+        await api.tp.DeleteItem(this.dataInfo.id)
 
         this.$store.commit('question/refresh')
       } else if (event === 3) {
@@ -320,6 +339,10 @@ export default {
 }
 </script>
 <style scoped>
+.title {
+  margin-top: 20px;
+  font-size: 20px;
+}
 .c_div {
   padding: 20px;
 }

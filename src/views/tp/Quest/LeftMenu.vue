@@ -21,13 +21,13 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);" @click="selectChange('liBaseInfo')">
+            <a href="javascript:void(0);" @click="selectChange('lixingbie')">
               <i class="iconfont">&#xe62e;</i>
               <span>性别</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('linianlingduan')">
               <i class="iconfont">&#xe625;</i>
               <span>年龄段</span>
             </a>
@@ -39,19 +39,19 @@
                         <a href="javascript:void(0);" onmouseover="createFreQ('省市区','','',true,this);return false;" onmouseout="hidePrev();" onclick="createFreQ('省市区');return false;"><i class="iconfont">&#xe627;</i><span>省市区</span></a>
           </li>-->
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('lishouji')">
               <i class="iconfont">&#xe62d;</i>
               <span>手机</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('liriqi')">
               <i class="iconfont">&#xe628;</i>
               <span>日期</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('lishijian')">
               <i class="iconfont">&#xe62a;</i>
               <span>时间</span>
             </a>
@@ -60,13 +60,13 @@
                         <a href="javascript:void(0);" onmouseover="createFreQ('地图','','',true,this);return false;" onmouseout="hidePrev();" onclick="createFreQ('地图');return false;"><i class="iconfont">&#xe623;</i><span>地图</span></a>
           </li>-->
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('lizhiye')">
               <i class="iconfont">&#xe62b;</i>
               <span>职业</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('lihangye')">
               <i class="iconfont">&#xe62f;</i>
               <span>行业</span>
             </a>

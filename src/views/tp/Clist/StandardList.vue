@@ -1,22 +1,22 @@
 <template>
   <div>
-    <a-card :bordered="false">
+    <!-- <a-card :bordered="false">
       <a-row>
         <a-col :sm="8" :xs="24">
           <head-info title="我的待办" content="8个任务" :bordered="true"/>
         </a-col>
       </a-row>
-    </a-card>
+    </a-card>-->
 
     <a-card style="margin-top: 24px" :bordered="false" title="标准列表">
-      <div slot="extra">
+      <!-- <div slot="extra">
         <a-radio-group>
           <a-radio-button>全部</a-radio-button>
           <a-radio-button>进行中</a-radio-button>
           <a-radio-button>等待中</a-radio-button>
         </a-radio-group>
         <a-input-search style="margin-left: 16px; width: 272px;"/>
-      </div>
+      </div>-->
 
       <div class="operate">
         <a-button type="dashed" style="width: 100%" icon="plus" @click="$refs.taskForm.add()">添加</a-button>
@@ -29,18 +29,6 @@
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
-            <a>纬度设置</a>
-          </div>
-          <div slot="actions">
-            <a>发布问卷</a>
-          </div>
-          <div slot="actions">
-            <a @click="preview(item)">预览</a>
-          </div>
-          <div slot="actions">
-            <a>发送问卷</a>
-          </div>
-          <div slot="actions">
             <a @click="bj(item)">编辑</a>
           </div>
           <div slot="actions">
@@ -50,7 +38,7 @@
                   <a>编辑</a>
                 </a-menu-item>
                 <a-menu-item>
-                  <a>删除</a>
+                  <a @click="del(item)">删除</a>
                 </a-menu-item>
               </a-menu>
               <a>
@@ -103,17 +91,22 @@ export default {
   async mounted() {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
+  computed: {
+    refreshStandardList: function() {
+      return this.$store.state.question.refreshStandardList
+    }
+  },
   methods: {
     add() {
       this.$router.push({
         path: `/dashboard/Question`
       })
     },
-    async init(Start, Length) {
+    async init() {
       let form = {
-        userId: 1,
-        Start: Start,
-        Length: Length
+        userId: this.$store.state.user.info.id,
+        Start: (this.current - 1) * this.pageSize,
+        Length: this.pageSize
       }
 
       let data = await api.tp.GetList(form)
@@ -123,17 +116,20 @@ export default {
     },
     async onShowSizeChange(current, pageSize) {
       this.pageSize = pageSize
-      await init((current - 1) * pageSize, pageSize)
+      await init()
     },
     bj(item) {
       this.$store.commit('question/item', item)
       this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
     },
-    preview(item) {
-      debugger
-      this.$store.commit('preview/item', item)
-      debugger
-      this.$router.push({ path: '/preview/index', query: { id: item.id } })
+    async del(item) {
+      let data = await api.tp.Delete(item.id)
+      this.$store.commit('question/refreshStandardList')
+    }
+  },
+  watch: {
+    refreshStandardList(nVal, oVal) {
+      this.init().then()
     }
   }
 }

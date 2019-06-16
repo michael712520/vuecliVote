@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+      <danxuanSimpleStyleA :dataSet="dataSet" :titile="msg"></danxuanSimpleStyleA>
     </div>
     <div class="row bjt">
       <div>
@@ -166,15 +166,15 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '../comp/simpleLine'
+import danxuanYL from '../mk/danxuanYL'
+import danxuanSimpleStyleA from '../mk/danxuanSimpleStyleA'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
   props: {
     dataInfo: Object,
     index: Number
@@ -206,7 +206,7 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '男',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -214,7 +214,7 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '女',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -266,7 +266,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'lixingbie',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -279,6 +279,8 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
+        this.$message.error('不可操作')
+        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
@@ -296,6 +298,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
+        this.$message.error('不可操作')
+        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -304,6 +308,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
+        this.$message.error('不可操作')
+        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -313,6 +319,8 @@ export default {
           })
         }
       } else if (event.type == 4) {
+        this.$message.error('不可操作')
+        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]

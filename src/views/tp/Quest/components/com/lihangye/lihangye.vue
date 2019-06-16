@@ -1,7 +1,23 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+    <div class="row bjt">
+      <div>
+        <a-col :span="4"></a-col>
+        <a-col :span="16">
+          <div class="title" v-html="msg"></div>
+        </a-col>
+
+        <a-col :span="4"></a-col>
+      </div>
+      <div>
+        <a-select style="width: 240px">
+          <a-select-option
+            v-for="(item ,index) in dataSet"
+            :key="index"
+            :value="item.value"
+          >{{item.inputVal}}</a-select-option>
+        </a-select>
+      </div>
     </div>
     <div class="row bjt">
       <div>
@@ -166,9 +182,9 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '@/views/tp/Quest/components/com/comp/simpleLine'
+import danxuanYL from '@/views/tp/Quest/components/com/mk/danxuanYL'
+import danxuanSimple from '@/views/tp/Quest/components/com/mk/danxuanSimple'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
@@ -206,7 +222,7 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: 'IT/软硬件服务/电子商务/因特网运营',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -214,7 +230,55 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '快速消费品(食品/饮料/化妆品)',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '批发/零售',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '服装/纺织/皮革',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '家具/工艺品/玩具',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '教育/培训/科研/院校',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '家电',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '通信/电信运营/网络设备/增值服务',
           imgs: [],
           checked: null,
           explain: '说明2',

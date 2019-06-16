@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+      <danxuanSimpleStyleA :dataSet="dataSet" :titile="msg"></danxuanSimpleStyleA>
     </div>
     <div class="row bjt">
       <div>
@@ -166,15 +166,15 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '../comp/simpleLine'
+import danxuanYL from '../mk/danxuanYL'
+import danxuanSimpleStyleA from '../mk/danxuanSimpleStyleA'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
   props: {
     dataInfo: Object,
     index: Number
@@ -206,7 +206,7 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '18岁以下',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -214,7 +214,47 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '18~25',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '26~30',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '31~40',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '41~50',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '51~60',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '61以上',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -266,7 +306,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'linianlingduan',
           latitudeDetailIds: latitudeDetailIds
         }
       }

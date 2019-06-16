@@ -1,22 +1,20 @@
 <template>
   <div>
-    asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
-    asdasdasd
+    <layHeader></layHeader>
   </div>
 </template>
 
 <script>
+import layHeader from './components/layHeader'
 export default {
   props: {},
-  components: {},
+  components: { layHeader },
   data() {
     return {}
   },
   computed: {},
-  mounted() {
-    debugger
-  },
-  methods() {},
+  mounted() {},
+  methods: {},
   watch: {}
 }
 </script>

@@ -58,9 +58,16 @@ export default {
       let _api = api
       validateFields((errors, values) => {
         if (!errors) {
-          let model = { title: values.title, content: values.content }
-          
-          api.tp.Save(model).then()
+          console.log('aaaa', this.$store.state)
+          let model = { title: values.title, content: values.content, userId: this.$store.state.user.info.id }
+          api.tp.SaveUpdate(model).then(d => {
+            this.$store.commit('question/refreshStandardList')
+            this.form.setFieldsValue({
+              title: '',
+              content: ''
+            })
+            this.visible = false
+          })
         }
       })
     }

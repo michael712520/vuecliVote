@@ -1,7 +1,23 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+      <div>
+        <a-col :span="4"></a-col>
+        <a-col :span="16">
+          <div class="title" v-html="msg"></div>
+        </a-col>
+
+        <a-col :span="4"></a-col>
+      </div>
+     <div>
+        <a-select style="width: 240px">
+        <a-select-option
+          v-for="(item ,index) in dataSet"
+          :key="index"
+          :value="item.value"
+        >{{item.inputVal}}</a-select-option>
+      </a-select>
+     </div>
     </div>
     <div class="row bjt">
       <div>
@@ -166,9 +182,9 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '@/views/tp/Quest/components/com/comp/simpleLine'
+import danxuanYL from '@/views/tp/Quest/components/com/mk/danxuanYL'
+import danxuanSimple from '@/views/tp/Quest/components/com/mk/danxuanSimple'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
@@ -206,7 +222,7 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '全日制学生',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -214,7 +230,55 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '生产人员',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '销售人员',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '市场/公关人员',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '客服人员',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '行政/后勤人员',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '人力资源',
+          imgs: [],
+          checked: null,
+          explain: '说明2',
+          score: 0
+        },
+        {
+          value: Guid.NewGuid().ToString('N'),
+          inputVal: '财务/审计人员',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -266,7 +330,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'lizhiye',
           latitudeDetailIds: latitudeDetailIds
         }
       }

@@ -7,8 +7,9 @@ import request from './comm/request'
 let baseUrl = defaultSettings.baseUrl
 export const config = {
   Get: `${baseUrl}/api/MbDetail/Get`,
-  Update: `POST ${baseUrl}/api/MbDetail/Update`,
-  delete: `POST ${baseUrl}/api/MbDetail/Delete/:id`,
+  SaveUpdate: `POST ${baseUrl}/api/MbDetail/SaveUpdate`,
+  Delete: `POST ${baseUrl}/api/MbDetail/Delete/:id`,
+  DeleteItem: `POST ${baseUrl}/api/MbDetail/DeleteItem/:id`,
   GetList: `${baseUrl}/api/MbDetail/GetList`,
   Save: `${baseUrl}/api/MbDetail/Save`,
   GetListItem: `${baseUrl}/api/MbDetail/GetListItem`,
@@ -19,8 +20,9 @@ export async function Get(id) {
   const { success, data } = await request(config.Get, { id: id })
   return data
 }
-export async function update(params) {
-  const { success, data } = await request(config.Update, params)
+export async function SaveUpdate(params) {
+  debugger
+  const { success, data } = await request(config.SaveUpdate, params)
   return data
 }
 export async function GetList(params) {
@@ -37,7 +39,14 @@ export async function SaveItem(params) {
   return data
 }
 export async function Delete(id) {
-  const { success, data } = await request(config.delete, {
+  const { success, data } = await request(config.Delete, {
+    id: id
+  })
+
+  return data
+}
+export async function DeleteItem(id) {
+  const { success, data } = await request(config.DeleteItem, {
     id: id
   })
 
