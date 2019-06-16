@@ -27,7 +27,7 @@
                 icon="check"
                 @click="bjcomplete()"
               >完成编辑</a-button>
-              <a-button type="primary" class="bh" :size="size">预览</a-button>
+              <a-button type="primary" class="bh" :size="size" @click="preview()">预览</a-button>
 
               <user-menu></user-menu>
             </div>
@@ -98,7 +98,8 @@ export default {
   data() {
     return {
       visible: true,
-      oldScrollTop: 0
+      oldScrollTop: 0,
+      size: 'default'
     }
   },
   mounted() {
@@ -133,7 +134,8 @@ export default {
       this.$message.info('保存成功！')
     },
     preview() {
-      this.$router.push({ path: '/preview/index', query: { id: item.id } })
+      debugger
+      this.$router.push({ path: '/preview/index'})
     }
   },
   beforeDestroy() {

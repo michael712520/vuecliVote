@@ -1,15 +1,15 @@
 <template>
-  <div class="page">
+  <div class="headercss">
     <div class="item">
       <a>
-        <i class="icon"></i>
+        <i class="icon web"></i>
         <h5>电脑预览</h5>
       </a>
     </div>
     <div class="split_line"></div>
     <div class="item">
       <a>
-        <i class="icon"></i>
+        <i class="icon close"></i>
         <h5>关闭</h5>
       </a>
     </div>
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.headercss {
   position: fixed;
   width: 100%;
   left: 0px;
@@ -49,6 +49,15 @@ export default {
   width: 88px;
   height: 70px;
   text-align: center;
+}
+.web {
+  background-image: url('../../../../public/rimg/web.png');
+}
+.web:hover {
+  background-image: url('../../../../public/rimg/web-hover.png');
+}
+.close {
+  background-image: url('../../../../public/rimg/close.png');
 }
 .item a {
   display: block;

@@ -73,7 +73,6 @@ export const constantRouterMap = [
     path: '/dashboard/Question',
     name: 'question',
     component: BasicLayout,
-
     children: [
       {
         path: '/dashboard/Question',
