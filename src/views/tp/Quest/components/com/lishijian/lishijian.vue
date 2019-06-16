@@ -1,13 +1,11 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-       <div>
-        <a-col :span="4"></a-col>
-        <a-col :span="16">
-          <div class="title" v-html="msg"></div>
-        </a-col>
-
-        <a-col :span="4"></a-col>
+      <div>
+        <div class="titile">
+          {{index}}、
+          <div v-html="titile"></div>
+        </div>
       </div>
       <div>
         {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
@@ -143,6 +141,7 @@ export default {
   components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
+    titile: String,
     index: Number
   },
   data() {
@@ -367,5 +366,9 @@ export default {
   width: auto;
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
+}
+.titile {
+  display: flex;
+  flex-direction: row;
 }
 </style>

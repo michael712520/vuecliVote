@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimple :dataSet="dataSet" :titile="msg"></danxuanSimple>
+      <danxuanSimple :dataSet="dataSet" :index="index" :titile="msg"></danxuanSimple>
     </div>
     <div class="row bjt">
       <div>

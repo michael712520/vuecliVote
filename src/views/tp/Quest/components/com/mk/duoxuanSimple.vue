@@ -60,5 +60,9 @@ export default {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+.titile {
+  display: flex;
+  flex-direction: row;
+}
 </style>
 

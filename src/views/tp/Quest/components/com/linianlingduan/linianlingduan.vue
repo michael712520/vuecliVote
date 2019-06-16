@@ -1,7 +1,7 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row">
-      <danxuanSimpleStyleA :dataSet="dataSet" :titile="msg"></danxuanSimpleStyleA>
+      <danxuanSimpleStyleA :dataSet="dataSet" :titile="msg" :index="index"></danxuanSimpleStyleA>
     </div>
     <div class="row bjt">
       <div>
@@ -177,6 +177,7 @@ export default {
   components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
   props: {
     dataInfo: Object,
+    titile: String,
     index: Number
   },
   data() {
@@ -428,5 +429,9 @@ export default {
   width: auto;
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
+}
+.titile {
+  display: flex;
+  flex-direction: row;
 }
 </style>

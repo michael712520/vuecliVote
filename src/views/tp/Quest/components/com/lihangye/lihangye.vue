@@ -1,13 +1,9 @@
 <template>
   <div class="div_title_attr_question">
     <div class="row bjt">
-      <div>
-        <a-col :span="4"></a-col>
-        <a-col :span="16">
-          <div class="title" v-html="msg"></div>
-        </a-col>
-
-        <a-col :span="4"></a-col>
+      <div class="titile">
+        {{index}}、
+        <div v-html="titile"></div>
       </div>
       <div>
         <a-select style="width: 240px">
@@ -193,6 +189,7 @@ export default {
   components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
+    titile: String,
     index: Number
   },
   data() {
@@ -452,5 +449,9 @@ export default {
   width: auto;
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
+}
+.titile {
+  display: flex;
+  flex-direction: row;
 }
 </style>

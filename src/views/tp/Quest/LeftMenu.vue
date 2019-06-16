@@ -99,13 +99,13 @@
         </div>
         <ul class="navlist">
           <li>
-            <a id="hrefChoice" href="javascript:void(0);">
+            <a id="hrefChoice" href="javascript:void(0);" @click="selectChange('danxuan')">
               <i class="iconfont">&#xe607;</i>
               <span>单选</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('duoxuan')">
               <i class="iconfont">&#xe60e;</i>
               <span>多选</span>
             </a>

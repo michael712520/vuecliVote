@@ -1,7 +1,10 @@
 <template>
   <div>
     <a-card>
-      <div v-html="titile"></div>
+      <div class="titile">
+        {{index}}、
+        <div v-html="titile"></div>
+      </div>
       <a-radio-group @change="onChange" v-model="value">
         <a-radio
           v-for="(item ,index) in datas"
@@ -19,7 +22,8 @@ import defaultSettings from '@/config/defaultSettings'
 export default {
   props: {
     dataSet: Array,
-    titile: String
+    titile: String,
+    index: Number
   },
   data() {
     return {
@@ -54,6 +58,10 @@ export default {
   padding-left: 24px;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+.titile {
+  display: flex;
+  flex-direction: row;
 }
 </style>
 

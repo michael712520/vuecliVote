@@ -1,19 +1,5 @@
 <template>
-  <div>
-    <div v-for="(item ,index) in datas">
-      <a-card class="acard">
-        <img
-          v-show="item.imgs"
-          v-for="(img,i) in item.imgs"
-          alt="example"
-          :src="actionUrl+'/img'"
-          slot="cover"
-        >
-        <input @click="Onclickdx(item ,index)" name="danxuan" type="radio" :value="item.value">
-        <a-card-meta :title="item.inputVal" :description="item.explain"></a-card-meta>
-      </a-card>
-    </div>
-  </div>
+  <div></div>
 </template>
 <script>
 import defaultSettings from '@/config/defaultSettings'
