@@ -6,15 +6,10 @@
         <div v-html="titile"></div>
       </div>
       <div>
-        {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-        <a-radio-group @change="onChange" v-model="value">
-          <a-radio
-            v-for="(item ,index) in datas"
-            :key="index"
-            :style="radioStyle"
-            :value="item.value"
-            size="large"
-          >{{item.inputVal}}</a-radio>
+        <a-radio-group>
+          <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
+            <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
+          </div>
         </a-radio-group>
       </div>
     </a-card>
@@ -448,5 +443,8 @@ export default {
 .titile {
   display: flex;
   flex-direction: row;
+}
+.aradio {
+  margin: 10px;
 }
 </style>

@@ -6,8 +6,10 @@
           {{(index+1)}}、
           <div v-html="msg"></div>
         </div>
-        <div>{{dataSet&&dataSet[0]&&dataSet[0].inputVal}}</div>
-        <a-date-picker/>
+        <div>
+          {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}&nbsp;&nbsp;&nbsp;&nbsp;
+          <a-date-picker/>
+        </div>
       </div>
     </a-card>
     <div class="row bjt">

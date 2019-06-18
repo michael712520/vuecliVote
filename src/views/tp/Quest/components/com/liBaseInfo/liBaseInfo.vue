@@ -111,7 +111,7 @@
         <div class="divclear"></div>
         <div style="margin: 12px 0px 5px;">
           <div style="width: 100%;">
-            <span
+            <!-- <span
               class="spanLeft"
               style="line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
             >
@@ -124,7 +124,7 @@
                 <span class="choiceimg design-icon design-singleadd"></span>
                 <span style="color: #1ea0fa;">添加选项</span>
               </a>&nbsp;&nbsp;
-            </span>
+            </span>-->
             <div class="divclear"></div>
           </div>
         </div>

@@ -7,6 +7,7 @@
           <div v-html="msg"></div>
         </div>
         <div>
+          行业：
           <a-select style="width: 240px">
             <a-select-option
               v-for="(item ,index) in dataSet"

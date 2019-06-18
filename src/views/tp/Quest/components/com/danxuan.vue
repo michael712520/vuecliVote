@@ -3,17 +3,13 @@
     <a-card>
       <div class="titile">
         {{(index+1)}}、
-        <div v-html="titile"></div>
+        <div v-html="msg"></div>
       </div>
-
-      <a-radio-group @change="onChange" v-model="value">
-        <a-radio
-          v-for="(item ,index) in datas"
-          :key="index"
-          :style="radioStyle"
-          :value="item.value"
-          size="large"
-        >{{item.inputVal}}</a-radio>
+      <a-radio-group>
+        <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
+          <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
+          <br>
+        </div>
       </a-radio-group>
     </a-card>
     <div class="row bjt">
@@ -147,9 +143,9 @@
         <div class="divclear"></div>
         <div style="margin: 12px 0px 5px;">
           <div style="width: 100%;">
-            <span
+            <!-- <span
               class="spanLeft"
-              style="line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
+              style=" line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
             >
               <a
                 href="javascript:"
@@ -160,7 +156,7 @@
                 <span class="choiceimg design-icon design-singleadd"></span>
                 <span style="color: #1ea0fa;">添加选项</span>
               </a>&nbsp;&nbsp;
-            </span>
+            </span>-->
             <div class="divclear"></div>
           </div>
         </div>
@@ -211,11 +207,7 @@ export default {
       visible: false,
       editorText: '',
       value: 1,
-      radioStyle: {
-        display: 'block',
-        height: '300px',
-        lineHeight: '300px'
-      },
+
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
@@ -239,6 +231,7 @@ export default {
     }
   },
   computed: {
+    imgurl: function() {},
     radioName: function() {
       return 'radioName_' + this.index
     },
@@ -358,8 +351,10 @@ export default {
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
+        debugger
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
+            debugger
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title
@@ -401,5 +396,8 @@ export default {
   width: auto;
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
+}
+.rdion {
+  margin: 10px;
 }
 </style>
