@@ -1,34 +1,37 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
-      <div class="titile">
-        {{index}}、
-        <div v-html="titile"></div>
+    <a-card>
+      <div class="row">
+        <div class="titile">
+          {{(index+1)}}、
+          <div v-html="msg"></div>
+        </div>
+        <div>
+          {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
+          <a-select style="width: 240px">
+            <a-select-option
+              v-for="(item ,index) in dataSet"
+              :key="index"
+              :value="item.value"
+            >{{item.inputVal}}</a-select-option>
+          </a-select>
+        </div>
       </div>
-      <div>
-        <a-select style="width: 240px">
-          <a-select-option
-            v-for="(item ,index) in dataSet"
-            :key="index"
-            :value="item.value"
-          >{{item.inputVal}}</a-select-option>
-        </a-select>
+      <div class="row bjt">
+        <div>
+          <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
+          <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
+          <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
+          <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+          <a-cascader
+            :options="options"
+            @change="onChangeCascader"
+            :defaultValue="CascaderData"
+            placeholder="选择维度"
+          />
+        </div>
       </div>
-    </div>
-    <div class="row bjt">
-      <div>
-        <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
-        <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
-        <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
-        <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
-        <a-cascader
-          :options="options"
-          @change="onChangeCascader"
-          :defaultValue="CascaderData"
-          placeholder="选择维度"
-        />
-      </div>
-    </div>
+    </a-card>
     <div class="row" v-show="bjdisplay">
       <div class="row">
         <div class="div_editor">

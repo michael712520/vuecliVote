@@ -5,7 +5,7 @@
       <div class="blockquote">
         <div class="ztc">
           <div>
-            <h1 class="h1cclass">asdasdasdasd</h1>
+            <h1 v-if="data" class="h1cclass">{{this.data.title}}</h1>
             <div v-for="(item,index) in ListComponent" :key="index">{{JSON.stringify(item.title)}}</div>
           </div>
         </div>
@@ -22,7 +22,7 @@ export default {
   props: {},
   components: { layHeader },
   data() {
-    return {}
+    return { data: null }
   },
   computed: {
     ListComponent: function() {
@@ -31,6 +31,7 @@ export default {
   },
   async mounted() {
     var id = this.$route.query.id
+    this.data = await api.tp.Get(id)
     await this.init()
   },
   methods: {

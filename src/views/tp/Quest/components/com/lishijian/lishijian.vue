@@ -1,18 +1,19 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
-      <div>
-        <div class="titile">
-          {{index}}、
-          <div v-html="titile"></div>
+    <a-card>
+      <div class="row">
+        <div>
+          <div class="titile">
+            {{(index+1)}}、
+            <div v-html="msg"></div>
+          </div>
+        </div>
+        <div>
+          {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
+          <a-date-picker/>
         </div>
       </div>
-      <div>
-        {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-        <a-date-picker/>
-      </div>
-    </div>
-
+    </a-card>
     <div class="row bjt">
       <div>
         <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>

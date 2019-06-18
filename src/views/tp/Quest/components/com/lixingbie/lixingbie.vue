@@ -1,8 +1,23 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
-      <danxuanSimpleStyleA :dataSet="dataSet" :titile="msg" :index="index"></danxuanSimpleStyleA>
-    </div>
+    <a-card>
+      <div class="titile">
+        {{(index+1)}}、
+        <div v-html="titile"></div>
+      </div>
+      <div>
+        {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
+        <a-radio-group @change="onChange" v-model="value">
+          <a-radio
+            v-for="(item ,index) in datas"
+            :key="index"
+            :style="radioStyle"
+            :value="item.value"
+            size="large"
+          >{{item.inputVal}}</a-radio>
+        </a-radio-group>
+      </div>
+    </a-card>
     <div class="row bjt">
       <div>
         <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
@@ -177,7 +192,7 @@ export default {
   components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
   props: {
     dataInfo: Object,
-      titile: String,
+    titile: String,
     index: Number
   },
   data() {

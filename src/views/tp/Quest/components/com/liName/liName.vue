@@ -1,19 +1,21 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
-      <div class="titile">
-        {{index}}、
-        <div v-html="titile"></div>
-      </div>
+    <a-card>
+      <div class="row">
+        <div class="titile">
+          {{(index+1)}}、
+          <div v-html="msg">{{msg}}</div>
+        </div>
 
-      <a-form :form="form">
-        <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input
-            v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
-          />
-        </a-form-item>
-      </a-form>
-    </div>
+        <a-form :form="form">
+          <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-input
+              v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            />
+          </a-form-item>
+        </a-form>
+      </div>
+    </a-card>
     <div class="row bjt">
       <div>
         <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
@@ -142,7 +144,7 @@ export default {
   components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
-     titile: String,
+    titile: String,
     index: Number
   },
   data() {

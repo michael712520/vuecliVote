@@ -1,29 +1,31 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
+    <a-card>
       <div class="titile">
-        {{index}}、
-        <div v-html="titile"></div>
+        {{(index+1)}}、
+        <div v-html="msg"></div>
       </div>
 
-      <a-form :form="form">
-        <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input
-            v-decorator="['xingming', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
-          />
-        </a-form-item>
-        <a-form-item :label="dataSet[1].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input
-            v-decorator="['bumeng', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
-          />
-        </a-form-item>
-        <a-form-item :label="dataSet[2].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-          <a-input
-            v-decorator="['yuangong', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
-          />
-        </a-form-item>
-      </a-form>
-    </div>
+      <div class="row">
+        <a-form :form="form">
+          <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-input
+              v-decorator="['xingming', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            />
+          </a-form-item>
+          <a-form-item :label="dataSet[1].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-input
+              v-decorator="['bumeng', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            />
+          </a-form-item>
+          <a-form-item :label="dataSet[2].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-input
+              v-decorator="['yuangong', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            />
+          </a-form-item>
+        </a-form>
+      </div>
+    </a-card>
     <div class="row bjt">
       <div>
         <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>

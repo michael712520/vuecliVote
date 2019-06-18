@@ -1,16 +1,11 @@
 <template>
   <div>
     <a-card>
-      <div v-html="titile"></div>
-      <!-- <a-radio-group @change="onChange" v-model="value">
-        <a-radio
-          v-for="(item ,index) in datas"
-          :key="index"
-          :style="radioStyle"
-          :value="item.value"
-          size="large"
-        >{{item.inputVal}}</a-radio>
-      </a-radio-group>-->
+      <div class="titile">
+        {{(index+1)}}、
+        <div v-html="titile"></div>
+      </div>
+
       <a-checkbox-group @change="onChangecheckbox">
         <a-row v-for="(item ,index) in datas " :key="index">
           <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
@@ -23,8 +18,9 @@
 import defaultSettings from '@/config/defaultSettings'
 export default {
   props: {
-    dataSet: Array,
-    titile: String
+    dataInfo: Object,
+    titile: String,
+    index: Number
   },
   data() {
     return {

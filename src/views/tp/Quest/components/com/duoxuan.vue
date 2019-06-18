@@ -1,8 +1,17 @@
 <template>
   <div class="div_title_attr_question">
-    <div class="row">
-      <duoxuanSimple :dataSet="dataSet" :titile="msg"></duoxuanSimple>
-    </div>
+    <a-card>
+      <div class="titile">
+        {{(index+1)}}、
+        <div v-html="titile"></div>
+      </div>
+
+      <a-checkbox-group @change="onChangecheckbox">
+        <a-row v-for="(item ,index) in datas " :key="index">
+          <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
+        </a-row>
+      </a-checkbox-group>
+    </a-card>
     <div class="row bjt">
       <div>
         <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
@@ -168,7 +177,6 @@
 <script>
 import simpleLine from './comp/simpleLine'
 import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
 import duoxuanSimple from './mk/duoxuanSimple'
 
 import api from '@/api'

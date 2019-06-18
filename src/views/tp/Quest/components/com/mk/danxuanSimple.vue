@@ -2,7 +2,7 @@
   <div>
     <a-card>
       <div class="titile">
-        {{index}}、
+        {{(index+1)}}、
         <div v-html="titile"></div>
       </div>
 
