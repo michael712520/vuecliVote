@@ -8,6 +8,7 @@
       <a-checkbox-group>
         <a-row v-for="(item ,index) in dataSet " :key="index">
           <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
+          <span style="color:#efa030;font-size:14px;">&nbsp;(分值：{{item.score}})</span>
         </a-row>
       </a-checkbox-group>
     </a-card>

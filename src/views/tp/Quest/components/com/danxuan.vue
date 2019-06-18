@@ -8,6 +8,7 @@
       <a-radio-group>
         <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
           <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
+          <span style="color:#efa030;font-size:14px;">&nbsp;(分值：{{item.score}})</span>
           <br>
         </div>
       </a-radio-group>
