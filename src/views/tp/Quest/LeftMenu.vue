@@ -112,7 +112,7 @@
           </li>
         </ul>
       </li>
-      <li class="open">
+      <!-- <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
@@ -144,29 +144,7 @@
             </a>
           </li>
         </ul>
-      </li>
-
-      <li class="open">
-        <div class="classifyTitle">
-          <i class="iconfont down">&#xe633;</i>
-          <i class="iconfont right">&#xe635;</i>
-          <span>分页说明</span>
-        </div>
-        <ul class="navlist">
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe614;</i>
-              <span>分页</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe60b;</i>
-              <span>段落说明</span>
-            </a>
-          </li>
-        </ul>
-      </li>
+      </li>-->
       <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down"></i>
@@ -194,6 +172,28 @@
           </li>
         </ul>
       </li>
+      <li class="open">
+        <div class="classifyTitle">
+          <i class="iconfont down">&#xe633;</i>
+          <i class="iconfont right">&#xe635;</i>
+          <span>分页说明</span>
+        </div>
+        <ul class="navlist">
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont">&#xe614;</i>
+              <span>分页</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont">&#xe60b;</i>
+              <span>段落说明</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+
       <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down"></i>
