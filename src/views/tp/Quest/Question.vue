@@ -46,8 +46,8 @@
 // @ is an alias to /src
 import LeftMenu from './LeftMenu.vue'
 import comTitle from './components/com/comTitle.vue'
-import danxuan from './components/com/danxuan.vue'
-import duoxuan from './components/com/duoxuan.vue'
+import danxuan from './components/com/danxuan/danxuan.vue'
+import duoxuan from './components/com/duoxuan/duoxuan.vue'
 import danxuanhx from './components/com/danxuanhx.vue'
 import liName from './components/com/liName/liName.vue'
 import liBaseInfo from './components/com/liBaseInfo/liBaseInfo'

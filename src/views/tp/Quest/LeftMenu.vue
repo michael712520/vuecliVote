@@ -93,33 +93,26 @@
       </li>
       <li class="open">
         <div class="classifyTitle">
-          <i class="iconfont down">&#xe633;</i>
-          <i class="iconfont right">&#xe635;</i>
+          <i class="iconfont down"></i>
+          <i class="iconfont right"></i>
           <span>选择题</span>
         </div>
         <ul class="navlist">
           <li>
-            <a id="hrefChoice" href="javascript:void(0);" @click="selectChange('danxuan')">
-              <i class="iconfont">&#xe607;</i>
-              <span>单选</span>
+            <a href="javascript:void(0);" @click="selectChange('pfdanxuan')">
+              <i class="iconfont"></i>
+              <span>评分单选</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);" @click="selectChange('duoxuan')">
-              <i class="iconfont">&#xe60e;</i>
-              <span>多选</span>
+            <a href="javascript:void(0);" @click="selectChange('pfduoxuan')">
+              <i class="iconfont"></i>
+              <span>评分多选</span>
             </a>
           </li>
-          <!-- <li>
-            <a href="javascript:void(0);" title="下拉单选题">
-              <i class="iconfont">&#xe615;</i>
-              <span>下拉框</span>
-            </a>
-          </li>-->
         </ul>
       </li>
-
-      <!-- <li class="open">
+      <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
@@ -151,9 +144,9 @@
             </a>
           </li>
         </ul>
-      </li>-->
+      </li>
 
-      <!-- <li class="open">
+      <li class="open">
         <div class="classifyTitle">
           <i class="iconfont down">&#xe633;</i>
           <i class="iconfont right">&#xe635;</i>
@@ -173,106 +166,91 @@
             </a>
           </li>
         </ul>
-      </li>-->
-      <!-- 
+      </li>
       <li class="open">
         <div class="classifyTitle">
-          <i class="iconfont down">&#xe633;</i>
-          <i class="iconfont right">&#xe635;</i>
+          <i class="iconfont down"></i>
+          <i class="iconfont right"></i>
           <span>矩阵题</span>
         </div>
         <ul class="navlist">
           <li>
             <a href="javascript:void(0);">
-              <i class="iconfont">&#xe60f;</i>
-              <span>矩阵单选</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe613;</i>
-              <span>矩阵多选</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" title="可以设置分数">
-              <i class="iconfont">&#xe612;</i>
-              <span>矩阵量表</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe608;</i>
-              <span>矩阵滑动条</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe610;</i>
-              <span>表格数值</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe60d;</i>
-              <span>表格填空</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe609;</i>
-              <span>表格下拉框</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe605;</i>
-              <span>表格组合</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe616;</i>
-              <span>自增表格</span>
-            </a>
-          </li>
-        </ul>
-      </li>-->
-
-      <!-- <li class="open">
-        <div class="classifyTitle">
-          <i class="iconfont down">&#xe633;</i>
-          <i class="iconfont right">&#xe635;</i>
-          <span>评分题</span>
-        </div>
-        <ul class="navlist">
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe61a;</i>
+              <i class="iconfont"></i>
               <span>量表题</span>
             </a>
           </li>
-
           <li>
             <a href="javascript:void(0);">
-              <i class="iconfont">&#xe61c;</i>
-              <span>评分单选</span>
+              <i class="iconfont"></i>
+              <span>NPS量表</span>
             </a>
           </li>
           <li>
             <a href="javascript:void(0);">
-              <i class="iconfont">&#xe61d;</i>
-              <span>评分多选</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);">
-              <i class="iconfont">&#xe612;</i>
+              <i class="iconfont"></i>
               <span>矩阵量表</span>
             </a>
           </li>
         </ul>
-      </li>-->
+      </li>
+      <li class="open">
+        <div class="classifyTitle">
+          <i class="iconfont down"></i>
+          <i class="iconfont right"></i>
+          <span>其他题型</span>
+        </div>
+        <ul class="navlist">
+          <li>
+            <a href="javascript:void(0);" @click="selectChange('pfdanxuan')">
+              <i class="iconfont"></i>
+              <span>普通单选</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" @click="selectChange('pfduoxuan')">
+              <i class="iconfont"></i>
+              <span>普通多选</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont"></i>
+              <span>填空题</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont"></i>
+              <span>矩阵填空</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont"></i>
+              <span>文件上传</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:;">
+              <i class="iconfont"></i>
+              <span>排序</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont"></i>
+              <span>滑动条</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);">
+              <i class="iconfont"></i>
+              <span>多级下拉</span>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </template>

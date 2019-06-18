@@ -5,13 +5,11 @@
         {{(index+1)}}、
         <div v-html="msg"></div>
       </div>
-      <a-radio-group>
-        <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
-          <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-          <span style="color:#efa030;font-size:14px;">&nbsp;(分值：{{item.score}})</span>
-          <br>
-        </div>
-      </a-radio-group>
+      <a-checkbox-group>
+        <a-row v-for="(item ,index) in dataSet " :key="index">
+          <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
+        </a-row>
+      </a-checkbox-group>
     </a-card>
     <div class="row bjt">
       <div>
@@ -146,7 +144,7 @@
           <div style="width: 100%;">
             <!-- <span
               class="spanLeft"
-              style=" line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
+              style="line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
             >
               <a
                 href="javascript:"
@@ -176,15 +174,13 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '../comp/simpleLine'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
     index: Number
@@ -208,11 +204,15 @@ export default {
       visible: false,
       editorText: '',
       value: 1,
-
+      radioStyle: {
+        display: 'block',
+        height: '300px',
+        lineHeight: '300px'
+      },
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选1',
+          inputVal: '多选1',
           imgs: [],
           checked: null,
           explain: '说明1',
@@ -220,7 +220,7 @@ export default {
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '多选2',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -232,7 +232,6 @@ export default {
     }
   },
   computed: {
-    imgurl: function() {},
     radioName: function() {
       return 'radioName_' + this.index
     },
@@ -266,6 +265,7 @@ export default {
       this.CascaderData.forEach(d => {
         latitudeDetailIds.push(d)
       })
+      this.CascaderData
       let params = {
         ...this.dataInfo,
         ...{
@@ -273,12 +273,10 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'duoxuan',
           latitudeDetailIds: latitudeDetailIds
         }
       }
-      console.log('api.tp.SaveItem(params)', params)
-
       let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
@@ -288,7 +286,7 @@ export default {
       if (event.type == 1) {
         let item = {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '单选2',
+          inputVal: '多选',
           imgs: [],
           checked: null,
           explain: '说明2',
@@ -352,10 +350,8 @@ export default {
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
-        
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title
@@ -397,8 +393,5 @@ export default {
   width: auto;
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
-}
-.rdion {
-  margin: 10px;
 }
 </style>

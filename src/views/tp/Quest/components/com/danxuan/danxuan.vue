@@ -8,7 +8,6 @@
       <a-radio-group>
         <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
           <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-          <span style="color:#efa030;font-size:14px;">&nbsp;(分值：{{item.score}})</span>
           <br>
         </div>
       </a-radio-group>
@@ -176,15 +175,13 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '../comp/simpleLine'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
     index: Number
@@ -352,10 +349,8 @@ export default {
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
-        
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title

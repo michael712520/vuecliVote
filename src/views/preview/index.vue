@@ -40,12 +40,12 @@ export default {
         detailId: this.$route.query.id
       }
       let data = await api.tp.GetListItem(params)
-      debugger
+      
       if (data && data.length > 0) {
         data = data.map(d => {
           return d
         })
-        debugger
+        
         this.$store.commit('question/updateListData', data)
       }
     }

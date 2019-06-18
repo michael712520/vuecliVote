@@ -176,15 +176,13 @@
   </div>
 </template>
 <script>
-import simpleLine from './comp/simpleLine'
-import danxuanYL from './mk/danxuanYL'
-import danxuanSimple from './mk/danxuanSimple'
+import simpleLine from '../comp/simpleLine'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
+  components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
     index: Number
@@ -273,7 +271,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'pfdanxuan',
           latitudeDetailIds: latitudeDetailIds
         }
       }
