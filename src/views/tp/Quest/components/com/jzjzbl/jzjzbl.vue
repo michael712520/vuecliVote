@@ -31,133 +31,68 @@
         <div class="div_editor">
           <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
         </div>
-        <div class="container" style="margin-top: 10px; display:none">
-          <span>
-            <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
-              <option value="0">单选</option>
-              <option value="radio_down">下拉框单选</option>
-              <option value="check">多选</option>
-              <option value="likert">量表题</option>
-              <option value="order">排序</option>
-              <option value="toupiaoradio">投票单选</option>
-              <option value="ceshiradio">考试单选</option>
-              <option value="cepingradio">评分单选</option>
-              <option value="question">填空</option>
-            </select>
-          </span>
-          <span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input
-              type="checkbox"
-              tabindex="-1"
-              title="用户在填写问卷时必须回答这道题"
-              class="checkbox"
-              id="req_2_3944705790"
-            >
-            <label for="req_2_3944705790">必答</label>
-            <span style="display: none;">
-              &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
-              <a
-                href="javascript:setAllRequired(true);"
-                class="link-U00a6e6"
-              >必答</a>&nbsp;
-              <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
-            </span>
-          </span>
-          <span>
-            <span>
-              &nbsp;
-              <input
-                type="text"
-                class="choicetxt"
-                style="width: 140px; height: 15px; display: none;"
+      </div>
+      <div class="row">
+        <div class="spanLeft spanLeftzdy">
+          <div class="matrixtitle" style="width: 172px;">
+            <div class="matrixhead" style="padding-left: 4px;">
+              <span style="float:left;">
+                <b>
+                  行标题
+                  <span
+                    class="fullScreen"
+                    style="display:inline-block;vertical-align:middle;margin-left:3px;"
+                    title="放大文本框进行编辑"
+                    onclick="cur.enlargeRowTitle();"
+                  ></span>
+                </b>
+              </span>
+              <span class="spanRight" style="padding-right: 20px;">
+                <input type="checkbox" tabindex="-1" style="display: none;">
+                <span style="display: none;">右行标题</span>
+              </span>
+              <div class="divclear"></div>
+            </div>
+            <textarea
+              wrap="off"
+              rows="7"
+              class="inputtext"
+              tabindex="1"
+              title="相当于每个小题的标题"
+              style="width: 162px; height: 172px; overflow: auto; padding: 2px; margin-top: 7px; border: 1px solid rgb(205, 205, 205);"
+            ></textarea>
+          </div>
+          <div class="spanLeft matrixhead" style="width: 172px;">
+            <div>
+              <input type="checkbox" tabindex="-1">
+              <span>右行标题(可选)</span>
+            </div>
+            <textarea
+              wrap="soft"
+              rows="7"
+              class="inputtext"
+              title="适用于“语义差异法”等场景"
+              style="width: 156px; height: 172px; overflow: auto; padding: 2px; margin: 7px 0px 0px 4px;"
+            ></textarea>
+          </div>
+          <div class="spanLeft matrixhead" style="width: 172px;">
+            <div>
+              <input type="checkbox" tabindex="-1">
+              <span>样式</span>
+              <div
+                style="width: 156px; height: 172px; overflow: auto; padding: 2px; margin: 7px 0px 0px 4px;"
               >
-              <span style="margin-left: 30px;"></span>
-              <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
-            </span>
-          </span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div style="clear: both;"></div>
-      <div class="container" style="position: relative;">
+      <div class="container">
         <div style="padding-top: 10px;"></div>
         <div style="clear: both;">
           <div class="selScrrol" style="text-align: center;">
-            <div class="choise_bg"></div>
-            <div class="spanLeft" style="position: relative; z-index: 1; width: 344px;">
-              <div class="matrixtitle" style="width: 172px;">
-                <div class="matrixhead" style="padding-left: 4px;">
-                  <span style="float:left;">
-                    <b>
-                      行标题
-                      <span
-                        class="fullScreen"
-                        style="display:inline-block;vertical-align:middle;margin-left:3px;"
-                        title="放大文本框进行编辑"
-                        onclick="cur.enlargeRowTitle();"
-                      ></span>
-                    </b>
-                  </span>
-                  <span class="spanRight" style="padding-right: 20px;">
-                    <input type="checkbox" tabindex="-1" style="display: none;">
-                    <span style="display: none;">右行标题</span>
-                  </span>
-                  <div class="divclear"></div>
-                </div>
-                <textarea
-                  wrap="off"
-                  rows="7"
-                  class="inputtext"
-                  tabindex="1"
-                  title="相当于每个小题的标题"
-                  style="width: 162px; height: 172px; overflow: auto; padding: 2px; margin-top: 7px; border: 1px solid rgb(205, 205, 205);"
-                ></textarea>
-              </div>
-              <div class="spanLeft matrixhead" style="width: 172px;">
-                <div>
-                  <input type="checkbox" tabindex="-1">
-                  <span>右行标题(可选)</span>
-                </div>
-                <textarea
-                  wrap="soft"
-                  rows="7"
-                  class="inputtext"
-                  title="适用于“语义差异法”等场景"
-                  style="width: 156px; height: 172px; overflow: auto; padding: 2px; margin: 7px 0px 0px 4px;"
-                ></textarea>
-              </div>
-              <div class="divclear"></div>
-              <div style="margin: 12px 0px 8px;">
-                <span>
-                  <a
-                    href="javascript:;"
-                    onclick="cur.addLabel();return false;"
-                    class="link-U666"
-                  >分组设置</a>&nbsp;&nbsp;
-                  <input type="checkbox" tabindex="-1" class="checkbox" id="rowrn_111_4406327723">
-                  <label for="rowrn_111_4406327723" title="标题随机显示">行标题随机&nbsp;</label>
-                </span>
-                <span style="display: none; margin-left: 20px;">
-                  <span>最小值：</span>
-                  <input
-                    type="text"
-                    class="choicetxt"
-                    title="用户可以选择的最小值"
-                    maxlength="3"
-                    style="width: 30px;"
-                  >
-                  <span style="margin-left: 20px;">最大值：</span>
-                  <input
-                    type="text"
-                    class="choicetxt"
-                    title="用户可以选择的最大值"
-                    maxlength="3"
-                    style="width: 30px;"
-                  >
-                </span>
-              </div>
-            </div>
-            <div class="spanLeft" style="text-align: center; width: 460px;">
+            <div class="spanLeft" style="text-align: center; width: 100%;">
               <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
                 <tbody>
                   <tr>
@@ -213,26 +148,6 @@
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
-        <div class="divclear"></div>
-        <div style="margin: 12px 0px 5px;">
-          <div style="width: 100%;">
-            <!-- <span
-              class="spanLeft"
-              style=" line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
-            >
-              <a
-                href="javascript:"
-                onclick="cur.addNewItem();return false;"
-                class="link-U00a6e6"
-                style="text-decoration:none;"
-              >
-                <span class="choiceimg design-icon design-singleadd"></span>
-                <span style="color: #1ea0fa;">添加选项</span>
-              </a>&nbsp;&nbsp;
-            </span>-->
-            <div class="divclear"></div>
           </div>
         </div>
       </div>
@@ -494,5 +409,10 @@ export default {
 }
 .rdion {
   margin: 10px;
+}
+.spanLeftzdy {
+  display: flex;
+  margin-left: 20px;
+  padding: 20px;
 }
 </style>
