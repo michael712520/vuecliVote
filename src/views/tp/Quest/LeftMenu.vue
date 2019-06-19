@@ -153,13 +153,13 @@
         </div>
         <ul class="navlist">
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('JzLbt')">
               <i class="iconfont"></i>
               <span>量表题</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('JzNPSlb')">
               <i class="iconfont"></i>
               <span>NPS量表</span>
             </a>
@@ -202,13 +202,13 @@
         </div>
         <ul class="navlist">
           <li>
-            <a href="javascript:void(0);" @click="selectChange('pfdanxuan')">
+            <a href="javascript:void(0);" @click="selectChange('danxuan')">
               <i class="iconfont"></i>
               <span>普通单选</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);" @click="selectChange('pfduoxuan')">
+            <a href="javascript:void(0);" @click="selectChange('duoxuan')">
               <i class="iconfont"></i>
               <span>普通多选</span>
             </a>

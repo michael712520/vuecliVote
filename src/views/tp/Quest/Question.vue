@@ -58,6 +58,10 @@ import liriqi from './components/com/liriqi/liriqi.vue'
 import lishijian from './components/com/lishijian/lishijian.vue'
 import lizhiye from './components/com/lizhiye/lizhiye'
 import lihangye from './components/com/lihangye/lihangye.vue'
+import pfdanxuan from './components/com/pfdanxuan/pfdanxuan.vue'
+import pfduoxuan from './components/com/pfduoxuan/pfduoxuan.vue'
+import JzLbt from './components/com/JzLbt/JzLbt.vue'
+import JzNPSlb from './components/com/JzNPSlb/JzNPSlb.vue'
 import api from '@/api'
 export default {
   name: 'question',
@@ -75,7 +79,11 @@ export default {
     liriqi,
     lishijian,
     lizhiye,
-    lihangye
+    lihangye,
+    pfdanxuan,
+    pfduoxuan,
+    JzLbt,
+    JzNPSlb
   },
   data() {
     return {
