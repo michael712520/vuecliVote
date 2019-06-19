@@ -84,60 +84,135 @@
         <div style="clear: both;">
           <div class="selScrrol" style="text-align: center;">
             <div class="choise_bg"></div>
-            <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
-              <tbody>
-                <tr>
-                  <td style="width: 340px; padding: 3px 5px;">
-                    <span>
-                      <a
-                        title="交换选项文字"
-                        href="javascript:;"
-                        style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
-                      >
-                        选项文字
-                        <i class="design-icon design-ctext"></i>
-                      </a>
-                    </span>
-                  </td>
-                  <td align="center" style="width: 30px; padding: 3px 5px;">
-                    <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
-                  </td>
-                  <td style="width: 50px; padding: 3px 5px;">
-                    <div style="overflow: hidden; text-align: center;">说明</div>
-                  </td>
-                  <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
-                    <span>允许填空</span>
-                  </td>
-                  <td style="width: 50px; padding: 3px 5px;">
-                    <span>
-                      <span style="cursor: pointer;">
-                        &nbsp;分数
-                        <span
-                          class="bordCss bordBottomCss"
-                          style="border-color:#333 transparent transparent;"
-                        ></span>
+            <div class="spanLeft" style="position: relative; z-index: 1; width: 344px;">
+              <div class="matrixtitle" style="width: 172px;">
+                <div class="matrixhead" style="padding-left: 4px;">
+                  <span style="float:left;">
+                    <b>
+                      行标题
+                      <span
+                        class="fullScreen"
+                        style="display:inline-block;vertical-align:middle;margin-left:3px;"
+                        title="放大文本框进行编辑"
+                        onclick="cur.enlargeRowTitle();"
+                      ></span>
+                    </b>
+                  </span>
+                  <span class="spanRight" style="padding-right: 20px;">
+                    <input type="checkbox" tabindex="-1" style="display: none;">
+                    <span style="display: none;">右行标题</span>
+                  </span>
+                  <div class="divclear"></div>
+                </div>
+                <textarea
+                  wrap="off"
+                  rows="7"
+                  class="inputtext"
+                  tabindex="1"
+                  title="相当于每个小题的标题"
+                  style="width: 162px; height: 172px; overflow: auto; padding: 2px; margin-top: 7px; border: 1px solid rgb(205, 205, 205);"
+                ></textarea>
+              </div>
+              <div class="spanLeft matrixhead" style="width: 172px;">
+                <div>
+                  <input type="checkbox" tabindex="-1">
+                  <span>右行标题(可选)</span>
+                </div>
+                <textarea
+                  wrap="soft"
+                  rows="7"
+                  class="inputtext"
+                  title="适用于“语义差异法”等场景"
+                  style="width: 156px; height: 172px; overflow: auto; padding: 2px; margin: 7px 0px 0px 4px;"
+                ></textarea>
+              </div>
+              <div class="divclear"></div>
+              <div style="margin: 12px 0px 8px;">
+                <span>
+                  <a
+                    href="javascript:;"
+                    onclick="cur.addLabel();return false;"
+                    class="link-U666"
+                  >分组设置</a>&nbsp;&nbsp;
+                  <input type="checkbox" tabindex="-1" class="checkbox" id="rowrn_111_4406327723">
+                  <label for="rowrn_111_4406327723" title="标题随机显示">行标题随机&nbsp;</label>
+                </span>
+                <span style="display: none; margin-left: 20px;">
+                  <span>最小值：</span>
+                  <input
+                    type="text"
+                    class="choicetxt"
+                    title="用户可以选择的最小值"
+                    maxlength="3"
+                    style="width: 30px;"
+                  >
+                  <span style="margin-left: 20px;">最大值：</span>
+                  <input
+                    type="text"
+                    class="choicetxt"
+                    title="用户可以选择的最大值"
+                    maxlength="3"
+                    style="width: 30px;"
+                  >
+                </span>
+              </div>
+            </div>
+            <div class="spanLeft" style="text-align: center; width: 460px;">
+              <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
+                <tbody>
+                  <tr>
+                    <td style="width: 340px; padding: 3px 5px;">
+                      <span>
+                        <a
+                          title="交换选项文字"
+                          href="javascript:;"
+                          style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
+                        >
+                          选项文字
+                          <i class="design-icon design-ctext"></i>
+                        </a>
                       </span>
-                    </span>
-                  </td>
-                  <!-- <td style="width: 30px; padding: 3px 5px;">
+                    </td>
+                    <td align="center" style="width: 30px; padding: 3px 5px;">
+                      <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
+                    </td>
+                    <td style="width: 50px; padding: 3px 5px;">
+                      <div style="overflow: hidden; text-align: center;">说明</div>
+                    </td>
+                    <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
+                      <span>允许填空</span>
+                    </td>
+                    <td style="width: 50px; padding: 3px 5px;">
+                      <span>
+                        <span style="cursor: pointer;">
+                          &nbsp;分数
+                          <span
+                            class="bordCss bordBottomCss"
+                            style="border-color:#333 transparent transparent;"
+                          ></span>
+                        </span>
+                      </span>
+                    </td>
+                    <!-- <td style="width: 30px; padding: 3px 5px;">
                   <span>
                     <span>默认</span>
                   </span>
-                  </td>-->
-                  <td align="left" style="padding: 3px 5px 3px 15px;">
-                    <span>上移下移</span>
-                  </td>
-                </tr>
-                <simpleLine
-                  v-for="(item ,index) in dataSet"
-                  :key="index"
-                  :index="index"
-                  :dataInfo="item"
-                  @updateitem="updateitem(item ,index,$event)"
-                  @operate="operate"
-                ></simpleLine>
-              </tbody>
-            </table>
+                    </td>-->
+                    <td align="left" style="padding: 3px 5px 3px 15px;">
+                      <span>上移下移</span>
+                    </td>
+                  </tr>
+                  <simpleLine
+                    v-for="(item ,index) in dataSet"
+                    :key="index"
+                    :index="index"
+                    :dataInfo="item"
+                    @updateitem="updateitem(item ,index,$event)"
+                    @operate="operate"
+                  ></simpleLine>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="divclear"></div>
@@ -294,7 +369,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzNPSlb',
+          type: 'jzjzbl',
           latitudeDetailIds: latitudeDetailIds
         }
       }

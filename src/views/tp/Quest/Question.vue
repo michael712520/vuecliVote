@@ -62,6 +62,7 @@ import pfdanxuan from './components/com/pfdanxuan/pfdanxuan.vue'
 import pfduoxuan from './components/com/pfduoxuan/pfduoxuan.vue'
 import JzLbt from './components/com/JzLbt/JzLbt.vue'
 import JzNPSlb from './components/com/JzNPSlb/JzNPSlb.vue'
+import jzjzbl from './components/com/jzjzbl/jzjzbl.vue'
 import api from '@/api'
 export default {
   name: 'question',
@@ -83,7 +84,8 @@ export default {
     pfdanxuan,
     pfduoxuan,
     JzLbt,
-    JzNPSlb
+    JzNPSlb,
+    jzjzbl
   },
   data() {
     return {

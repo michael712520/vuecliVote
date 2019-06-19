@@ -165,7 +165,7 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('jzjzbl')">
               <i class="iconfont"></i>
               <span>矩阵量表</span>
             </a>
