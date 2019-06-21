@@ -5,15 +5,18 @@
         {{(index+1)}}、
         <div v-html="msg"></div>
       </div>
-
-      <a-radio-group style="display:flex">
+      <div class="jzt">
         <div style="margin: 10px;">{{dataSet&&dataSet[0].inputVal}}</div>
-
-        <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
-          <a-radio :key="index" :value="item.value" size="large">{{item.score}}</a-radio>
-        </div>
         <div style="margin: 10px;">{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
-      </a-radio-group>
+      </div>
+      <div
+        v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
+        style="padding:20px;display:flex;flex-direction:row"
+      >
+        <div>{{dataSet&&dataSet[0].inputVal}}</div>
+        <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
+        <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
+      </div>
     </a-card>
     <div class="row bjt">
       <div>
@@ -27,6 +30,14 @@
           :defaultValue="CascaderData"
           placeholder="选择维度"
         />
+      </div>
+    </div>
+    <div class="row cf" v-show="bjdisplay">
+      <div style="display:flex;flex-direction:row;padding-left:20px">
+        <div>样式</div>
+        <div style="padding-left:20px">
+          <jztMCDisplay></jztMCDisplay>
+        </div>
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -179,18 +190,26 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
-
+import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
+import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
+import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
+import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
+import jztMCDisplay from '@/views/tp/Quest/components/com/comp/module/jztMCDisplay'
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap },
+  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
+      dataltb: {
+        name: 'yx',
+        data: ['yx', 'wjx', 'ding', 'sz']
+      },
       aRadioOnValue: null,
       msg: '标题',
       myConfig: {
@@ -414,7 +433,7 @@ export default {
   margin: 10px;
 }
 .bjt {
-  padding: 20px;
+  padding: 10px;
   height: 80px;
   width: auto;
   background-color: #f3f3f3;
@@ -422,5 +441,16 @@ export default {
 }
 .rdion {
   margin: 10px;
+}
+.jzt {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #e8e8e8;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.cf {
+  background-color: #ffffff;
+  padding: 10px;
 }
 </style>
