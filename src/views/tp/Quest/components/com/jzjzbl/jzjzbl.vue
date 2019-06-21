@@ -5,6 +5,15 @@
         {{(index+1)}}、
         <div v-html="msg"></div>
       </div>
+      <div v-if=" dataltb&&dataltb.data">
+        <component
+          v-for="(item,index) in  dataltb.data"
+          :key="index"
+          :is="item.name"
+          :dataSet="item.data"
+          :index="index"
+        ></component>
+      </div>
 
       <a-radio-group style="display:flex">
         <div style="margin: 10px;">{{dataSet&&dataSet[0].inputVal}}</div>
@@ -134,7 +143,12 @@
                     onclick="cur.addLabel();return false;"
                     class="link-U666"
                   >分组设置</a>&nbsp;&nbsp;
-                  <input type="checkbox" tabindex="-1" class="checkbox" id="rowrn_111_4406327723">
+                  <input
+                    type="checkbox"
+                    tabindex="-1"
+                    class="checkbox"
+                    id="rowrn_111_4406327723"
+                  >
                   <label for="rowrn_111_4406327723" title="标题随机显示">行标题随机&nbsp;</label>
                 </span>
                 <span style="display: none; margin-left: 20px;">
@@ -251,18 +265,26 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
+import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
+import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
+import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
+import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap },
+  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
+      dataltb: {
+        name: 'yx',
+        data: ['yx', 'wjx', 'ding', 'sz']
+      },
       aRadioOnValue: null,
       msg: '标题',
       myConfig: {
