@@ -63,6 +63,12 @@ import pfduoxuan from './components/com/pfduoxuan/pfduoxuan.vue'
 import JzLbt from './components/com/JzLbt/JzLbt.vue'
 import JzNPSlb from './components/com/JzNPSlb/JzNPSlb.vue'
 import jzjzbl from './components/com/jzjzbl/jzjzbl.vue'
+import qttkt from './components/com/qttkt/qttkt.vue'
+import qtjztk from './components/com/qtjztk/qtjztk.vue'
+import qiwjsc from './components/com/qiwjsc/qiwjsc.vue'
+import qtpaixu from './components/com/qtpaixu/qtpaixu.vue'
+import qthdt from './components/com/qthdt/qthdt.vue'
+
 import api from '@/api'
 export default {
   name: 'question',
@@ -85,7 +91,12 @@ export default {
     pfduoxuan,
     JzLbt,
     JzNPSlb,
-    jzjzbl
+    jzjzbl,
+    qttkt,
+    qtjztk,
+    qiwjsc,
+    qtpaixu,
+    qthdt
   },
   data() {
     return {

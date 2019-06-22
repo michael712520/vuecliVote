@@ -1,17 +1,19 @@
 <template>
   <div class="div_title_attr_question">
     <a-card>
-      <div class="titile">
-        {{(index+1)}}、
-        <div v-html="msg"></div>
-      </div>
-      <div
-        v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
-        style="padding:20px;display:flex;flex-direction:row"
-      >
-        <div>{{dataSet&&dataSet[0].inputVal}}</div>
-        <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
-        <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
+      <div class="row">
+        <div class="titile">
+          {{(index+1)}}、
+          <div v-html="msg">{{msg}}</div>
+        </div>
+
+        <a-form :form="form">
+          <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+            <a-input
+              v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            />
+          </a-form-item>
+        </a-form>
       </div>
     </a-card>
     <div class="row bjt">
@@ -28,64 +30,10 @@
         />
       </div>
     </div>
-    <div class="row cf" v-show="bjdisplay">
-      <div style="display:flex;flex-direction:row;padding-left:20px">
-        <div style="line-height: 32px;">样式</div>
-        <div style="padding-left:20px">
-          <jztMCDisplay @jztMCDisplay="jztMCDisplay"></jztMCDisplay>
-        </div>
-      </div>
-    </div>
     <div class="row" v-show="bjdisplay">
       <div class="row">
         <div class="div_editor">
           <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
-        </div>
-        <div class="container" style="margin-top: 10px; display:none">
-          <span>
-            <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
-              <option value="0">单选</option>
-              <option value="radio_down">下拉框单选</option>
-              <option value="check">多选</option>
-              <option value="likert">量表题</option>
-              <option value="order">排序</option>
-              <option value="toupiaoradio">投票单选</option>
-              <option value="ceshiradio">考试单选</option>
-              <option value="cepingradio">评分单选</option>
-              <option value="question">填空</option>
-            </select>
-          </span>
-          <span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input
-              type="checkbox"
-              tabindex="-1"
-              title="用户在填写问卷时必须回答这道题"
-              class="checkbox"
-              id="req_2_3944705790"
-            >
-            <label for="req_2_3944705790">必答</label>
-            <span style="display: none;">
-              &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
-              <a
-                href="javascript:setAllRequired(true);"
-                class="link-U00a6e6"
-              >必答</a>&nbsp;
-              <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
-            </span>
-          </span>
-          <span>
-            <span>
-              &nbsp;
-              <input
-                type="text"
-                class="choicetxt"
-                style="width: 140px; height: 15px; display: none;"
-              >
-              <span style="margin-left: 30px;"></span>
-              <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
-            </span>
-          </span>
         </div>
       </div>
       <div style="clear: both;"></div>
@@ -150,25 +98,99 @@
             </table>
           </div>
         </div>
-        <div class="divclear"></div>
-        <div style="margin: 12px 0px 5px;">
-          <div style="width: 100%;">
-            <!-- <span
-              class="spanLeft"
-              style=" line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
+        <div style="padding:10px">
+          <span>
+            <select @change="xlSelectType" v-model="couponSelected">
+              <option value="0">属性验证</option>
+              <option value>不验证</option>
+              <option value="数字">整数</option>
+              <option value="小数">小数</option>
+              <option value="日期">日期</option>
+              <option value="手机">手机</option>
+              <option value="固话">固话</option>
+              <option value="电话">手机或固话</option>
+              <option value="Email">邮件</option>
+              <option value="密码">密码</option>
+              <option value="城市单选">省份城市</option>
+              <option value="省市区">省市区</option>
+              <option value="高校">高校</option>
+              <option value="地图">地图</option>
+              <option value="网址">网址</option>
+              <option value="身份证号">身份证号</option>
+              <option value="学号">学号</option>
+              <option value="QQ">QQ</option>
+              <option value="汉字">汉字</option>
+              <option value="姓名">中文姓名</option>
+              <option value="英文">英文</option>
+            </select>
+          </span>
+          <span style @click="d=>{
+            this.maxMinType=!this.maxMinType
+            }">
+            &nbsp;&nbsp;
+            <input
+              type="checkbox"
+              tabindex="-1"
+              id="mma_635532226126"
+              class="checkbox"
+              :checked="maxMinType"
             >
+            <label for="mma_635532226126">限制范围&nbsp;</label>
+          </span>
+          <span style v-if="maxMinType">
+            &nbsp;&nbsp;
+            <span>最小字数：</span>
+            <input type="text" class="choicetxt" title="不填表示无限制" style="width: 40px;">
+            <span style="margin-left: 10px;">最大字数：</span>
+            <input type="text" class="choicetxt" title="不填表示无限制" style="width: 40px;">
+          </span>
+          <span title="要求每个人填写的答案是唯一的">
+            &nbsp;&nbsp;
+            <input
+              type="checkbox"
+              tabindex="-1"
+              id="only_632129816636"
+              class="checkbox"
+            >
+            <label for="only_632129816636">不允许重复&nbsp;</label>
+          </span>
+          <span style="display: none;">
+            &nbsp;&nbsp;
+            <input
+              type="checkbox"
+              tabindex="-1"
+              id="sms_63_6236375306"
+              class="checkbox"
+            >
+            <label for="sms_63_6236375306">使用短信验证</label>
+            <span style="display: none;">
+              &nbsp;&nbsp;此功能需要购买短信：
               <a
-                href="javascript:"
-                onclick="cur.addNewItem();return false;"
-                class="link-U00a6e6"
-                style="text-decoration:none;"
-              >
-                <span class="choiceimg design-icon design-singleadd"></span>
-                <span style="color: #1ea0fa;">添加选项</span>
-              </a>&nbsp;&nbsp;
-            </span>-->
-            <div class="divclear"></div>
-          </div>
+                href="/corphome/account/prepaysms.aspx?amount=500"
+                target="_blank"
+                class="link-set"
+              >立即购买</a>
+            </span>
+          </span>
+          <span style="display: none;">&nbsp;&nbsp;提示：密码会通过MD5加密存储，不会对任何人公开。</span>
+          <span>
+            &nbsp;&nbsp;
+            <input
+              type="checkbox"
+              tabindex="-1"
+              id="def_63_4863383262"
+              class="checkbox"
+            >
+            <label for="def_63_4863383262">默认值</label>
+            <textarea
+              wrap="soft"
+              rows="1"
+              class="inputtext"
+              maxlength="20"
+              title="最多输入20个字符"
+              style="width: 160px; overflow: auto; margin-left: 4px; display: none; vertical-align: middle;"
+            ></textarea>
+          </span>
         </div>
       </div>
       <div style="margin: 14px 36px 20px;">
@@ -186,26 +208,28 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
-import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
-import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
-import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
-import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
-import fx from '@/views/tp/Quest/components/com/comp/lbt/fx'
-import jztMCDisplay from '@/views/tp/Quest/components/com/comp/module/jztMCDisplay'
+import danxuanYL from '../mk/danxuanYL'
+import danxuanSimple from '../mk/danxuanSimple'
+
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
+    titile: String,
     index: Number
   },
   data() {
     return {
-      dataltb: {
-        name: 'yx',
-        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 7 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 13 }
       },
       aRadioOnValue: null,
       msg: '标题',
@@ -224,55 +248,29 @@ export default {
       visible: false,
       editorText: '',
       value: 1,
-
+      radioStyle: {
+        display: 'block',
+        height: '300px',
+        lineHeight: '300px'
+      },
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '很不满意',
+          inputVal: 'XX',
           imgs: [],
           checked: null,
           explain: '说明1',
-          score: 1
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '不满意',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 2
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '一般',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 3
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '满意',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 4
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '很满意',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 5
+          score: 0
         }
       ],
       bjdisplay: false,
-      CascaderData: []
+      CascaderData: [],
+      form: this.$form.createForm(this),
+      maxMinType: false,
+      couponSelected: 0
     }
   },
   computed: {
-    imgurl: function() {},
     radioName: function() {
       return 'radioName_' + this.index
     },
@@ -313,7 +311,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzLbt',
+          type: 'qttkt',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -326,13 +324,15 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
+        this.$message.error('不可操作')
+        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '非常满意',
+          inputVal: '单选2',
           imgs: [],
           checked: null,
           explain: '说明2',
-          score: 6
+          score: 0
         }
         let arr = []
         this.dataSet.forEach((d, index) => {
@@ -343,6 +343,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
+        this.$message.error('不可操作')
+        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -351,6 +353,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
+        this.$message.error('不可操作')
+        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -360,6 +364,8 @@ export default {
           })
         }
       } else if (event.type == 4) {
+        this.$message.error('不可操作')
+        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]
@@ -388,12 +394,10 @@ export default {
       this.CascaderData = e
       this.bjdisplay = true
     },
-    jztMCDisplay(e) {
-      this.dataltb.name = e
-      this.dataSet = this.dataSet.map(d => {
-        d.zdyitem = false
-        return d
-      })
+    xlSelectType(e) {
+      if (this.couponSelected == '数字' || this.couponSelected == '小数') {
+        this.maxMinType = true
+      }
     }
   },
   watch: {
@@ -417,6 +421,10 @@ export default {
 }
 </script>
 <style scoped>
+.title {
+  margin-top: 20px;
+  font-size: 20px;
+}
 .c_div {
   padding: 20px;
 }
@@ -437,24 +445,14 @@ export default {
   margin: 10px;
 }
 .bjt {
-  padding: 10px;
+  padding: 20px;
   height: 80px;
   width: auto;
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
 }
-.rdion {
-  margin: 10px;
-}
-.jzt {
+.titile {
   display: flex;
-  justify-content: space-between;
-  border-bottom: solid 1px #e8e8e8;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.cf {
-  background-color: #ffffff;
-  padding: 10px;
+  flex-direction: row;
 }
 </style>

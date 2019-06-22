@@ -6,13 +6,13 @@
         <div v-html="msg"></div>
       </div>
       <div
-        v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
-        style="padding:20px;display:flex;flex-direction:row"
+        v-if="dataSet&&dataSet.length>0"
+        style="padding:20px;display:flex;justify-content: space-between"
       >
         <div>{{dataSet&&dataSet[0].inputVal}}</div>
-        <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
         <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
       </div>
+      <a-slider :marks="marks" id="test" :defaultValue="30"/>
     </a-card>
     <div class="row bjt">
       <div>
@@ -26,14 +26,6 @@
           :defaultValue="CascaderData"
           placeholder="选择维度"
         />
-      </div>
-    </div>
-    <div class="row cf" v-show="bjdisplay">
-      <div style="display:flex;flex-direction:row;padding-left:20px">
-        <div style="line-height: 32px;">样式</div>
-        <div style="padding-left:20px">
-          <jztMCDisplay @jztMCDisplay="jztMCDisplay"></jztMCDisplay>
-        </div>
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -186,28 +178,37 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
-import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
-import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
-import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
-import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
-import fx from '@/views/tp/Quest/components/com/comp/lbt/fx'
-import jztMCDisplay from '@/views/tp/Quest/components/com/comp/module/jztMCDisplay'
+
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
+  components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
-      dataltb: {
-        name: 'yx',
-        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
-      },
       aRadioOnValue: null,
+      marks: {
+        0: '0',
+        10: '10',
+        20: '20',
+        30: '30',
+        40: '40',
+        50: '50',
+        60: '60',
+        70: '70',
+        80: '80',
+        90: '90',
+        100: {
+          style: {
+            color: '#f50'
+          },
+          label: <strong>100</strong>
+        }
+      },
       msg: '标题',
       myConfig: {
         // 编辑器不自动被内容撑高
@@ -228,43 +229,19 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '很不满意',
+          inputVal: '最小值',
           imgs: [],
           checked: null,
           explain: '说明1',
-          score: 1
+          score: 0
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '不满意',
+          inputVal: '最大值',
           imgs: [],
           checked: null,
-          explain: '2',
-          score: 2
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '一般',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 3
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '满意',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 4
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '很满意',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 5
+          explain: '说明2',
+          score: 0
         }
       ],
       bjdisplay: false,
@@ -313,7 +290,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzLbt',
+          type: 'qtpaixu',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -326,13 +303,15 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
+        this.$message.error('不可操作')
+        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '非常满意',
+          inputVal: '单选2',
           imgs: [],
           checked: null,
           explain: '说明2',
-          score: 6
+          score: 0
         }
         let arr = []
         this.dataSet.forEach((d, index) => {
@@ -343,6 +322,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
+        this.$message.error('不可操作')
+        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -351,6 +332,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
+        this.$message.error('不可操作')
+        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -360,6 +343,8 @@ export default {
           })
         }
       } else if (event.type == 4) {
+        this.$message.error('不可操作')
+        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]
@@ -387,13 +372,6 @@ export default {
     onChangeCascader(e) {
       this.CascaderData = e
       this.bjdisplay = true
-    },
-    jztMCDisplay(e) {
-      this.dataltb.name = e
-      this.dataSet = this.dataSet.map(d => {
-        d.zdyitem = false
-        return d
-      })
     }
   },
   watch: {
@@ -437,7 +415,7 @@ export default {
   margin: 10px;
 }
 .bjt {
-  padding: 10px;
+  padding: 20px;
   height: 80px;
   width: auto;
   background-color: #f3f3f3;
@@ -445,16 +423,5 @@ export default {
 }
 .rdion {
   margin: 10px;
-}
-.jzt {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid 1px #e8e8e8;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.cf {
-  background-color: #ffffff;
-  padding: 10px;
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
-  <div class="uic" ref="elememt">
+  <div class="uic" ref="elememt" v-if="data&&data.length>0">
     <div
-      v-if="data&&data.length>0"
       v-for="(item,index) in data"
       :class="{ 'deselect1': deselect1, 'deselect2': deselect2,'zdyitemcc':item&&item.zdyitem&&item.zdyitem===true?true:false }"
       :style="style_zdyitem"
@@ -22,7 +21,7 @@ export default {
       deselect1: true,
       deselect2: false,
       style_zdyitem: {
-        marginLeft: '20' + 'px'
+        marginLeft: '10' + 'px'
       }
     }
   },
@@ -34,7 +33,7 @@ export default {
     // } else {
     //   this.style_zdyitem.marginLeft = itwidth + 'px'
     // }
-    this.style_zdyitem.marginLeft = '20px'
+    this.style_zdyitem.marginLeft = '10px'
   },
   methods: {
     divclick(index) {
@@ -69,8 +68,13 @@ export default {
   display: flex;
   flex-direction: row;
   padding-right: 20px;
+  justify-content: center;
+  align-items: center;
 }
 .deselect1 {
+  justify-content: center;
+  align-items: center;
+  margin-left: 0px;
   width: 22px;
   height: 22px;
   text-decoration: none;

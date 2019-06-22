@@ -5,14 +5,12 @@
         {{(index+1)}}、
         <div v-html="msg"></div>
       </div>
-      <div
-        v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
-        style="padding:20px;display:flex;flex-direction:row"
-      >
-        <div>{{dataSet&&dataSet[0].inputVal}}</div>
-        <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
-        <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
-      </div>
+      <a-radio-group>
+        <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
+          <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
+          <br>
+        </div>
+      </a-radio-group>
     </a-card>
     <div class="row bjt">
       <div>
@@ -26,14 +24,6 @@
           :defaultValue="CascaderData"
           placeholder="选择维度"
         />
-      </div>
-    </div>
-    <div class="row cf" v-show="bjdisplay">
-      <div style="display:flex;flex-direction:row;padding-left:20px">
-        <div style="line-height: 32px;">样式</div>
-        <div style="padding-left:20px">
-          <jztMCDisplay @jztMCDisplay="jztMCDisplay"></jztMCDisplay>
-        </div>
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -186,27 +176,18 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
-import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
-import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
-import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
-import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
-import fx from '@/views/tp/Quest/components/com/comp/lbt/fx'
-import jztMCDisplay from '@/views/tp/Quest/components/com/comp/module/jztMCDisplay'
+
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
+  components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
-      dataltb: {
-        name: 'yx',
-        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
-      },
       aRadioOnValue: null,
       msg: '标题',
       myConfig: {
@@ -228,43 +209,35 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '很不满意',
+          inputVal: '顺序1',
           imgs: [],
           checked: null,
           explain: '说明1',
-          score: 1
+          score: 0
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '不满意',
+          inputVal: '顺序2',
           imgs: [],
           checked: null,
-          explain: '2',
-          score: 2
+          explain: '说明2',
+          score: 0
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '一般',
+          inputVal: '顺序3',
           imgs: [],
           checked: null,
-          explain: '2',
-          score: 3
+          explain: '说明2',
+          score: 0
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '满意',
+          inputVal: '顺序4',
           imgs: [],
           checked: null,
-          explain: '2',
-          score: 4
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '很满意',
-          imgs: [],
-          checked: null,
-          explain: '2',
-          score: 5
+          explain: '说明2',
+          score: 0
         }
       ],
       bjdisplay: false,
@@ -313,7 +286,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzLbt',
+          type: 'qtpaixu',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -328,11 +301,11 @@ export default {
       if (event.type == 1) {
         let item = {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '非常满意',
+          inputVal: '单选2',
           imgs: [],
           checked: null,
           explain: '说明2',
-          score: 6
+          score: 0
         }
         let arr = []
         this.dataSet.forEach((d, index) => {
@@ -387,13 +360,6 @@ export default {
     onChangeCascader(e) {
       this.CascaderData = e
       this.bjdisplay = true
-    },
-    jztMCDisplay(e) {
-      this.dataltb.name = e
-      this.dataSet = this.dataSet.map(d => {
-        d.zdyitem = false
-        return d
-      })
     }
   },
   watch: {
@@ -437,7 +403,7 @@ export default {
   margin: 10px;
 }
 .bjt {
-  padding: 10px;
+  padding: 20px;
   height: 80px;
   width: auto;
   background-color: #f3f3f3;
@@ -445,16 +411,5 @@ export default {
 }
 .rdion {
   margin: 10px;
-}
-.jzt {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: solid 1px #e8e8e8;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.cf {
-  background-color: #ffffff;
-  padding: 10px;
 }
 </style>

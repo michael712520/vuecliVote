@@ -5,21 +5,30 @@
         {{(index+1)}}、
         <div v-html="msg"></div>
       </div>
-      <div v-if=" dataltb&&dataltb.data">
-        <component
-          v-for="(item,index) in  dataltb.data"
-          :key="index"
-          :is="item.name"
-          :dataSet="item.data"
-          :index="index"
-        ></component>
-      </div>
-
-      <a-radio-group style="display:flex">
-        <div style="margin: 10px;">{{dataSet&&dataSet[0].inputVal}}</div>
-        <a-rate :count="dataSet.length"/>
-        <div style="margin: 10px;">{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
-      </a-radio-group>
+      <table v-if="dataltb&&dataltb.data&&dataSet&&dataSet.length>0">
+        <tr>
+          <th></th>
+          <th style="display:flex;flex-direction:row">
+            <div
+              style="margin-left:10px;width:22px;height22px;text-align:center"
+              v-for="(item,index) in dataSet"
+            >{{item.score}}</div>
+          </th>
+        </tr>
+        <tr v-for="(ditem,dindex) in zbltest.left" :key="dindex">
+          <th>
+            <div style="margin-ruight:10px">{{zbltest.left[dindex]}}</div>
+          </th>
+          <td>
+            <component :is="dataltb.name" :dataSet="dataSet"></component>
+          </td>
+          <th>
+            <div
+              style="margin-ruight:10px"
+            >{{zbltest.right&&zbltest.right[i]&&zbltest.right[dindex]}}</div>
+          </th>
+        </tr>
+      </table>
     </a-card>
     <div class="row bjt">
       <div>
@@ -33,6 +42,65 @@
           :defaultValue="CascaderData"
           placeholder="选择维度"
         />
+      </div>
+    </div>
+
+    <div class="row cf" v-show="bjdisplay">
+      <div class="spanLeft spanLeftdvf">
+        <div class="matrixtitle" style="width: 172px;">
+          <div class="matrixhead" style="padding-left: 4px;">
+            <span style="float:left;">
+              <b>
+                行标题
+                <span
+                  class="fullScreen"
+                  style="display:inline-block;vertical-align:middle;margin-left:3px;"
+                  title="放大文本框进行编辑"
+                  onclick="cur.enlargeRowTitle();"
+                ></span>
+              </b>
+            </span>
+            <span class="spanRight" style="padding-right: 20px;">
+              <input type="checkbox" tabindex="-1" style="display: none;">
+              <span style="display: none;">右行标题</span>
+            </span>
+            <div class="divclear"></div>
+          </div>
+          <textarea
+            wrap="off"
+            rows="7"
+            class="inputtext"
+            tabindex="1"
+            title="相当于每个小题的标题"
+            style="width: 162px; height: 172px; overflow: auto; padding: 2px; margin-top: 7px; border: 1px solid rgb(205, 205, 205);line-height: initial;"
+            v-model="leftTest"
+            @blur.prevent="preventChangeCount()"
+          ></textarea>
+        </div>
+        <div class="spanLeft matrixhead" style="width: 172px;">
+          <div>
+            <input type="checkbox" tabindex="-1">
+            <span>右行标题(可选)</span>
+          </div>
+          <textarea
+            wrap="soft"
+            rows="7"
+            class="inputtext"
+            title="适用于“语义差异法”等场景"
+            style="width: 162px; height: 172px; overflow: auto; padding: 2px; margin-top: 7px; border: 1px solid rgb(205, 205, 205);line-height: initial;"
+            v-model="rightTest"
+            @blur.prevent="preventChangeCount()"
+          ></textarea>
+        </div>
+
+        <div class="row cf" v-show="bjdisplay">
+          <div style="display:flex;flex-direction:row;padding-left:20px">
+            <div style="line-height: 32px;">样式</div>
+            <div style="padding-left:20px">
+              <jztMCDisplay @jztMCDisplay="jztMCDisplay"></jztMCDisplay>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -93,140 +161,60 @@
         <div style="clear: both;">
           <div class="selScrrol" style="text-align: center;">
             <div class="choise_bg"></div>
-            <div class="spanLeft" style="position: relative; z-index: 1; width: 344px;">
-              <div class="matrixtitle" style="width: 172px;">
-                <div class="matrixhead" style="padding-left: 4px;">
-                  <span style="float:left;">
-                    <b>
-                      行标题
-                      <span
-                        class="fullScreen"
-                        style="display:inline-block;vertical-align:middle;margin-left:3px;"
-                        title="放大文本框进行编辑"
-                        onclick="cur.enlargeRowTitle();"
-                      ></span>
-                    </b>
-                  </span>
-                  <span class="spanRight" style="padding-right: 20px;">
-                    <input type="checkbox" tabindex="-1" style="display: none;">
-                    <span style="display: none;">右行标题</span>
-                  </span>
-                  <div class="divclear"></div>
-                </div>
-                <textarea
-                  wrap="off"
-                  rows="7"
-                  class="inputtext"
-                  tabindex="1"
-                  title="相当于每个小题的标题"
-                  style="width: 162px; height: 172px; overflow: auto; padding: 2px; margin-top: 7px; border: 1px solid rgb(205, 205, 205);"
-                ></textarea>
-              </div>
-              <div class="spanLeft matrixhead" style="width: 172px;">
-                <div>
-                  <input type="checkbox" tabindex="-1">
-                  <span>右行标题(可选)</span>
-                </div>
-                <textarea
-                  wrap="soft"
-                  rows="7"
-                  class="inputtext"
-                  title="适用于“语义差异法”等场景"
-                  style="width: 156px; height: 172px; overflow: auto; padding: 2px; margin: 7px 0px 0px 4px;"
-                ></textarea>
-              </div>
-              <div class="divclear"></div>
-              <div style="margin: 12px 0px 8px;">
-                <span>
-                  <a
-                    href="javascript:;"
-                    onclick="cur.addLabel();return false;"
-                    class="link-U666"
-                  >分组设置</a>&nbsp;&nbsp;
-                  <input
-                    type="checkbox"
-                    tabindex="-1"
-                    class="checkbox"
-                    id="rowrn_111_4406327723"
-                  >
-                  <label for="rowrn_111_4406327723" title="标题随机显示">行标题随机&nbsp;</label>
-                </span>
-                <span style="display: none; margin-left: 20px;">
-                  <span>最小值：</span>
-                  <input
-                    type="text"
-                    class="choicetxt"
-                    title="用户可以选择的最小值"
-                    maxlength="3"
-                    style="width: 30px;"
-                  >
-                  <span style="margin-left: 20px;">最大值：</span>
-                  <input
-                    type="text"
-                    class="choicetxt"
-                    title="用户可以选择的最大值"
-                    maxlength="3"
-                    style="width: 30px;"
-                  >
-                </span>
-              </div>
-            </div>
-            <div class="spanLeft" style="text-align: center; width: 460px;">
-              <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
-                <tbody>
-                  <tr>
-                    <td style="width: 340px; padding: 3px 5px;">
-                      <span>
-                        <a
-                          title="交换选项文字"
-                          href="javascript:;"
-                          style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
-                        >
-                          选项文字
-                          <i class="design-icon design-ctext"></i>
-                        </a>
+            <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
+              <tbody>
+                <tr>
+                  <td style="width: 340px; padding: 3px 5px;">
+                    <span>
+                      <a
+                        title="交换选项文字"
+                        href="javascript:;"
+                        style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
+                      >
+                        选项文字
+                        <i class="design-icon design-ctext"></i>
+                      </a>
+                    </span>
+                  </td>
+                  <td align="center" style="width: 30px; padding: 3px 5px;">
+                    <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
+                  </td>
+                  <td style="width: 50px; padding: 3px 5px;">
+                    <div style="overflow: hidden; text-align: center;">说明</div>
+                  </td>
+                  <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
+                    <span>允许填空</span>
+                  </td>
+                  <td style="width: 50px; padding: 3px 5px;">
+                    <span>
+                      <span style="cursor: pointer;">
+                        &nbsp;分数
+                        <span
+                          class="bordCss bordBottomCss"
+                          style="border-color:#333 transparent transparent;"
+                        ></span>
                       </span>
-                    </td>
-                    <td align="center" style="width: 30px; padding: 3px 5px;">
-                      <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
-                    </td>
-                    <td style="width: 50px; padding: 3px 5px;">
-                      <div style="overflow: hidden; text-align: center;">说明</div>
-                    </td>
-                    <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
-                      <span>允许填空</span>
-                    </td>
-                    <td style="width: 50px; padding: 3px 5px;">
-                      <span>
-                        <span style="cursor: pointer;">
-                          &nbsp;分数
-                          <span
-                            class="bordCss bordBottomCss"
-                            style="border-color:#333 transparent transparent;"
-                          ></span>
-                        </span>
-                      </span>
-                    </td>
-                    <!-- <td style="width: 30px; padding: 3px 5px;">
+                    </span>
+                  </td>
+                  <!-- <td style="width: 30px; padding: 3px 5px;">
                   <span>
                     <span>默认</span>
                   </span>
-                    </td>-->
-                    <td align="left" style="padding: 3px 5px 3px 15px;">
-                      <span>上移下移</span>
-                    </td>
-                  </tr>
-                  <simpleLine
-                    v-for="(item ,index) in dataSet"
-                    :key="index"
-                    :index="index"
-                    :dataInfo="item"
-                    @updateitem="updateitem(item ,index,$event)"
-                    @operate="operate"
-                  ></simpleLine>
-                </tbody>
-              </table>
-            </div>
+                  </td>-->
+                  <td align="left" style="padding: 3px 5px 3px 15px;">
+                    <span>上移下移</span>
+                  </td>
+                </tr>
+                <simpleLine
+                  v-for="(item ,index) in dataSet"
+                  :key="index"
+                  :index="index"
+                  :dataInfo="item"
+                  @updateitem="updateitem(item ,index,$event)"
+                  @operate="operate"
+                ></simpleLine>
+              </tbody>
+            </table>
           </div>
         </div>
         <div class="divclear"></div>
@@ -269,12 +257,13 @@ import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
 import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
 import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
 import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
-
+import fx from '@/views/tp/Quest/components/com/comp/lbt/fx'
+import jztMCDisplay from '@/views/tp/Quest/components/com/comp/module/jztMCDisplay'
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz },
+  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
   props: {
     dataInfo: Object,
     index: Number
@@ -283,7 +272,13 @@ export default {
     return {
       dataltb: {
         name: 'yx',
-        data: ['yx', 'wjx', 'ding', 'sz']
+        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
+      },
+      leftTest: '功能\n外观',
+      rightTest: '',
+      zbltest: {
+        left: ['功能', '外观'],
+        rigt: []
       },
       aRadioOnValue: null,
       msg: '标题',
@@ -391,7 +386,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'jzjzbl',
+          type: 'JzLbt',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -465,6 +460,32 @@ export default {
     onChangeCascader(e) {
       this.CascaderData = e
       this.bjdisplay = true
+    },
+    jztMCDisplay(e) {
+      this.dataltb.name = e
+      this.dataSet = this.dataSet.map(d => {
+        d.zdyitem = false
+        return d
+      })
+    },
+    preventChangeCount() {
+      while (this.leftTest.indexOf('\n\n') >= 0) {
+        this.leftTest = this.leftTest.replace('\n\n', '\n')
+      }
+      while (this.rightTest.indexOf('\n\n') >= 0) {
+        this.rightTest = this.rightTest.replace('\n\n', '\n')
+      }
+      this.zbltest.left = this.leftTest.split('\n').map(d => {
+        if (d.length >= 1) {
+          return d
+        }
+      })
+      this.zbltest.rigt = this.rightTest.split('\n').map(d => {
+        if (d.length >= 1) {
+          return d
+        }
+      })
+      console.log(' this.zbltest', this.zbltest)
     }
   },
   watch: {
@@ -483,6 +504,12 @@ export default {
       },
       immediate: true,
       deep: true
+    },
+    leftTest: {
+      handler(nVal, oVal) {}
+    },
+    rightTest: {
+      handler(nVal, oVal) {}
     }
   }
 }
@@ -508,7 +535,7 @@ export default {
   margin: 10px;
 }
 .bjt {
-  padding: 20px;
+  padding: 10px;
   height: 80px;
   width: auto;
   background-color: #f3f3f3;
@@ -516,5 +543,22 @@ export default {
 }
 .rdion {
   margin: 10px;
+}
+.jzt {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #e8e8e8;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.cf {
+  background-color: #ffffff;
+  padding: 10px;
+}
+.spanLeftdvf {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-left: 20px;
 }
 </style>

@@ -5,12 +5,14 @@
         {{(index+1)}}、
         <div v-html="msg"></div>
       </div>
-
-      <a-radio-group style="display:flex">
-        <div style="margin: 10px;">{{dataSet&&dataSet[0].inputVal}}</div>
-        <a-rate :count="dataSet.length"/>
-        <div style="margin: 10px;">{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
-      </a-radio-group>
+      <div
+        v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
+        style="padding:20px;display:flex;flex-direction:row"
+      >
+        <div>{{dataSet&&dataSet[0].inputVal}}</div>
+        <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
+        <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
+      </div>
     </a-card>
     <div class="row bjt">
       <div>
@@ -24,6 +26,14 @@
           :defaultValue="CascaderData"
           placeholder="选择维度"
         />
+      </div>
+    </div>
+    <div class="row cf" v-show="bjdisplay">
+      <div style="display:flex;flex-direction:row;padding-left:20px">
+        <div style="line-height: 32px;">样式</div>
+        <div style="padding-left:20px">
+          <jztMCDisplay @jztMCDisplay="jztMCDisplay"></jztMCDisplay>
+        </div>
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -176,18 +186,27 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
-
+import yx from '@/views/tp/Quest/components/com/comp/lbt/yx'
+import wjx from '@/views/tp/Quest/components/com/comp/lbt/wjx'
+import ding from '@/views/tp/Quest/components/com/comp/lbt/ding'
+import sz from '@/views/tp/Quest/components/com/comp/lbt/sz'
+import fx from '@/views/tp/Quest/components/com/comp/lbt/fx'
+import jztMCDisplay from '@/views/tp/Quest/components/com/comp/module/jztMCDisplay'
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap },
+  components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
   props: {
     dataInfo: Object,
     index: Number
   },
   data() {
     return {
+      dataltb: {
+        name: 'fx',
+        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
+      },
       aRadioOnValue: null,
       msg: '标题',
       myConfig: {
@@ -294,7 +313,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzNPSlb',
+          type: 'JzLbt',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -368,6 +387,13 @@ export default {
     onChangeCascader(e) {
       this.CascaderData = e
       this.bjdisplay = true
+    },
+    jztMCDisplay(e) {
+      this.dataltb.name = e
+      this.dataSet = this.dataSet.map(d => {
+        d.zdyitem = false
+        return d
+      })
     }
   },
   watch: {
@@ -411,7 +437,7 @@ export default {
   margin: 10px;
 }
 .bjt {
-  padding: 20px;
+  padding: 10px;
   height: 80px;
   width: auto;
   background-color: #f3f3f3;
@@ -419,5 +445,16 @@ export default {
 }
 .rdion {
   margin: 10px;
+}
+.jzt {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #e8e8e8;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.cf {
+  background-color: #ffffff;
+  padding: 10px;
 }
 </style>

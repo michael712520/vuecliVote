@@ -1,6 +1,6 @@
 <template>
   <div class="uic" ref="elememt" v-if="data&&data.length>0">
-    <div v-for="(item,index) in data" @click="divclick(index)">
+    <div v-for="(item,index) in data" @click="divclick(index)" :key="index">
       <div
         :class="{ 'deselect1': deselect1, 'deselect2': deselect2,'zdyitemcc':item&&item.zdyitem&&item.zdyitem===true?true:false }"
         :style="style_zdyitem"

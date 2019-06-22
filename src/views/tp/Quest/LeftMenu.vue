@@ -214,31 +214,31 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('qttkt')">
               <i class="iconfont"></i>
               <span>填空题</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('qtjztk')">
               <i class="iconfont"></i>
               <span>矩阵填空</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('qiwjsc')">
               <i class="iconfont"></i>
               <span>文件上传</span>
             </a>
           </li>
           <li>
-            <a href="javascript:;">
+            <a href="javascript:;" @click="selectChange('qtpaixu')">
               <i class="iconfont"></i>
               <span>排序</span>
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('qthdt')">
               <i class="iconfont"></i>
               <span>滑动条</span>
             </a>
