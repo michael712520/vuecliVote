@@ -1,5 +1,8 @@
 /* eslint-disable */
 import api from '@/api'
+import {
+  async
+} from 'q';
 export default {
   namespaced: true,
   state: {
@@ -8,9 +11,39 @@ export default {
     refresh: false,
     refreshStandardList: false
   },
-  actions: {},
+  actions: {
+    ytyy: async ({
+      commit,
+      state
+    }, payload) => {
+
+      let data = state.listData.map(d => {
+        var ds = JSON.parse(d.dataInfo.pageInfo)
+        ds.display = true;
+        d.dataInfo.pageInfo = JSON.stringify(ds)
+        return d.dataInfo
+      })
+
+      let ListPicker = await api.tp.ListSaveItem(data)
+      commit('refresh')
+    },
+
+    ListSaveItem: async ({
+      commit,
+      state
+    }, payload) => {
+
+      let data = state.listData.map(d => {
+        return d.dataInfo
+      })
+      let ListPicker = await api.tp.ListSaveItem(data)
+
+      commit('refresh')
+    }
+  },
   mutations: {
     updateListData: (state, payload) => {
+
       let list = []
       payload.forEach(element => {
         if (element) {
@@ -20,6 +53,7 @@ export default {
           list.push(arr)
         }
       })
+
       state.listData = list
     },
     listData: (state, payload) => {
@@ -37,7 +71,10 @@ export default {
       state.item = payload
     },
     addListData(state, payload) {
-      state.listData.push({ comp: payload, dataInfo: {} })
+      state.listData.push({
+        comp: payload,
+        dataInfo: {}
+      })
     },
     refresh: (state, payload) => {
       state.refresh = !state.refresh

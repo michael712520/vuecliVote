@@ -180,9 +180,9 @@
         </div>
         <ul class="navlist">
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="yiyeyiti">
               <i class="iconfont">&#xe614;</i>
-              <span>分页</span>
+              <span>一题一页</span>
             </a>
           </li>
           <li>
@@ -266,6 +266,9 @@ export default {
   methods: {
     selectChange(selectVal) {
       this.$store.commit('question/addListData', selectVal)
+    },
+    yiyeyiti() {
+      this.$store.dispatch('question/ytyy')
     }
   }
 }

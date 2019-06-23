@@ -4,6 +4,7 @@
       <left-menu></left-menu>
       <div class="survey editContainBox">
         <com-title></com-title>
+        <!-- <div @click="testClick">asdasdasdasdasddasda</div> -->
         <div v-for="(item,index) in ListComponent" :key="index">
           <component
             :is="item.comp"
@@ -88,6 +89,7 @@ export default {
   mounted() {
     this.init()
     this.$store.dispatch('latitudeDetail/getPicker')
+    setTimeout(this.tickFunction(), 1000 * 60 * 3)
   },
   computed: {
     ListComponent: function() {
@@ -98,6 +100,9 @@ export default {
     }
   },
   methods: {
+    tickFunction() {
+      this.$message.success('请点击编辑项的的完成编辑已方便自动保存全部数据', 4)
+    },
     complete(item, index, $event) {
       this.$store.commit('question/listData', { comp: item.comp, dataInfo: $event })
     },
@@ -116,7 +121,6 @@ export default {
         if (this.ListComponent.length - 1 > index) {
           let params = { detailId: this.$route.query.id, sort: index, type: 1 }
           console.log('UpdateMbDetail', params)
-
           await api.tp.UpdateMbDetail(params)
           await this.init()
         }
@@ -137,11 +141,12 @@ export default {
         })
 
         this.$store.commit('question/updateListData', data)
+      } else {
+        this.$store.commit('question/updateListData', [])
       }
     },
-    clickcccc(d) {
-      console.log('ddddddd')
-      debugger
+    testClick(d) {
+      this.$store.dispatch('question/ytyy')
     }
   },
   watch: {
