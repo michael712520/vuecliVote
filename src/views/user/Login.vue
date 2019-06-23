@@ -130,6 +130,7 @@ import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
+import { async } from 'q'
 export default {
   components: {
     TwoStepCaptcha
@@ -192,23 +193,24 @@ export default {
 
       const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
 
-      validateFields(validateFieldsKey, { force: true }, (err, values) => {
+      validateFields(validateFieldsKey, { force: true }, async (err, values) => {
         if (!err) {
-          console.log('login form', values)
-          const loginParams = { ...values }
-          delete loginParams.username
-          loginParams[!state.loginType ? 'email' : 'username'] = values.username
-          loginParams.password = md5(values.password)
-          Login(loginParams)
-            .then(res => {
+          try {
+            console.log('login form', values)
+            const loginParams = { ...values }
+            delete loginParams.username
+            loginParams[!state.loginType ? 'email' : 'username'] = values.username
+            loginParams.password = md5(values.password)
+            let res = await Login(loginParams)
+            if (res) {
               this.loginSuccess(res)
-            })
-            .catch(err => {
-              this.requestFailed(err)
-            })
-            .finally(() => {
+            } else {
+              this.requestFailed(error)
               state.loginBtn = false
-            })
+            }
+          } catch (error) {
+            this.requestFailed(error)
+          }
         } else {
           setTimeout(() => {
             state.loginBtn = false

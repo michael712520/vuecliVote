@@ -186,6 +186,12 @@
             </a>
           </li>
           <li>
+            <a href="javascript:void(0);" @click="qxyiyeyiti">
+              <i class="iconfont">&#xe614;</i>
+              <span>取消一题一页</span>
+            </a>
+          </li>
+          <li>
             <a href="javascript:void(0);" @click="selectChange('pageduanluo')">
               <i class="iconfont">&#xe60b;</i>
               <span>段落说明</span>
@@ -269,6 +275,9 @@ export default {
     },
     yiyeyiti() {
       this.$store.dispatch('question/ytyy')
+    },
+    qxyiyeyiti() {
+      this.$store.dispatch('question/qxytyy')
     }
   }
 }

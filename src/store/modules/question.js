@@ -19,7 +19,13 @@ export default {
 
       let data = state.listData.map(d => {
         var ds = JSON.parse(d.dataInfo.pageInfo)
-        ds.display = true;
+        ds = {
+          ...ds,
+          ...{
+            display: true
+          }
+        }
+
         d.dataInfo.pageInfo = JSON.stringify(ds)
         return d.dataInfo
       })
@@ -27,7 +33,27 @@ export default {
       let ListPicker = await api.tp.ListSaveItem(data)
       commit('refresh')
     },
+    qxytyy: async ({
+      commit,
+      state
+    }, payload) => {
 
+      let data = state.listData.map(d => {
+        var ds = JSON.parse(d.dataInfo.pageInfo)
+        ds = {
+          ...ds,
+          ...{
+            display: false
+          }
+        }
+
+        d.dataInfo.pageInfo = JSON.stringify(ds)
+        return d.dataInfo
+      })
+
+      let ListPicker = await api.tp.ListSaveItem(data)
+      commit('refresh')
+    },
     ListSaveItem: async ({
       commit,
       state
