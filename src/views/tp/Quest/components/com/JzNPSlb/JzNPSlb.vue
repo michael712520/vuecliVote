@@ -199,7 +199,8 @@ export default {
   components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
   props: {
     dataInfo: Object,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {

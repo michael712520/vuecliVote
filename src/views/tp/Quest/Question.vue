@@ -11,32 +11,8 @@
             :index="index"
             @complete="complete(item,index,$event)"
             @rowOperate="rowOperate(item,index,$event)"
+            :pageInfo="item.pageInfo"
           ></component>
-        </div>
-
-        <div class="container" style="margin-top: 10px;">
-          <a-card>
-            <a-select
-              defaultValue="danxuan"
-              style="width: 120px"
-              v-model="selectVal"
-              @change="handleChangeselect"
-            >
-              <a-select-option value="danxuan">单选</a-select-option>
-              <!-- <a-select-option value="radio_down">下拉框单选</a-select-option> -->
-              <a-select-option value="duoxuan">多选</a-select-option>
-              <a-select-option value="danxuanhx">评分单选</a-select-option>
-              <!-- <a-select-option value="likert">量表题</a-select-option>
-              <a-select-option value="order">排序</a-select-option>
-              <a-select-option value="toupiaoradio">量表题</a-select-option>
-              <a-select-option value="ceshiradio">考试单选</a-select-option>
-              <a-select-option value="cepingradio">评分单选</a-select-option>
-              <a-select-option value="question">填空</a-select-option>-->
-            </a-select>
-            <span style="padding-left:10px">
-              <a-tag color="#2db7f5" @click="selecthandleChange">添加</a-tag>
-            </span>
-          </a-card>
         </div>
       </div>
     </div>
@@ -68,8 +44,11 @@ import qtjztk from './components/com/qtjztk/qtjztk.vue'
 import qiwjsc from './components/com/qiwjsc/qiwjsc.vue'
 import qtpaixu from './components/com/qtpaixu/qtpaixu.vue'
 import qthdt from './components/com/qthdt/qthdt.vue'
+import qtdjxl from './components/com/qtdjxl/qtdjxl.vue'
+import pageduanluo from './components/com/pageduanluo/pageduanluo.vue'
 
 import api from '@/api'
+import { debug } from 'util'
 export default {
   name: 'question',
   components: {
@@ -96,7 +75,9 @@ export default {
     qtjztk,
     qiwjsc,
     qtpaixu,
-    qthdt
+    qthdt,
+    qtdjxl,
+    pageduanluo
   },
   data() {
     return {
@@ -154,6 +135,7 @@ export default {
         data = data.map(d => {
           return d
         })
+        debugger
         this.$store.commit('question/updateListData', data)
       }
     }

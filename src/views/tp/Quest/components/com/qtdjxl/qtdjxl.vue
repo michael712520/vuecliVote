@@ -3,15 +3,9 @@
     <a-card>
       <div class="titile">
         {{(index+1)}}、
-        <div v-html="titile"></div>
+        <div v-html="msg"></div>
       </div>
-      <div>
-        <a-radio-group>
-          <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
-            <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-          </div>
-        </a-radio-group>
-      </div>
+      <a-cascader :options="dataSet" @change="onChange" placeholder="下拉选择" :changeOnSelect="true"/>
     </a-card>
     <div class="row bjt">
       <div>
@@ -32,121 +26,48 @@
         <div class="div_editor">
           <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
         </div>
-        <div class="container" style="margin-top: 10px; display:none">
-          <span>
-            <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
-              <option value="0">单选</option>
-              <option value="radio_down">下拉框单选</option>
-              <option value="check">多选</option>
-              <option value="likert">量表题</option>
-              <option value="order">排序</option>
-              <option value="toupiaoradio">投票单选</option>
-              <option value="ceshiradio">考试单选</option>
-              <option value="cepingradio">评分单选</option>
-              <option value="question">填空</option>
-            </select>
-          </span>
-          <span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input
-              type="checkbox"
-              tabindex="-1"
-              title="用户在填写问卷时必须回答这道题"
-              class="checkbox"
-              id="req_2_3944705790"
-            >
-            <label for="req_2_3944705790">必答</label>
-            <span style="display: none;">
-              &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
-              <a
-                href="javascript:setAllRequired(true);"
-                class="link-U00a6e6"
-              >必答</a>&nbsp;
-              <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
-            </span>
-          </span>
-          <span>
-            <span>
-              &nbsp;
-              <input
-                type="text"
-                class="choicetxt"
-                style="width: 140px; height: 15px; display: none;"
-              >
-              <span style="margin-left: 30px;"></span>
-              <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
-            </span>
-          </span>
-        </div>
+      </div>
+      <div class="row" style="margin-left:20px;padding:20px;">
+        <a-col :span="5">
+          <a-cascader
+            :options="dataSet"
+            @change="onChange"
+            :changeOnSelect="true"
+            placeholder="下拉选择"
+          />
+        </a-col>
+        <a-col :span="10">
+          <div v-if="this.editeData">
+            <a-radio-group @change="radioOnChange($event)">
+              <div style="padding-bottom:10px;" v-for="(item,index) in editeData" :key="index">
+                {{item.label}}
+                <a-radio-button :value="{type:'bj',item:item}">添加本级</a-radio-button>
+                <a-radio-button :value="{type:'zj',item:item}">添加子级</a-radio-button>
+                <a-radio-button :value="{type:'sc',item:item}">删除</a-radio-button>
+              </div>
+            </a-radio-group>
+          </div>
+        </a-col>
+        <a-col :span="9">
+          <div style="padding-left:10px;padding-right:20px">
+            <div>
+              <a-input placeholder="添加" style="padding-bottom:10px;" v-model="djxlTextInfo"/>
+            </div>
+            <div style="height:10px"></div>
+            <div>
+              <a-button type="primary" @click="tjprimary">确定</a-button>
+            </div>
+          </div>
+        </a-col>
       </div>
       <div style="clear: both;"></div>
       <div class="container" style="position: relative;">
-        <div style="padding-top: 10px;"></div>
-        <div style="clear: both;">
-          <div class="selScrrol" style="text-align: center;">
-            <div class="choise_bg"></div>
-            <table class="tableoption" cellspacing="0" cellpadding="0" width="98%">
-              <tbody>
-                <tr>
-                  <td style="width: 340px; padding: 3px 5px;">
-                    <span>
-                      <a
-                        title="交换选项文字"
-                        href="javascript:;"
-                        style="color: rgb(34, 34, 34); margin-left: 7px; text-decoration: none;"
-                      >
-                        选项文字
-                        <i class="design-icon design-ctext"></i>
-                      </a>
-                    </span>
-                  </td>
-                  <td align="center" style="width: 30px; padding: 3px 5px;">
-                    <span style="border-bottom: 1px solid rgb(140, 140, 140);">图片</span>
-                  </td>
-                  <td style="width: 50px; padding: 3px 5px;">
-                    <div style="overflow: hidden; text-align: center;">说明</div>
-                  </td>
-                  <td align="center" style="letter-spacing: 1px; width: 70px; padding: 3px 5px;">
-                    <span>允许填空</span>
-                  </td>
-                  <td style="width: 50px; padding: 3px 5px;">
-                    <span>
-                      <span style="cursor: pointer;">
-                        &nbsp;分数
-                        <span
-                          class="bordCss bordBottomCss"
-                          style="border-color:#333 transparent transparent;"
-                        ></span>
-                      </span>
-                    </span>
-                  </td>
-                  <!-- <td style="width: 30px; padding: 3px 5px;">
-                  <span>
-                    <span>默认</span>
-                  </span>
-                  </td>-->
-                  <td align="left" style="padding: 3px 5px 3px 15px;">
-                    <span>上移下移</span>
-                  </td>
-                </tr>
-                <simpleLine
-                  v-for="(item ,index) in dataSet"
-                  :key="index"
-                  :index="index"
-                  :dataInfo="item"
-                  @updateitem="updateitem(item ,index,$event)"
-                  @operate="operate"
-                ></simpleLine>
-              </tbody>
-            </table>
-          </div>
-        </div>
         <div class="divclear"></div>
         <div style="margin: 12px 0px 5px;">
           <div style="width: 100%;">
-            <span
+            <!-- <span
               class="spanLeft"
-              style="line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
+              style=" line-height: 28px; height: 28px; margin: 0px 0px 0px 4px; text-align: left; width: 340px;"
             >
               <a
                 href="javascript:"
@@ -157,7 +78,7 @@
                 <span class="choiceimg design-icon design-singleadd"></span>
                 <span style="color: #1ea0fa;">添加选项</span>
               </a>&nbsp;&nbsp;
-            </span>
+            </span>-->
             <div class="divclear"></div>
           </div>
         </div>
@@ -177,23 +98,23 @@
 </template>
 <script>
 import simpleLine from '../comp/simpleLine'
-import danxuanYL from '../mk/danxuanYL'
-import danxuanSimpleStyleA from '../mk/danxuanSimpleStyleA'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
+  components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
-    titile: String,
     index: Number,
     pageInfo: Object
   },
   data() {
     return {
+      itemSelectWb: null,
+      djxlTextInfo: '',
       aRadioOnValue: null,
+      radioDefaultValue: 'bj',
       msg: '标题',
       myConfig: {
         // 编辑器不自动被内容撑高
@@ -210,74 +131,49 @@ export default {
       visible: false,
       editorText: '',
       value: 1,
-      radioStyle: {
-        display: 'block',
-        height: '300px',
-        lineHeight: '300px'
-      },
+
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '18岁以下',
-          imgs: [],
-          checked: null,
-          explain: '说明1',
-          score: 0
+          label: '一级',
+          children: [
+            {
+              value: Guid.NewGuid().ToString('N'),
+              label: '一级一级',
+              children: [
+                {
+                  value: Guid.NewGuid().ToString('N'),
+                  label: '一级一级一级'
+                }
+              ]
+            }
+          ]
         },
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '18~25',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '26~30',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '31~40',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '41~50',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '51~60',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '61以上',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
+          label: '二级',
+          children: [
+            {
+              value: Guid.NewGuid().ToString('N'),
+              label: '二级一级',
+              children: [
+                {
+                  value: Guid.NewGuid().ToString('N'),
+                  label: '二级一级一级'
+                }
+              ]
+            }
+          ]
         }
       ],
       bjdisplay: false,
-      CascaderData: []
+      CascaderData: [],
+      editeData: [],
+      onChangeE: []
     }
   },
   computed: {
+    imgurl: function() {},
     radioName: function() {
       return 'radioName_' + this.index
     },
@@ -318,7 +214,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'linianlingduan',
+          type: 'qtpaixu',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -331,6 +227,8 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
+        this.$message.error('不可操作')
+        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
@@ -348,6 +246,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
+        this.$message.error('不可操作')
+        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -356,6 +256,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
+        this.$message.error('不可操作')
+        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -365,6 +267,8 @@ export default {
           })
         }
       } else if (event.type == 4) {
+        this.$message.error('不可操作')
+        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]
@@ -388,10 +292,118 @@ export default {
         this.$emit('rowOperate', 4)
       }
     },
-    aRadioOnChange(e) {},
     onChangeCascader(e) {
       this.CascaderData = e
       this.bjdisplay = true
+    },
+    onChange(e) {
+      let dds = this.dataSet
+      let temp = dds
+      e.forEach(d => {
+        for (var i = 0; i < dds.length; i++) {
+          if (dds[i].value == d) {
+            temp = dds
+            if (dds[i].hasOwnProperty('children')) {
+              dds = dds[i].children
+            }
+          }
+        }
+      })
+      this.onChangeE = e
+      this.editeData = temp
+      this.itemSelectWb = null
+    },
+    radioOnChange($event) {
+      this.radioDefaultValue = $event.target.value.type
+      this.itemSelectWb = $event.target.value.item
+      let item = this.itemSelectWb
+      if (this.radioDefaultValue == 'sc') {
+        this.dataSet = this.dataSet.filter((d, d_i, d_arr) => {
+          if (d.value == item.value) {
+            return false
+          } else if (d.hasOwnProperty('children')) {
+            d.children = d.children.filter(e => {
+              if (e.value == item.value) {
+                return false
+              } else if (e.hasOwnProperty('children')) {
+                e.children = e.children.filter(f => {
+                  if (f.value == item.value) {
+                    return false
+                  } else {
+                    return true
+                  }
+                })
+              }
+              return true
+            })
+          }
+          return true
+        })
+
+        this.onChange(this.onChangeE)
+      }
+    },
+    tjprimary() {
+      if (this.itemSelectWb) {
+        let item = this.itemSelectWb
+        if (this.radioDefaultValue === 'bj') {
+          this.dataSet.forEach(d => {
+            if (d.value == item.value) {
+              this.dataSet.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+            } else if (d.hasOwnProperty('children')) {
+              d.children.forEach(e => {
+                if (e.value == item.value) {
+                  d.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+                } else if (e.hasOwnProperty('children')) {
+                  e.children.forEach(f => {
+                    if (f.value == item.value) {
+                      e.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+                    }
+                  })
+                }
+              })
+            }
+          })
+          this.$message.success('添加成功')
+        } else if (this.radioDefaultValue === 'zj') {
+          this.dataSet.forEach(d => {
+            if (d.value == item.value) {
+              if (d.hasOwnProperty('children')) {
+                d.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+              } else {
+                d.children = []
+                d.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+              }
+            } else if (d.hasOwnProperty('children')) {
+              d.children.forEach(e => {
+                if (e.value == item.value) {
+                  if (e.hasOwnProperty('children')) {
+                    e.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+                  } else {
+                    e.children = []
+                    e.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+                  }
+                } else if (e.hasOwnProperty('children')) {
+                  e.children.forEach(f => {
+                    if (f.value == item.value) {
+                      this.$message.error('3级下拉啦！不能添加子项了')
+                      return
+                      f.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+                    } else {
+                      f.children = []
+                      f.children.push({ value: Guid.NewGuid().ToString('N'), label: this.djxlTextInfo })
+                    }
+                  })
+                }
+              })
+            }
+          })
+          this.$message.success('添加成功')
+        }
+      } else {
+        this.$message.error('请选择操作步骤')
+        return
+      }
     }
   },
   watch: {
@@ -441,11 +453,7 @@ export default {
   background-color: #f3f3f3;
   box-shadow: 1 #888888;
 }
-.titile {
-  display: flex;
-  flex-direction: row;
-}
-.aradio {
+.rdion {
   margin: 10px;
 }
 </style>

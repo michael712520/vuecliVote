@@ -145,7 +145,8 @@ export default {
   props: {
     dataInfo: Object,
     titile: String,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {

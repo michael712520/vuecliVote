@@ -185,7 +185,8 @@ export default {
   components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {

@@ -186,7 +186,8 @@ export default {
   components: { simpleLine, VueUeditorWrap },
   props: {
     dataInfo: Object,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {
@@ -290,7 +291,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'qtpaixu',
+          type: 'qthdt',
           latitudeDetailIds: latitudeDetailIds
         }
       }

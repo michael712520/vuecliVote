@@ -1,16 +1,13 @@
 <template>
   <div class="div_title_attr_question">
     <a-card>
-      <div class="titile">
-        {{(index+1)}}、
-        <div v-html="titile"></div>
-      </div>
-      <div>
-        <a-radio-group>
-          <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
-            <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-          </div>
-        </a-radio-group>
+      <div class="row">
+        <div class="titile">
+          {{(index+1)}}、
+          <div v-html="msg">{{msg}}</div>
+        </div>
+
+        <!-- <div class="row" v-html="dataSet[0].inputVal">{{dataSet[0].inputVal}}</div> -->
       </div>
     </a-card>
     <div class="row bjt">
@@ -32,55 +29,9 @@
         <div class="div_editor">
           <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
         </div>
-        <div class="container" style="margin-top: 10px; display:none">
-          <span>
-            <select style="width:120px;" onchange="javascript:cur.selChangeType(this.value);">
-              <option value="0">单选</option>
-              <option value="radio_down">下拉框单选</option>
-              <option value="check">多选</option>
-              <option value="likert">量表题</option>
-              <option value="order">排序</option>
-              <option value="toupiaoradio">投票单选</option>
-              <option value="ceshiradio">考试单选</option>
-              <option value="cepingradio">评分单选</option>
-              <option value="question">填空</option>
-            </select>
-          </span>
-          <span>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input
-              type="checkbox"
-              tabindex="-1"
-              title="用户在填写问卷时必须回答这道题"
-              class="checkbox"
-              id="req_2_3944705790"
-            >
-            <label for="req_2_3944705790">必答</label>
-            <span style="display: none;">
-              &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
-              <a
-                href="javascript:setAllRequired(true);"
-                class="link-U00a6e6"
-              >必答</a>&nbsp;
-              <a href="javascript:setAllRequired(false);" class="link-U00a6e6">非必答</a>
-            </span>
-          </span>
-          <span>
-            <span>
-              &nbsp;
-              <input
-                type="text"
-                class="choicetxt"
-                style="width: 140px; height: 15px; display: none;"
-              >
-              <span style="margin-left: 30px;"></span>
-              <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
-            </span>
-          </span>
-        </div>
       </div>
       <div style="clear: both;"></div>
-      <div class="container" style="position: relative;">
+      <div class="container" style="position: relative; display：none">
         <div style="padding-top: 10px;"></div>
         <div style="clear: both;">
           <div class="selScrrol" style="text-align: center;">
@@ -129,14 +80,16 @@
                     <span>上移下移</span>
                   </td>
                 </tr>
-                <simpleLine
-                  v-for="(item ,index) in dataSet"
-                  :key="index"
-                  :index="index"
-                  :dataInfo="item"
-                  @updateitem="updateitem(item ,index,$event)"
-                  @operate="operate"
-                ></simpleLine>
+                <div v-if="false">
+                  <simpleLine
+                    v-for="(item ,index) in dataSet"
+                    :key="index"
+                    :index="index"
+                    :dataInfo="item"
+                    @updateitem="updateitem(item ,index,$event)"
+                    @operate="operate"
+                  ></simpleLine>
+                </div>
               </tbody>
             </table>
           </div>
@@ -178,23 +131,30 @@
 <script>
 import simpleLine from '../comp/simpleLine'
 import danxuanYL from '../mk/danxuanYL'
-import danxuanSimpleStyleA from '../mk/danxuanSimpleStyleA'
+import danxuanSimple from '../mk/danxuanSimple'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
 export default {
   name: 'Danxuan',
-  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimpleStyleA },
+  components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
     titile: String,
-    index: Number,
-    pageInfo: Object
+    index: Number
   },
   data() {
     return {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 7 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 13 }
+      },
       aRadioOnValue: null,
-      msg: '标题',
+      msg: '段落说明',
       myConfig: {
         // 编辑器不自动被内容撑高
         autoHeightEnabled: false,
@@ -218,63 +178,16 @@ export default {
       dataSet: [
         {
           value: Guid.NewGuid().ToString('N'),
-          inputVal: '18岁以下',
+          inputVal: '姓名',
           imgs: [],
           checked: null,
           explain: '说明1',
           score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '18~25',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '26~30',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '31~40',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '41~50',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '51~60',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
-        },
-        {
-          value: Guid.NewGuid().ToString('N'),
-          inputVal: '61以上',
-          imgs: [],
-          checked: null,
-          explain: '说明2',
-          score: 0
         }
       ],
       bjdisplay: false,
-      CascaderData: []
+      CascaderData: [],
+      form: this.$form.createForm(this)
     }
   },
   computed: {
@@ -318,7 +231,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'linianlingduan',
+          type: 'pageduanluo',
           latitudeDetailIds: latitudeDetailIds
         }
       }
@@ -331,6 +244,8 @@ export default {
     },
     operate(event) {
       if (event.type == 1) {
+        this.$message.error('不可操作')
+        return
         let item = {
           value: Guid.NewGuid().ToString('N'),
           inputVal: '单选2',
@@ -348,6 +263,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 2) {
+        this.$message.error('不可操作')
+        return
         let arr = []
         this.dataSet.forEach((d, index) => {
           if (event.index != index) {
@@ -356,6 +273,8 @@ export default {
         })
         this.dataSet = arr
       } else if (event.type == 3) {
+        this.$message.error('不可操作')
+        return
         if (event.index != 0) {
           let item = this.dataSet[event.index - 1]
           this.dataSet[event.index - 1] = this.dataSet[event.index]
@@ -365,6 +284,8 @@ export default {
           })
         }
       } else if (event.type == 4) {
+        this.$message.error('不可操作')
+        return
         if (event.index != this.dataSet.length - 1) {
           let item = this.dataSet[event.index]
           this.dataSet[event.index] = this.dataSet[event.index + 1]
@@ -415,6 +336,10 @@ export default {
 }
 </script>
 <style scoped>
+.title {
+  margin-top: 20px;
+  font-size: 20px;
+}
 .c_div {
   padding: 20px;
 }
@@ -444,8 +369,5 @@ export default {
 .titile {
   display: flex;
   flex-direction: row;
-}
-.aradio {
-  margin: 10px;
 }
 </style>

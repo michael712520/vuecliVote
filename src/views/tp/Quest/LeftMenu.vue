@@ -186,7 +186,7 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('pageduanluo')">
               <i class="iconfont">&#xe60b;</i>
               <span>段落说明</span>
             </a>
@@ -244,7 +244,7 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="javascript:void(0);" @click="selectChange('qtdjxl')">
               <i class="iconfont"></i>
               <span>多级下拉</span>
             </a>

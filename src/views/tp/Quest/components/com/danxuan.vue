@@ -187,7 +187,8 @@ export default {
   components: { simpleLine, VueUeditorWrap, danxuanYL, danxuanSimple },
   props: {
     dataInfo: Object,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {
@@ -352,10 +353,8 @@ export default {
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
-        
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title

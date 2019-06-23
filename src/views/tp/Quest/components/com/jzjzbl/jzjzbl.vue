@@ -12,6 +12,7 @@
             <div
               style="margin-left:10px;width:22px;height22px;text-align:center"
               v-for="(item,index) in dataSet"
+              :key="index"
             >{{item.score}}</div>
           </th>
         </tr>
@@ -266,7 +267,8 @@ export default {
   components: { simpleLine, VueUeditorWrap, yx, wjx, ding, sz, jztMCDisplay, fx },
   props: {
     dataInfo: Object,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {
