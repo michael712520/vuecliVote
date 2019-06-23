@@ -13,12 +13,28 @@
         </div>
       </a-radio-group>
     </a-card>
+    <div
+      class="row"
+      style="padding:20px;margin-left：20px;text-align:center;"
+      v-if="pageInfo&&pageInfo.display===true"
+    >
+      <span
+        style="font-size:14px; font-weight:normal;"
+      >[&nbsp;第{{index+1}}页/共{{this.$store.state.question.listData.length}}页&nbsp;]</span>
+    </div>
     <div class="row bjt">
       <div>
         <a-tag color="#f50" @click="rowOperate(1)">编辑</a-tag>
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+
+        <a-tag
+          v-if="pageInfo&&pageInfo.display===true"
+          color="#51ada8"
+          @click="pageInfoClick(false)"
+        >删除分页</a-tag>
+        <a-tag v-else color="#51ada8" @click="pageInfoClick(true)">添加分页</a-tag>
         <a-cascader
           :options="options"
           @change="onChangeCascader"
@@ -259,7 +275,16 @@ export default {
       })
       // this.$emit('complete', data)
     },
-    async completed() {
+    pageInfoClick(f) {
+      if (f === true) {
+        let data = { pageInfo: JSON.stringify({ ...this.pageInfo, display: true }) }
+        this.completed(data)
+      } else if (f === false) {
+        let data = { pageInfo: JSON.stringify({ ...this.pageInfo, display: false }) }
+        this.completed(data)
+      }
+    },
+    async completed(paramInfo) {
       this.display = false
       let latitudeDetailIds = []
       this.CascaderData.forEach(d => {
@@ -277,7 +302,12 @@ export default {
         }
       }
       console.log('api.tp.SaveItem(params)', params)
-
+      if (paramInfo) {
+        params = {
+          ...params,
+          ...paramInfo
+        }
+      }
       let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
@@ -351,10 +381,8 @@ export default {
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
-        
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title

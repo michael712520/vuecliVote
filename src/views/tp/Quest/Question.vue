@@ -11,7 +11,7 @@
             :index="index"
             @complete="complete(item,index,$event)"
             @rowOperate="rowOperate(item,index,$event)"
-            :pageInfo="item.pageInfo"
+            :pageInfo="item.dataInfo&&item.dataInfo.pageInfo&&JSON.parse(item.dataInfo.pageInfo)"
           ></component>
         </div>
       </div>
@@ -135,9 +135,13 @@ export default {
         data = data.map(d => {
           return d
         })
-        debugger
+
         this.$store.commit('question/updateListData', data)
       }
+    },
+    clickcccc(d) {
+      console.log('ddddddd')
+      debugger
     }
   },
   watch: {
