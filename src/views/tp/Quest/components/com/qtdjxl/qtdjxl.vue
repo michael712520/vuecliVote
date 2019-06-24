@@ -196,8 +196,15 @@ export default {
       return this.$store.state.latitudeDetail.ListPicker
     }
   },
-  async mounted() {},
+  async mounted() {
+    setTimeout(this.initcompleted(), 3000)
+  },
   methods: {
+    initcompleted() {
+      if (!this.dataInfo.id) {
+        this.completed()
+      }
+    },
     onContentChange(val) {
       this.editorText = val
     },
@@ -238,7 +245,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'qtpaixu',
+          type: 'qtdjxl',
           latitudeDetailIds: latitudeDetailIds
         }
       }

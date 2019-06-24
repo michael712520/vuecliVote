@@ -91,7 +91,7 @@ const user = {
       router
     }) {
       try {
-        debugger
+
         console.log('state.yData.role11', state.yData.role)
         let SET_TOKEN = Cookies.get('SET_TOKEN')
         let SET_NAME = Cookies.get('SET_NAME')

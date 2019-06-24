@@ -157,7 +157,8 @@ export default {
   props: {
     dataInfo: Object,
     titile: String,
-    index: Number
+    index: Number,
+    pageInfo: Object
   },
   data() {
     return {
@@ -214,8 +215,15 @@ export default {
       return this.$store.state.latitudeDetail.ListPicker
     }
   },
-  async mounted() {},
+  async mounted() {
+    setTimeout(this.initcompleted(), 3000)
+  },
   methods: {
+    initcompleted() {
+      if (!this.dataInfo.id) {
+        this.completed()
+      }
+    },
     onContentChange(val) {
       this.editorText = val
     },

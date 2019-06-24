@@ -195,6 +195,7 @@ import simpleLine from '../comp/simpleLine'
 
 import api from '@/api'
 import VueUeditorWrap from 'vue-ueditor-wrap'
+import { setTimeout } from 'timers'
 export default {
   name: 'Danxuan',
   components: { simpleLine, VueUeditorWrap },
@@ -254,8 +255,15 @@ export default {
       return this.$store.state.latitudeDetail.ListPicker
     }
   },
-  async mounted() {},
+  async mounted() {
+    setTimeout(this.initcompleted(), 3000)
+  },
   methods: {
+    initcompleted() {
+      if (!this.dataInfo.id) {
+        this.completed()
+      }
+    },
     onContentChange(val) {
       this.editorText = val
     },

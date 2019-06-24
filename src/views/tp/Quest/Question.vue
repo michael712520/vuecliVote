@@ -89,7 +89,7 @@ export default {
   mounted() {
     this.init()
     this.$store.dispatch('latitudeDetail/getPicker')
-    setTimeout(this.tickFunction(), 1000 * 60 * 3)
+    setTimeout(this.tickFunction(), 1000 * 60 * 1)
   },
   computed: {
     ListComponent: function() {
@@ -101,6 +101,7 @@ export default {
   },
   methods: {
     tickFunction() {
+      this.$store.dispatch('question/ListSaveItem')
       this.$message.success('请点击编辑项的的完成编辑已方便自动保存全部数据', 4)
     },
     complete(item, index, $event) {
