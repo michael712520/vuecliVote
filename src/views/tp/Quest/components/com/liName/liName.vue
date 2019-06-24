@@ -168,11 +168,11 @@ export default {
     return {
       labelCol: {
         xs: { span: 24 },
-        sm: { span: 7 }
+        sm: { span: 2 }
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 13 }
+        sm: { span: 6 }
       },
       aRadioOnValue: null,
       msg: '标题',

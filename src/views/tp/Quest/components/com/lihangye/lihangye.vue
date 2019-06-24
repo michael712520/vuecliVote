@@ -6,7 +6,7 @@
           {{(index+1)}}、
           <div v-html="msg"></div>
         </div>
-        <div>
+        <div class="row">
           行业：
           <a-select style="width: 240px">
             <a-select-option
@@ -481,7 +481,6 @@ export default {
   padding: 20px;
   height: 80px;
   width: auto;
-  background-color: #f3f3f3;
   box-shadow: 1 #888888;
 }
 .titile {
