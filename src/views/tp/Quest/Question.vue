@@ -88,7 +88,7 @@ export default {
   },
   mounted() {
     this.init()
-    this.$store.dispatch('latitudeDetail/getPicker')
+    this.$store.dispatch('latitudeDetail/getPicker', this.$route.query.id)
     setTimeout(this.tickFunction(), 1000 * 60 * 1)
   },
   computed: {

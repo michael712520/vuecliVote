@@ -200,7 +200,7 @@ export default {
             const loginParams = { ...values }
             delete loginParams.username
             loginParams[!state.loginType ? 'email' : 'username'] = values.username
-            loginParams.password = md5(values.password)
+            loginParams.password = values.password
             let res = await Login(loginParams)
             if (res) {
               this.loginSuccess(res)

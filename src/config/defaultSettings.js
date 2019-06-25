@@ -13,7 +13,7 @@
  *
  */
 export default {
-  baseUrl: 'https://api.iu1314.com',
+  baseUrl: 'http://192.168.70.47:9003',
   primaryColor: '#1890FF', // primary color of ant design
   navTheme: 'dark', // theme for nav menu
   layout: 'sidemenu', // nav menu position: sidemenu or topmenu

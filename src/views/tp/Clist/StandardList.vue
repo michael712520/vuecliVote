@@ -32,7 +32,7 @@
             <a @click="preview(item)">预览</a>
           </div>
           <div slot="actions">
-            <a>纬度设置</a>
+            <a @click="latitude(item)">纬度设置</a>
           </div>
           <div slot="actions">
             <a>发布问卷</a>
@@ -130,6 +130,10 @@ export default {
     bj(item) {
       this.$store.commit('question/item', item)
       this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
+    },
+    latitude(item) {
+      this.$store.commit('question/item', item)
+      this.$router.push({ path: '/dashboard/latitudeDetail', query: { id: item.id } })
     },
     async del(item) {
       let data = await api.tp.Delete(item.id)

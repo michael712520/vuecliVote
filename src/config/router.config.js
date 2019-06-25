@@ -66,6 +66,11 @@ export const constantRouterMap = [
         path: '/dashboard/latitudeDetail',
         name: 'latitudeDetail',
         component: () => import('@/views/tp/LatitudeDetail/LatitudeDetail')
+      },
+      {
+        path: '/dashboard/LatitudeDetailTwo',
+        name: 'LatitudeDetailTwo',
+        component: () => import('@/views/tp/LatitudeDetail/LatitudeDetailTwo')
       }
     ]
   },

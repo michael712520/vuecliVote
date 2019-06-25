@@ -29,7 +29,7 @@
 <script>
 import api from '@/api'
 export default {
-  name: 'TaskForm',
+  name: 'TaskFormTwo',
   data() {
     return {
       labelCol: {
@@ -93,19 +93,13 @@ export default {
         if (!errors) {
           let model = {
             id: this.record && this.record.id ? this.record.id : null,
-            // parentId: this.$route.query.id,
-            // score: values.score,
-            // coefficient: values.coefficient,
-            // baseScore: values.baseScore,
             name: values.name,
             mbDetailId: this.$store.state.question.item.id
-            // sort: values.sort
           }
-          console.log('model', model)
-
+          debugger
           this.visible = false
-          api.latitudeDetail.Add(model).then(d => {
-            this.$store.commit('latitudeDetail/refresh')
+          api.latitudeDetailItem.Add(model).then(d => {
+            this.$store.commit('latitudeDetail/ItemRefresh')
           })
         }
       })

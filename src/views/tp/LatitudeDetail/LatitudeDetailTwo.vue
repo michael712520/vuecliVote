@@ -11,19 +11,22 @@
       </div>-->
 
       <div class="operate">
-        <a-button type="dashed" style="width: 33%" icon="plus" @click="$refs.taskForm.add()">添加一维纬度</a-button>
-        <a-button type="dashed" style="width: 33%" icon="right" @click="linkTo()">查看二维</a-button>
+        <a-button
+          type="dashed"
+          style="width: 33%"
+          icon="plus"
+          @click="$refs.TaskFormTwo.add()"
+        >添加二维纬度</a-button>
+        <a-button type="dashed" style="width: 33%" icon="up" @click="linkTo()">返回一维</a-button>
       </div>
       <a-table :columns="columns" :dataSource="data">
         <div slot="action" slot-scope="text, record">
           <a-dropdown>
             <a-menu slot="overlay">
               <a-menu-item>
-                <a @click="$refs.taskForm.add(record)">编辑</a>
+                <a @click="$refs.TaskFormTwo.add(record)">编辑</a>
               </a-menu-item>
-              <a-menu-item v-show="!computed_id">
-                <a @click>纬度公式设置</a>
-              </a-menu-item>
+
               <a-menu-item>
                 <a @click="Delete(record)">删除</a>
               </a-menu-item>
@@ -36,7 +39,6 @@
         </div>
       </a-table>
 
-      <task-form ref="taskForm"/>
       <TaskFormTwo ref="TaskFormTwo"/>
     </a-card>
   </div>
@@ -44,7 +46,6 @@
 
 <script>
 import HeadInfo from '@/components/tools/HeadInfo'
-import TaskForm from './modules/TaskForm'
 import TaskFormTwo from './modules/TaskFormTwo'
 import api from '@/api'
 const columns = [
@@ -53,11 +54,11 @@ const columns = [
     dataIndex: 'name',
     key: 'name'
   },
-  {
-    title: '分数',
-    dataIndex: 'score',
-    key: 'score'
-  },
+  // {
+  //   title: '分数',
+  //   dataIndex: 'score',
+  //   key: 'score'
+  // },
   // {
   //   title: '系数（百分比）',
   //   dataIndex: 'coefficient',
@@ -77,7 +78,6 @@ const columns = [
 export default {
   components: {
     HeadInfo,
-    TaskForm,
     TaskFormTwo
   },
   data() {
@@ -92,8 +92,8 @@ export default {
     }
   },
   computed: {
-    refresh: function() {
-      return this.$store.state.latitudeDetail.refresh
+    ItemRefresh: function() {
+      return this.$store.state.latitudeDetail.ItemRefresh
     },
     computed_id: function() {
       let id = null
@@ -111,18 +111,18 @@ export default {
   },
   methods: {
     async Delete(record) {
-      let data = await api.latitudeDetail.Delete({ id: record.id })
-      this.$store.commit('latitudeDetail/refresh')
+      let data = await api.latitudeDetailItem.Delete({ id: record.id })
+      this.$store.commit('latitudeDetail/ItemRefresh')
     },
     returnOne() {
-      this.$router.push({ path: '/dashboard/latitudeDetail' })
+      this.$router.push({ path: '/dashboard/LatitudeDetailTwo' })
       this.id = null
-      this.$store.commit('latitudeDetail/refresh')
+      this.$store.commit('latitudeDetail/ItemRefresh')
     },
     addItem(record) {
-      this.$router.push({ path: '/dashboard/latitudeDetail', query: { id: record.id } })
+      this.$router.push({ path: '/dashboard/LatitudeDetailTwo', query: { id: record.id } })
       this.id = record.id
-      this.$store.commit('latitudeDetail/refresh')
+      this.$store.commit('latitudeDetail/ItemRefresh')
     },
     add() {
       this.$router.push({
@@ -142,8 +142,8 @@ export default {
         Start: Start,
         Length: Length
       }
-      let data = await api.latitudeDetail.List(form)
-      console.log('api.latitudeDetail.List(form)_data', data)
+      let data = await api.latitudeDetailItem.List(form)
+      console.log('api.latitudeDetailItem.List(form)_data', data)
       this.data = data.list
       this.total = data.total
     },
@@ -151,17 +151,14 @@ export default {
       this.pageSize = pageSize
       await init((current - 1) * pageSize, pageSize)
     },
-    bj(item) {
-      this.$store.commit('question/item', item)
-      this.$router.push({ path: '/dashboard/latitudeDetail', query: { id: item.id } })
-    },
+
     linkTo() {
       this.$store.commit('question/item', this.$store.state.question.item)
-      this.$router.push({ path: '/dashboard/LatitudeDetailTwo', query: { id: this.$store.state.question.item.id } })
+      this.$router.push({ path: '/dashboard/latitudeDetail', query: { id: this.$store.state.question.item.id } })
     }
   },
   watch: {
-    async refresh(nVal, oVal) {
+    async ItemRefresh(nVal, oVal) {
       await this.init((this.current - 1) * this.pageSize, this.pageSize)
     }
   }

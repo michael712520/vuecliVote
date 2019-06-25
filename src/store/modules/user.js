@@ -1,23 +1,10 @@
 /* eslint-disable */
 import Vue from 'vue'
-import {
-  login,
-  getInfo,
-  logout
-} from '@/api/login'
-import {
-  ACCESS_TOKEN
-} from '@/store/mutation-types'
-import {
-  welcome
-} from '@/utils/util'
-import {
-  userInfo
-} from '../data/userInfo'
-import {
-  asyncRouterMap,
-  constantRouterMap
-} from '@/config/router.config'
+import { login, getInfo, logout } from '@/api/login'
+import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { welcome } from '@/utils/util'
+import { userInfo } from '../data/userInfo'
+import { asyncRouterMap, constantRouterMap } from '@/config/router.config'
 import Cookies from 'js-cookie'
 const user = {
   state: {
@@ -34,10 +21,7 @@ const user = {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_NAME: (state, {
-      name,
-      welcome
-    }) => {
+    SET_NAME: (state, { name, welcome }) => {
       state.name = name
       state.welcome = welcome
     },
@@ -54,44 +38,37 @@ const user = {
 
   actions: {
     // 登录
-    async Login({
-      commit,
-      state
-    }, userInfo) {
+    async Login({ commit, state }, userInfo) {
       let response = await login(userInfo)
-      if (response === "") {
+      if (response === '') {
         return false
       }
-
-      Vue.ls.set(ACCESS_TOKEN, response.id, 7 * 24 * 60 * 60 * 1000)
+      let { model, token } = response
+      Cookies.set('access_token', token.access_token)
+      Vue.ls.set(ACCESS_TOKEN, token.access_token, 7 * 24 * 60 * 60 * 1000)
       console.log('state.yData.role', state.yData.role)
 
-      commit('SET_TOKEN', response.id)
+      commit('SET_TOKEN', token.access_token)
       commit('SET_NAME', {
-        name: response.username,
+        name: model.username,
         welcome: welcome()
       })
       commit('SET_ROLES', state.yData.role)
-      commit('SET_INFO', response)
-      Cookies.set('SET_TOKEN', response.id)
+      commit('SET_INFO', model)
+      Cookies.set('SET_TOKEN', token.access_token)
       Cookies.set('SET_NAME', {
-        name: response.username,
+        name: model.username,
         welcome: welcome()
       })
       Cookies.set('SET_ROLES', asyncRouterMap)
-      Cookies.set('SET_INFO', response)
+      Cookies.set('SET_INFO', model)
+      Cookies.set('access_token', token.access_token)
       return true
     },
 
     // 获取用户信息
-    GetInfo({
-      commit,
-      state
-    }, {
-      router
-    }) {
+    GetInfo({ commit, state }, { router }) {
       try {
-
         console.log('state.yData.role11', state.yData.role)
         let SET_TOKEN = Cookies.get('SET_TOKEN')
         let SET_NAME = Cookies.get('SET_NAME')
@@ -103,19 +80,12 @@ const user = {
           commit('SET_ROLES', asyncRouterMap)
           commit('SET_INFO', JSON.parse(SET_INFO))
         } else {
-
         }
-      } catch (error) {
-
-      }
-
+      } catch (error) {}
     },
 
     // 登出
-    Logout({
-      commit,
-      state
-    }) {
+    Logout({ commit, state }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
         commit('SET_ROLES', [])
