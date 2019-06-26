@@ -5,10 +5,10 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.svg" class="logo" alt="logo">
-            <span class="title">XXXXX</span>
+            <span class="title">用户登录</span>
           </a>
         </div>
-        <div class="desc">XXXXXXXXXXXXXXXXXX描述</div>
+        <!-- <div class="desc">XXXXXXXXXXXXXXXXXX描述</div> -->
       </div>
 
       <route-view></route-view>

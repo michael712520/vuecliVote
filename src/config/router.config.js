@@ -75,6 +75,11 @@ export const constantRouterMap = [
     ]
   },
   {
+    path: 'ExternalLinks/wj',
+    name: 'ExternalLinks_wj',
+    BlankLayout
+  },
+  {
     path: '/dashboard/Question',
     name: 'question',
     component: BasicLayout,
