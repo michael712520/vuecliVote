@@ -13,7 +13,7 @@ NProgress.configure({
   showSpinner: false
 }) // NProgress Configuration
 
-const whiteList = ['login', 'register', 'registerResult', 'ExternalLinks'] // no redirect whitelist
+const whiteList = ['login', 'register', 'registerResult', 'ExternalLinks_wj'] // no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar
@@ -36,6 +36,7 @@ router.beforeEach((to, from, next) => {
           // NProgress.done()
         }
       } else {
+        debugger
         if (whiteList.includes(to.name)) {
           // 在免登录白名单，直接进入
           next()

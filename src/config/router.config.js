@@ -75,9 +75,9 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: 'ExternalLinks/wj',
+    path: '/ExternalLinks/wj',
     name: 'ExternalLinks_wj',
-    BlankLayout
+    component: () => import(/* webpackChunkName: "fail" */ '@/views/ExternalLinks/wj')
   },
   {
     path: '/dashboard/Question',
