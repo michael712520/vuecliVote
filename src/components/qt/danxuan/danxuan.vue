@@ -31,7 +31,7 @@ export default {
     divclick(index) {}
   },
   watch: {
-    dataSet: {
+    dataInfo: {
       handler(nVal, oVal) {},
       immediate: true,
       deep: true
