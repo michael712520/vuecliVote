@@ -5,7 +5,6 @@
         {{(index+1)}}、
         <div v-html="titile"></div>
       </div>
-
       <a-radio-group @change="onChange" v-model="value">
         <a-radio
           v-for="(item ,index) in datas"

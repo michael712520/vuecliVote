@@ -8,6 +8,7 @@ import permission from './modules/permission'
 import latitudeDetail from './modules/latitudeDetail'
 import preview from './modules/preview'
 import getters from './getters'
+import ExternalLinks from './modules/ExternalLinks'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ export default new Vuex.Store({
     permission,
     question,
     latitudeDetail,
-    preview
+    preview,
+    ExternalLinks
   },
   state: {},
   mutations: {},

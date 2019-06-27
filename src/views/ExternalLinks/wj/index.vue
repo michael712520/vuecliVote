@@ -22,11 +22,20 @@ export default {
   props: {},
   components: { layHeader },
   data() {
-    return { data: null }
+    return {
+      data: null,
+      page: {
+        start: 0,
+        length: 0
+      }
+    }
   },
   computed: {
     ListComponent: function() {
       return this.$store.state.question.listData
+    },
+    refresh: function() {
+      return this.$store.state.question.refresh
     }
   },
   async mounted() {
@@ -46,11 +55,17 @@ export default {
           return d
         })
 
-        this.$store.commit('question/updateListData', data)
+        this.$store.commit('ExternalLinks/updateListData', data)
+      } else {
+        this.$store.commit('ExternalLinks/updateListData', [])
       }
     }
   },
-  watch: {}
+  watch: {
+    refresh(nVal, oVal) {
+      this.init()
+    }
+  }
 }
 </script>
 
