@@ -6,7 +6,14 @@
         <div class="ztc">
           <div>
             <h1 v-if="data" class="h1cclass">{{this.data.title}}</h1>
-            <div v-for="(item,index) in ListComponent" :key="index">{{JSON.stringify(item.title)}}</div>
+            <div v-for="(item,index) in ListComponent" :key="index">
+              <component
+                :is="item.comp"
+                :dataInfo="item.dataInfo"
+                :index="index"
+                @complete="complete(item,index,$event)"
+              ></component>
+            </div>
           </div>
         </div>
         <div class="dfoot">技术提供</div>
@@ -17,10 +24,13 @@
 
 <script>
 import layHeader from './components/layHeader'
+import danxuan from '@/components/qt/danxuan/danxuan'
+import duoxuan from '@/components/qt/duoxuan/duoxuan'
+
 import api from '@/api'
 export default {
   props: {},
-  components: { layHeader },
+  components: { layHeader, danxuan, duoxuan },
   data() {
     return {
       data: null,
@@ -32,10 +42,10 @@ export default {
   },
   computed: {
     ListComponent: function() {
-      return this.$store.state.question.listData
+      return this.$store.state.ExternalLinks.listData
     },
     refresh: function() {
-      return this.$store.state.question.refresh
+      return this.$store.state.ExternalLinks.refresh
     }
   },
   async mounted() {
@@ -59,7 +69,8 @@ export default {
       } else {
         this.$store.commit('ExternalLinks/updateListData', [])
       }
-    }
+    },
+    complete(item, index, $event) {}
   },
   watch: {
     refresh(nVal, oVal) {

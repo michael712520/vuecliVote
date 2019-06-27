@@ -16,17 +16,15 @@
             >{{item.score}}</div>
           </th>
         </tr>
-        <tr v-for="(ditem,dindex) in zbltest.left" :key="dindex">
+        <tr v-for="(ditem,dindex) in jzjzbl.left" :key="dindex">
           <th>
-            <div style="margin-ruight:10px">{{zbltest.left[dindex]}}</div>
+            <div style="margin-ruight:10px">{{jzjzbl.left[dindex]}}</div>
           </th>
           <td>
             <component :is="dataltb.name" :dataSet="dataSet"></component>
           </td>
           <th>
-            <div
-              style="margin-ruight:10px"
-            >{{zbltest.right&&zbltest.right[i]&&zbltest.right[dindex]}}</div>
+            <div style="margin-ruight:10px">{{jzjzbl.right&&jzjzbl.right[i]&&jzjzbl.right[dindex]}}</div>
           </th>
         </tr>
       </table>
@@ -294,7 +292,7 @@ export default {
       },
       leftTest: '功能\n外观',
       rightTest: '',
-      zbltest: {
+      jzjzbl: {
         left: ['功能', '外观'],
         rigt: []
       },
@@ -417,7 +415,7 @@ export default {
         ...this.dataInfo,
         ...{
           title: this.msg,
-          bcontemt: JSON.stringify(this.dataSet),
+          bcontemt: JSON.stringify({ dataSet: this.dataSet, jzjzbl: this.jzjzbl }),
           detailId: this.$store.state.question.item.id,
           order: this.index,
           type: 'JzLbt',
@@ -514,17 +512,17 @@ export default {
       while (this.rightTest.indexOf('\n\n') >= 0) {
         this.rightTest = this.rightTest.replace('\n\n', '\n')
       }
-      this.zbltest.left = this.leftTest.split('\n').map(d => {
+      this.jzjzbl.left = this.leftTest.split('\n').map(d => {
         if (d.length >= 1) {
           return d
         }
       })
-      this.zbltest.rigt = this.rightTest.split('\n').map(d => {
+      this.jzjzbl.rigt = this.rightTest.split('\n').map(d => {
         if (d.length >= 1) {
           return d
         }
       })
-      console.log(' this.zbltest', this.zbltest)
+      console.log(' this.jzjzbl', this.jzjzbl)
     }
   },
   watch: {
@@ -532,7 +530,12 @@ export default {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            this.dataSet = JSON.parse(nVal.bcontemt)
+            let data = JSON.parse(nVal.bcontemt)
+            if (data) {
+              this.dataSet = data.dataSet
+              this.jzjzbl = data.jzjzbl
+            }
+            // this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display

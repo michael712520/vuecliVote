@@ -31,7 +31,15 @@ export default {
   },
   watch: {
     dataInfo: {
-      handler(nVal, oVal) {},
+      handler(nVal, oVal) {
+        if (nVal && Object.keys(nVal).length != 0) {
+          if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
+            this.dataSet = JSON.parse(nVal.bcontemt)
+          }
+          this.msg = nVal.title
+          this.bjdisplay = nVal.display
+        }
+      },
       immediate: true,
       deep: true
     }

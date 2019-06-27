@@ -343,7 +343,7 @@ export default {
         ...this.dataInfo,
         ...{
           title: this.msg,
-          bcontemt: JSON.stringify(this.dataSet),
+          bcontemt: JSON.stringify({ dataSet: this.dataSet, jzjzbl: this.jzjzbl }),
           detailId: this.$store.state.question.item.id,
           order: this.index,
           type: 'JzLbt',
@@ -439,7 +439,11 @@ export default {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            this.dataSet = JSON.parse(nVal.bcontemt)
+            let data = JSON.parse(nVal.bcontemt)
+            if (data) {
+              this.dataSet = data.dataSet
+              this.jzjzbl = data.jzjzbl
+            }
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display

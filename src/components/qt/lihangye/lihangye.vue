@@ -4,12 +4,16 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-radio-group @>
-      <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
-        <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-        <br>
-      </div>
-    </a-radio-group>
+    <div class="row">
+      行业：
+      <a-select style="width: 240px">
+        <a-select-option
+          v-for="(item ,index) in dataSet"
+          :key="index"
+          :value="item.value"
+        >{{item.inputVal}}</a-select-option>
+      </a-select>
+    </div>
   </a-card>
 </template>
 <script>
@@ -23,7 +27,18 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return {
+      msg: '标题',
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 2 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 6 }
+      },
+      dataSet: []
+    }
   },
   computed: {},
   mounted() {},

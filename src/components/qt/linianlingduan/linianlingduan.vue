@@ -4,12 +4,13 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-radio-group @>
-      <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
-        <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-        <br>
-      </div>
-    </a-radio-group>
+    <div>
+      <a-radio-group>
+        <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
+          <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
+        </div>
+      </a-radio-group>
+    </div>
   </a-card>
 </template>
 <script>

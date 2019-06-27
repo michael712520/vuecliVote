@@ -4,12 +4,10 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-radio-group @>
-      <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
-        <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-        <br>
-      </div>
-    </a-radio-group>
+    <div>
+      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}&nbsp;&nbsp;&nbsp;&nbsp;
+      <a-date-picker/>
+    </div>
   </a-card>
 </template>
 <script>

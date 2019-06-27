@@ -8,29 +8,14 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <table v-if="dataltb&&dataltb.data&&dataSet&&dataSet.length>0">
-      <tr>
-        <th></th>
-        <th style="display:flex;flex-direction:row">
-          <div
-            style="margin-left:10px;width:22px;height22px;text-align:center"
-            v-for="(item,index) in dataSet"
-            :key="index"
-          >{{item.score}}</div>
-        </th>
-      </tr>
-      <tr v-for="(ditem,dindex) in zbltest.left" :key="dindex">
-        <th>
-          <div style="margin-ruight:10px">{{zbltest.left[dindex]}}</div>
-        </th>
-        <td>
-          <component :is="dataltb.name" :dataSet="dataSet"></component>
-        </td>
-        <th>
-          <div style="margin-ruight:10px">{{zbltest.right&&zbltest.right[i]&&zbltest.right[dindex]}}</div>
-        </th>
-      </tr>
-    </table>
+    <div
+      v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
+      style="padding:20px;display:flex;flex-direction:row"
+    >
+      <div>{{dataSet&&dataSet[0].inputVal}}</div>
+      <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
+      <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
+    </div>
   </a-card>
 </template>
 <script>
@@ -58,7 +43,7 @@ export default {
     divclick(index) {}
   },
   watch: {
-    handler(nVal, oVal) {
+     handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
             let data = JSON.parse(nVal.bcontemt)
