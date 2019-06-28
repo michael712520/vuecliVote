@@ -26,6 +26,7 @@
 <script>
 import layHeader from './components/layHeader'
 import danxuan from '@/components/qt/danxuan/danxuan'
+import duoxuan from '@/components/qt/duoxuan/duoxuan'
 import Jzjzbl from '@/components/qt/jzjzbl/jzjzbl'
 import JzLbt from '@/components/qt/JzLbt/JzLbt'
 import JzNPSlb from '@/components/qt/JzNPSlb/JzNPSlb'
@@ -107,7 +108,7 @@ export default {
       this.content = data.content
       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
         let list = data.qtDetailItem.map(d => {
-          if (d.type == 'liBaseInfo') {
+          if (d.type == 'liriqi') {
             console.log('d.type', d)
             return d
           }

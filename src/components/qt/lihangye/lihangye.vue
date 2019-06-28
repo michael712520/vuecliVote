@@ -1,10 +1,10 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex;margin-bottom:10px">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div class="row">
+    <div class="row" style="display:flex">
       行业：
       <a-select style="width: 240px">
         <a-select-option

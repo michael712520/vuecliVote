@@ -1,6 +1,6 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex;margin-bottom:10px">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
@@ -44,9 +44,10 @@ export default {
       },
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 6 }
+        sm: { span: 8 }
       },
-      dataSet: []
+      dataSet: [],
+      form: this.$form.createForm(this)
     }
   },
   computed: {},

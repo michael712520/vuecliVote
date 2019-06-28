@@ -1,6 +1,6 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex;margin-bottom:10px">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
@@ -24,7 +24,18 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 2 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },
+      msg: '标题',
+      form: this.$form.createForm(this)
+    }
   },
   computed: {},
   mounted() {},

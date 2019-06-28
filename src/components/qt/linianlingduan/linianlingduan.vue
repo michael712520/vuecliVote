@@ -1,11 +1,11 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex;margin-bottom:10px">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      <a-radio-group>
+    <div style="display:flex">
+      <a-radio-group style="display:flex">
         <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
           <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
         </div>

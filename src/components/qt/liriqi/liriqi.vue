@@ -1,10 +1,10 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex;margin-bottom:10px">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
+    <div style="display:flex">
       {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}&nbsp;&nbsp;&nbsp;&nbsp;
       <a-date-picker/>
     </div>
