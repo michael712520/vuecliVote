@@ -12,6 +12,7 @@
 <script>
 import api from '@/api'
 import { setTimeout } from 'timers'
+import imgUpload from '../com/imgUpload'
 
 export default {
   props: {
@@ -19,8 +20,9 @@ export default {
     index: Number,
     pageInfo: Object
   },
+    components: {imgUpload},
   data() {
-    return { msg: '标题' }
+    return { msg: '标题',imgs: [], }
   },
   computed: {},
   mounted() {},

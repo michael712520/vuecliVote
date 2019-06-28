@@ -4,7 +4,7 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div class="row">
+    <div class="row" style="display:flex;margin-bottom:10px">
       <a-cascader :options="dataSet" @change="onChange" placeholder="下拉选择" :changeOnSelect="true"/>
     </div>
   </a-card>
@@ -25,7 +25,8 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    onChange(e){}
   },
   watch: {
     dataInfo: {

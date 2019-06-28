@@ -5,7 +5,7 @@
       <div v-html="msg"></div>
     </div>
     <div>
-      <a-radio-group>
+      <a-radio-group style="display:flex;margin-bottom:10px">
         <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
           <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
         </div>

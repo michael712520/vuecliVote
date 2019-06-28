@@ -6,9 +6,7 @@
     </div>
     <a-form :form="form">
       <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-input
-          v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
-        />
+        <a-input v-decorator="['desc', {rules: [{required: true, pattern: /(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$/, message: '请填写正确的手机号码！'}]}]"/>
       </a-form-item>
     </a-form>
   </a-card>
@@ -24,7 +22,18 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 2 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },
+      msg: '标题',
+      form: this.$form.createForm(this)
+    }
   },
   computed: {},
   mounted() {},

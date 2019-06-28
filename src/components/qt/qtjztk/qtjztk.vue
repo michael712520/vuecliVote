@@ -24,7 +24,14 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return { msg: '标题',  labelCol: {
+        xs: { span: 24 },
+        sm: { span: 2 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 8 }
+      },   form: this.$form.createForm(this)}
   },
   computed: {},
   mounted() {},

@@ -4,7 +4,7 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
+    <div style="display:flex;margin-bottom:10px">
       职业：
       <a-select style="width: 240px">
         <a-select-option

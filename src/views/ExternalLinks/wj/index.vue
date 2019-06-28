@@ -108,7 +108,7 @@ export default {
       this.content = data.content
       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
         let list = data.qtDetailItem.map(d => {
-          if (d.type == 'liriqi') {
+          if (d.type == 'qttkt') {
             console.log('d.type', d)
             return d
           }

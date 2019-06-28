@@ -4,8 +4,8 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
+    <div style="display:flex">
+      <div style="display:flex;margin-right:10px">{{dataSet&&dataSet[0]&&dataSet[0].inputVal}}</div>
       <a-date-picker/>
     </div>
   </a-card>
