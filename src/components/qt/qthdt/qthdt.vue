@@ -4,9 +4,15 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
+    <div class="row">
+      <div
+        v-if="dataSet&&dataSet.length>0"
+        style="padding:20px;display:flex;justify-content: space-between"
+      >
+        <div>{{dataSet&&dataSet[0].inputVal}}</div>
+        <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
+      </div>
+      <a-slider :marks="marks" id="test" :defaultValue="30"/>
     </div>
   </a-card>
 </template>

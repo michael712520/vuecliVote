@@ -5,7 +5,8 @@
       <div class="blockquote">
         <div class="ztc">
           <div>
-            <h1 v-if="data" class="h1cclass">{{this.data.title}}</h1>
+            <h1 v-if="this.title" class="h1cclass">{{this.title}}</h1>
+            <div class="row" v-html="content">{{content}}</div>
             <div v-for="(item,index) in ListComponent" :key="index">
               <component
                 :is="item.comp"
@@ -33,7 +34,8 @@ export default {
   components: { layHeader, danxuan, duoxuan },
   data() {
     return {
-      data: null,
+      title: null,
+      content: null,
       page: {
         start: 0,
         length: 0
@@ -48,24 +50,24 @@ export default {
       return this.$store.state.ExternalLinks.refresh
     }
   },
-  async mounted() {
-    var id = this.$route.query.id
-    this.data = await api.tp.Get(id)
-    await this.init()
+  mounted() {
+    this.init().then()
   },
   methods: {
     async init() {
       let params = {
-        detailId: this.$route.query.id
+        id: this.$route.query.qtDetailId
       }
-      let data = await api.tp.GetListItem(params)
-
-      if (data && data.length > 0) {
-        data = data.map(d => {
+       
+      let data = await api.QtDetail.Get(params)
+      this.title = data.title
+      this.content=data.content
+       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
+        let list = data.qtDetailItem.map(d => {
           return d
         })
 
-        this.$store.commit('ExternalLinks/updateListData', data)
+        this.$store.commit('ExternalLinks/updateListData', list)
       } else {
         this.$store.commit('ExternalLinks/updateListData', [])
       }

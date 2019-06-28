@@ -86,8 +86,8 @@ export default {
       selectVal: 'danxuan'
     }
   },
-  mounted() {
-    this.init()
+  async mounted() {
+    await this.init()
     this.$store.dispatch('latitudeDetail/getPicker', this.$route.query.id)
     setTimeout(this.tickFunction(), 1000 * 60 * 1)
   },

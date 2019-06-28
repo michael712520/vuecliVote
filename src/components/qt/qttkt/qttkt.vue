@@ -4,9 +4,14 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
+    <div class="row">
+      <a-form :form="form">
+        <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input
+            v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+          />
+        </a-form-item>
+      </a-form>
     </div>
   </a-card>
 </template>

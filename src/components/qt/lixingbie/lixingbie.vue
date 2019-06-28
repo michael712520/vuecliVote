@@ -5,8 +5,11 @@
       <div v-html="msg"></div>
     </div>
     <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
+      <a-radio-group>
+        <div class="aradio" v-for="(item ,index) in dataSet" :key="index">
+          <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
+        </div>
+      </a-radio-group>
     </div>
   </a-card>
 </template>

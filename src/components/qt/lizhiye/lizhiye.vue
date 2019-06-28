@@ -5,8 +5,14 @@
       <div v-html="msg"></div>
     </div>
     <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
+      职业：
+      <a-select style="width: 240px">
+        <a-select-option
+          v-for="(item ,index) in dataSet"
+          :key="index"
+          :value="item.value"
+        >{{item.inputVal}}</a-select-option>
+      </a-select>
     </div>
   </a-card>
 </template>

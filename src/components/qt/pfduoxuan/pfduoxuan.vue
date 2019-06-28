@@ -4,10 +4,11 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
-    </div>
+    <a-checkbox-group>
+      <a-row v-for="(item ,index) in dataSet " :key="index">
+        <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
+      </a-row>
+    </a-checkbox-group>
   </a-card>
 </template>
 <script>

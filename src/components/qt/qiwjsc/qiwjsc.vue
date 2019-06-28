@@ -4,9 +4,8 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
+    <div class="row">
+      <imgUpload ref="imgUpload" v-model="imgs"></imgUpload>
     </div>
   </a-card>
 </template>

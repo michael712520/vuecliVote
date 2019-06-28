@@ -36,7 +36,6 @@ router.beforeEach((to, from, next) => {
           // NProgress.done()
         }
       } else {
-        debugger
         if (whiteList.includes(to.name)) {
           // 在免登录白名单，直接进入
           next()

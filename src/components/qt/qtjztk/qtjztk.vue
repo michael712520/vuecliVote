@@ -4,9 +4,12 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div>
-      {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}
-      <a-date-picker/>
+    <div class="row">
+      <a-form :form="form" v-for="(item,index) in dataSet" :key="index">
+        <a-form-item :label="item.inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
+          <a-input v-decorator="[item.value, {rules:item.rules }]"/>
+        </a-form-item>
+      </a-form>
     </div>
   </a-card>
 </template>
