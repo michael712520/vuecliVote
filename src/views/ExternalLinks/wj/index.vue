@@ -58,13 +58,16 @@ export default {
       let params = {
         id: this.$route.query.qtDetailId
       }
-       
+
       let data = await api.QtDetail.Get(params)
       this.title = data.title
-      this.content=data.content
-       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
+      this.content = data.content
+      if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
         let list = data.qtDetailItem.map(d => {
-          return d
+          if (d.type == 'danxuan') {
+            debugger
+            return d
+          }
         })
 
         this.$store.commit('ExternalLinks/updateListData', list)

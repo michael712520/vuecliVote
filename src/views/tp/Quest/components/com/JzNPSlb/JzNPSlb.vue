@@ -346,7 +346,7 @@ export default {
           bcontemt: JSON.stringify({ dataSet: this.dataSet, jzjzbl: this.jzjzbl }),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzLbt',
+          type: 'JzNPSlb',
           latitudeDetailIds: latitudeDetailIds
         }
       }

@@ -363,7 +363,7 @@ export default {
           bcontemt: JSON.stringify(this.dataSet),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'danxuan',
+          type: 'lihangye',
           latitudeDetailIds: latitudeDetailIds
         }
       }
