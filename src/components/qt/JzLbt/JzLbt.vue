@@ -34,7 +34,6 @@
   </a-card>
 </template>
 <script>
-import api from '@/api'
 import { setTimeout } from 'timers'
 import yx from '@/components/qt/com/lbt/yx'
 import wjx from '@/components/qt/com/lbt/wjx'
@@ -58,7 +57,8 @@ export default {
     divclick(index) {}
   },
   watch: {
-    handler(nVal, oVal) {
+    dataInfo: {
+      handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
             let data = JSON.parse(nVal.bcontemt)

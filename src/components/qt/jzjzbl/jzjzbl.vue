@@ -41,7 +41,6 @@ import wjx from '@/components/qt/com/lbt/wjx'
 import ding from '@/components/qt/com/lbt/ding'
 import sz from '@/components/qt/com/lbt/sz'
 import fx from '@/components/qt/com/lbt/fx'
-import api from '@/api'
 export default {
   props: {
     dataInfo: Object,
@@ -58,7 +57,8 @@ export default {
     divclick(index) {}
   },
   watch: {
-    handler(nVal, oVal) {
+    dataInfo: {
+      handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
             let data = JSON.parse(nVal.bcontemt)

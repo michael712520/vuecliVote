@@ -415,10 +415,10 @@ export default {
         ...this.dataInfo,
         ...{
           title: this.msg,
-          bcontemt: JSON.stringify({ dataSet: this.dataSet, jzjzbl: this.jzjzbl }),
+          bcontemt: JSON.stringify({ dataSet: this.dataSet, Jzjzbl: this.jzjzbl }),
           detailId: this.$store.state.question.item.id,
           order: this.index,
-          type: 'JzLbt',
+          type: 'Jzjzbl',
           latitudeDetailIds: latitudeDetailIds
         }
       }

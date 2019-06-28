@@ -26,12 +26,55 @@
 <script>
 import layHeader from './components/layHeader'
 import danxuan from '@/components/qt/danxuan/danxuan'
-import duoxuan from '@/components/qt/duoxuan/duoxuan'
+import Jzjzbl from '@/components/qt/jzjzbl/jzjzbl'
+import JzLbt from '@/components/qt/JzLbt/JzLbt'
+import JzNPSlb from '@/components/qt/JzNPSlb/JzNPSlb'
+import liBaseInfo from '@/components/qt/liBaseInfo/liBaseInfo'
+import lihangye from '@/components/qt/lihangye/lihangye'
+import liName from '@/components/qt/liName/liName'
+import linianlingduan from '@/components/qt/linianlingduan/linianlingduan'
+import liriqi from '@/components/qt/liriqi/liriqi'
+import lishijian from '@/components/qt/lishijian/lishijian'
+import lishouji from '@/components/qt/lishouji/lishouji'
+import lixingbie from '@/components/qt/lixingbie/lixingbie'
+import lizhiye from '@/components/qt/lizhiye/lizhiye'
+import pfdanxuan from '@/components/qt/pfdanxuan/pfdanxuan'
+import pfduoxuan from '@/components/qt/pfduoxuan/pfduoxuan'
+import qiwjsc from '@/components/qt/qiwjsc/qiwjsc'
+import qtdjxl from '@/components/qt/qtdjxl/qtdjxl'
+import qthdt from '@/components/qt/qthdt/qthdt'
+import qtjztk from '@/components/qt/qtjztk/qtjztk'
+import qtpaixu from '@/components/qt/qtpaixu/qtpaixu'
+import qttkt from '@/components/qt/qttkt/qttkt'
 
 import api from '@/api'
 export default {
   props: {},
-  components: { layHeader, danxuan, duoxuan },
+  components: {
+    layHeader,
+    danxuan,
+    duoxuan,
+    Jzjzbl,
+    JzLbt,
+    JzNPSlb,
+    liBaseInfo,
+    lihangye,
+    liName,
+    linianlingduan,
+    liriqi,
+    lishijian,
+    lishouji,
+    lixingbie,
+    lizhiye,
+    pfdanxuan,
+    pfduoxuan,
+    qiwjsc,
+    qtdjxl,
+    qthdt,
+    qtjztk,
+    qtpaixu,
+    qttkt
+  },
   data() {
     return {
       title: null,
@@ -64,8 +107,8 @@ export default {
       this.content = data.content
       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
         let list = data.qtDetailItem.map(d => {
-          if (d.type == 'danxuan') {
-            debugger
+          if (d.type == 'liBaseInfo') {
+            console.log('d.type', d)
             return d
           }
         })

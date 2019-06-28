@@ -1,10 +1,10 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-checkbox-group>
+    <a-checkbox-group style="display:flex">
       <a-row v-for="(item ,index) in dataSet " :key="index">
         <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
       </a-row>

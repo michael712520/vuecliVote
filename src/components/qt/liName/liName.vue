@@ -34,7 +34,6 @@ export default {
   watch: {
     dataInfo: {
       handler(nVal, oVal) {
-        debugger
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
             this.dataSet = JSON.parse(nVal.bcontemt)
