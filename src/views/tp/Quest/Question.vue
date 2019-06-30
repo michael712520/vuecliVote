@@ -39,7 +39,7 @@ import pfdanxuan from './components/com/pfdanxuan/pfdanxuan.vue'
 import pfduoxuan from './components/com/pfduoxuan/pfduoxuan.vue'
 import JzLbt from './components/com/JzLbt/JzLbt.vue'
 import JzNPSlb from './components/com/JzNPSlb/JzNPSlb.vue'
-import jzjzbl from './components/com/jzjzbl/jzjzbl.vue'
+import Jzjzbl from './components/com/Jzjzbl/Jzjzbl.vue'
 import qttkt from './components/com/qttkt/qttkt.vue'
 import qtjztk from './components/com/qtjztk/qtjztk.vue'
 import qiwjsc from './components/com/qiwjsc/qiwjsc.vue'
@@ -71,7 +71,7 @@ export default {
     pfduoxuan,
     JzLbt,
     JzNPSlb,
-    jzjzbl,
+    Jzjzbl,
     qttkt,
     qtjztk,
     qiwjsc,

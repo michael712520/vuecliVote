@@ -3,7 +3,7 @@
     <div class="item">
       <a>
         <i class="icon web"></i>
-        <h5>电脑预览</h5>
+        <h5>预览</h5>
       </a>
     </div>
     <div class="split_line"></div>

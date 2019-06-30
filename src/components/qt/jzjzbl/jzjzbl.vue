@@ -1,10 +1,6 @@
 <template>
   <a-card>
-    <div class="titile">
-      {{(index+1)}}、
-      <div v-html="msg"></div>
-    </div>
-    <div class="titile">
+    <div class="titile" style="display:flex">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
@@ -19,15 +15,15 @@
           >{{item.score}}</div>
         </th>
       </tr>
-      <tr v-for="(ditem,dindex) in zbltest.left" :key="dindex">
+      <tr v-for="(ditem,dindex) in jzjzbl.left" :key="dindex">
         <th>
-          <div style="margin-ruight:10px">{{zbltest.left[dindex]}}</div>
+          <div style="margin-ruight:10px">{{jzjzbl.left[dindex]}}</div>
         </th>
         <td>
           <component :is="dataltb.name" :dataSet="dataSet"></component>
         </td>
         <th>
-          <div style="margin-ruight:10px">{{zbltest.right&&zbltest.right[i]&&zbltest.right[dindex]}}</div>
+          <div style="margin-ruight:10px">{{jzjzbl.right&&jzjzbl.right[i]&&jzjzbl.right[dindex]}}</div>
         </th>
       </tr>
     </table>
@@ -49,7 +45,14 @@ export default {
   },
   components: { yx, wjx, ding, sz, fx },
   data() {
-    return { msg: '标题', dataSet: [] }
+    return {
+      msg: '标题',
+      dataSet: [],
+      dataltb: {
+        name: 'yx',
+        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
+      }
+    }
   },
   computed: {},
   mounted() {},
@@ -60,11 +63,11 @@ export default {
     dataInfo: {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
-          if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
+          if (nVal.bcontemt && JSON.parse(nVal.bcontemt)) {
             let data = JSON.parse(nVal.bcontemt)
             if (data) {
               this.dataSet = data.dataSet
-              this.jzjzbl = data.jzjzbl
+              this.jzjzbl = data.Jzjzbl
             }
             // this.dataSet = JSON.parse(nVal.bcontemt)
           }

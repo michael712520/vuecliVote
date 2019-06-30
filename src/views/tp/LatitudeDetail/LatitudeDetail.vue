@@ -22,7 +22,7 @@
                 <a @click="$refs.taskForm.add(record)">编辑</a>
               </a-menu-item>
               <a-menu-item v-show="!computed_id">
-                <a @click>纬度公式设置</a>
+                <a @click="$refs.LatitudeDetailItem.add(record)">纬度公式设置</a>
               </a-menu-item>
               <a-menu-item>
                 <a @click="Delete(record)">删除</a>
@@ -30,14 +30,16 @@
             </a-menu>
             <a>
               更多
-              <a-icon type="down"/>
+              <a-icon type="down" />
             </a>
           </a-dropdown>
         </div>
       </a-table>
 
-      <task-form ref="taskForm"/>
-      <TaskFormTwo ref="TaskFormTwo"/>
+      <task-form ref="taskForm" />
+      <TaskFormTwo ref="TaskFormTwo" />
+      <TaskFormTwo ref="TaskFormTwo" />
+      <LatitudeDetailItem ref="LatitudeDetailItem"></LatitudeDetailItem>
     </a-card>
   </div>
 </template>
@@ -46,6 +48,7 @@
 import HeadInfo from '@/components/tools/HeadInfo'
 import TaskForm from './modules/TaskForm'
 import TaskFormTwo from './modules/TaskFormTwo'
+import LatitudeDetailItem from './modules/LatitudeDetailItem'
 import api from '@/api'
 const columns = [
   {
@@ -78,7 +81,8 @@ export default {
   components: {
     HeadInfo,
     TaskForm,
-    TaskFormTwo
+    TaskFormTwo,
+    LatitudeDetailItem
   },
   data() {
     return {
@@ -110,6 +114,7 @@ export default {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
+    clickLatitude() {},
     async Delete(record) {
       let data = await api.latitudeDetail.Delete({ id: record.id })
       this.$store.commit('latitudeDetail/refresh')

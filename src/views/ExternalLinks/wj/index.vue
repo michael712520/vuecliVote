@@ -27,7 +27,7 @@
 import layHeader from './components/layHeader'
 import danxuan from '@/components/qt/danxuan/danxuan'
 import duoxuan from '@/components/qt/duoxuan/duoxuan'
-import Jzjzbl from '@/components/qt/jzjzbl/jzjzbl'
+import Jzjzbl from '@/components/qt/Jzjzbl/Jzjzbl'
 import JzLbt from '@/components/qt/JzLbt/JzLbt'
 import JzNPSlb from '@/components/qt/JzNPSlb/JzNPSlb'
 import liBaseInfo from '@/components/qt/liBaseInfo/liBaseInfo'
@@ -47,7 +47,7 @@ import qthdt from '@/components/qt/qthdt/qthdt'
 import qtjztk from '@/components/qt/qtjztk/qtjztk'
 import qtpaixu from '@/components/qt/qtpaixu/qtpaixu'
 import qttkt from '@/components/qt/qttkt/qttkt'
-
+import pageduanluo from '@/components/qt/pageduanluo/pageduanluo'
 import api from '@/api'
 export default {
   props: {},
@@ -74,7 +74,8 @@ export default {
     qthdt,
     qtjztk,
     qtpaixu,
-    qttkt
+    qttkt,
+    pageduanluo
   },
   data() {
     return {
@@ -108,10 +109,11 @@ export default {
       this.content = data.content
       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
         let list = data.qtDetailItem.map(d => {
-          if (d.type == 'qttkt') {
-            console.log('d.type', d)
-            return d
-          }
+          // if (d.type == 'JzNPSlb') {
+          //   console.log('d.type', d)
+          //   return d
+          // }
+          return d
         })
 
         this.$store.commit('ExternalLinks/updateListData', list)

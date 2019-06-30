@@ -1,13 +1,10 @@
 <template>
   <a-card>
-    <div class="titile">
+    <div class="titile" style="display:flex">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <div class="titile">
-      {{(index+1)}}、
-      <div v-html="msg"></div>
-    </div>
+
     <div
       v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
       style="padding:20px;display:flex;flex-direction:row"
@@ -34,7 +31,14 @@ export default {
   },
   components: { yx, wjx, ding, sz, fx },
   data() {
-    return { msg: '标题', dataSet: [] }
+    return {
+      msg: '标题',
+      dataSet: [],
+      dataltb: {
+        name: 'yx',
+        data: ['yx', 'wjx', 'ding', 'sz', 'fx']
+      }
+    }
   },
   computed: {},
   mounted() {},
@@ -45,7 +49,7 @@ export default {
     dataInfo: {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
-          if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
+          if (nVal.bcontemt && JSON.parse(nVal.bcontemt)) {
             let data = JSON.parse(nVal.bcontemt)
             if (data) {
               this.dataSet = data.dataSet
