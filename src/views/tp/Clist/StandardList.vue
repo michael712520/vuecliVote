@@ -25,7 +25,7 @@
       <a-list size="large">
         <a-list-item :key="index" v-for="(item, index) in data">
           <a-list-item-meta :description="item.content">
-            <a-avatar slot="avatar" size="large" shape="square" :src="item.avatar"/>
+            <a-avatar slot="avatar" size="large" shape="square" :src="item.avatar" />
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
           <div slot="actions">
@@ -52,7 +52,7 @@
               </a-menu>
               <a>
                 更多
-                <a-icon type="down"/>
+                <a-icon type="down" />
               </a>
             </a-dropdown>
           </div>
@@ -72,7 +72,7 @@
         </a-pagination>
       </a-list>
 
-      <task-form ref="taskForm"/>
+      <task-form ref="taskForm" />
     </a-card>
   </div>
 </template>
