@@ -51,12 +51,12 @@
           @click="pageInfoClick(false)"
         >删除分页</a-tag>
         <a-tag v-else color="#51ada8" @click="pageInfoClick(true)">添加分页</a-tag>
-        <a-cascader
+        <!-- <a-cascader
           :options="options"
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        />
+        /> -->
       </div>
     </div>
 
@@ -76,7 +76,7 @@
               </b>
             </span>
             <span class="spanRight" style="padding-right: 20px;">
-              <input type="checkbox" tabindex="-1" style="display: none;" />
+              <input type="checkbox" tabindex="-1" style="display: none;">
               <span style="display: none;">右行标题</span>
             </span>
             <div class="divclear"></div>
@@ -94,7 +94,7 @@
         </div>
         <div class="spanLeft matrixhead" style="width: 172px;">
           <div>
-            <input type="checkbox" tabindex="-1" />
+            <input type="checkbox" tabindex="-1">
             <span>右行标题(可选)</span>
           </div>
           <textarea
@@ -145,7 +145,7 @@
               title="用户在填写问卷时必须回答这道题"
               class="checkbox"
               id="req_2_3944705790"
-            />
+            >
             <label for="req_2_3944705790">必答</label>
             <span style="display: none;">
               &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
@@ -163,7 +163,7 @@
                 type="text"
                 class="choicetxt"
                 style="width: 140px; height: 15px; display: none;"
-              />
+              >
               <span style="margin-left: 30px;"></span>
               <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
             </span>
@@ -261,7 +261,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        />
+        >
       </div>
     </div>
   </div>

@@ -29,12 +29,12 @@
           @click="pageInfoClick(false)"
         >删除分页</a-tag>
         <a-tag v-else color="#51ada8" @click="pageInfoClick(true)">添加分页</a-tag>
-        <a-cascader
+        <!-- <a-cascader
           :options="options"
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        />
+        /> -->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">

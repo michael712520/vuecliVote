@@ -1,7 +1,5 @@
 /* eslint-disable */
-import {
-  axios
-} from '@/utils/request'
+import { axios } from '@/utils/request'
 import defaultSettings from '@/config/defaultSettings'
 import request from './comm/request'
 
@@ -10,19 +8,18 @@ import request from './comm/request'
 let baseUrl = defaultSettings.baseUrl
 export const config = {
   Get: `${baseUrl}/api/QtDetail/Get/:id`,
-  GetStudentAll: `${baseUrl}/api/QtDetail/GetStudentAll/:studentIdCard`
+  GetStudentAll: `${baseUrl}/api/QtDetail/GetStudentAll/:studentIdCard`,
+  UpdateQtDetailItem: `${baseUrl}/api/QtDetail/UpdateQtDetailItem`
 }
 export async function Get(params) {
-  const {
-    success,
-    data
-  } = await request(config.Get, params)
+  const { success, data } = await request(config.Get, params)
   return data
 }
 export async function GetStudentAll(params) {
-  const {
-    success,
-    data
-  } = await request(config.GetStudentAll, params)
+  const { success, data } = await request(config.GetStudentAll, params)
+  return data
+}
+export async function UpdateQtDetailItem(params) {
+  const { success, data } = await request(config.UpdateQtDetailItem, params)
   return data
 }

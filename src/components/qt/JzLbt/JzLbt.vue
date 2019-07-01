@@ -15,17 +15,19 @@
           >{{item.score}}</div>
         </th>
       </tr>
-      <tr v-for="(ditem,dindex) in zbltest.left" :key="dindex">
-        <th>
-          <div style="margin-ruight:10px">{{zbltest.left[dindex]}}</div>
-        </th>
-        <td>
-          <component :is="dataltb.name" :dataSet="dataSet"></component>
-        </td>
-        <th>
-          <div style="margin-ruight:10px">{{zbltest.right&&zbltest.right[i]&&zbltest.right[dindex]}}</div>
-        </th>
-      </tr>
+      <template v-if="jzjzbl">
+        <tr v-for="(ditem,dindex) in jzjzbl.left" :key="dindex">
+          <th>
+            <div style="margin-ruight:10px">{{jzjzbl.left[dindex]}}</div>
+          </th>
+          <td>
+            <component :is="dataltb.name" :dataSet="dataSet"></component>
+          </td>
+          <th>
+            <div style="margin-ruight:10px">{{jzjzbl.right&&jzjzbl.right[i]&&jzjzbl.right[dindex]}}</div>
+          </th>
+        </tr>
+      </template>
     </table>
   </a-card>
 </template>
@@ -37,6 +39,7 @@ import ding from '@/components/qt/com/lbt/ding'
 import sz from '@/components/qt/com/lbt/sz'
 import fx from '@/components/qt/com/lbt/fx'
 import api from '@/api'
+import { debug } from 'util'
 export default {
   props: {
     dataInfo: Object,
