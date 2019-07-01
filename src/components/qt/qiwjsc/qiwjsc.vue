@@ -5,7 +5,15 @@
       <div v-html="msg"></div>
     </div>
     <div class="row">
-      <imgUpload ref="imgUpload" v-model="imgs"></imgUpload>
+      <imgUpload
+        ref="imgUpload"
+        v-model="imgs"
+        @change="handleChange"
+        name="file"
+        :multiple="true"
+        action="https://api.iu1314.com/api/streaming"
+        :headers="headers"
+      ></imgUpload>
     </div>
   </a-card>
 </template>
@@ -20,14 +28,31 @@ export default {
     index: Number,
     pageInfo: Object
   },
-    components: {imgUpload},
+  components: { imgUpload },
   data() {
-    return { msg: '标题',imgs: [], }
+    return {
+      msg: '标题',
+      imgs: [],
+      headers: {
+        authorization: 'authorization-text'
+      }
+    }
   },
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    handleChange(info) {
+      debugger
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList)
+      }
+      if (info.file.status === 'done') {
+        this.$message.success(`${info.file.name} file uploaded successfully`)
+      } else if (info.file.status === 'error') {
+        this.$message.error(`${info.file.name} file upload failed.`)
+      }
+    }
   },
   watch: {
     dataInfo: {
