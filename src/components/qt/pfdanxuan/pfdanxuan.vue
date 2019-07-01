@@ -4,10 +4,10 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-radio-group style="display:flex;margin-bottom:10px">
+    <a-radio-group style="display:flex;margin-bottom:10px" @change="radioChange">
       <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
         <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-        <br>
+        <br />
       </div>
     </a-radio-group>
   </a-card>
@@ -28,7 +28,13 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    radioChange(e) {
+      this.$emit('updateSelectResult', {
+        index: this.index,
+        SelectResult: { value: e.target.value, flag: true }
+      })
+    }
   },
   watch: {
     dataInfo: {

@@ -13,6 +13,7 @@
                 :dataInfo="item.dataInfo"
                 :index="index"
                 @complete="complete(item,index,$event)"
+                @updateSelectResult="updateSelectResult($event)"
               ></component>
             </div>
           </div>
@@ -99,6 +100,10 @@ export default {
     this.init().then()
   },
   methods: {
+    updateSelectResult(data) {
+      this.$store.commit('ExternalLinks/updateSelectResult', data)
+    },
+
     async init() {
       let params = {
         id: this.$route.query.qtDetailId

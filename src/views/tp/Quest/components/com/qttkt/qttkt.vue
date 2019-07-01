@@ -6,7 +6,6 @@
           {{(index+1)}}、
           <div v-html="msg">{{msg}}</div>
         </div>
-
         <a-form :form="form">
           <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
             <a-input
@@ -43,7 +42,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -150,15 +149,15 @@
               id="mma_635532226126"
               class="checkbox"
               :checked="maxMinType"
-            >
+            />
             <label for="mma_635532226126">限制范围&nbsp;</label>
           </span>
           <span style v-if="maxMinType">
             &nbsp;&nbsp;
             <span>最小字数：</span>
-            <input type="text" class="choicetxt" title="不填表示无限制" style="width: 40px;">
+            <input type="text" class="choicetxt" title="不填表示无限制" style="width: 40px;" />
             <span style="margin-left: 10px;">最大字数：</span>
-            <input type="text" class="choicetxt" title="不填表示无限制" style="width: 40px;">
+            <input type="text" class="choicetxt" title="不填表示无限制" style="width: 40px;" />
           </span>
           <span title="要求每个人填写的答案是唯一的">
             &nbsp;&nbsp;
@@ -167,7 +166,7 @@
               tabindex="-1"
               id="only_632129816636"
               class="checkbox"
-            >
+            />
             <label for="only_632129816636">不允许重复&nbsp;</label>
           </span>
           <span style="display: none;">
@@ -177,7 +176,7 @@
               tabindex="-1"
               id="sms_63_6236375306"
               class="checkbox"
-            >
+            />
             <label for="sms_63_6236375306">使用短信验证</label>
             <span style="display: none;">
               &nbsp;&nbsp;此功能需要购买短信：
@@ -196,7 +195,7 @@
               tabindex="-1"
               id="def_63_4863383262"
               class="checkbox"
-            >
+            />
             <label for="def_63_4863383262">默认值</label>
             <textarea
               wrap="soft"
@@ -217,7 +216,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>

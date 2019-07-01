@@ -34,8 +34,38 @@ export default {
         sm: { span: 8 }
       },
       msg: '标题',
-      form: this.$form.createForm(this)
+      form: null,
+      SelectResult: {}
     }
+  },
+  created() {
+    this.form = this.$form.createForm(this, {
+      onFieldsChange: (_, changedFields) => {
+        // debugger
+        // this.$emit('change', changedFields)
+      },
+      mapPropsToFields: () => {
+        debugger
+        return {
+          name: this.$form.createFormField({
+            value: ''
+          })
+        }
+      },
+      onValuesChange: (props, values) => {
+        this.SelectResult.push(values)
+        if (values.hasOwnProperty('name')) {
+          this.SelectResult.name = values.name
+        }
+
+        if (this.SelectResult.hasOwnProperty('name')) {
+          this.$emit('updateSelectResult', {
+            index: this.index,
+            SelectResult: { value: this.SelectResult, flag: true }
+          })
+        }
+      }
+    })
   },
   computed: {},
   mounted() {},
@@ -47,7 +77,6 @@ export default {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
-            debugger
             this.dataSet = JSON.parse(nVal.bcontemt)
           }
           this.msg = nVal.title

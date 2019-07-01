@@ -6,7 +6,7 @@
     </div>
     <div style="display:flex;margin-bottom:10px">
       职业：
-      <a-select style="width: 240px">
+      <a-select style="width: 240px" @change="selectChange">
         <a-select-option
           v-for="(item ,index) in dataSet"
           :key="index"
@@ -32,7 +32,13 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    selectChange(e) {
+      this.$emit('updateSelectResult', {
+        index: this.index,
+        SelectResult: { value: e, flag: true }
+      })
+    }
   },
   watch: {
     dataInfo: {

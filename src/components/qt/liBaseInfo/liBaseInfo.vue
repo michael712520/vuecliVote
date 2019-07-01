@@ -5,7 +5,7 @@
       <div v-html="msg"></div>
     </div>
     <div class="row">
-      <a-form :form="form">
+      <a-form :form="form" @onValuesChange="onValuesChange(props, values)">
         <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
             v-decorator="['xingming', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
@@ -28,6 +28,7 @@
 <script>
 import api from '@/api'
 import { setTimeout } from 'timers'
+import { debug } from 'util'
 
 export default {
   props: {
@@ -47,13 +48,60 @@ export default {
         sm: { span: 8 }
       },
       dataSet: [],
-      form: this.$form.createForm(this)
+      form: null,
+      SelectResult: {}
     }
+  },
+  created() {
+    this.form = this.$form.createForm(this, {
+      onFieldsChange: (_, changedFields) => {
+        // debugger
+        // this.$emit('change', changedFields)
+      },
+      mapPropsToFields: () => {
+        debugger
+        return {
+          xingming: this.$form.createFormField({
+            value: ''
+          }),
+          bumeng: this.$form.createFormField({
+            value: ''
+          }),
+          yuangong: this.$form.createFormField({
+            value: ''
+          })
+        }
+      },
+      onValuesChange: (props, values) => {
+        this.SelectResult.push(values)
+        if (values.hasOwnProperty('xingming')) {
+          this.SelectResult.xingming = values.xingming
+        } else if (values.hasOwnProperty('bumeng')) {
+          this.SelectResult.bumeng = values.bumeng
+        } else if (values.hasOwnProperty('yuangong')) {
+          this.SelectResult.bumeng = values.bumeng
+        }
+
+        if (
+          this.SelectResult.hasOwnProperty('xingming') &&
+          this.SelectResult.hasOwnProperty('bumeng') &&
+          this.SelectResult.hasOwnProperty('yuangong')
+        ) {
+          this.$emit('updateSelectResult', {
+            index: this.index,
+            SelectResult: { value: this.SelectResult, flag: true }
+          })
+        }
+      }
+    })
   },
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    onValuesChange(props, values) {
+      debugger
+    }
   },
   watch: {
     dataInfo: {

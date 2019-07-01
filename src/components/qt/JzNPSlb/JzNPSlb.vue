@@ -10,7 +10,12 @@
       style="padding:20px;display:flex;flex-direction:row"
     >
       <div>{{dataSet&&dataSet[0].inputVal}}</div>
-      <component :key="index" :is="dataltb.name" :dataSet="this.dataSet"></component>
+      <component
+        :key="index"
+        :is="dataltb.name"
+        :dataSet="this.dataSet"
+        @updateSelectResult="updateSelectResult(dindex,$event)"
+      ></component>
       <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
     </div>
   </a-card>
@@ -37,13 +42,22 @@ export default {
       dataltb: {
         name: 'yx',
         data: ['yx', 'wjx', 'ding', 'sz', 'fx']
-      }
+      },
+      SelectResult: {}
     }
   },
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    updateSelectResult(index, e) {
+      this.SelectResult[index] = e
+      if (this.jzjzbl.left.length == this.SelectResult.length) {
+        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: true } })
+      } else {
+        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: false } })
+      }
+    }
   },
   watch: {
     dataInfo: {

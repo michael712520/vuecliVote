@@ -4,7 +4,7 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-checkbox-group style="display:flex;margin-bottom:10px">
+    <a-checkbox-group style="display:flex;margin-bottom:10px" @change="onCheckAllChange">
       <a-row v-for="(item ,index) in dataSet " :key="index">
         <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
       </a-row>
@@ -27,7 +27,10 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    onCheckAllChange(e) {
+      this.$emit('updateSelectResult', { index: this.index, SelectResult: { value: e, flag: true } })
+    }
   },
   watch: {
     dataInfo: {

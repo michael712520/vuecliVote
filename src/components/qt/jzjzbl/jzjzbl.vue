@@ -20,7 +20,11 @@
           <div style="margin-ruight:10px">{{jzjzbl.left[dindex]}}</div>
         </th>
         <td>
-          <component :is="dataltb.name" :dataSet="dataSet"></component>
+          <component
+            @updateSelectResult="updateSelectResult(dindex,$event)"
+            :is="dataltb.name"
+            :dataSet="dataSet"
+          ></component>
         </td>
         <th>
           <div style="margin-ruight:10px">{{jzjzbl.right&&jzjzbl.right[i]&&jzjzbl.right[dindex]}}</div>
@@ -51,13 +55,22 @@ export default {
       dataltb: {
         name: 'yx',
         data: ['yx', 'wjx', 'ding', 'sz', 'fx']
-      }
+      },
+      SelectResult: {}
     }
   },
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    updateSelectResult(index, e) {
+      this.SelectResult[index] = e
+      if (this.jzjzbl.left.length == this.SelectResult.length) {
+        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: true } })
+      } else {
+        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: false } })
+      }
+    }
   },
   watch: {
     dataInfo: {

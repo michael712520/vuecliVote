@@ -6,7 +6,7 @@
     </div>
     <div style="display:flex">
       {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}&nbsp;&nbsp;&nbsp;&nbsp;
-      <a-date-picker/>
+      <a-date-picker @change="onChange" />
     </div>
   </a-card>
 </template>
@@ -21,12 +21,19 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return { msg: '日期' }
   },
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    onChange(date, dateString) {
+      console.log(date, dateString)
+      this.$emit('updateSelectResult', {
+        index: this.index,
+        SelectResult: { value: dateString, flag: true }
+      })
+    }
   },
   watch: {
     dataInfo: {

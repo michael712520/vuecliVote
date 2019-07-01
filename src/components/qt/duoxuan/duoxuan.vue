@@ -29,7 +29,7 @@ export default {
   methods: {
     divclick(index) {},
     onCheckAllChange(e) {
-      this.$store.commit('', { index: this.index, SelectResult: { value: e } })
+      this.$emit('updateSelectResult', { index: this.index, SelectResult: { value: e, flag: true } })
     }
   },
   watch: {

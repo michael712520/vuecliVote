@@ -30,7 +30,10 @@ export default {
   methods: {
     divclick(index) {},
     radioChange(e) {
-      this.$store.commit('', { index: this.index, SelectResult: { value: e.target.value } })
+      this.$emit('updateSelectResult', {
+        index: this.index,
+        SelectResult: { value: e.target.value, flag: true }
+      })
     }
   },
   watch: {

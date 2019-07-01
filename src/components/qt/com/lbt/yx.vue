@@ -48,6 +48,7 @@ export default {
         }
         return d
       })
+      this.$emit('updateSelectResult', index)
     }
   },
   watch: {
