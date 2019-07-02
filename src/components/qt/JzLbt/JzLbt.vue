@@ -4,35 +4,19 @@
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <table v-if="dataltb&&dataltb.data&&dataSet&&dataSet.length>0">
-      <tr>
-        <th></th>
-        <th style="display:flex;flex-direction:row">
-          <div
-            style="margin-left:10px;width:22px;height22px;text-align:center"
-            v-for="(item,index) in dataSet"
-            :key="index"
-          >{{item.score}}</div>
-        </th>
-      </tr>
-      <template v-if="jzjzbl">
-        <tr v-for="(ditem,dindex) in jzjzbl.left" :key="dindex">
-          <th>
-            <div style="margin-ruight:10px">{{jzjzbl.left[dindex]}}</div>
-          </th>
-          <td>
-            <component
-              :is="dataltb.name"
-              :dataSet="dataSet"
-              @updateSelectResult="updateSelectResult(dindex,$event)"
-            ></component>
-          </td>
-          <th>
-            <div style="margin-ruight:10px">{{jzjzbl.right&&jzjzbl.right[i]&&jzjzbl.right[dindex]}}</div>
-          </th>
-        </tr>
-      </template>
-    </table>
+    <div
+      v-if="dataltb&&dataltb.data&&this.dataSet&&this.dataSet.length>0"
+      style="padding:20px;display:flex;flex-direction:row"
+    >
+      <div>{{dataSet&&dataSet[0].inputVal}}</div>
+      <component
+        :key="index"
+        :is="dataltb.name"
+        :dataSet="dataSet"
+        @updateSelectResult="updateSelectResult(0,$event)"
+      ></component>
+      <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
+    </div>
   </a-card>
 </template>
 <script>
@@ -67,12 +51,7 @@ export default {
   methods: {
     divclick(index) {},
     updateSelectResult(index, e) {
-      this.SelectResult[index] = e
-      if (this.jzjzbl.left.length == this.SelectResult.length) {
-        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: true } })
-      } else {
-        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: false } })
-      }
+     this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: e, flag: true } })
     }
   },
   watch: {
@@ -82,7 +61,9 @@ export default {
           if (nVal.bcontemt && JSON.parse(nVal.bcontemt)) {
             let data = JSON.parse(nVal.bcontemt)
             if (data) {
+              console.log('data', data)
               this.dataSet = data.dataSet
+
               this.jzjzbl = data.jzjzbl
             }
             // this.dataSet = JSON.parse(nVal.bcontemt)

@@ -28,6 +28,10 @@
             <a-avatar slot="avatar" size="large" shape="square" :src="item.avatar" />
             <a slot="title">{{ item.title }}</a>
           </a-list-item-meta>
+          <a-list-item-meta :description="item.id">
+            <a slot="title">编号</a>
+          </a-list-item-meta>
+
           <div slot="actions">
             <a @click="preview(item)">预览</a>
           </div>

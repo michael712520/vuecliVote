@@ -2,12 +2,21 @@
 import api from '@/api'
 export default {
   namespaced: true,
-  state: { listData: [], refresh: false },
+  state: {
+    listData: [],
+    refresh: false
+  },
   actions: {
-    UpdateQtDetailItem: async ({ commit, state }, payload) => {
+    UpdateQtDetailItem: async ({
+      commit,
+      state
+    }, payload) => {
       let params = []
       state.listData.forEach(d => {
-        params.push({ id: d.id, selectResult: JSON.stringify(d.selectResult) })
+        params.push({
+          id: d.id,
+          selectResult: d.selectResult
+        })
       })
       let data = await api.QtDetail.UpdateQtDetailItem(params)
     }
@@ -26,7 +35,7 @@ export default {
       state.listData = list
     },
     updateSelectResult: (state, payload) => {
-      state.listData[payload.index].dataInfo.SelectResult = payload.SelectResult
+      state.listData[payload.index].dataInfo.SelectResult = JSON.stringify(payload.SelectResult)
     }
   }
 }

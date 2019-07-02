@@ -15,9 +15,9 @@
           >{{item.score}}</div>
         </th>
       </tr>
-      <tr v-for="(ditem,dindex) in jzjzbl.left" :key="dindex">
+      <tr v-for="(ditem,dindex) in Jzjzbl.left" :key="dindex">
         <th>
-          <div style="margin-ruight:10px">{{jzjzbl.left[dindex]}}</div>
+          <div style="margin-ruight:10px">{{Jzjzbl.left[dindex]}}</div>
         </th>
         <td>
           <component
@@ -27,7 +27,7 @@
           ></component>
         </td>
         <th>
-          <div style="margin-ruight:10px">{{jzjzbl.right&&jzjzbl.right[i]&&jzjzbl.right[dindex]}}</div>
+          <div style="margin-ruight:10px">{{Jzjzbl.right&&Jzjzbl.right[i]&&Jzjzbl.right[dindex]}}</div>
         </th>
       </tr>
     </table>
@@ -56,7 +56,8 @@ export default {
         name: 'yx',
         data: ['yx', 'wjx', 'ding', 'sz', 'fx']
       },
-      SelectResult: {}
+      SelectResult: {},
+      Jzjzbl: {}
     }
   },
   computed: {},
@@ -64,8 +65,9 @@ export default {
   methods: {
     divclick(index) {},
     updateSelectResult(index, e) {
+      
       this.SelectResult[index] = e
-      if (this.jzjzbl.left.length == this.SelectResult.length) {
+      if (this.Jzjzbl.left.length == Object.keys(this.SelectResult).length) {
         this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: true } })
       } else {
         this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: false } })
@@ -80,7 +82,8 @@ export default {
             let data = JSON.parse(nVal.bcontemt)
             if (data) {
               this.dataSet = data.dataSet
-              this.jzjzbl = data.Jzjzbl
+              this.Jzjzbl = data.Jzjzbl
+              console.log('this.Jzjzbl', this.Jzjzbl)
             }
             // this.dataSet = JSON.parse(nVal.bcontemt)
           }

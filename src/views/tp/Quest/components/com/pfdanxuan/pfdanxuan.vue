@@ -9,7 +9,7 @@
         <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
           <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
           <span style="color:#efa030;font-size:14px;">&nbsp;(分值：{{item.score}})</span>
-          <br>
+          <br />
         </div>
       </a-radio-group>
     </a-card>
@@ -70,7 +70,7 @@
               title="用户在填写问卷时必须回答这道题"
               class="checkbox"
               id="req_2_3944705790"
-            >
+            />
             <label for="req_2_3944705790">必答</label>
             <span style="display: none;">
               &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
@@ -88,7 +88,7 @@
                 type="text"
                 class="choicetxt"
                 style="width: 140px; height: 15px; display: none;"
-              >
+              />
               <span style="margin-left: 30px;"></span>
               <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
             </span>
@@ -186,7 +186,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -260,7 +260,7 @@ export default {
   },
   methods: {
     initcompleted() {
-      if (!this.dataInfo.id) {
+      if (this.dataInfo && !this.dataInfo.id) {
         this.completed()
       }
     },
@@ -294,9 +294,12 @@ export default {
     async completed(paramInfo) {
       this.display = false
       let latitudeDetailIds = []
+      if ('System.Collections.Generic.List`1[System.String]' === this.dataInfo.latitudeDetailIds) {
+      }
       this.CascaderData.forEach(d => {
         latitudeDetailIds.push(d)
       })
+
       let params = {
         ...this.dataInfo,
         ...{
@@ -389,13 +392,27 @@ export default {
     dataInfo: {
       handler(nVal, oVal) {
         if (nVal && Object.keys(nVal).length != 0) {
-          if (nVal.bcontemt && Array.isArray(JSON.parse(nVal.bcontemt))) {
+          if (nVal.bcontemt && JSON.parse(nVal.bcontemt) && Array.isArray(JSON.parse(nVal.bcontemt))) {
             this.dataSet = JSON.parse(nVal.bcontemt)
+            console.log(' JSON.parse(nVal.bcontemt)', this.dataSet)
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display
-          if (nVal.latitudeDetailIds && nVal.latitudeDetailIds.length > 0) {
-            this.CascaderData = JSON.parse(nVal.latitudeDetailIds)
+          if ('System.Collections.Generic.List`1[System.String]' === this.dataInfo.latitudeDetailIds) {
+          }
+          try {
+            if (
+              nVal.latitudeDetailIds &&
+              JSON.parse(nVal.latitudeDetailIds) &&
+              Array.isArray(JSON.parse(nVal.latitudeDetailIds)) &&
+              nVal.latitudeDetailIds.length >= 0
+            ) {
+              this.CascaderData = JSON.parse(nVal.latitudeDetailIds)
+            } else {
+              this.CascaderData = []
+            }
+          } catch (error) {
+            this.CascaderData = []
           }
         }
       },

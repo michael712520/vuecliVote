@@ -8,17 +8,17 @@
       <a-form :form="form" @onValuesChange="onValuesChange(props, values)">
         <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
-            v-decorator="['xingming', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            v-decorator="[dataSet[0].inputVal, {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
           />
         </a-form-item>
         <a-form-item :label="dataSet[1].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
-            v-decorator="['bumeng', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            v-decorator="[dataSet[1].inputVal, {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
           />
         </a-form-item>
         <a-form-item :label="dataSet[2].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
-            v-decorator="['yuangong', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            v-decorator="[dataSet[2].inputVal, {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
           />
         </a-form-item>
       </a-form>
@@ -59,32 +59,18 @@ export default {
         // this.$emit('change', changedFields)
       },
       mapPropsToFields: () => {
-        return {
-          xingming: this.$form.createFormField({
-            value: ''
-          }),
-          bumeng: this.$form.createFormField({
-            value: ''
-          }),
-          yuangong: this.$form.createFormField({
-            value: ''
-          })
-        }
+        return {}
       },
       onValuesChange: (props, values) => {
-        if (values.hasOwnProperty('xingming')) {
-          this.SelectResult.xingming = values.xingming
-        } else if (values.hasOwnProperty('bumeng')) {
-          this.SelectResult.bumeng = values.bumeng
-        } else if (values.hasOwnProperty('yuangong')) {
-          this.SelectResult.bumeng = values.bumeng
+        let key = Object.keys(values)[0]
+        if (values.hasOwnProperty(key)) {
+          this.SelectResult[key] = values[key]
         }
+        console.log('this.SelectResult', this.SelectResult)
+        console.log('this.dataSet', Object.keys(this.SelectResult).length)
 
-        if (
-          this.SelectResult.hasOwnProperty('xingming') &&
-          this.SelectResult.hasOwnProperty('bumeng') &&
-          this.SelectResult.hasOwnProperty('yuangong')
-        ) {
+        if (Object.keys(this.SelectResult).length === this.dataSet.length) {
+          console.log(' 111', this.dataSet.length)
           this.$emit('updateSelectResult', {
             index: this.index,
             SelectResult: { value: this.SelectResult, flag: true }

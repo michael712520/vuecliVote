@@ -7,7 +7,7 @@
     <a-form :form="form">
       <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-input
-          v-decorator="['desc', {rules: [{required: true, pattern: /(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$/, message: '请填写正确的手机号码！'}]}]"
+          v-decorator="[dataSet[0].inputVal, {rules: [{required: true, pattern: /(\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$/, message: '请填写正确的手机号码！'}]}]"
         />
       </a-form-item>
     </a-form>
@@ -41,23 +41,22 @@ export default {
   created() {
     this.form = this.$form.createForm(this, {
       onFieldsChange: (_, changedFields) => {
-        // 
+        //
         // this.$emit('change', changedFields)
       },
       mapPropsToFields: () => {
-        
-        return {
-          name: this.$form.createFormField({
-            value: ''
-          })
-        }
+        return {}
       },
       onValuesChange: (props, values) => {
-         if (values.hasOwnProperty('name')) {
-          this.SelectResult.name = values.name
+        let key = Object.keys(values)[0]
+        if (values.hasOwnProperty(key)) {
+          this.SelectResult[key] = values[key]
         }
+        console.log('this.SelectResult', this.SelectResult)
+        console.log('this.dataSet', Object.keys(this.SelectResult).length)
 
-        if (this.SelectResult.hasOwnProperty('name')) {
+        if (Object.keys(this.SelectResult).length === this.dataSet.length) {
+          console.log(' 111', this.dataSet.length)
           this.$emit('updateSelectResult', {
             index: this.index,
             SelectResult: { value: this.SelectResult, flag: true }

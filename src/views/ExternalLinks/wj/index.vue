@@ -1,6 +1,6 @@
 <template>
   <div>
-    <layHeader></layHeader>
+    <!-- <layHeader></layHeader> -->
     <div class="preview">
       <div class="blockquote">
         <div class="ztc">
@@ -16,6 +16,9 @@
                 @updateSelectResult="updateSelectResult($event)"
               ></component>
             </div>
+          </div>
+          <div class="row">
+            <a-button size="large" type="primary" @click="clickSub">提交</a-button>
           </div>
         </div>
         <div class="dfoot">技术提供</div>
@@ -50,6 +53,7 @@ import qtpaixu from '@/components/qt/qtpaixu/qtpaixu'
 import qttkt from '@/components/qt/qttkt/qttkt'
 import pageduanluo from '@/components/qt/pageduanluo/pageduanluo'
 import api from '@/api'
+import { debug, debuglog } from 'util'
 export default {
   props: {},
   components: {
@@ -85,7 +89,8 @@ export default {
       page: {
         start: 0,
         length: 0
-      }
+      },
+      model: null
     }
   },
   computed: {
@@ -103,7 +108,31 @@ export default {
     updateSelectResult(data) {
       this.$store.commit('ExternalLinks/updateSelectResult', data)
     },
+    async clickSub() {
+      let data = this.$store.state.ExternalLinks.listData
+      console.log('data', data)
+      for (let i = 0; i < data.length; i++) {
+        let model = data[i]
+        if (model.dataInfo && model.dataInfo.type === 'pageduanluo') {
+        } else if (
+          model.dataInfo &&
+          JSON.parse(model.dataInfo.SelectResult) &&
+          JSON.parse(model.dataInfo.SelectResult).flag === true
+        ) {
+          // window.location.href = this.model.callBack + `&&result=1`
+        } else {
+          this.$message.error(`行号${i + 1}没有填写值清正确填写`)
+          return
+        }
+      }
 
+      let list = data.map(d => {
+        return d.dataInfo
+      })
+      console.log('{ list: list }', JSON.stringify({ list: list }))
+      debugger
+      await api.QtDetail.UpdateAll({ list: list })
+    },
     async init() {
       let params = {
         id: this.$route.query.qtDetailId
@@ -112,6 +141,7 @@ export default {
       let data = await api.QtDetail.Get(params)
       this.title = data.title
       this.content = data.content
+      this.model = data
       if (data && data.qtDetailItem && data.qtDetailItem.length > 0) {
         let list = data.qtDetailItem.map(d => {
           // if (d.type == 'JzNPSlb') {

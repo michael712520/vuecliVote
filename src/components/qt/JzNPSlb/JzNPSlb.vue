@@ -13,8 +13,8 @@
       <component
         :key="index"
         :is="dataltb.name"
-        :dataSet="this.dataSet"
-        @updateSelectResult="updateSelectResult(dindex,$event)"
+        :dataSet="dataSet"
+        @updateSelectResult="updateSelectResult(0,$event)"
       ></component>
       <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
     </div>
@@ -51,12 +51,7 @@ export default {
   methods: {
     divclick(index) {},
     updateSelectResult(index, e) {
-      this.SelectResult[index] = e
-      if (this.jzjzbl.left.length == this.SelectResult.length) {
-        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: true } })
-      } else {
-        this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: this.SelectResult, flag: false } })
-      }
+      this.$emit('updateSelectResult', { index: this.index, SelectResult: { list: e, flag: true } })
     }
   },
   watch: {

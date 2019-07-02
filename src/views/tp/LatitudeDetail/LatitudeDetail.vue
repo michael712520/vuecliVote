@@ -14,7 +14,13 @@
         <a-button type="dashed" style="width: 33%" icon="plus" @click="$refs.taskForm.add()">添加一维纬度</a-button>
         <a-button type="dashed" style="width: 33%" icon="right" @click="linkTo()">查看二维</a-button>
       </div>
-      <a-table :columns="columns" :dataSource="data">
+      <a-table
+        :columns="columns"
+        :dataSource="data"
+        :pagination="pagination"
+        @change="handleTableChange"
+        :loading="loading"
+      >
         <div slot="action" slot-scope="text, record">
           <a-dropdown>
             <a-menu slot="overlay">
@@ -88,11 +94,13 @@ export default {
     return {
       columns,
       data: [],
+      pagination: {},
       pageSizeOptions: ['10', '20', '30', '40', '50'],
       current: 1,
       pageSize: 10,
       total: 10,
-      id: null
+      id: null,
+      loading: false
     }
   },
   computed: {
@@ -114,6 +122,13 @@ export default {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
+    handleTableChange(pagination, filters, sorter) {
+      console.log(pagination)
+      const pager = { ...this.pagination }
+      pager.current = pagination.current
+      this.pagination = pager
+      this.init(pagination.current, pagination.pageSize)
+    },
     clickLatitude() {},
     async Delete(record) {
       let data = await api.latitudeDetail.Delete({ id: record.id })
@@ -135,22 +150,29 @@ export default {
       })
     },
     async init(Start, Length) {
+      this.loading = true
       let id = null
       if (this.id) {
         id = this.id
       }
       if (this.$route.query.id) {
-        id = this.id
+        id = this.$route.query.id
       }
       let form = {
         id: id,
         Start: Start,
         Length: Length
       }
+      
       let data = await api.latitudeDetail.List(form)
-      console.log('api.latitudeDetail.List(form)_data', data)
+      console.log('data', data)
+      const pagination = { ...this.pagination }
+      // Read total count from server
+      // pagination.total = data.totalCount;
+      pagination.total = data.total
+      this.loading = false
       this.data = data.list
-      this.total = data.total
+      this.pagination = pagination
     },
     async onShowSizeChange(current, pageSize) {
       this.pageSize = pageSize

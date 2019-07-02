@@ -8,8 +8,14 @@ export default {
     ListPicker: []
   },
   actions: {
-    getPicker: async ({ commit, state }, payload) => {
-      let ListPicker = await api.latitudeDetailItem.GetPicker({ id: payload })
+    getPicker: async ({
+      commit,
+      state
+    }, payload) => {
+      let ListPicker = await api.latitudeDetailItem.GetPicker({
+        id: payload
+      })
+      
       if (ListPicker && ListPicker.length > 0) {
         commit('getPicker', ListPicker)
       } else {

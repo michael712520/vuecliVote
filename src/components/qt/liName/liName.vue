@@ -7,7 +7,7 @@
     <a-form :form="form">
       <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-input
-          v-decorator="['name', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+          v-decorator="[dataSet[0].inputVal, {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
         />
       </a-form-item>
     </a-form>
@@ -45,18 +45,18 @@ export default {
         // this.$emit('change', changedFields)
       },
       mapPropsToFields: () => {
-        return {
-          name: this.$form.createFormField({
-            value: ''
-          })
-        }
+        return {}
       },
       onValuesChange: (props, values) => {
-        if (values.hasOwnProperty('name')) {
-          this.SelectResult.name = values.name
+        let key = Object.keys(values)[0]
+        if (values.hasOwnProperty(key)) {
+          this.SelectResult[key] = values[key]
         }
+        console.log('this.SelectResult', this.SelectResult)
+        console.log('this.dataSet', Object.keys(this.SelectResult).length)
 
-        if (this.SelectResult.hasOwnProperty('name')) {
+        if (Object.keys(this.SelectResult).length === this.dataSet.length) {
+          console.log(' 111', this.dataSet.length)
           this.$emit('updateSelectResult', {
             index: this.index,
             SelectResult: { value: this.SelectResult, flag: true }

@@ -41,7 +41,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row cf" v-show="bjdisplay">
@@ -79,7 +79,7 @@
               title="用户在填写问卷时必须回答这道题"
               class="checkbox"
               id="req_2_3944705790"
-            >
+            />
             <label for="req_2_3944705790">必答</label>
             <span style="display: none;">
               &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
@@ -97,7 +97,7 @@
                 type="text"
                 class="choicetxt"
                 style="width: 140px; height: 15px; display: none;"
-              >
+              />
               <span style="margin-left: 30px;"></span>
               <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
             </span>
@@ -195,7 +195,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>

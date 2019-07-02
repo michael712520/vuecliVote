@@ -64,7 +64,6 @@ export default {
       this.aModelVisible = true
     },
     aModelHandleOk(e) {
-      debugger
       let imgs = []
 
       this.fileList.map(d => {
