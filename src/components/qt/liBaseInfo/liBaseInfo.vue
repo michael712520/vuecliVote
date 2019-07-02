@@ -55,11 +55,10 @@ export default {
   created() {
     this.form = this.$form.createForm(this, {
       onFieldsChange: (_, changedFields) => {
-        // debugger
+        //
         // this.$emit('change', changedFields)
       },
       mapPropsToFields: () => {
-        debugger
         return {
           xingming: this.$form.createFormField({
             value: ''
@@ -73,7 +72,6 @@ export default {
         }
       },
       onValuesChange: (props, values) => {
-        this.SelectResult.push(values)
         if (values.hasOwnProperty('xingming')) {
           this.SelectResult.xingming = values.xingming
         } else if (values.hasOwnProperty('bumeng')) {
@@ -99,9 +97,7 @@ export default {
   mounted() {},
   methods: {
     divclick(index) {},
-    onValuesChange(props, values) {
-      debugger
-    }
+    onValuesChange(props, values) {}
   },
   watch: {
     dataInfo: {

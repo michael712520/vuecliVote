@@ -5,15 +5,7 @@
       <div v-html="msg"></div>
     </div>
     <div class="row">
-      <imgUpload
-        ref="imgUpload"
-        v-model="imgs"
-        @change="handleChange"
-        name="file"
-        :multiple="true"
-        action="https://api.iu1314.com/api/streaming"
-        :headers="headers"
-      ></imgUpload>
+      <imgUpload ref="imgUpload" v-model="imgs"></imgUpload>
     </div>
   </a-card>
 </template>
@@ -41,18 +33,7 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {},
-    handleChange(info) {
-      debugger
-      if (info.file.status !== 'uploading') {
-        console.log(info.file, info.fileList)
-      }
-      if (info.file.status === 'done') {
-        this.$message.success(`${info.file.name} file uploaded successfully`)
-      } else if (info.file.status === 'error') {
-        this.$message.error(`${info.file.name} file upload failed.`)
-      }
-    }
+    divclick(index) {}
   },
   watch: {
     dataInfo: {
@@ -67,6 +48,11 @@ export default {
       },
       immediate: true,
       deep: true
+    },
+    imgs: {
+      handler(nVal, oVal) {
+        this.$emit('updateSelectResult', { index: this.index, SelectResult: { value: nVal, flag: true } })
+      }
     }
   }
 }

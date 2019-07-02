@@ -5,7 +5,7 @@
       <div v-html="msg"></div>
     </div>
     <div class="row" style="display:flex;margin-bottom:10px">
-      <a-cascader :options="dataSet" @change="onChange" placeholder="下拉选择" :changeOnSelect="true"/>
+      <a-cascader :options="dataSet" @change="onChange" placeholder="下拉选择" :changeOnSelect="true" />
     </div>
   </a-card>
 </template>
@@ -26,7 +26,10 @@ export default {
   mounted() {},
   methods: {
     divclick(index) {},
-    onChange(e){}
+    onChange(e) {
+      console.log('qtdjxl', e)
+      this.$emit('updateSelectResult', { index: this.index, SelectResult: { value: e, flag: true } })
+    }
   },
   watch: {
     dataInfo: {

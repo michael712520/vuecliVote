@@ -41,11 +41,10 @@ export default {
   created() {
     this.form = this.$form.createForm(this, {
       onFieldsChange: (_, changedFields) => {
-        // debugger
+        //
         // this.$emit('change', changedFields)
       },
       mapPropsToFields: () => {
-        debugger
         return {
           name: this.$form.createFormField({
             value: ''
@@ -53,7 +52,6 @@ export default {
         }
       },
       onValuesChange: (props, values) => {
-        this.SelectResult.push(values)
         if (values.hasOwnProperty('name')) {
           this.SelectResult.name = values.name
         }

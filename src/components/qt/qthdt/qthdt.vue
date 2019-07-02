@@ -12,7 +12,7 @@
         <div>{{dataSet&&dataSet[0].inputVal}}</div>
         <div>{{dataSet&&dataSet[dataSet.length-1].inputVal}}</div>
       </div>
-      <a-slider :marks="marks" id="test" :defaultValue="30"/>
+      <a-slider :marks="marks" id="test" :defaultValue="0" @change="onChange" />
     </div>
   </a-card>
 </template>
@@ -27,7 +27,8 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { marks: {
+    return {
+      marks: {
         0: '0',
         10: '10',
         20: '20',
@@ -44,12 +45,17 @@ export default {
           },
           label: <strong>100</strong>
         }
-      },msg: '标题' }
+      },
+      msg: '标题'
+    }
   },
   computed: {},
   mounted() {},
   methods: {
-    divclick(index) {}
+    divclick(index) {},
+    onChange(e) {
+      this.$emit('updateSelectResult', { index: this.index, SelectResult: { value: e, flag: true } })
+    }
   },
   watch: {
     dataInfo: {

@@ -9,7 +9,7 @@
       <div class="row">
         <a-form :form="form" v-for="(item,index) in dataSet" :key="index">
           <a-form-item :label="item.inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
-            <a-input v-decorator="[item.value, {rules:item.rules }]"/>
+            <a-input v-decorator="[item.value, {rules:item.rules }]" />
           </a-form-item>
         </a-form>
       </div>
@@ -41,7 +41,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -141,7 +141,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>

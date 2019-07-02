@@ -8,12 +8,12 @@
       @change="handleChange"
     >
       <div v-if="fileList.length < 3">
-        <a-icon type="plus"/>
+        <a-icon type="plus" />
         <div class="ant-upload-text">上传图片</div>
       </div>
     </a-upload>
     <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-      <img alt="example" style="width: 100%" :src="previewImage">
+      <img alt="example" style="width: 100%" :src="previewImage" />
     </a-modal>
   </div>
 </template>
@@ -48,18 +48,28 @@ export default {
       this.previewImage = file.url || file.thumbUrl
       this.previewVisible = true
     },
-    handleChange({ fileList }) {
-      this.fileList = fileList
+    handleChange(info) {
+      this.fileList = info.fileList
+      if (info.file.status === 'done') {
+        this.fileList.map(d => {
+          return d.response.map(e => {
+            this.imgs.push(e.fileId)
+          })
+        })
+        console.log('this.fileList', this.imgs)
+        this.$emit('returnBack', this.imgs)
+      }
     },
     showModal() {
       this.aModelVisible = true
     },
     aModelHandleOk(e) {
+      debugger
       let imgs = []
 
       this.fileList.map(d => {
         return d.response.map(e => {
-          imgs.push(e.fileId)
+          this.imgs.push(e.fileId)
         })
       })
       console.log('this.fileList', imgs)

@@ -96,7 +96,7 @@ export default {
             name: values.name,
             mbDetailId: this.$store.state.question.item.id
           }
-          debugger
+          
           this.visible = false
           api.latitudeDetailItem.Add(model).then(d => {
             this.$store.commit('latitudeDetail/ItemRefresh')

@@ -101,7 +101,7 @@ export default {
   methods: {
     async init() {
       let data = await api.tp.Get(this.$route.query.id)
-      debugger
+      
       if (!data) {
         return
       }

@@ -8,7 +8,7 @@
       <a-form :form="form">
         <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
-            v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
+            v-decorator="['ktt', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
           />
         </a-form-item>
       </a-form>
@@ -26,7 +26,9 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题',labelCol: {
+    return {
+      msg: '标题',
+      labelCol: {
         xs: { span: 24 },
         sm: { span: 2 }
       },
@@ -35,7 +37,36 @@ export default {
         sm: { span: 8 }
       },
       msg: '标题',
-      form: this.$form.createForm(this) }
+      form: null,
+      SelectResult: {}
+    }
+  },
+  created() {
+    this.form = this.$form.createForm(this, {
+      onFieldsChange: (_, changedFields) => {
+        //
+        // this.$emit('change', changedFields)
+      },
+      mapPropsToFields: () => {
+        return {
+          ktt: this.$form.createFormField({
+            value: ''
+          })
+        }
+      },
+      onValuesChange: (props, values) => {
+        if (values.hasOwnProperty('ktt')) {
+          this.SelectResult.ktt = values.ktt
+        }
+
+        if (this.SelectResult.hasOwnProperty('ktt')) {
+          this.$emit('updateSelectResult', {
+            index: this.index,
+            SelectResult: { value: this.SelectResult, flag: true }
+          })
+        }
+      }
+    })
   },
   computed: {},
   mounted() {},
