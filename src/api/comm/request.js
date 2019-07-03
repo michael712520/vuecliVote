@@ -15,6 +15,7 @@ const fetch = async options => {
   let { method = 'get', data, fetchType, url } = options
 
   let cloneData = lodash.cloneDeep(data)
+
   try {
     let domin = ''
     if (url.match(/[a-zA-z]+:\/\/[^/]*/)) {
@@ -181,6 +182,7 @@ export default function request(options, payload, headerOptions) {
       ...headerOptions
     }
   }
+  console.log('options', options)
   return fetch(options)
     .then(response => {
       const { statusText, status } = response

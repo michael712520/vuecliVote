@@ -7,10 +7,7 @@ export default {
     refresh: false
   },
   actions: {
-    UpdateQtDetailItem: async ({
-      commit,
-      state
-    }, payload) => {
+    UpdateQtDetailItem: async ({ commit, state }, payload) => {
       let params = []
       state.listData.forEach(d => {
         params.push({
@@ -35,7 +32,7 @@ export default {
       state.listData = list
     },
     updateSelectResult: (state, payload) => {
-      state.listData[payload.index].dataInfo.SelectResult = JSON.stringify(payload.SelectResult)
+      state.listData[payload.index].dataInfo.selectResult = JSON.stringify(payload.SelectResult)
     }
   }
 }

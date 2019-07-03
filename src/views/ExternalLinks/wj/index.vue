@@ -110,14 +110,15 @@ export default {
     },
     async clickSub() {
       let data = this.$store.state.ExternalLinks.listData
+
       console.log('data', data)
       for (let i = 0; i < data.length; i++) {
         let model = data[i]
         if (model.dataInfo && model.dataInfo.type === 'pageduanluo') {
         } else if (
           model.dataInfo &&
-          JSON.parse(model.dataInfo.SelectResult) &&
-          JSON.parse(model.dataInfo.SelectResult).flag === true
+          JSON.parse(model.dataInfo.selectResult) &&
+          JSON.parse(model.dataInfo.selectResult).flag === true
         ) {
           // window.location.href = this.model.callBack + `&&result=1`
         } else {
@@ -130,8 +131,12 @@ export default {
         return d.dataInfo
       })
       console.log('{ list: list }', JSON.stringify({ list: list }))
+      let hbk = []
+      list.forEach(element => {
+        hbk.push({ id: element.id, selectResult: element.selectResult })
+      })
+      await api.tp.UpdateMbDetail(hbk)
       debugger
-      await api.QtDetail.UpdateAll({ list: list })
     },
     async init() {
       let params = {

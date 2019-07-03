@@ -14,80 +14,59 @@ export const config = {
   Save: `${baseUrl}/api/MbDetail/Save`,
   GetListItem: `${baseUrl}/api/MbDetail/GetListItem`,
   SaveItem: `POST ${baseUrl}/api/MbDetail/SaveItem`,
+  UpdateSelectResult: `POST ${baseUrl}/api/MbDetail/UpdateSelectResult`,
   ListSaveItem: `POST ${baseUrl}/api/MbDetail/ListSaveItem`,
   UpdateMbDetail: `POST ${baseUrl}/api/MbDetail/UpdateMbDetail`
 }
 export async function Get(id) {
-  const {
-    success,
-    data
-  } = await request(config.Get, {
+  const { success, data } = await request(config.Get, {
     id: id
   })
   return data
 }
 export async function SaveUpdate(params) {
-  const {
-    success,
-    data
-  } = await request(config.SaveUpdate, params)
+  const { success, data } = await request(config.SaveUpdate, params)
   return data
 }
 export async function GetList(params) {
-  const {
-    success,
-    data
-  } = await request(config.GetList, params)
+  const { success, data } = await request(config.GetList, params)
   return data
 }
 export async function GetListItem(params) {
-  const {
-    success,
-    data
-  } = await request(config.GetListItem, params)
+  const { success, data } = await request(config.GetListItem, params)
 
   return data
 }
 export async function SaveItem(params) {
-  const {
-    success,
-    data
-  } = await request(config.SaveItem, params)
+  const { success, data } = await request(config.SaveItem, params)
   return data
 }
 export async function ListSaveItem(params) {
-  const {
-    success,
-    data
-  } = await request(config.ListSaveItem, params)
+  const { success, data } = await request(config.ListSaveItem, params)
   return data
 }
 
 export async function Delete(id) {
-  const {
-    success,
-    data
-  } = await request(config.Delete, {
+  const { success, data } = await request(config.Delete, {
     id: id
   })
 
   return data
 }
 export async function DeleteItem(id) {
-  const {
-    success,
-    data
-  } = await request(config.DeleteItem, {
+  const { success, data } = await request(config.DeleteItem, {
     id: id
   })
 
   return data
 }
 export async function UpdateMbDetail(params) {
-  console.log('config.UpdateMbDetail', config.UpdateMbDetail)
-  const {
-    success,
-    data
-  } = await request(config.UpdateMbDetail, params)
+  console.log('config.UpdateMbDetail', params)
+  const { success, data } = await request(config.UpdateMbDetail, params)
+  return data
+}
+export async function UpdateSelectResult(params) {
+  console.log('config.UpdateSelectResult', params)
+  const { success, data } = await request(config.UpdateSelectResult, params)
   return data
 }

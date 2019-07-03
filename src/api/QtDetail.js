@@ -1,7 +1,4 @@
 /* eslint-disable */
-import {
-  axios
-} from '@/utils/request'
 import defaultSettings from '@/config/defaultSettings'
 import request from './comm/request'
 
@@ -12,35 +9,22 @@ export const config = {
   Get: `${baseUrl}/api/QtDetail/Get/:id`,
   GetStudentAll: `${baseUrl}/api/QtDetail/GetStudentAll/:studentIdCard`,
   UpdateQtDetailItem: `${baseUrl}/api/QtDetail/UpdateQtDetailItem`,
-  UpdateAll: `POST ${baseUrl}​/api​/QtDetail​/UpdateAll`,
-
+  UpdateSelectResult: `${baseUrl}​/api/QtDetail/UpdateSelectResult`
 }
 export async function Get(params) {
-  const {
-    success,
-    data
-  } = await request(config.Get, params)
+  const { success, data } = await request(config.Get, params)
   return data
 }
 export async function GetStudentAll(params) {
-  const {
-    success,
-    data
-  } = await request(config.GetStudentAll, params)
+  const { success, data } = await request(config.GetStudentAll, params)
   return data
 }
 export async function UpdateQtDetailItem(params) {
-  const {
-    success,
-    data
-  } = await request(config.UpdateQtDetailItem, params)
+  const { success, data } = await request(config.UpdateQtDetailItem, params)
   return data
 }
-export async function UpdateAll(params) {
-  
-  const {
-    success,
-    data
-  } = await request(config.UpdateAll, params)
+
+export async function UpdateSelectResult(params) {
+  const { success, data } = await request(config.UpdateSelectResult, params)
   return data
 }
