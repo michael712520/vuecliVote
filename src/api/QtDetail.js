@@ -12,19 +12,31 @@ export const config = {
   UpdateSelectResult: `${baseUrl}​/api/QtDetail/UpdateSelectResult`
 }
 export async function Get(params) {
-  const { success, data } = await request(config.Get, params)
+  const {
+    success,
+    data
+  } = await request(config.Get, params)
   return data
 }
 export async function GetStudentAll(params) {
-  const { success, data } = await request(config.GetStudentAll, params)
+  const {
+    success,
+    data
+  } = await request(config.GetStudentAll, params)
   return data
 }
 export async function UpdateQtDetailItem(params) {
-  const { success, data } = await request(config.UpdateQtDetailItem, params)
+  const {
+    success,
+    data
+  } = await request(config.UpdateQtDetailItem, params)
   return data
 }
 
 export async function UpdateSelectResult(params) {
-  const { success, data } = await request(config.UpdateSelectResult, params)
+  const {
+    success,
+    data
+  } = await request(config.UpdateSelectResult, params)
   return data
 }

@@ -135,7 +135,7 @@ export default {
       list.forEach(element => {
         hbk.push({ id: element.id, selectResult: element.selectResult })
       })
-      await api.tp.UpdateMbDetail(hbk)
+      await api.tp.UpdateSelectResult(hbk)
       debugger
     },
     async init() {
