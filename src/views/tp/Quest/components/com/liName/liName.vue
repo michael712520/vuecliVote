@@ -43,7 +43,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -143,7 +143,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -224,7 +224,7 @@ export default {
   },
   methods: {
     initcompleted() {
-      if (!this.dataInfo.id) {
+      if (this.dataInfo && !this.dataInfo.id) {
         this.completed()
       }
     },
