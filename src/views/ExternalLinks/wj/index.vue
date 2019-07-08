@@ -137,7 +137,7 @@ export default {
       })
       await api.tp.UpdateSelectResult(hbk)
       debugger
-      window.location.href = decodeURIComponent(this.model.callBack) + '?result=1'
+      window.location.href = this.model.callBack + '?result=1'
     },
     async init() {
       let params = {
