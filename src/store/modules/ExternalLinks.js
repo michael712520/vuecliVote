@@ -15,7 +15,7 @@ export default {
           selectResult: d.selectResult
         })
       })
-      let data = await api.QtDetail.UpdateQtDetailItem(params)
+      let data = await api.qtDetail.UpdateQtDetailItem(params)
     }
   },
   mutations: {

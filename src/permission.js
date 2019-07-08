@@ -6,19 +6,22 @@ import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import notification from 'ant-design-vue/es/notification'
-import {
-  setDocumentTitle,
-  domTitle
-} from '@/utils/domUtil'
-import {
-  ACCESS_TOKEN
-} from '@/store/mutation-types'
+import { setDocumentTitle, domTitle } from '@/utils/domUtil'
+import { ACCESS_TOKEN } from '@/store/mutation-types'
 
 NProgress.configure({
   showSpinner: false
 }) // NProgress Configuration
 
-const whiteList = ['login', 'register', 'registerResult', 'ExternalLinks_wj', 'ExternalLinks_studentList', 'ExternalLinks_studentAndMbQuestion'] // no redirect whitelist
+const whiteList = [
+  'login',
+  'register',
+  'registerResult',
+  'ExternalLinks_wj',
+  'ExternalLinks_studentList',
+  'ExternalLinks_studentAndMbQuestion',
+  'ExternalLinks_result'
+] // no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar

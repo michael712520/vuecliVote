@@ -95,10 +95,8 @@ export default {
       columns,
       data: [],
       pagination: {},
-      pageSizeOptions: ['10', '20', '30', '40', '50'],
       current: 1,
       pageSize: 10,
-      total: 10,
       id: null,
       loading: false
     }
@@ -163,7 +161,7 @@ export default {
         Start: Start,
         Length: Length
       }
-      
+
       let data = await api.latitudeDetail.List(form)
       console.log('data', data)
       const pagination = { ...this.pagination }

@@ -137,13 +137,14 @@ export default {
       })
       await api.tp.UpdateSelectResult(hbk)
       debugger
+      window.location.href = decodeURIComponent(this.model.callBack) + '?result=1'
     },
     async init() {
       let params = {
         id: this.$route.query.qtDetailId
       }
 
-      let data = await api.QtDetail.Get(params)
+      let data = await api.qtDetail.Get(params)
       this.title = data.title
       this.content = data.content
       this.model = data

@@ -22,7 +22,7 @@
 <script>
 import api from '@/api'
 import { setTimeout } from 'timers'
-import ldt from './../result/ldt.vue'
+import ldt from './ldt.vue'
 const columns = [
   {
     title: '问卷结果',
@@ -50,7 +50,7 @@ export default {
   components: { ldt },
   data() {
     return {
-      msg: '结果页',
+      msg: '学生列表',
       data: [],
       current: 1,
       pageSize: 10,
@@ -68,13 +68,9 @@ export default {
     viewinfo(record) {},
     async init() {
       let form = {
-        studentIdCard: this.$route.query.studentIdCard,
-        mbDetailId: this.$route.query.mbDetailId
+        id: this.$route.query.id
       }
-
-      console.log(' api.qtDetail', api.qtDetail)
-      debugger
-      let data = await api.qt.GetByStudentAndMbDetailId(form)
+      let data = await api.qtDetail.GetResult(form)
       this.model = data
       console.log('data', data)
     }

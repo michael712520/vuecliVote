@@ -3,6 +3,7 @@ const api = {
   user: require('./user'),
   latitudeDetail: require('./latitudeDetail'),
   latitudeDetailItem: require('./latitudeDetailItem'),
-  QtDetail: require('./QtDetail')
+  qtDetail: require('./qtDetail'),
+  qt: require('./qt')
 }
 export default api

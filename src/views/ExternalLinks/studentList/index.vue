@@ -9,7 +9,7 @@
               <div slot="action" slot-scope="text, record">
                 <a @click="checkResult(record)">查看结果</a>
                 <a-divider type="vertical" />
-                <a @click="viewinfo(record)">查看试卷内容</a>
+                <!-- <a @click="viewinfo(record)">查看试卷内容</a> -->
               </div>
             </a-table>
           </div>
@@ -49,30 +49,49 @@ export default {
   data() {
     return {
       msg: '学生列表',
+      columns,
       data: [],
-      pageSizeOptions: ['10', '20', '30', '40', '50'],
+      pagination: {},
       current: 1,
       pageSize: 10,
-      total: 10,
-      columns
+      id: null,
+      loading: false
     }
   },
   computed: {},
   async mounted() {
-    await this.init()
+    await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
-    checkResult(record) {},
+    checkResult(record) {
+      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id } })
+    },
     viewinfo(record) {},
-    async init() {
-      let form = {
-        studentIdCard: this.$route.query.studentIdCard,
-        Start: (this.current - 1) * this.pageSize,
-        Length: this.pageSize
+
+    async init(Start, Length) {
+      this.loading = true
+      let id = null
+
+      if (this.$route.query.studentIdCard) {
+        id = this.$route.query.studentIdCard
+      } else {
+        this.loading = true
+        this.$message.success('没有用户信息')
+        return
       }
-      let data = await api.QtDetail.GetStudentAll(form)
+      let form = {
+        studentIdCard: id,
+        Start: Start,
+        Length: Length
+      }
+
+      let data = await api.qtDetail.GetStudentAll(form)
+      console.log('data', data)
+      const pagination = { ...this.pagination }
+      pagination.total = data.total
+      this.loading = false
       this.data = data.list
-      this.total = data.total
+      this.pagination = pagination
     }
   },
   watch: {}
