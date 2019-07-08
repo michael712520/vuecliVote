@@ -7,36 +7,34 @@ import request from './comm/request'
 let baseUrl = defaultSettings.baseUrl
 export const config = {
   Get: `${baseUrl}/api/QtDetail/Get/:id`,
+  GetResult: `${baseUrl}/api/QtDetail/GetResult/:id`,
   GetStudentAll: `${baseUrl}/api/QtDetail/GetStudentAll/:studentIdCard`,
   UpdateQtDetailItem: `${baseUrl}/api/QtDetail/UpdateQtDetailItem`,
-  UpdateSelectResult: `${baseUrl}​/api/QtDetail/UpdateSelectResult`
+  UpdateSelectResult: `${baseUrl}​/api/QtDetail/UpdateSelectResult`,
+  GetByStudentAndMbDetailId: `${baseUrl}​/api/QtDetail/GetByStudentAndMbDetailId/:studentIdCard/:mbDetailId`
 }
 export async function Get(params) {
-  const {
-    success,
-    data
-  } = await request(config.Get, params)
+  const { success, data } = await request(config.Get, params)
   return data
 }
 export async function GetStudentAll(params) {
-  const {
-    success,
-    data
-  } = await request(config.GetStudentAll, params)
+  const { success, data } = await request(config.GetStudentAll, params)
   return data
 }
 export async function UpdateQtDetailItem(params) {
-  const {
-    success,
-    data
-  } = await request(config.UpdateQtDetailItem, params)
+  const { success, data } = await request(config.UpdateQtDetailItem, params)
   return data
 }
 
 export async function UpdateSelectResult(params) {
-  const {
-    success,
-    data
-  } = await request(config.UpdateSelectResult, params)
+  const { success, data } = await request(config.UpdateSelectResult, params)
+  return data
+}
+export async function GetResult(params) {
+  const { success, data } = await request(config.GetResult, params)
+  return data
+}
+export async function GetByStudentAndMbDetailId(params) {
+  const { success, data } = await request(config.GetByStudentAndMbDetailId, params)
   return data
 }
