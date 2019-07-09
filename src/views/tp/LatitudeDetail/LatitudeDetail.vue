@@ -22,7 +22,12 @@
         :loading="loading"
       >
         <div slot="action" slot-scope="text, record">
-          <a-dropdown>
+          <a @click="$refs.LatitudeDetailItem.add(record)">纬度公式设置</a>
+          <a-divider type="vertical" />
+          <a @click="$refs.taskForm.add(record)">编辑</a>
+          <a-divider type="vertical" />
+          <a @click="Delete(record)">删除</a>
+          <a-dropdown v-if="false">
             <a-menu slot="overlay">
               <a-menu-item>
                 <a @click="$refs.taskForm.add(record)">编辑</a>
@@ -63,9 +68,14 @@ const columns = [
     key: 'name'
   },
   {
-    title: '分数',
+    title: '最大分值',
     dataIndex: 'score',
     key: 'score'
+  },
+  {
+    title: '基础分数XXX',
+    dataIndex: 'baseScore',
+    key: 'baseScore'
   },
   // {
   //   title: '系数（百分比）',

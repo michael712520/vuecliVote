@@ -27,7 +27,12 @@
         :loading="loading"
       >
         <div slot="action" slot-scope="text, record">
-          <a-dropdown>
+          <a @click="$refs.TaskFormTwoRelevance.add(record)">查看关联题目</a>
+          <a-divider type="vertical" />
+          <a @click="$refs.TaskFormTwo.add(record)">编辑</a>
+          <a-divider type="vertical" />
+          <a @click="Delete(record)">删除</a>
+          <a-dropdown v-if="false">
             <a-menu slot="overlay">
               <a-menu-item>
                 <a @click="$refs.TaskFormTwo.add(record)">编辑</a>
@@ -46,6 +51,7 @@
       </a-table>
 
       <TaskFormTwo ref="TaskFormTwo" />
+      <TaskFormTwoRelevance ref="TaskFormTwoRelevance" />
     </a-card>
   </div>
 </template>
@@ -53,6 +59,7 @@
 <script>
 import HeadInfo from '@/components/tools/HeadInfo'
 import TaskFormTwo from './modules/TaskFormTwo'
+import TaskFormTwoRelevance from './modules/TaskFormTwoRelevance'
 import api from '@/api'
 const columns = [
   {
@@ -84,7 +91,8 @@ const columns = [
 export default {
   components: {
     HeadInfo,
-    TaskFormTwo
+    TaskFormTwo,
+    TaskFormTwoRelevance
   },
   data() {
     return {
@@ -123,7 +131,7 @@ export default {
       const pager = { ...this.pagination }
       pager.current = pagination.current
       this.pagination = pager
-      
+
       this.init((pagination.current - 1) * pagination.pageSize, pagination.pageSize)
     },
     async Delete(record) {
