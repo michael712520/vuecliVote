@@ -7,7 +7,7 @@ import request from './comm/request'
 let baseUrl = defaultSettings.baseUrl
 export const config = {
   Get: `${baseUrl}/api/QtDetail/Get/:id`,
-  GetResult: `${baseUrl}/api/QtDetail/GetResult/:id`,
+  GetResult: `${baseUrl}/api/QtDetail/GetResult/:id/:batchNumber`,
   GetStudentAll: `${baseUrl}/api/QtDetail/GetStudentAll/:studentIdCard`,
   UpdateQtDetailItem: `${baseUrl}/api/QtDetail/UpdateQtDetailItem`,
   UpdateSelectResult: `${baseUrl}​/api/QtDetail/UpdateSelectResult`,

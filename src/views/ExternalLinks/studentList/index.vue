@@ -28,11 +28,11 @@ const columns = [
     dataIndex: 'title',
     key: 'title'
   },
-  // {
-  //   title: '系数（百分比）',
-  //   dataIndex: 'coefficient',
-  //   key: 'coefficient'
-  // },
+  {
+    title: '创建时间',
+    dataIndex: 'createTime',
+    key: 'createTime'
+  },
   // {
   //   title: '基础分数',
   //   dataIndex: 'baseScore',
@@ -64,7 +64,8 @@ export default {
   },
   methods: {
     checkResult(record) {
-      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id } })
+      debugger
+      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id, batchNumber: record.batchNumber } })
     },
     viewinfo(record) {},
 

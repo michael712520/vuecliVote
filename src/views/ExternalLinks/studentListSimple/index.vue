@@ -82,10 +82,28 @@ export default {
 
     async init(Start, Length) {
       this.loading = true
-      let form = {
-        studentIdCard: this.$route.query.studentIdCard,
-        mbId: this.$route.query.mbDetailId
+      let id = null
+      let studentIdCard = null
+      let mbId = null
+      if (this.$route.query.id) {
+        id = this.$route.query.id
       }
+      if (this.$route.query.studentIdCard) {
+        studentIdCard = this.$route.query.studentIdCard
+      }
+      if (this.$route.query.mbId) {
+        mbId = this.$route.query.mbId
+      }
+      if (id == null && (studentIdCard == null || mbId == null)) {
+        this.$message.error(`无效的地址参数无法获取数据`)
+        return
+      }
+      let form = {
+        id: id,
+        studentIdCard: studentIdCard,
+        mbId: mbId
+      }
+      debugger
       let data = await api.qt.SelectResultSimple(form)
 
       const pagination = { ...this.pagination }

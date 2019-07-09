@@ -20,7 +20,9 @@ const whiteList = [
   'ExternalLinks_wj',
   'ExternalLinks_studentList',
   'ExternalLinks_studentAndMbQuestion',
-  'ExternalLinks_result'
+  'ExternalLinks_result',
+  'ExternalLinks_repeatwj',
+  'ExternalLinks_studentListSimple'
 ] // no redirect whitelist
 
 router.beforeEach((to, from, next) => {

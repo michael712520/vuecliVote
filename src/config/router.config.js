@@ -4,7 +4,6 @@ import { UserLayout, BasicLayout, RouteView, BlankLayout, PageView, PreviewLayou
 import { bxAnaalyse } from '@/core/icons'
 
 export const asyncRouterMap = []
-
 /**
  * 基础路由
  * @type { *[] }
@@ -96,6 +95,16 @@ export const constantRouterMap = [
     path: '/ExternalLinks/result',
     name: 'ExternalLinks_result',
     component: () => import(/* webpackChunkName: "fail" */ '@/views/ExternalLinks/result')
+  },
+  {
+    path: '/ExternalLinks/repeatwj',
+    name: 'ExternalLinks_repeatwj',
+    component: () => import(/* webpackChunkName: "fail" */ '@/views/ExternalLinks/repeatwj')
+  },
+  {
+    path: '/ExternalLinks/studentListSimple',
+    name: 'ExternalLinks_studentListSimple',
+    component: () => import(/* webpackChunkName: "fail" */ '@/views/ExternalLinks/studentListSimple')
   },
   {
     path: '/dashboard/Question',

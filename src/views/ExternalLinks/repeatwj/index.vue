@@ -143,11 +143,8 @@ export default {
       let params = {
         id: this.$route.query.qtDetailId
       }
+
       let data = await api.qtDetail.Get(params)
-      if (data.state === 1) {
-        this.$router.push({ path: '/ExternalLinks/studentListSimple', query: { id: data.id } })
-        return
-      }
       this.title = data.title
       this.content = data.content
       this.model = data

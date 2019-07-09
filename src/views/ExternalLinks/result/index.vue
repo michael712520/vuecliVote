@@ -68,7 +68,8 @@ export default {
     viewinfo(record) {},
     async init() {
       let form = {
-        id: this.$route.query.id
+        id: this.$route.query.id,
+        batchNumber: this.$route.query.batchNumber,
       }
       let data = await api.qtDetail.GetResult(form)
       this.model = data

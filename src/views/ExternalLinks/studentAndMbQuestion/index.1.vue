@@ -2,21 +2,16 @@
   <div class="preview">
     <div class="blockquote">
       <div class="ztc">
-        <div class="titile">
+        <div class="titile" v-if="model">
           <div v-html="msg"></div>
-          <div class="row" style="padding:20px;" v-if="data">
+          <ldt :data="this.model.qtLatitudeDetail"></ldt>
+          <div class="row divc" v-for="(item,index) in this.model.qtLatitudeDetail">
             <div>
-              <a-button type="primary" @click="simpleResult(data[0])">重新评估</a-button>
+              {{item.latitudeDetail.name}}
+              <a-tag color="blue">{{item.score}}</a-tag>
             </div>
-            <a-table :columns="columns" :dataSource="data" bordered :pagination="false">
-              <div slot="action" slot-scope="text, record">
-                <a @click="checkResult(record)">查看结果</a>
-                <!-- <a-divider type="vertical" />
-                <a @click="simpleResult(record)">重新评估</a>-->
-                <!-- <a @click="viewinfo(record)">查看试卷内容</a> -->
-              </div>
-            </a-table>
           </div>
+          <div class="row" style="padding:20px;"></div>
         </div>
         <div class="dfoot">技术提供</div>
       </div>
@@ -26,16 +21,12 @@
 <script>
 import api from '@/api'
 import { setTimeout } from 'timers'
+import ldt from './../result/ldt.vue'
 const columns = [
   {
-    title: '问卷名称',
-    dataIndex: 'name',
-    key: 'name'
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime',
-    key: 'createTime'
+    title: '问卷结果',
+    dataIndex: 'title',
+    key: 'title'
   },
   // {
   //   title: '系数（百分比）',
@@ -55,44 +46,36 @@ const columns = [
 ]
 export default {
   props: {},
+  components: { ldt },
   data() {
     return {
-      msg: '学生列表',
-      columns,
+      msg: '结果页',
       data: [],
-      pagination: {},
       current: 1,
       pageSize: 10,
-      id: null,
-      loading: false
+      total: 10,
+      columns,
+      model: null
     }
   },
   computed: {},
   async mounted() {
-    await this.init((this.current - 1) * this.pageSize, this.pageSize)
+    await this.init()
   },
   methods: {
-    checkResult(record) {
-      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id, batchNumber: record.batchNumber } })
-    },
-    simpleResult(record) {
-      this.$router.push({ path: '/ExternalLinks/repeatwj', query: { qtDetailId: record.id } })
-    },
+    checkResult(record) {},
     viewinfo(record) {},
-
-    async init(Start, Length) {
-      this.loading = true
+    async init() {
       let form = {
         studentIdCard: this.$route.query.studentIdCard,
-        mbId: this.$route.query.mbDetailId
+        mbDetailId: this.$route.query.mbDetailId
       }
-      let data = await api.qt.SelectResultSimple(form)
 
-      const pagination = { ...this.pagination }
-      pagination.total = data.list.Length
-      this.loading = false
-      this.data = data.list
-      this.pagination = pagination
+      console.log(' api.qtDetail', api.qtDetail)
+      debugger
+      let data = await api.qt.GetByStudentAndMbDetailId(form)
+      this.model = data
+      console.log('data', data)
     }
   },
   watch: {}
@@ -141,6 +124,14 @@ export default {
 }
 .h1cclass {
   padding: 20px;
+}
+.divc {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-top: 5px;
+  padding-right: 20px;
+  text-align: left;
 }
 </style>
 
