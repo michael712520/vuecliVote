@@ -64,8 +64,11 @@ export default {
   },
   methods: {
     checkResult(record) {
-      
-      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id, batchNumber: record.batchNumber } })
+      debugger
+      this.$router.push({
+        path: '/ExternalLinks/result',
+        query: { id: record.qtDetailId, batchNumber: record.batchNumber }
+      })
     },
     viewinfo(record) {},
 
