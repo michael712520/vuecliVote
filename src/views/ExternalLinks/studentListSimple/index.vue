@@ -5,9 +5,16 @@
         <div class="titile">
           <div v-html="msg"></div>
           <div class="row" style="padding:20px;" v-if="data">
-            <div>
-              <a-button type="primary" @click="simpleResult(data[0])">重新评估</a-button>
-            </div>
+            <a-button-group>
+              <a-button type="primary" @click="goBack(data[0])">
+                <a-icon type="left" />返 回
+              </a-button>
+              <a-button type="primary" @click="simpleResult(data[0])">
+                重新评估
+                <a-icon type="right" />
+              </a-button>
+            </a-button-group>
+
             <a-table :columns="columns" :dataSource="data" bordered :pagination="false">
               <div slot="action" slot-scope="text, record">
                 <a @click="checkResult(record)">查看结果</a>
@@ -57,19 +64,24 @@ export default {
   props: {},
   data() {
     return {
-      msg: '学生列表',
+      msg: '单个问卷结果列表',
       columns,
       data: [],
       pagination: {},
       current: 1,
       pageSize: 10,
       id: null,
-      loading: false
+      loading: false,
+      qtDetail: null
     }
   },
   computed: {},
   async mounted() {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
+    let params = {
+      id: this.$route.query.id
+    }
+    this.qtDetail = await api.qtDetail.Get(params)
   },
   methods: {
     checkResult(record) {
@@ -79,7 +91,9 @@ export default {
       this.$router.push({ path: '/ExternalLinks/repeatwj', query: { qtDetailId: record.id } })
     },
     viewinfo(record) {},
-
+    goBack() {
+       window.location.href = this.qtDetail.callBack
+    },
     async init(Start, Length) {
       this.loading = true
       let id = null
@@ -103,7 +117,7 @@ export default {
         studentIdCard: studentIdCard,
         mbId: mbId
       }
-      debugger
+
       let data = await api.qt.SelectResultSimple(form)
 
       const pagination = { ...this.pagination }

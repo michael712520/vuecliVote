@@ -136,7 +136,7 @@ export default {
         hbk.push({ id: element.id, selectResult: element.selectResult })
       })
       await api.tp.UpdateSelectResult(hbk)
-      debugger
+      
       window.location.href = this.model.callBack + '?result=1'
     },
     async init() {
@@ -145,6 +145,7 @@ export default {
       }
       let data = await api.qtDetail.Get(params)
       if (data.state === 1) {
+        this.$store.commit('ExternalLinks/qtDetail', data)
         this.$router.push({ path: '/ExternalLinks/studentListSimple', query: { id: data.id } })
         return
       }

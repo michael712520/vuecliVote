@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state: {
     listData: [],
-    refresh: false
+    refresh: false,
+    qtDetail: null
   },
   actions: {
     UpdateQtDetailItem: async ({ commit, state }, payload) => {
@@ -33,6 +34,9 @@ export default {
     },
     updateSelectResult: (state, payload) => {
       state.listData[payload.index].dataInfo.selectResult = JSON.stringify(payload.SelectResult)
+    },
+    qtDetail: (state, payload) => {
+      state.qtDetail = payload
     }
   }
 }

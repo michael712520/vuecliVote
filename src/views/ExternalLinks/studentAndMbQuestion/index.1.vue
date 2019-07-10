@@ -72,7 +72,7 @@ export default {
       }
 
       console.log(' api.qtDetail', api.qtDetail)
-      debugger
+      
       let data = await api.qt.GetByStudentAndMbDetailId(form)
       this.model = data
       console.log('data', data)
