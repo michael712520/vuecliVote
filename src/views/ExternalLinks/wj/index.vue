@@ -102,6 +102,10 @@ export default {
     }
   },
   mounted() {
+    var callBack = this.$route.query.callBack
+    callBack = decodeURIComponent(callBack)
+    console.log('callBack', callBack)
+    this.$store.commit('ExternalLinks/callBack', callBack)
     this.init().then()
   },
   methods: {
@@ -136,8 +140,8 @@ export default {
         hbk.push({ id: element.id, selectResult: element.selectResult })
       })
       await api.tp.UpdateSelectResult(hbk)
-      
-      window.location.href = this.model.callBack + '?result=1'
+
+      window.location.href = this.$store.state.ExternalLinks.callBack + '?result=1'
     },
     async init() {
       let params = {

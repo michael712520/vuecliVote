@@ -5,7 +5,8 @@ export default {
   state: {
     listData: [],
     refresh: false,
-    qtDetail: null
+    qtDetail: null,
+    callBack: null
   },
   actions: {
     UpdateQtDetailItem: async ({ commit, state }, payload) => {
@@ -37,6 +38,9 @@ export default {
     },
     qtDetail: (state, payload) => {
       state.qtDetail = payload
+    },
+    callBack: (state, payload) => {
+      state.callBack = payload
     }
   }
 }

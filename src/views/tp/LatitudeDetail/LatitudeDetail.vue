@@ -22,6 +22,8 @@
         :loading="loading"
       >
         <div slot="action" slot-scope="text, record">
+          <a @click="$refs.LatitudeResult.add(record)">纬度结果与建议</a>
+          <a-divider type="vertical" />
           <a @click="$refs.LatitudeDetailItem.add(record)">纬度公式设置</a>
           <a-divider type="vertical" />
           <a @click="$refs.taskForm.add(record)">编辑</a>
@@ -51,6 +53,7 @@
       <TaskFormTwo ref="TaskFormTwo" />
       <TaskFormTwo ref="TaskFormTwo" />
       <LatitudeDetailItem ref="LatitudeDetailItem"></LatitudeDetailItem>
+      <LatitudeResult ref="LatitudeResult"></LatitudeResult>
     </a-card>
   </div>
 </template>
@@ -60,6 +63,8 @@ import HeadInfo from '@/components/tools/HeadInfo'
 import TaskForm from './modules/TaskForm'
 import TaskFormTwo from './modules/TaskFormTwo'
 import LatitudeDetailItem from './modules/LatitudeDetailItem'
+import LatitudeResult from './modules/LatitudeResult'
+
 import api from '@/api'
 const columns = [
   {
@@ -98,7 +103,8 @@ export default {
     HeadInfo,
     TaskForm,
     TaskFormTwo,
-    LatitudeDetailItem
+    LatitudeDetailItem,
+    LatitudeResult
   },
   data() {
     return {

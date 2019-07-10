@@ -92,7 +92,7 @@ export default {
     },
     viewinfo(record) {},
     goBack() {
-       window.location.href = this.qtDetail.callBack
+      window.location.href = this.$store.state.ExternalLinks.callBack
     },
     async init(Start, Length) {
       this.loading = true

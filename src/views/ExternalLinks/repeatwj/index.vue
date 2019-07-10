@@ -136,8 +136,8 @@ export default {
         hbk.push({ id: element.id, selectResult: element.selectResult })
       })
       await api.tp.UpdateSelectResult(hbk)
-      
-      window.location.href = this.model.callBack + '?result=1'
+
+      window.location.href = this.$store.state.ExternalLinks.callBack + '?result=1'
     },
     async init() {
       let params = {
