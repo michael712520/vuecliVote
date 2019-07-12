@@ -6,7 +6,8 @@ import request from './comm/request'
 let baseUrl = defaultSettings.baseUrl
 export const config = {
   GetByStudentAndMbDetailId: `${baseUrl}/api/QtDetail/GetByStudentAndMbDetailId/:studentIdCard/:mbDetailId`,
-  SelectResultSimple: `${baseUrl}/api/QtDetail/SelectResultSimple`
+  SelectResultSimple: `${baseUrl}/api/QtDetail/SelectResultSimple`,
+  SelectResultSimple: `POST ${baseUrl}/api/MbGrade/SaveUpdate`
 }
 export async function GetByStudentAndMbDetailId(params) {
   const { success, data } = await request(config.GetByStudentAndMbDetailId, params)
