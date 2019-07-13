@@ -15,6 +15,7 @@
         <a-button type="dashed" style="width: 33%" icon="right" @click="linkTo()">查看二维</a-button>
       </div>
       <a-table
+        :rowKey="record => record.id"
         :columns="columns"
         :dataSource="data"
         :pagination="pagination"
@@ -26,7 +27,7 @@
           <a-divider type="vertical" />
           <a @click="$refs.LatitudeDetailItem.add(record)">纬度公式设置</a>
           <a-divider type="vertical" />
-          <a @click="$refs.taskForm.add(record)">编辑</a>
+          <a @click="editor(record)">编辑</a>
           <a-divider type="vertical" />
           <a @click="Delete(record)">删除</a>
           <a-dropdown v-if="false">
@@ -136,6 +137,13 @@ export default {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
+    editor(record) {
+      if (record.state >= 1) {
+        this.$message.error('问卷已发布允许修改')
+        return
+      }
+      $refs.taskForm.add(record)
+    },
     handleTableChange(pagination, filters, sorter) {
       console.log(pagination)
       const pager = { ...this.pagination }
@@ -145,6 +153,10 @@ export default {
     },
     clickLatitude() {},
     async Delete(record) {
+      if (record.state >= 1) {
+        this.$message.error('问卷已发布允许修改')
+        return
+      }
       let data = await api.latitudeDetail.Delete({ id: record.id })
       this.$store.commit('latitudeDetail/refresh')
     },

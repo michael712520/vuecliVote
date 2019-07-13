@@ -20,6 +20,7 @@
         <a-button type="dashed" style="width: 33%" icon="up" @click="linkTo()">返回一维</a-button>
       </div>
       <a-table
+        :rowKey="record => record.id"
         :columns="columns"
         :dataSource="data"
         :pagination="pagination"

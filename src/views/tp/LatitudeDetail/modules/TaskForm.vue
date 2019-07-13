@@ -10,8 +10,11 @@
       <a-form-item label="名称" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-input v-decorator="['name', {rules:[{required: true, message: '请输入名称'}]}]" />
       </a-form-item>
+      <a-form-item label="最大分值" :labelCol="labelCol" :wrapperCol="wrapperCol">
+        <a-input v-decorator="['score', {rules:[{required: true, message: '请输入最大分数'}]}]" />
+      </a-form-item>
       <a-form-item label="基础分数XXX" :labelCol="labelCol" :wrapperCol="wrapperCol">
-        <a-input v-decorator="['baseScore', {rules:[{required: false, message: '请输入基础分数'}]}]" />
+        <a-input v-decorator="['baseScore', {rules:[{required: true, message: '请输入基础分数'}]}]" />
       </a-form-item>
       <!-- <a-form-item label="分数" :labelCol="labelCol" :wrapperCol="wrapperCol">
         <a-input v-decorator="['score', {rules:[{required: false, message: '请输入分数'}]}]"/>
@@ -66,11 +69,11 @@ export default {
       } else {
         setTimeout(() => {
           this.form.setFieldsValue({
-            name: '',
-            score: '',
-            coefficient: '',
-            baseScore: '',
-            sort: ''
+            name: '名称',
+            score: 200,
+            // coefficient: '',
+            baseScore: 10
+            // sort: ''
           })
         }, 0)
       }

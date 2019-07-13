@@ -366,31 +366,31 @@ export default {
       record: null,
       options: [],
       rows: {
-        ax: { s: '', v: 0 },
-        bx: { s: '', v: 0 },
-        cx: { s: '', v: 0 },
-        dx: { s: '', v: 0 },
-        ex: { s: '', v: 0 },
-        fx: { s: '', v: 0 },
-        gx: { s: '', v: 0 },
-        hx: { s: '', v: 0 },
-        ix: { s: '', v: 0 },
-        gx: { s: '', v: 0 },
-        kx: { s: '', v: 0 },
-        mx: { s: '', v: 0 },
-        nx: { s: '', v: 0 },
-        ox: { s: '', v: 0 },
-        px: { s: '', v: 0 },
-        qx: { s: '', v: 0 },
-        rx: { s: '', v: 0 },
-        sx: { s: '', v: 0 },
-        tx: { s: '', v: 0 },
-        ux: { s: '', v: 0 },
-        vx: { s: '', v: 0 },
-        wx: { s: '', v: 0 },
-        xx: { s: '', v: 0 },
-        yx: { s: '', v: 0 },
-        zx: { s: '', v: 0 }
+        ax: { s: null, v: 0 },
+        bx: { s: null, v: 0 },
+        cx: { s: null, v: 0 },
+        dx: { s: null, v: 0 },
+        ex: { s: null, v: 0 },
+        fx: { s: null, v: 0 },
+        gx: { s: null, v: 0 },
+        hx: { s: null, v: 0 },
+        ix: { s: null, v: 0 },
+        gx: { s: null, v: 0 },
+        kx: { s: null, v: 0 },
+        mx: { s: null, v: 0 },
+        nx: { s: null, v: 0 },
+        ox: { s: null, v: 0 },
+        px: { s: null, v: 0 },
+        qx: { s: null, v: 0 },
+        rx: { s: null, v: 0 },
+        sx: { s: null, v: 0 },
+        tx: { s: null, v: 0 },
+        ux: { s: null, v: 0 },
+        vx: { s: null, v: 0 },
+        wx: { s: null, v: 0 },
+        xx: { s: null, v: 0 },
+        yx: { s: null, v: 0 },
+        zx: { s: null, v: 0 }
       }
     }
   },
@@ -399,36 +399,37 @@ export default {
     async add(record) {
       this.record = record
       this.visible = true
+
       console.log('record.relationship', record.relationship)
       if (record.relationship && JSON.parse(record.relationship)) {
         this.rows = JSON.parse(record.relationship)
       } else {
         this.rows = {
-          ax: { s: '', v: 0 },
-          bx: { s: '', v: 0 },
-          cx: { s: '', v: 0 },
-          dx: { s: '', v: 0 },
-          ex: { s: '', v: 0 },
-          fx: { s: '', v: 0 },
-          gx: { s: '', v: 0 },
-          hx: { s: '', v: 0 },
-          ix: { s: '', v: 0 },
-          gx: { s: '', v: 0 },
-          kx: { s: '', v: 0 },
-          mx: { s: '', v: 0 },
-          nx: { s: '', v: 0 },
-          ox: { s: '', v: 0 },
-          px: { s: '', v: 0 },
-          qx: { s: '', v: 0 },
-          rx: { s: '', v: 0 },
-          sx: { s: '', v: 0 },
-          tx: { s: '', v: 0 },
-          ux: { s: '', v: 0 },
-          vx: { s: '', v: 0 },
-          wx: { s: '', v: 0 },
-          xx: { s: '', v: 0 },
-          yx: { s: '', v: 0 },
-          zx: { s: '', v: 0 }
+          ax: { s: null, v: 0 },
+          bx: { s: null, v: 0 },
+          cx: { s: null, v: 0 },
+          dx: { s: null, v: 0 },
+          ex: { s: null, v: 0 },
+          fx: { s: null, v: 0 },
+          gx: { s: null, v: 0 },
+          hx: { s: null, v: 0 },
+          ix: { s: null, v: 0 },
+          gx: { s: null, v: 0 },
+          kx: { s: null, v: 0 },
+          mx: { s: null, v: 0 },
+          nx: { s: null, v: 0 },
+          ox: { s: null, v: 0 },
+          px: { s: null, v: 0 },
+          qx: { s: null, v: 0 },
+          rx: { s: null, v: 0 },
+          sx: { s: null, v: 0 },
+          tx: { s: null, v: 0 },
+          ux: { s: null, v: 0 },
+          vx: { s: null, v: 0 },
+          wx: { s: null, v: 0 },
+          xx: { s: null, v: 0 },
+          yx: { s: null, v: 0 },
+          zx: { s: null, v: 0 }
         }
       }
       await this.init()
@@ -436,6 +437,7 @@ export default {
     async init() {
       let form = { id: this.$route.query.id }
       let data = await api.latitudeDetailItem.GetPicker(form)
+       
       this.options = data
     },
     async handleSubmit() {
