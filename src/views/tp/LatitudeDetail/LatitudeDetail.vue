@@ -142,7 +142,7 @@ export default {
         this.$message.error('问卷已发布允许修改')
         return
       }
-      $refs.taskForm.add(record)
+      this.$refs.taskForm.add(record)
     },
     handleTableChange(pagination, filters, sorter) {
       console.log(pagination)
