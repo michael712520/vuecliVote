@@ -28,7 +28,7 @@
         :loading="loading"
       >
         <div slot="action" slot-scope="text, record">
-          <a @click="$refs.TaskFormTwoRelevance.add(record)">查看关联题目</a>
+          <a @click="selectLinkSubject(record)">查看关联题目</a>
           <a-divider type="vertical" />
           <a @click="$refs.TaskFormTwo.add(record)">编辑</a>
           <a-divider type="vertical" />
@@ -127,6 +127,10 @@ export default {
     await this.init(0, 10)
   },
   methods: {
+    selectLinkSubject(record) {
+      let id = this.$route.query.id
+      this.$refs.TaskFormTwoRelevance.add(id, record)
+    },
     handleTableChange(pagination, filters, sorter) {
       console.log(pagination)
       const pager = { ...this.pagination }
