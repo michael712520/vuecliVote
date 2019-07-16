@@ -6,55 +6,64 @@
 </style>
 
 <template>
-  <a-modal
-    :width="640"
-    :visible="visible"
-    title="关联题目"
-    @ok="handleSubmit"
-    @cancel="visible = false"
-  >
-    <div class="row">
-      <a-table :columns="columns" :dataSource="data" bordered :rowKey="record => record.id">
-        <template v-for="col in ['titile']" :slot="col" slot-scope="text, record, index">
-          <div :key="col" class="left_c">
-            <div>{{record.rowKey}}、</div>
-            <div v-html="text">{{text}}</div>
+  <a-modal :width="640" :visible="visible" @ok="handleSubmit" @cancel="visible = false">
+    <div style="width:100%;height:20px"></div>
+    <a-tabs defaultActiveKey="1" @tabClick="tabClick">
+      <a-tab-pane tab="关联题目" key="1">
+        <div class="row">
+          <LatTable v-show="fVisable" :tListLat="tListLat" @clickEdit="clickEdit()"></LatTable>
+          <div v-if="tListLat&&tListLat.mbDetailItems.length>0">
+            <a-table
+              v-show="!fVisable"
+              :columns="columns"
+              :dataSource="tListLat.mbDetailItems"
+              bordered
+              :pagination="false"
+              :rowKey="record => record.id"
+            >
+              <template v-for="col in ['titleTag']" :slot="col" slot-scope="text, record, index">
+                <div :key="col" class="left_c">
+                  <div style="width:auto;min-width:20px;">{{record.rowKey}}、</div>
+                  <div v-html="text">{{text}}</div>
+                </div>
+              </template>
+              <template slot="operation" slot-scope="text, record, index">
+                <div class="editable-row-operations">
+                  <a-cascader
+                    :defaultValue="cascaderDefaultValue(record.latitudeDetailId)"
+                    :options="options"
+                    @change="onChangeCascader($event,record,index)"
+                    placeholder="选择维度"
+                  />
+                </div>
+              </template>
+            </a-table>
           </div>
-        </template>
-        <template slot="operation" slot-scope="text, record, index">
-          <div class="editable-row-operations">
-            <a-cascader
-              :defaultValue="cascaderDefaultValue(record.latitudeDetailIds)"
-              :options="options"
-              @change="onChangeCascader"
-              placeholder="选择维度"
-            />
-          </div>
-        </template>
-      </a-table>
-    </div>
+        </div>
+      </a-tab-pane>
+    </a-tabs>
   </a-modal>
 </template>
 
 <script>
 import api from '@/api'
-
+import LatTable from './LatTable'
 const columns = [
   {
-    title: '标题',
-    dataIndex: 'titile',
-    width: '30%',
-    scopedSlots: { customRender: 'titile' }
+    title: '题目',
+    dataIndex: 'titleTag',
+    width: '70%',
+    scopedSlots: { customRender: 'titleTag' }
   },
-
   {
-    title: '操作',
+    title: '已选择纬度',
     dataIndex: 'operation',
+    width: '30%',
     scopedSlots: { customRender: 'operation' }
   }
 ]
 export default {
-  name: 'TaskFormTwo',
+  components: { LatTable },
   data() {
     return {
       labelCol: {
@@ -71,7 +80,9 @@ export default {
       id: null,
       data: [],
       columns: columns,
-      CascaderData: []
+      CascaderData: [],
+      tListLat: null,
+      fVisable: true
     }
   },
   computed: {
@@ -83,7 +94,8 @@ export default {
     cascaderDefaultValue(latitudeDetailIds) {
       let data = []
       try {
-        data = JSON.parse(latitudeDetailIds)
+        data = [latitudeDetailIds]
+        console.log('latitudeDetailIds', data)
       } catch (error) {}
       return data
     },
@@ -95,26 +107,27 @@ export default {
       this.$store.dispatch('latitudeDetail/getPicker', this.id)
       await this.init()
     },
-    onChangeCascader(e) {
-      this.CascaderData = e
+    onChangeCascader(e, record, index) {
+      this.tListLat.mbDetailItems[index]['selectlatitudeDetailId'] = e
+      console.log('selectlatitudeDetailId', this.tListLat.mbDetailItems[index]['selectlatitudeDetailId'])
     },
     async init() {
-      let data = await api.tp.Get(this.id)
-
-      let temData = []
-      data &&
-        data.mbDetailItem &&
-        data.mbDetailItem.forEach((item, index) => {
-          if (item.type === 'pfdanxuan' || item.type === 'pfduoxuan') {
-            temData.push({ ...item, titile: item.title, rowKey: index + 1 })
-          }
-        })
-
-      this.data = [...temData]
-      console.log('data', this.data)
+      try {
+        this.tListLat = await api.latitudeDetail.GetListLat({ mbDetailId: this.id })
+      } catch (error) {
+        console.log('latitudeDetail.GetListLat', error)
+      }
     },
     edit(record) {},
-    handleSubmit() {}
+    handleSubmit() {},
+    tabClick(key) {
+      if (key == 1) {
+        this.fVisable = true
+      }
+    },
+    clickEdit() {
+      this.fVisable = false
+    }
   }
 }
 </script>
