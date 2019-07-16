@@ -6,7 +6,13 @@
 </style>
 
 <template>
-  <a-modal :width="640" :visible="visible" @ok="handleSubmit" @cancel="visible = false">
+  <a-modal
+    :width="640"
+    :visible="visible"
+    @ok="handleSubmit"
+    @cancel="visible = false"
+    :confirmLoading="confirmLoading"
+  >
     <div style="width:100%;height:20px"></div>
     <a-tabs defaultActiveKey="1" @tabClick="tabClick">
       <a-tab-pane tab="关联题目" key="1">
@@ -74,7 +80,7 @@ export default {
         xs: { span: 24 },
         sm: { span: 13 }
       },
-
+      confirmLoading: false,
       visible: false,
       record: {},
       id: null,
@@ -95,7 +101,6 @@ export default {
       let data = []
       try {
         data = [latitudeDetailIds]
-        console.log('latitudeDetailIds', data)
       } catch (error) {}
       return data
     },
@@ -109,7 +114,6 @@ export default {
     },
     onChangeCascader(e, record, index) {
       this.tListLat.mbDetailItems[index]['selectlatitudeDetailId'] = e
-      console.log('selectlatitudeDetailId', this.tListLat.mbDetailItems[index]['selectlatitudeDetailId'])
     },
     async init() {
       try {
@@ -119,7 +123,24 @@ export default {
       }
     },
     edit(record) {},
-    handleSubmit() {},
+    async handleSubmit() {
+      this.confirmLoading = true
+      let data = []
+      this.tListLat.mbDetailItems.forEach(element => {
+        let str = null
+        if (element.selectlatitudeDetailId && element.selectlatitudeDetailId.length > 0) {
+          str = JSON.stringify(element.selectlatitudeDetailId)
+        } else if (element.latitudeDetailId && element.latitudeDetailId.length > 0) {
+          str = JSON.stringify([element.latitudeDetailId])
+        }
+        data.push({ id: element.id, latitudeDetailIds: str })
+      })
+
+      let rest = await api.latitudeDetail.UpdateItemMbDetailItem(data)
+      console.log('rest', rest)
+      this.confirmLoading = false
+      this.visible = false
+    },
     tabClick(key) {
       if (key == 1) {
         this.fVisable = true
