@@ -42,7 +42,21 @@ export async function SaveItem(params) {
   return data
 }
 export async function ListSaveItem(params) {
-  const { success, data } = await request(config.ListSaveItem, params)
+  let hData = params.map(item => {
+    let putData = {}
+    Object.keys(item).forEach(d => {
+      if (d === 'latitudeDetailIds') {
+        try {
+          putData[d] = JSON.parse(item[d])
+        } catch (error) {}
+      } else if (item[d]) {
+        putData[d] = item[d]
+      }
+    })
+    return putData
+  })
+
+  const { success, data } = await request(config.ListSaveItem, hData)
   return data
 }
 

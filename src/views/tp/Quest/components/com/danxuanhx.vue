@@ -270,7 +270,8 @@ export default {
           latitudeDetailIds: latitudeDetailIds
         }
       }
-      let data = await api.tp.SaveItem(params)
+      this.$store.dispatch('question/upListData', { index: this.index, item: params })
+
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
       this.bjdisplay = false

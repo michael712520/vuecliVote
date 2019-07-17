@@ -1,8 +1,6 @@
 /* eslint-disable */
 import api from '@/api'
-import {
-  async
-} from 'q';
+import { async } from 'q'
 export default {
   namespaced: true,
   state: {
@@ -12,32 +10,64 @@ export default {
     refreshStandardList: false
   },
   actions: {
-    ytyy: async ({
-      commit,
-      state
-    }, payload) => {
-
-      let data = state.listData.map(d => {
+    ytyy: async ({ commit, state }, payload) => {
+      let data = state.listData.map((d, index) => {
         var ds = JSON.parse(d.dataInfo.pageInfo)
         ds = {
           ...ds,
           ...{
-            display: true
+            display: true,
+            page: index + 1
           }
         }
 
         d.dataInfo.pageInfo = JSON.stringify(ds)
+
         return d.dataInfo
       })
-
+      console.log('ytyy', data)
       let ListPicker = await api.tp.ListSaveItem(data)
       commit('refresh')
     },
-    qxytyy: async ({
-      commit,
-      state
-    }, payload) => {
+    upListData: async ({ commit, state }, payload) => {
+      let i = 1
+      let data = state.listData.map((d, index) => {
+        try {
+          if (index == payload.index) {
+            d.dataInfo = { ...d.dataInfo, ...payload.item }
+          }
+          var ds = JSON.parse(d.dataInfo.pageInfo)
+          if (ds.display === true) {
+            ds = {
+              ...ds,
+              ...{
+                display: true,
+                page: i
+              }
+            }
+            i++
+          } else {
+            ds = {
+              ...ds,
+              ...{
+                display: false,
+                page: 0
+              }
+            }
+          }
+          d.dataInfo.pageInfo = JSON.stringify(ds)
+          return d.dataInfo
+        } catch (error) {
+          console.log('error_upListData', error)
+          return d.dataInfo
+        }
+      })
 
+      debugger
+      let ListPicker = await api.tp.ListSaveItem(data)
+      commit('refresh')
+    },
+    qxytyy: async ({ commit, state }, payload) => {
       let data = state.listData.map(d => {
         var ds = JSON.parse(d.dataInfo.pageInfo)
         ds = {
@@ -54,11 +84,7 @@ export default {
       let ListPicker = await api.tp.ListSaveItem(data)
       commit('refresh')
     },
-    ListSaveItem: async ({
-      commit,
-      state
-    }, payload) => {
-
+    ListSaveItem: async ({ commit, state }, payload) => {
       let data = state.listData.map(d => {
         return d.dataInfo
       })
@@ -69,7 +95,6 @@ export default {
   },
   mutations: {
     updateListData: (state, payload) => {
-
       let list = []
       payload.forEach(element => {
         if (element) {

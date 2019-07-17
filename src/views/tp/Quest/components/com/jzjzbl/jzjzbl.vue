@@ -37,7 +37,7 @@
     >
       <span
         style="font-size:14px; font-weight:normal;"
-      >[&nbsp;第{{index+1}}页/共{{this.$store.state.question.listData.length}}页&nbsp;]</span>
+      >[&nbsp;第{{pageInfo.page}}页/共{{this.$store.state.question.listData.length}}页&nbsp;]</span>
     </div>
     <div class="row bjt">
       <div>
@@ -430,7 +430,8 @@ export default {
           ...paramInfo
         }
       }
-      let data = await api.tp.SaveItem(params)
+      this.$store.dispatch('question/upListData', { index: this.index, item: params })
+
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
       this.bjdisplay = false

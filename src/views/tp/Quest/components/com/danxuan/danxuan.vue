@@ -8,7 +8,7 @@
       <a-radio-group>
         <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
           <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-          <br>
+          <br />
         </div>
       </a-radio-group>
     </a-card>
@@ -19,7 +19,7 @@
     >
       <span
         style="font-size:14px; font-weight:normal;"
-      >[&nbsp;第{{index+1}}页/共{{this.$store.state.question.listData.length}}页&nbsp;]</span>
+      >[&nbsp;第{{pageInfo.page}}页/共{{this.$store.state.question.listData.length}}页&nbsp;]</span>
     </div>
     <div class="row bjt">
       <div>
@@ -39,7 +39,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -69,7 +69,7 @@
               title="用户在填写问卷时必须回答这道题"
               class="checkbox"
               id="req_2_3944705790"
-            >
+            />
             <label for="req_2_3944705790">必答</label>
             <span style="display: none;">
               &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
@@ -87,7 +87,7 @@
                 type="text"
                 class="choicetxt"
                 style="width: 140px; height: 15px; display: none;"
-              >
+              />
               <span style="margin-left: 30px;"></span>
               <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
             </span>
@@ -185,7 +185,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -315,8 +315,8 @@ export default {
         }
       }
       console.log('api.tp.SaveItem(params)', params)
+      this.$store.dispatch('question/upListData', { index: this.index, item: params })
 
-      let data = await api.tp.SaveItem(params)
       this.$store.commit('question/refresh')
       this.$message.success('提交成功', 2)
       this.bjdisplay = false

@@ -5,14 +5,7 @@
         <div class="titile" v-if="model">
           <div v-html="msg"></div>
           <ldt :data="this.model.qtLatitudeDetail"></ldt>
-          <div class="row divc" v-for="(item,index) in this.model.qtLatitudeDetail">
-            <div>
-              {{item.latitudeDetail.name}}
-              <a-tag color="blue">{{item.score}}</a-tag>
-            </div>
-          </div>
-
-          <div class="row" style="padding:20px;"></div>
+          <div><LatTable :tListLat="this.model?this.model.list:null"></LatTable></div>
         </div>
         <div class="dfoot">技术提供</div>
       </div>
@@ -23,6 +16,7 @@
 import api from '@/api'
 import { setTimeout } from 'timers'
 import ldt from './ldt.vue'
+import LatTable from './modules/LatTable.vue'
 const columns = [
   {
     title: '问卷结果',
@@ -47,7 +41,7 @@ const columns = [
 ]
 export default {
   props: {},
-  components: { ldt },
+  components: { ldt, LatTable },
   data() {
     return {
       msg: '学生列表',
@@ -69,11 +63,12 @@ export default {
     async init() {
       let form = {
         id: this.$route.query.id,
-        batchNumber: this.$route.query.batchNumber,
+        batchNumber: this.$route.query.batchNumber
       }
-      let data = await api.qtDetail.GetResult(form)
-      this.model = data
-      console.log('data', data)
+      try {
+        let data = await api.qtDetail.GetResult(form)
+        this.model = data
+      } catch (error) {}
     }
   },
   watch: {}
