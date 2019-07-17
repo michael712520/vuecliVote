@@ -190,7 +190,7 @@
       <div style="margin: 14px 36px 20px;">
         <div style="color: red; font-size: 14px; display: inline-block; margin: 0px 0px 6px 10px;"></div>
         <input
-          @click="completed"
+          @click="completed()"
           type="button"
           value="完成编辑"
           class="submitbutton"

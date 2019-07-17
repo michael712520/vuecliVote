@@ -45,10 +45,15 @@ export async function ListSaveItem(params) {
   let hData = params.map(item => {
     let putData = {}
     Object.keys(item).forEach(d => {
-      if (d === 'latitudeDetailIds') {
-        try {
+      if (d === 'latitudeDetailIds') {  
+        if(Array.isArray(item[d])){
+                putData[d]=item[d]
+        }else {
+          try {
           putData[d] = JSON.parse(item[d])
         } catch (error) {}
+        }
+       
       } else if (item[d]) {
         putData[d] = item[d]
       }
