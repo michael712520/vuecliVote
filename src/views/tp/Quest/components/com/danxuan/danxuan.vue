@@ -2,7 +2,7 @@
   <div class="div_title_attr_question">
     <a-card>
       <div class="titile">
-        {{(index+1)}}、
+        {{(this.$store.state.question.thVisible?index+1+'、':'')}}
         <div v-html="msg"></div>
       </div>
       <a-radio-group>
@@ -179,7 +179,7 @@
       </div>
       <div style="margin: 14px 36px 20px;">
         <div style="color: red; font-size: 14px; display: inline-block; margin: 0px 0px 6px 10px;"></div>
-         <input
+        <input
           @click="completed()"
           type="button"
           value="完成编辑"

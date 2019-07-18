@@ -7,7 +7,8 @@ export default {
     item: {},
     listData: [],
     refresh: false,
-    refreshStandardList: false
+    refreshStandardList: false,
+    thVisible: false
   },
   actions: {
     ytyy: async ({ commit, state }, payload) => {
@@ -132,6 +133,9 @@ export default {
     },
     refreshStandardList: (state, payload) => {
       state.refreshStandardList = !state.refreshStandardList
+    },
+    thVisible: (state, payload) => {
+      state.thVisible = payload
     }
   }
 }

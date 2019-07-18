@@ -27,6 +27,12 @@
                 icon="check"
                 @click="bjcomplete()"
               >完成编辑</a-button>
+              <a-button
+                type="primary"
+                class="bh"
+                :size="size"
+                @click="thsz()"
+              >{{this.$store.state.question.thVisible?'隐藏题号':'显示题号'}}</a-button>
               <a-button type="primary" class="bh" :size="size" @click="preview()">预览</a-button>
 
               <user-menu></user-menu>
@@ -134,7 +140,10 @@ export default {
       this.$message.info('保存成功！')
     },
     preview() {
-      this.$router.push({ path: '/preview/index', query: { id: this.$route.query.id} })
+      this.$router.push({ path: '/preview/index', query: { id: this.$route.query.id } })
+    },
+    thsz() {
+      this.$store.commit('question/thVisible', !this.$store.state.question.thVisible)
     }
   },
   beforeDestroy() {

@@ -3,7 +3,7 @@
   <div class="div_title_attr_question">
     <a-card>
       <div class="titile">
-        {{(index+1)}}、
+         {{(this.$store.state.question.thVisible?index+1+'、':'')}}
         <div v-html="msg"></div>
       </div>
       <table v-if="dataltb&&dataltb.data&&dataSet&&dataSet.length>0">

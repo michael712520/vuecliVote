@@ -3,7 +3,7 @@
     <a-card>
       <div class="row">
         <div class="titile">
-          {{(index+1)}}、
+          {{(this.$store.state.question.thVisible?index+1+'、':'')}}
           <div v-html="msg">{{msg}}</div>
         </div>
 

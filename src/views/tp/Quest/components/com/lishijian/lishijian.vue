@@ -4,7 +4,7 @@
       <div class="row">
         <div>
           <div class="titile">
-            {{(index+1)}}、
+             {{(this.$store.state.question.thVisible?index+1+'、':'')}}
             <div v-html="msg"></div>
           </div>
         </div>

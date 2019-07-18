@@ -8,9 +8,10 @@
     @cancel="handleCancel"
   >
     <div class="page">
+      <div>Ｘ＝ a*ax+b*bx+c*cx、、、、、、、、、+z*zx+xxx</div>
       <div class="row">
-        <a-col :span="4">ax</a-col>
-        <a-col :span="10">
+        <a-col :span="2">a</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -18,13 +19,14 @@
             v-model="rows.ax.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">ax</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.ax.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">bx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">b</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -32,13 +34,14 @@
             v-model="rows.bx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">bx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.bx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">cx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">c</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -46,13 +49,14 @@
             v-model="rows.cx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">cx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.cx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">dx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">d</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -60,13 +64,14 @@
             v-model="rows.dx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">dx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.dx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">ex</a-col>
-        <a-col :span="10">
+        <a-col :span="2">e</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -74,13 +79,14 @@
             v-model="rows.ex.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">ex</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.ex.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">fx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">f</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -88,13 +94,14 @@
             v-model="rows.fx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">fx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.fx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">gx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">g</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -102,13 +109,14 @@
             v-model="rows.gx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">gx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.gx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">hx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">h</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -116,13 +124,14 @@
             v-model="rows.hx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">hx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.hx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">ix</a-col>
-        <a-col :span="10">
+        <a-col :span="2">i</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -130,13 +139,14 @@
             v-model="rows.ix.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">ix</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.ix.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">gx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">g</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -144,13 +154,14 @@
             v-model="rows.gx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">gx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.gx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">hx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">h</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -158,13 +169,14 @@
             v-model="rows.hx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">hx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.hx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">tx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">t</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -172,13 +184,14 @@
             v-model="rows.tx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">tx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.tx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">ox</a-col>
-        <a-col :span="10">
+        <a-col :span="2">o</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -186,13 +199,14 @@
             v-model="rows.ox.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">ox</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.ox.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">px</a-col>
-        <a-col :span="10">
+        <a-col :span="2">p</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -200,13 +214,14 @@
             v-model="rows.px.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">px</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.px.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">qx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">q</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -214,13 +229,14 @@
             v-model="rows.qx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">qx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.qx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">rx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">r</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -228,13 +244,14 @@
             v-model="rows.rx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">rx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.rx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">sx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">s</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -242,13 +259,14 @@
             v-model="rows.sx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">sx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.sx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">tx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">t</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -256,13 +274,14 @@
             v-model="rows.tx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">tx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.tx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">ux</a-col>
-        <a-col :span="10">
+        <a-col :span="2">u</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -270,13 +289,14 @@
             v-model="rows.ux.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">ux</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.ux.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">vx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">v</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -284,13 +304,14 @@
             v-model="rows.vx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">vx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.vx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">wx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">w</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -298,13 +319,14 @@
             v-model="rows.wx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">wx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.wx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">xx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">x</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -312,13 +334,14 @@
             v-model="rows.xx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">xx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.xx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">yx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">y</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -326,13 +349,14 @@
             v-model="rows.yx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">y</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.yx.v" />
         </a-col>
       </div>
       <div class="row">
-        <a-col :span="4">zx</a-col>
-        <a-col :span="10">
+        <a-col :span="2">z</a-col>
+        <a-col :span="8">
           <a-cascader
             :options="options"
             @change="onChange"
@@ -340,7 +364,8 @@
             v-model="rows.zx.s"
           />
         </a-col>
-        <a-col :span="10">
+        <a-col :span="2">zx</a-col>
+        <a-col :span="8">
           <a-input placeholder="输入值" v-model="rows.zx.v" />
         </a-col>
       </div>
@@ -437,7 +462,7 @@ export default {
     async init() {
       let form = { id: this.$route.query.id }
       let data = await api.latitudeDetailItem.GetPicker(form)
-       
+
       this.options = data
     },
     async handleSubmit() {
