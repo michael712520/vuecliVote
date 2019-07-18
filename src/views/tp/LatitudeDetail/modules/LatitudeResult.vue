@@ -71,7 +71,7 @@
 <script>
 import api from '@/api'
 import { init } from 'echarts/lib/echarts'
- const columns = [
+const columns = [
   {
     title: '得分(起)',
     dataIndex: 'upScore',

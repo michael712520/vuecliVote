@@ -15,7 +15,11 @@
     >
       <template slot="linkName" slot-scope="text, record, index">
         <div v-if="tListLat&&tListLat.mbDetailItems.length>0">
-          <div v-for="(item,index) in choiceType(tListLat.mbDetailItems,record.id)" class="left_c">
+          <div
+            v-for="(item,index) in choiceType(tListLat.mbDetailItems,record.id)"
+            class="left_c"
+            :key="index"
+          >
             <div style="width:auto;min-width:20px;">{{item.rowKey}}.</div>
             <div v-html="item.titleTag"></div>
           </div>
@@ -68,7 +72,7 @@ export default {
       return []
     },
     clickEdit() {
-      this.$emit('clickEdit',true)
+      this.$emit('clickEdit', true)
     }
   }
 }
