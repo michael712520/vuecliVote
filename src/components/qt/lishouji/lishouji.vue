@@ -26,11 +26,11 @@ export default {
   data() {
     return {
       labelCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 2 }
       },
       wrapperCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 8 }
       },
       msg: '标题',

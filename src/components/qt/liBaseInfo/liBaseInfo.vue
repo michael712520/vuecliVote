@@ -40,11 +40,11 @@ export default {
     return {
       msg: '标题',
       labelCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 2 }
       },
       wrapperCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 8 }
       },
       dataSet: [],

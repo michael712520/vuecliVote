@@ -1,15 +1,22 @@
 <template>
   <a-card>
-    <div class="titile" style="display:flex;margin-bottom:10px">
+    <div class="titile" style="display:flex;margin-bottom:10px;word-wrap:break-word">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-radio-group style="display:flex;margin-bottom:10px" @change="radioChange">
-      <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
-        <a-radio :key="index" :value="item.value" size="large">{{item.inputVal}}</a-radio>
-        <br />
-      </div>
-    </a-radio-group>
+    <div style="display:flex;margin-bottom:10px;flex-direction:row">
+      <a-radio-group @change="radioChange">
+        <div class="rdion" v-for="(item ,index) in dataSet" :key="index">
+          <a-radio
+            :key="index"
+            :style="radioStyle"
+            :value="item.value"
+            size="large"
+          >{{item.inputVal}}</a-radio>
+          <br />
+        </div>
+      </a-radio-group>
+    </div>
   </a-card>
 </template>
 <script>
@@ -23,7 +30,16 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return {
+      msg: '标题',
+      radioStyle: {
+        display: 'block',
+        height: '30px',
+        wordWrap:'break-word',
+        display: 'flex',
+        flexDirection: 'row'
+      }
+    }
   },
   computed: {},
   mounted() {},

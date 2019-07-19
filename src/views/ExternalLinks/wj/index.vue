@@ -230,5 +230,6 @@ export default {
 }
 .h1cclass {
   padding: 20px;
+  word-wrap: break-word;
 }
 </style>

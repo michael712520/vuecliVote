@@ -2,7 +2,7 @@
   <div class="div_title_attr_question">
     <a-card>
       <div class="titile">
-         {{(this.$store.state.question.thVisible?index+1+'、':'')}}
+        {{(this.$store.state.question.thVisible?index+1+'、':'')}}
         <div v-html="msg"></div>
       </div>
 
@@ -53,7 +53,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -153,7 +153,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -177,11 +177,11 @@ export default {
   data() {
     return {
       labelCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 2 }
       },
       wrapperCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 6 }
       },
       aRadioOnValue: null,

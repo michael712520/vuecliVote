@@ -1,14 +1,16 @@
 <template>
   <a-card>
-    <div class="titile" style="display:flex;margin-bottom:10px">
+    <div class="titile" style="display:flex;margin-bottom:10px;word-wrap:break-word">
       {{(index+1)}}、
       <div v-html="msg"></div>
     </div>
-    <a-checkbox-group style="display:flex;margin-bottom:10px" @change="onCheckAllChange">
-      <a-row v-for="(item ,index) in dataSet " :key="index">
-        <a-checkbox :value="item.value">{{item.inputVal}}</a-checkbox>
-      </a-row>
-    </a-checkbox-group>
+    <div style="display:flex;margin-bottom:10px;flex-direction:row">
+      <a-checkbox-group @change="onCheckAllChange">
+        <a-row v-for="(item ,index) in dataSet " :key="index">
+          <a-checkbox :style="radioStyle" :value="item.value">{{item.inputVal}}</a-checkbox>
+        </a-row>
+      </a-checkbox-group>
+    </div>
   </a-card>
 </template>
 <script>
@@ -22,7 +24,16 @@ export default {
     pageInfo: Object
   },
   data() {
-    return { msg: '标题' }
+    return {
+      msg: '标题',
+      radioStyle: {
+        display: 'block',
+        height: '30px',
+        wordWrap: 'break-word',
+        display: 'flex',
+        flexDirection: 'row'
+      }
+    }
   },
   computed: {},
   mounted() {},
