@@ -53,7 +53,7 @@
       <task-form ref="taskForm" />
       <TaskFormTwo ref="TaskFormTwo" />
       <TaskFormTwo ref="TaskFormTwo" />
-      <LatitudeDetailItem ref="LatitudeDetailItem"></LatitudeDetailItem>
+      <LatitudeDetailItem ref="LatitudeDetailItem" @refreshItem="refreshItem"></LatitudeDetailItem>
       <LatitudeResult ref="LatitudeResult"></LatitudeResult>
     </a-card>
   </div>
@@ -137,6 +137,10 @@ export default {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
+    refreshItem(d) {
+      console.log('refreshItem', d)
+      this.init((this.current - 1) * this.pageSize, this.pageSize).then()
+    },
     editor(record) {
       if (record.state >= 1) {
         this.$message.error('问卷已发布允许修改')

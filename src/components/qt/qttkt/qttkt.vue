@@ -1,11 +1,10 @@
 <template>
   <a-card>
     <div class="titile" style="display:flex;margin-bottom:10px">
-      {{(index+1)}}、
-      <div v-html="msg"></div>
+      <div>{{msg}}</div>
     </div>
-    <div class="row">
-      <a-form :form="form">
+    <div style="display:flex;margin-bottom:10px;flex-direction:row">
+      <a-form :form="form" layout="vertical">
         <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
           <a-input
             v-decorator="['ktt', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
@@ -29,12 +28,12 @@ export default {
     return {
       msg: '标题',
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 2 }
+        xs: { span: 20 },
+        sm: { span: 20 }
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 8 }
+        xs: { span: 20 },
+        sm: { span: 20 }
       },
       msg: '标题',
       form: null,

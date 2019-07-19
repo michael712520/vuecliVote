@@ -2,7 +2,7 @@
   <a-card>
     <div class="titile" style="display:flex;margin-bottom:10px;word-wrap:break-word">
       <!-- {{(index+1)}}、 -->
-      <div v-html="msg"></div>
+      <div>{{msg}}</div>
     </div>
     <div style="display:flex;margin-bottom:10px;flex-direction:row">
       <a-checkbox-group @change="onCheckAllChange">

@@ -29,8 +29,8 @@
             >
               <template v-for="col in ['titleTag']" :slot="col" slot-scope="text, record, index">
                 <div :key="col" class="left_c">
-                  <div style="width:auto;min-width:20px;">{{record.rowKey}}、</div>
-                  <div v-html="text">{{text}}</div>
+                  <!-- <div style="width:auto;min-width:20px;">{{record.rowKey}}、</div> -->
+                  <div>{{text}}</div>
                 </div>
               </template>
               <template slot="operation" slot-scope="text, record, index">
