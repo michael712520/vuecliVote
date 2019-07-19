@@ -47,7 +47,7 @@
     <div class="row" v-show="bjdisplay">
       <div class="row">
         <div class="div_editor">
-          <vue-ueditor-wrap v-model="msg" :config="myConfig"></vue-ueditor-wrap>
+          <a-textarea placeholder="Basic usage" :rows="4" v-model="msg" />
         </div>
       </div>
       <div style="clear: both;"></div>

@@ -164,7 +164,7 @@ export default {
         id = this.id
       }
       if (this.$route.query.id) {
-        id = this.id
+        id = this.$route.query.id
       }
       let form = {
         id: id,
