@@ -1,7 +1,7 @@
 <template>
   <a-card>
     <div class="titile" style="display:flex;margin-bottom:10px">
-      {{(index+1)}}、
+      <!-- {{(index+1)}}、 -->
       <div v-html="msg"></div>
     </div>
     <a-form :form="form">
