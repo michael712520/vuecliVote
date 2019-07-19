@@ -144,16 +144,20 @@ export default {
       })
       await api.tp.UpdateSelectResult(hbk)
 
-      window.location.href = this.$store.state.ExternalLinks.callBack + '?result=1'
+      window.location.href = this.$route.query.callBack + '?result=1'
     },
     async init() {
       let params = {
         id: this.$route.query.qtDetailId
       }
       let data = await api.qtDetail.Get(params)
+
       if (data.state === 1) {
         this.$store.commit('ExternalLinks/qtDetail', data)
-        this.$router.push({ path: '/ExternalLinks/studentListSimple', query: { id: data.id } })
+        this.$router.push({
+          path: '/ExternalLinks/studentListSimple',
+          query: { ...this.$route.query, studentIdCard: data.studentIdCard, mbDetailId: data.mbDetailId }
+        })
         return
       }
       this.title = data.title

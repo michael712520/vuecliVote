@@ -79,7 +79,7 @@ export default {
   async mounted() {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
     let params = {
-      id: this.$route.query.id
+      id: this.$route.query.qtDetailId
     }
     this.qtDetail = await api.qtDetail.Get(params)
   },
@@ -88,34 +88,34 @@ export default {
       this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id, batchNumber: record.batchNumber } })
     },
     simpleResult(record) {
-      this.$router.push({ path: '/ExternalLinks/repeatwj', query: { qtDetailId: record.id } })
+      this.$router.push({ path: '/ExternalLinks/repeatwj', query: { ...this.$route.query } })
     },
     viewinfo(record) {},
     goBack() {
-      window.location.href = this.$store.state.ExternalLinks.callBack
+      window.location.href = this.$route.query.callBack
     },
     async init(Start, Length) {
       this.loading = true
       let id = null
       let studentIdCard = null
-      let mbId = null
-      if (this.$route.query.id) {
-        id = this.$route.query.id
+      let qtDetailId = null
+      if (this.$route.query.qtDetailId) {
+        id = this.$route.query.qtDetailId
       }
       if (this.$route.query.studentIdCard) {
         studentIdCard = this.$route.query.studentIdCard
       }
-      if (this.$route.query.mbId) {
-        mbId = this.$route.query.mbId
+      if (this.$route.query.qtDetailId) {
+        qtDetailId = this.$route.query.qtDetailId
       }
-      if (id == null && (studentIdCard == null || mbId == null)) {
+      if (id == null && (studentIdCard == null || qtDetailId == null)) {
         this.$message.error(`无效的地址参数无法获取数据`)
         return
       }
       let form = {
         id: id,
         studentIdCard: studentIdCard,
-        mbId: mbId
+        mbId: qtDetailId
       }
 
       let data = await api.qt.SelectResultSimple(form)

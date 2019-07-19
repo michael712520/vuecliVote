@@ -78,11 +78,11 @@ const columns = [
     dataIndex: 'score',
     key: 'score'
   },
-  {
-    title: '基础分数XXX',
-    dataIndex: 'baseScore',
-    key: 'baseScore'
-  },
+  // {
+  //   title: '最小分值',
+  //   dataIndex: 'baseScore',
+  //   key: 'baseScore'
+  // },
   // {
   //   title: '系数（百分比）',
   //   dataIndex: 'coefficient',

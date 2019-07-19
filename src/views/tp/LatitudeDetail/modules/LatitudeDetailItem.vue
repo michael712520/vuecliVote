@@ -10,11 +10,18 @@
     <div class="page">
       <a-list>
         <a-list-item>纬度名称：{{this.record.name}}</a-list-item>
-        <a-list-item>基础分值XXX：{{this.record.baseScore}}</a-list-item>
+        <a-list-item>
+          XXX：
+          <a-input-number
+            :min="0"
+            :defaultValue="this.record.baseScore"
+            placeholder="输入值"
+            v-model="baseScore"
+          />
+        </a-list-item>
         <a-list-item>纬度计算：Ｘ＝ a*ax+b*bx+c*cx、、、、、、、、、+z*zx+xxx</a-list-item>
       </a-list>
-    
-     
+
       <div class="row">
         <a-col :span="2">a</a-col>
         <a-col :span="8">
@@ -422,7 +429,8 @@ export default {
         xx: { s: null, v: 0 },
         yx: { s: null, v: 0 },
         zx: { s: null, v: 0 }
-      }
+      },
+      baseScore: 0
     }
   },
   async mounted() {},
@@ -434,6 +442,7 @@ export default {
       console.log('record.relationship', record.relationship)
       if (record.relationship && JSON.parse(record.relationship)) {
         this.rows = JSON.parse(record.relationship)
+        this.baseScore = record.baseScore
       } else {
         this.rows = {
           ax: { s: null, v: 0 },
@@ -473,7 +482,7 @@ export default {
     },
     async handleSubmit() {
       this.confirmLoading = true
-      let form = { id: this.record.id, relationship: JSON.stringify(this.rows) }
+      let form = { id: this.record.id, relationship: JSON.stringify(this.rows), baseScore: this.baseScore }
       let data = await api.latitudeDetail.Add(form)
       this.visible = false
       this.confirmLoading = false

@@ -5,16 +5,14 @@ h2 {
   font-size: 18px;
 }
 #chart_example {
-  width: 80%;
+  width: 100%;
   height: 500px;
   /* border: 1px solid red; */
   margin: 0 auto;
 }
 </style>
 <template>
-  <div>
-    <div id="chart_example"></div>
-  </div>
+  <div id="chart_example"></div>
 </template>
  
 <script>
@@ -33,7 +31,7 @@ export default {
     let indicator = []
     let value = []
     this.data.forEach(element => {
-      indicator.push({ text: element.latitudeDetail.name, max: 150 })
+      indicator.push({ text: element.latitudeDetail.name, max: element.latitudeDetail.score })
       value.push(element.score)
     })
     let option = {
@@ -46,13 +44,13 @@ export default {
       radar: [
         {
           indicator: indicator,
-          center: ['50%', '50%'],
-          radius: 120,
+          // center: ['50%', '50%'],
+          radius: 80,
           name: {
-            formatter: '【{value}】'
-            // textStyle: {
-            //   color: '#72ACD1'
-            // }
+            // formatter: '【{value}】'
+            // // textStyle: {
+            // //   color: '#72ACD1'
+            // // }
           },
           splitArea: {
             // areaStyle: {
