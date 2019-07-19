@@ -8,7 +8,13 @@
     @cancel="handleCancel"
   >
     <div class="page">
-      <div>Ｘ＝ a*ax+b*bx+c*cx、、、、、、、、、+z*zx+xxx</div>
+      <a-list>
+        <a-list-item>纬度名称：{{this.record.name}}</a-list-item>
+        <a-list-item>基础分值XXX：{{this.record.baseScore}}</a-list-item>
+        <a-list-item>纬度计算：Ｘ＝ a*ax+b*bx+c*cx、、、、、、、、、+z*zx+xxx</a-list-item>
+      </a-list>
+    
+     
       <div class="row">
         <a-col :span="2">a</a-col>
         <a-col :span="8">

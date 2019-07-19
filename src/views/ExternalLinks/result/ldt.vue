@@ -49,23 +49,23 @@ export default {
           center: ['50%', '50%'],
           radius: 120,
           name: {
-            formatter: '【{value}】',
-            textStyle: {
-              color: '#72ACD1'
-            }
+            formatter: '【{value}】'
+            // textStyle: {
+            //   color: '#72ACD1'
+            // }
           },
           splitArea: {
-            areaStyle: {
-              color: [
-                'rgba(114, 172, 209, 0.2)',
-                'rgba(114, 172, 209, 0.4)',
-                'rgba(114, 172, 209, 0.6)',
-                'rgba(114, 172, 209, 0.8)',
-                'rgba(114, 172, 209, 1)'
-              ],
-              shadowColor: 'rgba(0, 0, 0, 0.3)',
-              shadowBlur: 10
-            }
+            // areaStyle: {
+            //   color: [
+            //     'rgba(114, 172, 209, 0.2)',
+            //     'rgba(114, 172, 209, 0.4)',
+            //     'rgba(114, 172, 209, 0.6)',
+            //     'rgba(114, 172, 209, 0.8)',
+            //     'rgba(114, 172, 209, 1)'
+            //   ],
+            //   shadowColor: 'rgba(0, 0, 0, 0.3)',
+            //   shadowBlur: 10
+            // }
           }
           // axisLine: {
           //   lineStyle: {
@@ -93,31 +93,31 @@ export default {
                   show: true,
                   formatter: function(params) {
                     return params.value
-                  },
-                  color: '#ae2939'
+                  }
+                  // color: '#ae2939'
                 }
               },
               lineStyle: {
                 // 单项线条样式。
-                normal: {
-                  opacity: 1, // 图形透明度
-                  color: '#ff8768'
-                }
+                // normal: {
+                //   opacity: 1, // 图形透明度
+                //   color: '#ff8768'
+                // }
               },
               areaStyle: {
-                normal: {
-                  opacity: 0.5,
-                  color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
-                    {
-                      color: '#B8D3E4',
-                      offset: 0
-                    },
-                    {
-                      color: '#72ACD1',
-                      offset: 1
-                    }
-                  ])
-                }
+                // normal: {
+                //   opacity: 0.5,
+                //   color: new echarts.graphic.RadialGradient(0.5, 0.5, 1, [
+                //     {
+                //       color: '#B8D3E4',
+                //       offset: 0
+                //     },
+                //     {
+                //       color: '#72ACD1',
+                //       offset: 1
+                //     }
+                //   ])
+                // }
               }
             }
           ]

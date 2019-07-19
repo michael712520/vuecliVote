@@ -17,6 +17,9 @@
               ></component>
             </div>
           </div>
+          <div v-if="false" style="display:flex;flex-direction:row;justify-content:center">
+            <a-button>下一页</a-button>
+          </div>
           <div class="row">
             <a-button size="large" type="primary" @click="clickSub">提交</a-button>
           </div>
