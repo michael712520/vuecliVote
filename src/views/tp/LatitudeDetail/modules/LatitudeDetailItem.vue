@@ -21,7 +21,7 @@
         </a-col>
         <a-col :span="2">ax</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.ax.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.ax.v" />
         </a-col>
       </div>
       <div class="row">
@@ -36,7 +36,7 @@
         </a-col>
         <a-col :span="2">bx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.bx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.bx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -51,7 +51,7 @@
         </a-col>
         <a-col :span="2">cx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.cx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.cx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -66,7 +66,7 @@
         </a-col>
         <a-col :span="2">dx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.dx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.dx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -81,7 +81,7 @@
         </a-col>
         <a-col :span="2">ex</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.ex.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.ex.v" />
         </a-col>
       </div>
       <div class="row">
@@ -96,7 +96,7 @@
         </a-col>
         <a-col :span="2">fx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.fx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.fx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -111,7 +111,7 @@
         </a-col>
         <a-col :span="2">gx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.gx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.gx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -126,7 +126,7 @@
         </a-col>
         <a-col :span="2">hx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.hx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.hx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -141,7 +141,7 @@
         </a-col>
         <a-col :span="2">ix</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.ix.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.ix.v" />
         </a-col>
       </div>
       <div class="row">
@@ -156,7 +156,7 @@
         </a-col>
         <a-col :span="2">gx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.gx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.gx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -171,7 +171,7 @@
         </a-col>
         <a-col :span="2">hx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.hx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.hx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -186,7 +186,7 @@
         </a-col>
         <a-col :span="2">tx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.tx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.tx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -201,7 +201,7 @@
         </a-col>
         <a-col :span="2">ox</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.ox.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.ox.v" />
         </a-col>
       </div>
       <div class="row">
@@ -216,7 +216,7 @@
         </a-col>
         <a-col :span="2">px</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.px.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.px.v" />
         </a-col>
       </div>
       <div class="row">
@@ -231,7 +231,7 @@
         </a-col>
         <a-col :span="2">qx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.qx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.qx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -246,7 +246,7 @@
         </a-col>
         <a-col :span="2">rx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.rx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.rx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -261,7 +261,7 @@
         </a-col>
         <a-col :span="2">sx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.sx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.sx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -276,7 +276,7 @@
         </a-col>
         <a-col :span="2">tx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.tx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.tx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -291,7 +291,7 @@
         </a-col>
         <a-col :span="2">ux</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.ux.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.ux.v" />
         </a-col>
       </div>
       <div class="row">
@@ -306,7 +306,7 @@
         </a-col>
         <a-col :span="2">vx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.vx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.vx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -321,7 +321,7 @@
         </a-col>
         <a-col :span="2">wx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.wx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.wx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -336,7 +336,7 @@
         </a-col>
         <a-col :span="2">xx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.xx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.xx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -351,7 +351,7 @@
         </a-col>
         <a-col :span="2">y</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.yx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.yx.v" />
         </a-col>
       </div>
       <div class="row">
@@ -366,7 +366,7 @@
         </a-col>
         <a-col :span="2">zx</a-col>
         <a-col :span="8">
-          <a-input placeholder="输入值" v-model="rows.zx.v" />
+          <a-input-number :min="0" placeholder="输入值" v-model="rows.zx.v" />
         </a-col>
       </div>
     </div>
