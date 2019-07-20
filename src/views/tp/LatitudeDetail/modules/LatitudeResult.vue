@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    :width="800"
+    :width="960"
     :visible="visible"
     title="任务添加"
     @ok="handleSubmit"
@@ -11,19 +11,36 @@
       <a-divider orientation="left">纬度:{{record.name}}</a-divider>
       <div class="row">
         <a-table :columns="columns" :dataSource="data" bordered>
-          <template
-            v-for="col in ['upScore', 'downScore','titile']"
-            :slot="col"
-            slot-scope="text, record, index"
-          >
-            <div :key="col">
+          <template slot="upScore" slot-scope="text, record, index">
+            <div key="upScore">
               <a-input
                 v-if="record.editable"
                 style="margin: -5px 0"
                 :value="text"
-                @change="e => handleChange(e.target.value, record.id, col)"
+                @change="e => handleChange(e.target.value, record.id, 'upScore')"
               />
               <template v-else>{{text}}</template>
+            </div>
+          </template>
+          <template slot="downScore" slot-scope="text, record, index">
+            <div key="downScore">
+              <a-input
+                v-if="record.editable"
+                style="margin: -5px 0"
+                :value="text"
+                @change="e => handleChange(e.target.value, record.id, 'downScore')"
+              />
+              <template v-else>{{text}}</template>
+            </div>
+          </template>
+          <template slot="titile" slot-scope="text, record, index">
+            <div key="titile">
+              <template v-if="record.editable">
+                <vue-ueditor-wrap v-model="record.titile" :config="myConfig"></vue-ueditor-wrap>
+              </template>
+              <template v-else>
+                <div v-html="text"></div>
+              </template>
             </div>
           </template>
           <template slot="operation" slot-scope="text, record, index">
@@ -55,7 +72,8 @@
       <div class="row ty">
         <a-col :span="4" style="line-height:100px">结果与建议</a-col>
         <a-col :span="20">
-          <a-textarea placeholder :rows="4" v-model="addItem.titile" />
+          <vue-ueditor-wrap v-model="titile" :config="myConfig"></vue-ueditor-wrap>
+          <!-- <a-textarea placeholder :rows="4" v-model="addItem.titile" /> -->
         </a-col>
       </div>
       <div class="row ty">
@@ -71,6 +89,8 @@
 <script>
 import api from '@/api'
 import { init } from 'echarts/lib/echarts'
+import VueUeditorWrap from 'vue-ueditor-wrap'
+
 const columns = [
   {
     title: '得分(起)',
@@ -98,8 +118,21 @@ const columns = [
 ]
 export default {
   name: 'TaskForm',
+  components: { VueUeditorWrap },
   data() {
     return {
+      myConfig: {
+        // 编辑器不自动被内容撑高
+        autoHeightEnabled: false,
+        // 初始容器高度
+        initialFrameHeight: 100,
+        // 初始容器宽度
+        initialFrameWidth: '100%',
+        // 上传文件接口（这个地址是我为了方便各位体验文件上传功能搭建的临时接口，请勿在生产环境使用！！！）
+        serverUrl: 'http://sljhhzzapi.mas.gov.cn/net/controller.ashx',
+        // UEditor 资源文件的存放路径，如果你使用的是 vue-cli 生成的项目，通常不需要设置该选项，vue-ueditor-wrap 会自动处理常见的情况，如果需要特殊配置，参考下方的常见问题2
+        UEDITOR_HOME_URL: '/UEditor/'
+      },
       labelCol: {
         xs: { span: 24 },
         sm: { span: 7 }
@@ -112,6 +145,7 @@ export default {
       record: {},
       data: [],
       columns: columns,
+      titile: '',
       addItem: { titile: null, upScore: 0, downScore: 0 }
     }
   },
@@ -129,11 +163,12 @@ export default {
 
     async SaveUpdate() {
       let httpData = {
-        titile: this.addItem.titile,
+        titile: this.titile,
         upScore: this.addItem.upScore,
         downScore: this.addItem.downScore,
         mbDetailId: this.record.id
       }
+      debugger
       await api.LatitudeGrade.SaveUpdate(httpData)
       await this.init()
     },

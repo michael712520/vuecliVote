@@ -72,10 +72,13 @@ export default {
 <style scoped>
 </style>
 <style>
-span {
+.ant-radio-wrapper span:nth-child(2) {
   word-wrap: break-word;
   word-break: break-all;
   white-space: pre-wrap !important;
+}
+.ant-radio-checked .ant-radio-inner:after {
+  white-space: nowrap !important;
 }
 </style>
 

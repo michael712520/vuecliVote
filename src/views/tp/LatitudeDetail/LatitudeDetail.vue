@@ -15,6 +15,7 @@
         <a-button type="dashed" style="width: 33%" icon="right" @click="linkTo()">查看二维</a-button>
       </div>
       <a-table
+        v-if="data&&Array.isArray(data)"
         :rowKey="record => record.id"
         :columns="columns"
         :dataSource="data"

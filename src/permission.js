@@ -6,8 +6,13 @@ import store from './store'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import notification from 'ant-design-vue/es/notification'
-import { setDocumentTitle, domTitle } from '@/utils/domUtil'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
+import {
+  setDocumentTitle,
+  domTitle
+} from '@/utils/domUtil'
+import {
+  ACCESS_TOKEN
+} from '@/store/mutation-types'
 
 NProgress.configure({
   showSpinner: false
@@ -35,10 +40,12 @@ router.beforeEach((to, from, next) => {
       router: router
     })
     .then(res => {
+      console.log('res.userInfo', res)
+
       if (store.getters.userInfo && store.getters.userInfo.username && Vue.ls.get(ACCESS_TOKEN)) {
         if (to.path === '/user/login') {
           next({
-            path: '/dashboard'
+            path: '/dashboard/basic-list'
           })
           NProgress.done()
         } else {
