@@ -6,13 +6,36 @@
 </style>
 <template>
   <div v-if="tListLat&&tListLat.length>0">
-    <a-table
+    <a-list :dataSource="tListLat">
+      <a-list-item slot="renderItem" slot-scope="item, index">
+        <div style="padding :10px">
+          <div
+            style="text-align:left;font-size:18px;color:rgba(0, 0, 0, 0.65);padding-bottom:10px"
+          >{{item.name}}</div>
+          <div
+            style="color: rgba(0, 0, 0, 0.45);
+            text-align:left;
+            font-size: 14px;
+            line-height: 22px;
+            letter-spacing:2px"
+            v-html="item.describe"
+          ></div>
+        </div>
+      </a-list-item>
+    </a-list>
+    <!-- <a-table
       :columns="columns"
       :dataSource="tListLat"
       bordered
       :pagination="false"
       :rowKey="record => record.id"
-    ></a-table>
+    >
+      <template slot="describe" slot-scope="text, record, index">
+        <div key="describe">
+          <div v-html="text"></div>
+        </div>
+      </template>
+    </a-table>-->
   </div>
 </template>
 <script>
