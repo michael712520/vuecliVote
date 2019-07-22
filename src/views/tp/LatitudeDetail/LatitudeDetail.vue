@@ -15,6 +15,7 @@
         <a-button type="dashed" style="width: 33%" icon="right" @click="linkTo()">查看二维</a-button>
       </div>
       <a-table
+        v-if="data&&Array.isArray(data)"
         :rowKey="record => record.id"
         :columns="columns"
         :dataSource="data"
@@ -53,7 +54,7 @@
       <task-form ref="taskForm" />
       <TaskFormTwo ref="TaskFormTwo" />
       <TaskFormTwo ref="TaskFormTwo" />
-      <LatitudeDetailItem ref="LatitudeDetailItem"></LatitudeDetailItem>
+      <LatitudeDetailItem ref="LatitudeDetailItem" @refreshItem="refreshItem"></LatitudeDetailItem>
       <LatitudeResult ref="LatitudeResult"></LatitudeResult>
     </a-card>
   </div>
@@ -137,6 +138,10 @@ export default {
     await this.init((this.current - 1) * this.pageSize, this.pageSize)
   },
   methods: {
+    refreshItem(d) {
+      console.log('refreshItem', d)
+      this.init((this.current - 1) * this.pageSize, this.pageSize).then()
+    },
     editor(record) {
       if (record.state >= 1) {
         this.$message.error('问卷已发布允许修改')

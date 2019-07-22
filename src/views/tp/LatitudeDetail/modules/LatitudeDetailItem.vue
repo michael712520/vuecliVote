@@ -486,6 +486,7 @@ export default {
       let data = await api.latitudeDetail.Add(form)
       this.visible = false
       this.confirmLoading = false
+      this.$emit('refreshItem',true)
     },
     handleCancel() {
       this.visible = false

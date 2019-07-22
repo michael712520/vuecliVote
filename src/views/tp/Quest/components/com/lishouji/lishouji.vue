@@ -10,7 +10,7 @@
           <a-form :form="form">
             <a-form-item :label="dataSet[0].inputVal" :labelCol="labelCol" :wrapperCol="wrapperCol">
               <a-input
-                v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少11个字符的姓名！'}]}]"
+                v-decorator="['desc', {rules: [{required: true, min: 2, message: '请输入至少2个字符的姓名！'}]}]"
               />
             </a-form-item>
           </a-form>

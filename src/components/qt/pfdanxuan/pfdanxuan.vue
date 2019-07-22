@@ -2,7 +2,7 @@
   <a-card>
     <div class="titile" style="display:flex;margin-bottom:10px;word-wrap:break-word">
       <!-- {{(index+1)}}、 -->
-      <div v-html="msg"></div>
+      <div>{{msg}}</div>
     </div>
     <div style="display:flex;margin-bottom:10px;flex-direction:row">
       <a-radio-group @change="radioChange">
@@ -70,5 +70,15 @@ export default {
 }
 </script>
 <style scoped>
+</style>
+<style>
+.ant-radio-wrapper span:nth-child(2) {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-wrap !important;
+}
+.ant-radio-checked .ant-radio-inner:after {
+  white-space: nowrap !important;
+}
 </style>
 

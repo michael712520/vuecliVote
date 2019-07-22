@@ -7,14 +7,15 @@
           <div>
             <h1 v-if="this.title" class="h1cclass">{{this.title}}</h1>
             <div class="row" v-html="content">{{content}}</div>
-            <div v-for="(item,index) in ListComponent" :key="index">
-              <component
-                :is="item.comp"
-                :dataInfo="item.dataInfo"
-                :index="index"
-                @complete="complete(item,index,$event)"
-              ></component>
-            </div>
+
+            <component
+              v-for="(item,index) in ListComponent"
+              :key="index"
+              :is="item.comp"
+              :dataInfo="item.dataInfo"
+              :index="index"
+              @complete="complete(item,index,$event)"
+            ></component>
           </div>
         </div>
         <div class="dfoot">技术提供</div>
@@ -101,7 +102,7 @@ export default {
   methods: {
     async init() {
       let data = await api.tp.Get(this.$route.query.id)
-      
+
       if (!data) {
         return
       }

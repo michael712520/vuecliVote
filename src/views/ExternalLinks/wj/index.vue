@@ -142,6 +142,7 @@ export default {
       list.forEach(element => {
         hbk.push({ id: element.id, selectResult: element.selectResult })
       })
+      console.log('UpdateSelectResult', JSON.stringify(hbk))
       await api.tp.UpdateSelectResult(hbk)
 
       window.location.href = this.$route.query.callBack + '?result=1'

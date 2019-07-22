@@ -61,7 +61,7 @@ export default {
           this.form.setFieldsValue({
             name: record.name,
             score: record.score,
-            coefficient: record.coefficient,
+            // coefficient: record.coefficient,
             // baseScore: record.baseScore,
             sort: record.sort
           })
@@ -70,9 +70,9 @@ export default {
         setTimeout(() => {
           this.form.setFieldsValue({
             name: '名称',
-            score: 200,
+            score: 200
             // coefficient: '',
-            baseScore: 10
+            // baseScore: 10
             // sort: ''
           })
         }, 0)
@@ -100,7 +100,7 @@ export default {
           let model = {
             id: this.record && this.record.id ? this.record.id : null,
             // parentId: this.$route.query.id,
-            // score: values.score,
+            score: values.score,
             // coefficient: values.coefficient,
             // baseScore: values.baseScore,
             name: values.name,
