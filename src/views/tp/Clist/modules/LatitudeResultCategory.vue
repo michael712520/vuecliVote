@@ -8,9 +8,9 @@
   >
     <div class="row" style="padding:20px;">
       <!-- <div class="row">纬度:{{record.name}}</div> -->
-      <!-- <a-divider orientation="left">问卷标题:{{record.title}}</a-divider> -->
+      <a-divider orientation="left">问卷标题:{{record.title}}</a-divider>
       <div class="row">
-        <a-table :columns="columns" :dataSource="data" bordered>
+        <a-table :columns="columns" :dataSource="data" bordered :pagination="false">
           <template slot="name" slot-scope="text, record, index">
             <div key="name">
               <a-input
@@ -28,16 +28,17 @@
               key="link"
               v-if="pickData&&pickData.latitudeDetailItem&&pickData.latitudeDetailItem.length>0"
             >
-              <a-checkbox-group @change="recordonChange($event,record)" :disabled="record.editable">
+              <a-checkbox-group
+                @change="recordonChange($event,record,index,'latitudeDetails')"
+                :disabled="!record.editable"
+                :value="spiltstr(record.latitudeDetails)"
+              >
                 <a-col
                   :span="8"
                   v-for="(item, itemindex) in pickData.latitudeDetailItem"
                   :key="itemindex"
                 >
-                  <a-checkbox
-                    :value="item.id"
-                    :checked="item.id==record.latitudeDetailId"
-                  >{{item.name}}</a-checkbox>
+                  <a-checkbox :value="item.id">{{item.name}}</a-checkbox>
                 </a-col>
               </a-checkbox-group>
             </div>
@@ -62,7 +63,7 @@
       </div>
       <div class="row ty">
         <div style="width: 20%">名称:</div>
-        <a-input style="width: 50%" defaultValue v-model="addItem.name" />
+        <a-input style="width: 50%" v-model="addItem.name" />
       </div>
       <div class="row ty">
         <a-col :span="4" style="line-height:100px">选择关联纬度</a-col>
@@ -77,7 +78,7 @@
                 v-for="(item, itemindex) in pickData.latitudeDetailItem"
                 :key="itemindex"
               >
-                <a-checkbox :value="item.id">{{item.name}}</a-checkbox>
+                <a-checkbox :value="item.id+''">{{item.name}}</a-checkbox>
               </a-col>
             </a-checkbox-group>
           </div>
@@ -102,19 +103,20 @@ const columns = [
   {
     title: '分类名称',
     dataIndex: 'name',
-    width: '15%',
+    width: '30%',
     scopedSlots: { customRender: 'name' }
   },
   {
     title: '关联纬度',
     dataIndex: 'link',
-    width: '15%',
+    width: '50%',
     scopedSlots: { customRender: 'link' }
   },
 
   {
     title: '操作',
     dataIndex: 'operation',
+    width: '20%',
     scopedSlots: { customRender: 'operation' }
   }
 ]
@@ -148,7 +150,7 @@ export default {
       data: [],
       columns: columns,
       titile: '',
-      addItem: { name: null, upScore: 0, downScore: 0 },
+      addItem: { name: '' },
       pickData: [],
       latitudeDetails: null,
       onChangeCheckboxModel: []
@@ -162,8 +164,8 @@ export default {
     },
     async init() {
       this.onChangeCheckboxModel = []
-      this.addItem.name = []
-      let data = await api.latitudeDetailCategory.List({ mbDetailId: this.record.id })
+      this.addItem.name = ''
+      this.data = await api.latitudeDetailCategory.List({ mbDetailId: this.record.id })
       this.pickData = await api.latitudeDetail.GetListLat({ mbDetailId: this.record.id })
     },
 
@@ -177,7 +179,7 @@ export default {
       await this.init()
     },
     async del(id) {
-      await api.LatitudeGrade.Delete({ id: id })
+      await api.latitudeDetailCategory.Delete({ id: id })
       await this.init()
     },
     handleSubmit() {
@@ -208,12 +210,11 @@ export default {
         this.cacheData = newData.map(item => ({ ...item }))
         let httpData = {
           id: target.id,
-          titile: target.titile,
-          upScore: target.upScore,
-          downScore: target.downScore,
-          mbDetailId: this.record.id
+          mbDetailId: target.mbDetailId,
+          name: target.name,
+          latitudeDetails: target.latitudeDetails
         }
-        await api.LatitudeGrade.SaveUpdate(httpData)
+        await api.latitudeDetailCategory.SaveOrUpdate(httpData)
         await this.init()
       }
     },
@@ -229,13 +230,23 @@ export default {
     onChangeCheckboxAdd(e) {
       this.latitudeDetails = e.join(',')
     },
-    recordonChange($event, record) {
+    recordonChange($event, record, index, column) {
       const newData = [...this.data]
-      const target = newData.filter(item => id === item.id)[0]
+      const target = newData.filter(item => record.id === item.id)[0]
       if (target) {
-        target[column] = value
+        target[column] = $event.join(',')
         this.data = newData
       }
+    },
+    spiltstr(str) {
+      if (str) {
+        try {
+          return str.split(',')
+        } catch (error) {
+          return []
+        }
+      }
+      return []
     }
   }
 }
