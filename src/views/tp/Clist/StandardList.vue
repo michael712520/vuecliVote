@@ -39,6 +39,9 @@
             <a @click="latitude(item)">纬度设置</a>
           </div>
           <div slot="actions">
+            <a @click="$refs.LatitudeResultCategory.add(item)">纬度分类</a>
+          </div>
+          <div slot="actions">
             <a>发布问卷</a>
           </div>
           <div slot="actions">
@@ -77,6 +80,7 @@
       </a-list>
 
       <task-form ref="taskForm" />
+      <LatitudeResultCategory ref="LatitudeResultCategory" />
     </a-card>
   </div>
 </template>
@@ -85,12 +89,14 @@
 import HeadInfo from '@/components/tools/HeadInfo'
 import TaskForm from './modules/TaskForm'
 import api from '@/api'
+import LatitudeResultCategory from './modules/LatitudeResultCategory'
 
 export default {
   name: 'StandardList',
   components: {
     HeadInfo,
-    TaskForm
+    TaskForm,
+    LatitudeResultCategory
   },
   data() {
     return {

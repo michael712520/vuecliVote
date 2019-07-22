@@ -5,6 +5,7 @@ const api = {
   latitudeDetailItem: require('./latitudeDetailItem'),
   qtDetail: require('./qtDetail'),
   qt: require('./qt'),
-  LatitudeGrade: require('./LatitudeGrade')
+  LatitudeGrade: require('./LatitudeGrade'),
+  latitudeDetailCategory: require('./latitudeDetailCategory')
 }
 export default api
