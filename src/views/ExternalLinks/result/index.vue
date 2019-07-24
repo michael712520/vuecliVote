@@ -4,10 +4,14 @@
       <div class="ztc">
         <div class="titile" v-if="model">
           <div v-html="msg"></div>
-          <ldt :data="this.model.qtLatitudeDetail"></ldt>
-          <div><LatTable :tListLat="this.model?this.model.list:null"></LatTable></div>
+          <div v-for="(item,index) in model" :key="index">
+            <div>{{item.name}}</div>
+            <ldt :data="item.latitudeDetailIds"></ldt>
+            <div>
+              <LatTable :tListLat="item.latitudeDetailIds"></LatTable>
+            </div>
+          </div>
         </div>
-        <div class="dfoot">技术提供</div>
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@ export default {
   components: { ldt, LatTable },
   data() {
     return {
-      msg: '学生列表',
+      msg: '问卷结果',
       data: [],
       current: 1,
       pageSize: 10,
@@ -75,6 +79,9 @@ export default {
 }
 </script>
 <style scoped>
+.titile {
+  padding: 10px;
+}
 .preview {
   display: flex;
   background-color: #f3f6fa;

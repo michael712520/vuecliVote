@@ -23,21 +23,13 @@
             </div>
           </template>
           <template slot="link" slot-scope="text, record, index">
-            <div
-              class="row"
-              key="link"
-              v-if="pickData&&pickData.latitudeDetailItem&&pickData.latitudeDetailItem.length>0"
-            >
+            <div class="row" key="link" v-if="pickData&&pickData.length>0">
               <a-checkbox-group
                 @change="recordonChange($event,record,index,'latitudeDetails')"
                 :disabled="!record.editable"
                 :value="spiltstr(record.latitudeDetails)"
               >
-                <a-col
-                  :span="8"
-                  v-for="(item, itemindex) in pickData.latitudeDetailItem"
-                  :key="itemindex"
-                >
+                <a-col :span="8" v-for="(item, itemindex) in pickData" :key="itemindex">
                   <a-checkbox :value="item.id">{{item.name}}</a-checkbox>
                 </a-col>
               </a-checkbox-group>
@@ -68,17 +60,10 @@
       <div class="row ty">
         <a-col :span="4" style="line-height:100px">选择关联纬度</a-col>
         <a-col :span="20">
-          <div
-            class="row"
-            v-if="pickData&&pickData.latitudeDetailItem&&pickData.latitudeDetailItem.length>0"
-          >
+          <div class="row" v-if="pickData&&pickData.length>0">
             <a-checkbox-group @change="onChangeCheckboxAdd" v-model="onChangeCheckboxModel">
-              <a-col
-                :span="8"
-                v-for="(item, itemindex) in pickData.latitudeDetailItem"
-                :key="itemindex"
-              >
-                <a-checkbox :value="item.id+''">{{item.name}}</a-checkbox>
+              <a-col :span="8" v-for="(item, itemindex) in pickData" :key="itemindex">
+                <a-checkbox :value="item.id">{{item.name}}</a-checkbox>
               </a-col>
             </a-checkbox-group>
           </div>
@@ -166,7 +151,7 @@ export default {
       this.onChangeCheckboxModel = []
       this.addItem.name = ''
       this.data = await api.latitudeDetailCategory.List({ mbDetailId: this.record.id })
-      this.pickData = await api.latitudeDetail.GetListLat({ mbDetailId: this.record.id })
+      this.pickData = await api.latitudeDetail.GetAll({ mbDetailId: this.record.id })
     },
 
     async SaveUpdate() {

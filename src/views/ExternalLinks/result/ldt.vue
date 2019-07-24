@@ -31,7 +31,7 @@ export default {
     let indicator = []
     let value = []
     this.data.forEach(element => {
-      indicator.push({ text: element.latitudeDetail.name, max: element.latitudeDetail.score })
+      indicator.push({ text: element.name, max: element.maxScore })
       value.push(element.score)
     })
     let option = {

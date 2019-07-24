@@ -13,6 +13,7 @@ export const config = {
   Delete: `POST ${baseUrl}/api/LatitudeDetail/Delete/:id`,
   GetPicker: `${baseUrl}/api/LatitudeDetail/GetPicker`,
   GetListLat: `${baseUrl}/api/LatitudeDetail/GetListLat`,
+  GetAll: `${baseUrl}/api/LatitudeDetail/GetAll`,
   UpdateItemMbDetailItem: `POST ${baseUrl}/api/LatitudeDetail/UpdateItemMbDetailItem`
 }
 export async function Add(params) {
@@ -42,5 +43,9 @@ export async function GetListLat(params) {
 }
 export async function UpdateItemMbDetailItem(params) {
   const { success, data } = await request(config.UpdateItemMbDetailItem, params)
+  return data
+}
+export async function GetAll(params) {
+  const { success, data } = await request(config.GetAll, params)
   return data
 }
