@@ -6,9 +6,9 @@
           <div v-html="msg"></div>
           <div v-for="(item,index) in model" :key="index">
             <div>{{item.name}}</div>
-            <ldt :data="item.latitudeDetailIds"></ldt>
+            <ldt :data="item.latitudeDetailIds" :key="index"></ldt>
             <div>
-              <LatTable :tListLat="item.latitudeDetailIds"></LatTable>
+              <LatTable :tListLat="item.latitudeDetailIds" :key="index"></LatTable>
             </div>
           </div>
         </div>

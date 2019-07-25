@@ -74,7 +74,7 @@ export default {
   },
   methods: {
     checkResult(record) {
-      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.id, batchNumber: record.batchNumber } })
+      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.qtDetailId, batchNumber: record.batchNumber } })
     },
     simpleResult(record) {
       this.$router.push({ path: '/ExternalLinks/repeatwj', query: { ...this.$route.query } })

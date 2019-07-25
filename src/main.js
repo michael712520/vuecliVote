@@ -22,6 +22,12 @@ Vue.use(VueKindEditor)
 // mount axios Vue.$http and this.$http
 Vue.use(VueAxios)
 
+import ECharts from 'vue-echarts' // 在 webpack 环境下指向 components/ECharts.vue
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+import 'echarts/lib/chart/radar'
+Vue.component('v-chart', ECharts)
+
 new Vue({
   router,
   store,

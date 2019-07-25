@@ -12,29 +12,38 @@ h2 {
 }
 </style>
 <template>
-  <div id="chart_example"></div>
+  <v-chart theme="macarons" :options="options" />
 </template>
  
 <script>
 import echarts from 'echarts'
+import ECharts from 'vue-echarts/components/ECharts'
 import 'echarts/theme/macarons'
 export default {
+  components: {
+    'v-chart': ECharts
+  },
   data() {
-    return {}
+    return {
+      id: 'mk_' + Guid.NewGuid().ToString('N'),
+      options: {}
+    }
   },
   props: {
     data: Array
   },
   mounted() {
+    debugger
     let this_ = this
-    let myChart = echarts.init(document.getElementById('chart_example'), 'macarons')
+    // let myChart = echarts.init(document.getElementById(this.id), 'macarons')
     let indicator = []
     let value = []
+
     this.data.forEach(element => {
-      indicator.push({ text: element.name, max: element.maxScore })
+      indicator.push({ text: element.name, max: element.maxScore > element.score ? element.maxScore : element.score })
       value.push(element.score)
     })
-    let option = {
+    this.options = {
       title: {
         // text: '雷达图'
       },
@@ -122,12 +131,12 @@ export default {
         }
       ]
     }
-    myChart.setOption(option)
+    // myChart.setOption(option)
 
-    //建议加上以下这一行代码，不加的效果图如下（当浏览器窗口缩小的时候）。超过了div的界限（红色边框）
-    window.addEventListener('resize', function() {
-      myChart.resize()
-    })
+    // //建议加上以下这一行代码，不加的效果图如下（当浏览器窗口缩小的时候）。超过了div的界限（红色边框）
+    // window.addEventListener('resize', function() {
+    //   myChart.resize()
+    // })
   },
   methods: {},
   watch: {},

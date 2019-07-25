@@ -3,7 +3,7 @@ const api = {
   user: require('./user'),
   latitudeDetail: require('./latitudeDetail'),
   latitudeDetailItem: require('./latitudeDetailItem'),
-  qtDetail: require('./1tDetail'),
+  qtDetail: require('./qtDetail'),
   qt: require('./qt'),
   LatitudeGrade: require('./LatitudeGrade'),
   latitudeDetailCategory: require('./latitudeDetailCategory'),

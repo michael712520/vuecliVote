@@ -94,7 +94,7 @@ module.exports = {
   productionSourceMap: false,
   lintOnSave: undefined,
   // babel-loader no-ignore node_modules/*
-  transpileDependencies: [],
+  transpileDependencies: ['vue-echarts', 'resize-detector'],
   publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   outputDir: 'build'
 }
