@@ -36,6 +36,12 @@
             <a @click="preview(item)">预览</a>
           </div>
           <div slot="actions">
+            <a @click="wjtx(item)">问卷填写</a>
+          </div>
+          <div slot="actions">
+            <a @click="jglb(item)">结果列表</a>
+          </div>
+          <div slot="actions">
             <a @click="latitude(item)">纬度设置</a>
           </div>
           <div slot="actions">
@@ -152,6 +158,17 @@ export default {
     preview(item) {
       this.$store.commit('preview/item', item)
       this.$router.push({ path: '/preview/index', query: { id: item.id } })
+    },
+    wjtx(item) {
+      this.$router.push({ path: '/ExternalLinks/txwj', query: { mbQuestionId: item.id } })
+    },
+    jglb(item) {
+      let details = this.$router.resolve({
+        name: 'wjitem_wjitem',
+        query: { ...this.$route.query, mbDetailId: item.id, Start: 0, Length: 10 },
+        params: { mbQuestionId: item.id, Start: 0, Length: 10 }
+      })
+      window.open(details.href, '_blank')
     }
   },
   watch: {
