@@ -2,12 +2,15 @@
   <div class="preview">
     <div class="blockquote">
       <div class="ztc">
-        <div class="titile" v-if="model">
+        <div class="row titile" v-if="model">
           <div v-html="msg"></div>
-          <div v-for="(item,index) in model" :key="index">
-            <div>{{item.name}}</div>
-            <ldt :data="item.latitudeDetailIds" :key="index"></ldt>
-            <div>
+          <div class="row" v-for="(item,index) in model" :key="index">
+            <div class="row">{{item.name}}</div>
+            <div class="row">
+              <ldt :data="item.latitudeDetailIds" :key="index"></ldt>
+            </div>
+
+            <div class="row">
               <LatTable :tListLat="item.latitudeDetailIds" :key="index"></LatTable>
             </div>
           </div>

@@ -5,14 +5,19 @@ h2 {
   font-size: 18px;
 }
 #chart_example {
-  width: 100%;
-  height: 500px;
+  width: 300px;
   /* border: 1px solid red; */
   margin: 0 auto;
 }
+.echarts {
+  width: 300px;
+  height: 300px;
+}
 </style>
 <template>
-  <v-chart theme="macarons" :options="options" />
+  <div class="row chart_example">
+    <v-chart theme="macarons" :options="options" />
+  </div>
 </template>
  
 <script>
@@ -33,7 +38,6 @@ export default {
     data: Array
   },
   mounted() {
-    debugger
     let this_ = this
     // let myChart = echarts.init(document.getElementById(this.id), 'macarons')
     let indicator = []
@@ -54,7 +58,7 @@ export default {
         {
           indicator: indicator,
           // center: ['50%', '50%'],
-          radius: 80,
+          radius: 40,
           name: {
             // formatter: '【{value}】'
             // // textStyle: {

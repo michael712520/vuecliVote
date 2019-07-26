@@ -113,14 +113,15 @@ export default {
     async rowOperate(item, index, event) {
       if (event == 3) {
         if (index >= 1) {
-          let params = { detailId: this.$route.query.id, sort: index, type: 0 }
+           let params = { detailId: this.$route.query.id, sort: item.dataInfo.order, type: 0 }
+          console.log('UpdateMbDetail',JSON.stringify(params))
           await api.tp.UpdateMbDetail(params)
           await this.init()
         } else {
         }
       } else if (event == 4) {
         if (this.ListComponent.length - 1 > index) {
-          let params = { detailId: this.$route.query.id, sort: index, type: 1 }
+          let params = { detailId: this.$route.query.id, sort: item.dataInfo.order, type: 1 }
           console.log('UpdateMbDetail', params)
           await api.tp.UpdateMbDetail(params)
           await this.init()
