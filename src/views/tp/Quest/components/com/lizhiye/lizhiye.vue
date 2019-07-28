@@ -33,7 +33,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
-        <a-tag color="#108dd9" @click="rowOperate(5)">向下插入</a-tag>
+        <a-tag color="#108dd9" @click="rowOperate(5)">选择向下插入</a-tag>
 
         <a-tag
           v-if="pageInfo&&pageInfo.display===true"

@@ -9,10 +9,7 @@
           v-for="(item,index) in ListComponent"
           :key="index"
           :class="listcompClass(index)"
-          @click="d=>{
-            debugger
-            console.log('111')
-           }"
+          @click="d=>{}"
         >
           <component
             :is="item.comp"

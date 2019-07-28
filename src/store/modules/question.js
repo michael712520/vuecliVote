@@ -49,27 +49,31 @@ export default {
               ...payload.item
             }
           }
-          var ds = JSON.parse(d.dataInfo.pageInfo)
-          if (ds.display === true) {
-            ds = {
-              ...ds,
-              ...{
-                display: true,
-                page: i
+
+          if (d.dataInfo.pageInfo) {
+            var ds = JSON.parse(d.dataInfo.pageInfo)
+            if (ds.display === true) {
+              ds = {
+                ...ds,
+                ...{
+                  display: true,
+                  page: i
+                }
+              }
+              i++
+            } else {
+              ds = {
+                ...ds,
+                ...{
+                  display: false,
+                  page: 0
+                }
               }
             }
-            i++
-          } else {
-            ds = {
-              ...ds,
-              ...{
-                display: false,
-                page: 0
-              }
-            }
+            d.dataInfo.pageInfo = JSON.stringify(ds)
+            return d.dataInfo
           }
-          d.dataInfo.pageInfo = JSON.stringify(ds)
-          return d.dataInfo
+
         } catch (error) {
           console.log('error_upListData', error)
           return d.dataInfo
@@ -141,10 +145,24 @@ export default {
       state.item = payload
     },
     addListData(state, payload) {
-      state.listData.push({
-        comp: payload,
-        dataInfo: {}
-      })
+      if (state.crf >= 0) {
+        let dataIme = [...state.listData]
+        dataIme.splice(state.crf, state.crf + 1, {
+          comp: payload,
+          dataInfo: {}
+        })
+        dataIme.forEach((element, index) => {
+          element.order = index
+        });
+        state.listData = dataIme
+      } else {
+        state.listData.push({
+          comp: payload,
+          dataInfo: {}
+        })
+      }
+
+
     },
     refresh: (state, payload) => {
       state.refresh = !state.refresh

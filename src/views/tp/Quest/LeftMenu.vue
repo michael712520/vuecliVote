@@ -270,8 +270,12 @@ export default {
     return {}
   },
   methods: {
-    selectChange(selectVal) {
+    async selectChange(selectVal) {
       this.$store.commit('question/addListData', selectVal)
+      if (this.$store.state.question.crf >= 0) {
+        await this.$store.dispatch('question/ListSaveItem')
+        this.$store.commit('question/crf', -1)
+      }
     },
     yiyeyiti() {
       this.$store.dispatch('question/ytyy')
