@@ -154,7 +154,7 @@ export default {
       const pager = { ...this.pagination }
       pager.current = pagination.current
       this.pagination = pager
-      this.init(pagination.current, pagination.pageSize)
+      this.init((pagination.current - 1) * pagination.pageSize, pagination.pageSize)
     },
     clickLatitude() {},
     async Delete(record) {
@@ -221,6 +221,11 @@ export default {
   watch: {
     async refresh(nVal, oVal) {
       await this.init((this.current - 1) * this.pageSize, this.pageSize)
+    },
+    $route(to, from) {
+      if ('/dashboard/latitudeDetail' === to.path) {
+        this.init((this.current - 1) * this.pageSize, this.pageSize).then()
+      }
     }
   }
 }

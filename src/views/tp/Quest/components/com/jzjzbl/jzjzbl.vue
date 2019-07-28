@@ -3,7 +3,7 @@
   <div class="div_title_attr_question">
     <a-card>
       <div class="titile">
-         {{(this.$store.state.question.thVisible?index+1+'、':'')}}
+        {{(this.$store.state.question.thVisible?index+1+'、':'')}}
         <div v-html="msg"></div>
       </div>
       <table v-if="dataltb&&dataltb.data&&dataSet&&dataSet.length>0">
@@ -45,6 +45,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+        <a-tag color="#108dd9" @click="rowOperate(5)">向下插入</a-tag>
 
         <a-tag
           v-if="pageInfo&&pageInfo.display===true"
@@ -57,7 +58,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
 
@@ -77,7 +78,7 @@
               </b>
             </span>
             <span class="spanRight" style="padding-right: 20px;">
-              <input type="checkbox" tabindex="-1" style="display: none;">
+              <input type="checkbox" tabindex="-1" style="display: none;" />
               <span style="display: none;">右行标题</span>
             </span>
             <div class="divclear"></div>
@@ -95,7 +96,7 @@
         </div>
         <div class="spanLeft matrixhead" style="width: 172px;">
           <div>
-            <input type="checkbox" tabindex="-1">
+            <input type="checkbox" tabindex="-1" />
             <span>右行标题(可选)</span>
           </div>
           <textarea
@@ -146,7 +147,7 @@
               title="用户在填写问卷时必须回答这道题"
               class="checkbox"
               id="req_2_3944705790"
-            >
+            />
             <label for="req_2_3944705790">必答</label>
             <span style="display: none;">
               &nbsp;&nbsp;&nbsp;&nbsp;将所有题目设为：
@@ -164,7 +165,7 @@
                 type="text"
                 class="choicetxt"
                 style="width: 140px; height: 15px; display: none;"
-              >
+              />
               <span style="margin-left: 30px;"></span>
               <a class="link-new" title="填写提示可以作为副标题" href="javascript:">填写提示</a>
             </span>
@@ -262,7 +263,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -493,6 +494,8 @@ export default {
         this.$emit('rowOperate', 3)
       } else if (event === 4) {
         this.$emit('rowOperate', 4)
+      } else if (event === 5) {
+        this.$emit('rowOperate', 5)
       }
     },
     aRadioOnChange(e) {},

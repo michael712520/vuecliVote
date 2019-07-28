@@ -8,7 +8,7 @@
     @cancel="handleCancel"
   >
     <div class="page">
-      <a-list>
+      <a-list v-if="record">
         <a-list-item>纬度名称：{{this.record.name}}</a-list-item>
         <a-list-item>
           XXX：
@@ -486,7 +486,7 @@ export default {
       let data = await api.latitudeDetail.Add(form)
       this.visible = false
       this.confirmLoading = false
-      this.$emit('refreshItem',true)
+      this.$emit('refreshItem', true)
     },
     handleCancel() {
       this.visible = false

@@ -42,8 +42,6 @@ router.beforeEach((to, from, next) => {
       router: router
     })
     .then(res => {
-      console.log('res.userInfo', res)
-
       if (store.getters.userInfo && store.getters.userInfo.username && Vue.ls.get(ACCESS_TOKEN)) {
         if (to.path === '/user/login') {
           next({

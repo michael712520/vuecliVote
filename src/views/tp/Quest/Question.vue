@@ -5,7 +5,15 @@
       <div class="survey editContainBox">
         <com-title></com-title>
         <!-- <div @click="testClick">asdasdasdasdasddasda</div> -->
-        <div v-for="(item,index) in ListComponent" :key="index">
+        <div
+          v-for="(item,index) in ListComponent"
+          :key="index"
+          :class="listcompClass(index)"
+          @click="d=>{
+            debugger
+            console.log('111')
+           }"
+        >
           <component
             :is="item.comp"
             :dataInfo="item.dataInfo"
@@ -100,6 +108,13 @@ export default {
     }
   },
   methods: {
+    listcompClass(index) {
+      if (this.$store.state.question.crf === index) {
+        return 'tp_mkj'
+      } else {
+        return 'njmkl' + index
+      }
+    },
     tickFunction() {
       this.$store.dispatch('question/ListSaveItem')
       this.$message.success('请点击编辑项的的完成编辑已方便自动保存全部数据', 4)
@@ -113,8 +128,8 @@ export default {
     async rowOperate(item, index, event) {
       if (event == 3) {
         if (index >= 1) {
-           let params = { detailId: this.$route.query.id, sort: item.dataInfo.order, type: 0 }
-          console.log('UpdateMbDetail',JSON.stringify(params))
+          let params = { detailId: this.$route.query.id, sort: item.dataInfo.order, type: 0 }
+          console.log('UpdateMbDetail', JSON.stringify(params))
           await api.tp.UpdateMbDetail(params)
           await this.init()
         } else {
@@ -126,6 +141,8 @@ export default {
           await api.tp.UpdateMbDetail(params)
           await this.init()
         }
+      } else if (event == 5) {
+        this.$store.commit('question/crf', index)
       }
     },
     handleChangeselect(value) {
@@ -161,5 +178,8 @@ export default {
 <style scoped>
 .editContainBox {
   float: right;
+}
+.tp_mkj {
+  border: 1px solid #ff3333;
 }
 </style>

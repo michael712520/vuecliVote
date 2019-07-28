@@ -5,7 +5,7 @@
         {{(this.$store.state.question.thVisible?index+1+'、':'')}}
         <div v-html="msg"></div>
       </div>
-      <a-cascader :options="dataSet" @change="onChange" placeholder="下拉选择" :changeOnSelect="true"/>
+      <a-cascader :options="dataSet" @change="onChange" placeholder="下拉选择" :changeOnSelect="true" />
     </a-card>
     <div
       class="row"
@@ -22,6 +22,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+        <a-tag color="#108dd9" @click="rowOperate(5)">向下插入</a-tag>
 
         <a-tag
           v-if="pageInfo&&pageInfo.display===true"
@@ -34,7 +35,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -67,7 +68,7 @@
         <a-col :span="9">
           <div style="padding-left:10px;padding-right:20px">
             <div>
-              <a-input placeholder="添加" style="padding-bottom:10px;" v-model="djxlTextInfo"/>
+              <a-input placeholder="添加" style="padding-bottom:10px;" v-model="djxlTextInfo" />
             </div>
             <div style="height:10px"></div>
             <div>
@@ -107,7 +108,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -327,6 +328,8 @@ export default {
         this.$emit('rowOperate', 3)
       } else if (event === 4) {
         this.$emit('rowOperate', 4)
+      } else if (event === 5) {
+        this.$emit('rowOperate', 5)
       }
     },
     onChangeCascader(e) {

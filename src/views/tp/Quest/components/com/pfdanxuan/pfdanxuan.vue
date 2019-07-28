@@ -2,7 +2,7 @@
   <div class="div_title_attr_question">
     <a-card>
       <div class="titile">
-         {{(this.$store.state.question.thVisible?index+1+'、':'')}}
+        {{(this.$store.state.question.thVisible?index+1+'、':'')}}
         <div v-html="msg"></div>
       </div>
       <a-radio-group>
@@ -28,6 +28,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+        <a-tag color="#108dd9" @click="rowOperate(5)">向下插入</a-tag>
 
         <a-tag
           v-if="pageInfo&&pageInfo.display===true"
@@ -180,7 +181,7 @@
       </div>
       <div style="margin: 14px 36px 20px;">
         <div style="color: red; font-size: 14px; display: inline-block; margin: 0px 0px 6px 10px;"></div>
-         <input
+        <input
           @click="completed()"
           type="button"
           value="完成编辑"
@@ -379,6 +380,8 @@ export default {
         this.$emit('rowOperate', 3)
       } else if (event === 4) {
         this.$emit('rowOperate', 4)
+      } else if (event === 5) {
+        this.$emit('rowOperate', 5)
       }
     },
     aRadioOnChange(e) {},
@@ -393,7 +396,6 @@ export default {
         if (nVal && Object.keys(nVal).length != 0) {
           if (nVal.bcontemt && JSON.parse(nVal.bcontemt) && Array.isArray(JSON.parse(nVal.bcontemt))) {
             this.dataSet = JSON.parse(nVal.bcontemt)
-            console.log(' JSON.parse(nVal.bcontemt)', this.dataSet)
           }
           this.msg = nVal.title
           this.bjdisplay = nVal.display

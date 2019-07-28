@@ -27,6 +27,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+        <a-tag color="#108dd9" @click="rowOperate(5)">向下插入</a-tag>
 
         <a-tag
           v-if="pageInfo&&pageInfo.display===true"
@@ -378,6 +379,8 @@ export default {
         this.$emit('rowOperate', 3)
       } else if (event === 4) {
         this.$emit('rowOperate', 4)
+      } else if (event === 5) {
+        this.$emit('rowOperate', 5)
       }
     },
     aRadioOnChange(e) {},

@@ -3,12 +3,12 @@
     <a-card>
       <div class="row">
         <div class="titile">
-           {{(this.$store.state.question.thVisible?index+1+'、':'')}}
+          {{(this.$store.state.question.thVisible?index+1+'、':'')}}
           <div v-html="msg"></div>
         </div>
         <div>
           {{dataSet&&dataSet[0]&&dataSet[0].inputVal}}&nbsp;&nbsp;&nbsp;&nbsp;
-          <a-date-picker/>
+          <a-date-picker />
         </div>
       </div>
     </a-card>
@@ -27,6 +27,7 @@
         <a-tag color="#2db7f5" @click="rowOperate(2)">删除</a-tag>
         <a-tag color="#87d068" @click="rowOperate(3)">上移</a-tag>
         <a-tag color="#108ee9" @click="rowOperate(4)">下移</a-tag>
+        <a-tag color="#108dd9" @click="rowOperate(5)">向下插入</a-tag>
 
         <a-tag
           v-if="pageInfo&&pageInfo.display===true"
@@ -39,7 +40,7 @@
           @change="onChangeCascader"
           :defaultValue="CascaderData"
           placeholder="选择维度"
-        /> -->
+        />-->
       </div>
     </div>
     <div class="row" v-show="bjdisplay">
@@ -139,7 +140,7 @@
           value="完成编辑"
           class="submitbutton"
           style="width: 100%;"
-        >
+        />
       </div>
     </div>
   </div>
@@ -346,6 +347,8 @@ export default {
         this.$emit('rowOperate', 3)
       } else if (event === 4) {
         this.$emit('rowOperate', 4)
+      } else if (event === 5) {
+        this.$emit('rowOperate', 5)
       }
     },
     aRadioOnChange(e) {},
