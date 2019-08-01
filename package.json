@@ -39,6 +39,7 @@
     "vue-echarts": "^4.0.3",
     "vue-kindeditor": "^0.4.5",
     "vue-ls": "^3.2.0",
+    "vue-preview-image": "^0.1.4",
     "vue-router": "^3.0.1",
     "vue-svg-component-runtime": "^1.0.1",
     "vue-ueditor-wrap": "^2.4.1",

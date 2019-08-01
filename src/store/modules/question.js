@@ -1,8 +1,6 @@
 /* eslint-disable */
 import api from '@/api'
-import {
-  async
-} from 'q'
+import { async } from 'q'
 export default {
   namespaced: true,
   state: {
@@ -14,10 +12,7 @@ export default {
     crf: -1
   },
   actions: {
-    ytyy: async ({
-      commit,
-      state
-    }, payload) => {
+    ytyy: async ({ commit, state }, payload) => {
       let data = state.listData.map((d, index) => {
         var ds = JSON.parse(d.dataInfo.pageInfo)
         ds = {
@@ -36,10 +31,7 @@ export default {
       let ListPicker = await api.tp.ListSaveItem(data)
       commit('refresh')
     },
-    upListData: async ({
-      commit,
-      state
-    }, payload) => {
+    upListData: async ({ commit, state }, payload) => {
       let i = 1
       let data = state.listData.map((d, index) => {
         try {
@@ -73,21 +65,16 @@ export default {
             d.dataInfo.pageInfo = JSON.stringify(ds)
             return d.dataInfo
           }
-
         } catch (error) {
           console.log('error_upListData', error)
           return d.dataInfo
         }
+        return d.dataInfo
       })
-
-      debugger
       let ListPicker = await api.tp.ListSaveItem(data)
       commit('refresh')
     },
-    qxytyy: async ({
-      commit,
-      state
-    }, payload) => {
+    qxytyy: async ({ commit, state }, payload) => {
       let data = state.listData.map(d => {
         var ds = JSON.parse(d.dataInfo.pageInfo)
         ds = {
@@ -104,10 +91,7 @@ export default {
       let ListPicker = await api.tp.ListSaveItem(data)
       commit('refresh')
     },
-    ListSaveItem: async ({
-      commit,
-      state
-    }, payload) => {
+    ListSaveItem: async ({ commit, state }, payload) => {
       let data = state.listData.map(d => {
         return d.dataInfo
       })
@@ -147,13 +131,17 @@ export default {
     addListData(state, payload) {
       if (state.crf >= 0) {
         let dataIme = [...state.listData]
-        dataIme.splice(state.crf, state.crf + 1, {
+        dataIme.splice(state.crf + 1, 0, {
           comp: payload,
-          dataInfo: {}
+          dataInfo: {
+            title: '标题',
+            detailId: state.item.id,
+            type: payload
+          }
         })
         dataIme.forEach((element, index) => {
           element.order = index
-        });
+        })
         state.listData = dataIme
       } else {
         state.listData.push({
@@ -161,8 +149,6 @@ export default {
           dataInfo: {}
         })
       }
-
-
     },
     refresh: (state, payload) => {
       state.refresh = !state.refresh

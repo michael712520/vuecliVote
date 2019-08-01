@@ -10965,6 +10965,13 @@ vue-ls@^3.2.0:
   resolved "https://registry.npm.taobao.org/vue-ls/download/vue-ls-3.2.1.tgz#25d1c75b3a51c17018129de607b44bb120a3385a"
   integrity sha1-JdHHWzpRwXAYEp3mB7RLsSCjOFo=
 
+vue-preview-image@^0.1.4:
+  version "0.1.4"
+  resolved "http://60.171.122.59:8090/vue-preview-image/-/vue-preview-image-0.1.4.tgz#c8576ad8c69743a85f507aad7b77abc925b2c602"
+  integrity sha1-yFdq2MaXQ6hfUHqte3erySWyxgI=
+  dependencies:
+    vue "^2.5.17"
+
 vue-ref@^1.0.4:
   version "1.0.6"
   resolved "https://registry.npm.taobao.org/vue-ref/download/vue-ref-1.0.6.tgz#b9b3d7d0e290ee2fd3d50d5d7bdac520806cb265"
