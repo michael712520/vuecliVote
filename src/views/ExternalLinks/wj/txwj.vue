@@ -21,10 +21,10 @@
             <a-button>下一页</a-button>
           </div>
           <div class="row">
-            <a-button size="large" type="primary" @click="clickSub">提交</a-button>
+            <a-button size="large" type="primary" :loading="loading" @click="clickSub">提交</a-button>
           </div>
         </div>
-       </div>
+      </div>
     </div>
   </div>
 </template>
@@ -92,7 +92,8 @@ export default {
         start: 0,
         length: 0
       },
-      model: null
+      model: null,
+      loading: false
     }
   },
   computed: {
@@ -115,6 +116,7 @@ export default {
       this.$store.commit('ExternalLinks/updateSelectResult', data)
     },
     async clickSub() {
+      this.loading = true
       let data = this.$store.state.ExternalLinks.listData
       for (let i = 0; i < data.length; i++) {
         let model = data[i]
@@ -127,6 +129,7 @@ export default {
           // window.location.href = this.model.callBack + `&&result=1`
         } else {
           this.$message.error(`行号${i + 1}没有填写值清正确填写`)
+          this.loading = false
           return
         }
       }
@@ -141,6 +144,7 @@ export default {
       })
       console.log('UpdateSelectResult', JSON.stringify(hbk))
       let item = await api.tp.UpdateSelectResult(hbk)
+      this.loading = false
       this.$router.push({
         path: '/ExternalLinks/result',
         query: { id: item.qtDetailId, batchNumber: item.batchNumber }
