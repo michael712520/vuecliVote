@@ -3,7 +3,7 @@
     <div class="blockquote">
       <div class="ztc">
         <div class="row titile" v-if="model">
-          <div v-html="msg"></div>
+          <div>{{this.userName}}的问卷结果</div>
           <div class="row" v-for="(item,index) in model" :key="index">
             <div class="row">{{item.name}}</div>
             <div class="row">
@@ -57,7 +57,8 @@ export default {
       pageSize: 10,
       total: 10,
       columns,
-      model: null
+      model: null,
+      userName: null
     }
   },
   computed: {},
@@ -73,7 +74,8 @@ export default {
         batchNumber: this.$route.query.batchNumber
       }
       try {
-        let data = await api.qtDetail.GetResult(form)
+        let { data, userName } = await api.qtDetail.GetResult(form)
+        this.userName = userName
         this.model = data
       } catch (error) {}
     }

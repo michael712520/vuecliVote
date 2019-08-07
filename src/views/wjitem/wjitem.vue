@@ -8,6 +8,8 @@
             <a-table :columns="columns" :dataSource="data" bordered :pagination="false">
               <div slot="action" slot-scope="text, record">
                 <a @click="checkResult(record)">查看结果</a>
+                <a-divider type="vertical" />
+                <a @click="del(record)">删除</a>
                 <!-- <a-divider type="vertical" />
                 <a @click="simpleResult(record)">重新评估</a>-->
                 <!-- <a @click="viewinfo(record)">查看试卷内容</a> -->
@@ -74,11 +76,15 @@ export default {
   },
   methods: {
     checkResult(record) {
-      this.$router.push({ path: '/ExternalLinks/result', query: { id: record.qtDetailId, batchNumber: record.batchNumber } })
+      this.$router.push({
+        path: '/ExternalLinks/result',
+        query: { id: record.qtDetailId, batchNumber: record.batchNumber }
+      })
     },
     simpleResult(record) {
       this.$router.push({ path: '/ExternalLinks/repeatwj', query: { ...this.$route.query } })
     },
+    del(record) {},
     viewinfo(record) {},
     goBack() {
       window.location.href = this.$route.query.callBack
