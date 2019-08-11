@@ -48,7 +48,7 @@
             <a @click="$refs.LatitudeResultCategory.add(item)">纬度分类</a>
           </div>
           <div slot="actions">
-            <a>发布问卷</a>
+            <a @click="UpdateState(item)">发布问卷</a>
           </div>
           <div slot="actions">
             <a @click="bj(item)">编辑问卷</a>
@@ -58,6 +58,9 @@
               <a-menu slot="overlay">
                 <a-menu-item>
                   <a>编辑</a>
+                </a-menu-item>
+                <a-menu-item>
+                  <a @click="CancelState(item)">取消发布</a>
                 </a-menu-item>
                 <a-menu-item>
                   <a @click="del(item)">删除</a>
@@ -143,6 +146,17 @@ export default {
       this.pageSize = pageSize
       await init()
     },
+    async UpdateState(item) {
+      let form = { id: item.id, state: 1 }
+      let data = await api.tp.UpdateState(form)
+      this.$message.success('发布成功')
+    },
+    async CancelState(item) {
+      let form = { id: item.id, state: 0 }
+      let data = await api.tp.UpdateState(form)
+      this.$message.success('取消成功')
+    },
+
     bj(item) {
       this.$store.commit('question/item', item)
       this.$router.push({ path: '/dashboard/Question', query: { id: item.id } })
