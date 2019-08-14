@@ -13,7 +13,7 @@
  *
  */
 export default {
-  baseUrl: 'http://47.112.129.181:8080',
+  baseUrl: 'http://api.chinajpi.org',
   // baseUrl: 'https://api.iu1314.com',
   primaryColor: '#1890FF', // primary color of ant design
   navTheme: 'dark', // theme for nav menu
