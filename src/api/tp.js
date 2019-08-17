@@ -18,6 +18,8 @@ export const config = {
   ListSaveItem: `POST ${baseUrl}/api/MbDetail/ListSaveItem`,
   UpdateMbDetail: `POST ${baseUrl}/api/MbDetail/UpdateMbDetail`,
   UpdateState: `POST ${baseUrl}/api/MbDetail/UpdateState/:id/:state`,
+  UpdateFree: `POST ${baseUrl}/api/MbDetail/UpdateFree/:id/:fee`,
+
 }
 export async function Get(id) {
   const {
@@ -125,5 +127,12 @@ export async function UpdateState(params) {
     success,
     data
   } = await request(config.UpdateState, params)
+  return data
+}
+export async function UpdateFree(params) {
+  const {
+    success,
+    data
+  } = await request(config.UpdateFree, params)
   return data
 }

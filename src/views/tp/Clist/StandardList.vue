@@ -63,6 +63,9 @@
                   <a @click="CancelState(item)">取消发布</a>
                 </a-menu-item>
                 <a-menu-item>
+                  <a @click="$refs.UpdateFeeForm.add(item)">设置金额</a>
+                </a-menu-item>
+                <a-menu-item>
                   <a @click="del(item)">删除</a>
                 </a-menu-item>
               </a-menu>
@@ -89,6 +92,7 @@
       </a-list>
 
       <task-form ref="taskForm" />
+      <UpdateFeeForm ref="UpdateFeeForm" @refresh="refresh"></UpdateFeeForm>
       <LatitudeResultCategory ref="LatitudeResultCategory" />
     </a-card>
   </div>
@@ -96,6 +100,7 @@
 
 <script>
 import HeadInfo from '@/components/tools/HeadInfo'
+import UpdateFeeForm from './modules/UpdateFeeForm'
 import TaskForm from './modules/TaskForm'
 import api from '@/api'
 import LatitudeResultCategory from './modules/LatitudeResultCategory'
@@ -105,7 +110,8 @@ export default {
   components: {
     HeadInfo,
     TaskForm,
-    LatitudeResultCategory
+    LatitudeResultCategory,
+    UpdateFeeForm
   },
   data() {
     return {
@@ -129,6 +135,9 @@ export default {
       this.$router.push({
         path: `/dashboard/Question`
       })
+    },
+    async refresh() {
+      await this.init((this.current - 1) * this.pageSize, this.pageSize)
     },
     async init() {
       let form = {
@@ -183,7 +192,8 @@ export default {
         params: { mbQuestionId: item.id, Start: 0, Length: 10 }
       })
       window.open(details.href, '_blank')
-    }
+    },
+    updateFee() {}
   },
   watch: {
     refreshStandardList(nVal, oVal) {
