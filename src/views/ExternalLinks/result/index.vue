@@ -75,6 +75,7 @@ export default {
       }
       try {
         let { data, userName } = await api.qtDetail.GetResult(form)
+        debugger
         this.userName = userName
         this.model = data
       } catch (error) {}
