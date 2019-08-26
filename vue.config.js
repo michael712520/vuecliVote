@@ -4,6 +4,7 @@ const webpack = require('webpack')
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
 // vue.config.js
 module.exports = {
@@ -24,7 +25,17 @@ module.exports = {
   configureWebpack: {
     plugins: [
       // Ignore all locale files of moment.js
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new CompressionWebpackPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: new RegExp(
+          '\\.(' + ['js', 'css'].join('|') +
+          ')$',
+        ),
+        threshold: 10240,
+        minRatio: 0.8,
+      })
     ]
   },
 

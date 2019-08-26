@@ -21,7 +21,7 @@
             <a-button>下一页</a-button>
           </div>
           <div class="row">
-            <a-button size="large" type="primary" @click="clickSub">提交</a-button>
+            <a-button size="large" :loading="loading" type="primary" @click="clickSub">提交</a-button>
           </div>
         </div>
         <div class="dfoot">技术提供</div>
@@ -93,7 +93,8 @@ export default {
         start: 0,
         length: 0
       },
-      model: null
+      model: null,
+      loading: false
     }
   },
   computed: {
@@ -137,6 +138,7 @@ export default {
       let list = data.map(d => {
         return d.dataInfo
       })
+      this.loading = true
       console.log('{ list: list }', JSON.stringify({ list: list }))
       let hbk = []
       list.forEach(element => {
@@ -144,7 +146,7 @@ export default {
       })
       console.log('UpdateSelectResult', JSON.stringify(hbk))
       await api.tp.UpdateSelectResult(hbk)
-
+      this.loading = false
       window.location.href = this.$route.query.callBack + '?result=1'
     },
     async init() {
