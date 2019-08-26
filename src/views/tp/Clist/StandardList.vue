@@ -47,24 +47,15 @@
           <div slot="actions">
             <a @click="$refs.LatitudeResultCategory.add(item)">纬度分类</a>
           </div>
-          <div slot="actions">
+          <!-- <div slot="actions">
             <a @click="UpdateState(item)">发布问卷</a>
-          </div>
+          </div>-->
           <div slot="actions">
             <a @click="bj(item)">编辑问卷</a>
           </div>
           <div slot="actions">
             <a-dropdown>
               <a-menu slot="overlay">
-                <a-menu-item>
-                  <a>编辑</a>
-                </a-menu-item>
-                <a-menu-item>
-                  <a @click="CancelState(item)">取消发布</a>
-                </a-menu-item>
-                <a-menu-item>
-                  <a @click="$refs.UpdateFeeForm.add(item)">设置金额</a>
-                </a-menu-item>
                 <a-menu-item>
                   <a @click="del(item)">删除</a>
                 </a-menu-item>

@@ -9,7 +9,7 @@
               <div slot="action" slot-scope="text, record">
                 <a @click="checkResult(record)">查看结果</a>
                 <a-divider type="vertical" />
-                <a @click="del(record)">删除</a>
+                <!-- <a @click="del(record)">删除</a> -->
                 <!-- <a-divider type="vertical" />
                 <a @click="simpleResult(record)">重新评估</a>-->
                 <!-- <a @click="viewinfo(record)">查看试卷内容</a> -->

@@ -8,7 +8,7 @@
     </div>
     <div class="split_line"></div>
     <div class="item">
-      <a>
+      <a @click="close">
         <i class="icon close"></i>
         <h5>关闭</h5>
       </a>
@@ -27,7 +27,11 @@ export default {
   },
   computed: {},
   mounted() {},
-  methods: {},
+  methods: {
+    close() {
+      this.$router.push({ path: '/dashboard/basic-list' })
+    }
+  },
   watch: {}
 }
 </script>
